@@ -19,4 +19,4 @@ The [Dark patterns website](http://darkpatterns.org/){:target="_blank"} is defin
 <hr>
 # Categorized Under
 <br>
-<a id="category" href="/blog?item-1" onClick="nav()">Miscellaneous</a>
+<a id="category" href="/blog-list?item-2" onClick="nav()">Security</a>

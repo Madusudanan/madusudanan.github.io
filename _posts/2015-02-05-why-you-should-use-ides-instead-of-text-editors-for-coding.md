@@ -80,4 +80,7 @@ There is lot more but the idea is everything at a single place, and the quality 
 
 So what is the point here? Just use an IDE and never use a text editor.Definitely not,there are places where you might still use a text editor.I use Vim sometimes for working on small C/C++ Projects and I use Brackets for web development.But when it comes to a full blown commercial project and collaborating with many developers, IDEs are the way to go.Finally it comes to a matter of choice, but keep those myths in mind and make your choice.
 
-
+<hr>
+# Categorized Under
+<br>
+<a id="category" href="/blog-list?item-1" onClick="nav()">Miscellaneous</a>

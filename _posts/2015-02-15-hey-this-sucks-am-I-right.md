@@ -113,3 +113,7 @@ Rants have their place,in the internet everything has its place.But do not let i
 
 >Stop ranting and start learning.
 
+<hr>
+# Categorized Under
+<br>
+<a id="category" href="/blog-list?item-1" onClick="nav()">Miscellaneous</a>

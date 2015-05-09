@@ -43,3 +43,9 @@ This is actually a complete playlist,do not forget to watch the last one in the 
 <a href="https://blog.devbootcamp.com/2013/2013-02-25-10-must-watch-ted-talks-for-all-aspiring-programmers" target="_blank"><u>6.A Must watch TED talks list</u></a>
 
 More to follow\...
+
+<hr>
+# Categorized Under
+<br>
+<a id="category" href="/blog-list?item-0" onClick="nav()">Software Engineering</a>
+<a id="category" href="/blog-list?item-0-1" onClick="nav()">Tutorials</a>
