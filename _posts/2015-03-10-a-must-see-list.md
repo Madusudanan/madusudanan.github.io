@@ -49,4 +49,4 @@ More to follow\...
 <br>
 <a id="category" href="/blog-list?item-0" onClick="nav()">Software Engineering</a>
 
-<a id="category" href="/blog-list?item-0-0" onClick="nav()">Tutorials</a>
+<a id="category" href="/blog-list?item-0&item-0-0" onClick="nav()">Tutorials</a>
