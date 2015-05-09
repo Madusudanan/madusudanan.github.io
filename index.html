@@ -2,10 +2,28 @@
 layout: default
 ---
 
-{% for post in site.posts %}
-<article class="post">
-  <h1><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h1>
-  {{ post.excerpt }}
-  <a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">Read More &raquo;</a>
-</article>
-{% endfor %}
+<p>
+  Welcome to the home of the samurai coder.
+  This is the personal website of <a href="http://samuraicoder.in/about">me</a>.Here you will find <a href="http://samuraicoder.in/blog">blogs</a> and other stuff.
+  Use the side nav bar to navigate around if you are a human, use the sitemap.xml if you are a bot.
+</p>
+
+<p>
+  I blog occasionally, if you are interested in keeping up with new blog posts, you should follow me on <a href="https://twitter.com/BMadusudanan">twitter</a> where
+  I usually tweet when I publish them.
+</p>
+
+{% include _google-search-box.html %}
+
+<h1>Blog Posts</h1>
+
+<ul class="posts">
+  {% for post in site.posts limit:20 %}
+  <li>
+    <span>{{ post.date | date_to_string }}</span> &raquo;
+    <a href="{{ post.url }}">
+      {{ post.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+

@@ -1,10 +1,11 @@
-name: "Heather"
-description: "A Hyperminimal Jekyll Theme"
-author: "Jxnblk"
+name: "Samurai Coder"
+description: "Home of the Samurai Coder"
+author: "Madusudanan.B.N"
 
 # url: "http://localhost:4000"
-url: "http://jxnblk.github.io/Heather"
+url: "http://samuraicoder.in"
 
-exclude: [README.md, Rakefile]
-paginate: 16
-permalink: /:title
+exclude: [Rakefile]
+comments: true
+permalink: /blog/:title
+

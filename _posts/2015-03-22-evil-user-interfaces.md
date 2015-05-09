@@ -1,0 +1,22 @@
+---
+layout: post
+title: "Evil User Interfaces"
+permalink: blog/evil-user-interfaces
+---
+
+When we think about the term evil user interfaces,normally what comes to mind is a malicious web site design.The actual meaning is pretty close,a bad design is done by mistake,but an evil design is carefully crafted and designed to trick viewers into doing things that they normally wont do.
+
+An example of normal human psychology is to get things done fast.When we go to websites to download something,there has been numerous instances that I have faced personally,like some ten buttons pop up for download and the user does not know which to click,some users might accidentally click the ads and the sites make money out of this.
+
+Eventually these kind of sites form a pattern.Some call it evil design,some call it dark patterns.
+
+The [Dark patterns website](http://darkpatterns.org/){:target="_blank"} is definitely an interesting read.When you come across any sites that are similar,make sure you put it up at darkpatterns web-site so that many come to know about it and it spreads awareness.
+
+<u>Dark Patterns</u>
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 70%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/1KVyFio8gw4' frameborder='0' allowfullscreen></iframe></div>
+
+<hr>
+# Categorized Under
+<br>
+<a id="category" href="/blog?item-1" onClick="nav()">Miscellaneous</a>
