@@ -9,3 +9,5 @@ exclude: [Rakefile]
 comments: true
 permalink: /blog/:title
 
+gems:
+  - jekyll-sitemap
