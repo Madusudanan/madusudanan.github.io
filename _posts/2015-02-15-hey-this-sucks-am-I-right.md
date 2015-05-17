@@ -93,7 +93,7 @@ This should be on top of the stupidity list.I mean how often you start and stop 
 <img src="/images/chuck-norris-code.jpg" alt="Chuck Norris Coder"/>
 </a>
 
-There are so much IDE\'s have to offer and many young programmers who enter into the field get confused by these things.I have wrote a separate [blog post](/why-you-should-use-ides-instead-of-text-editors-for-coding) on this, in which I hopefully make some sense.The main point is there are a gazillion other things to worry about than the IDE startup time,Software engineering is much more than just typing out stuff, there is so much thought process involved.Of course, if you think that using VIM or EMACS is cool,then go ahead, but do not advertise that it improves programmer productivity/makes you a better programmer.
+There are so much IDE\'s have to offer and many young programmers who enter into the field get confused by these things.I have wrote a separate [blog post](/blog/why-you-should-use-ides-instead-of-text-editors-for-coding) on this, in which I hopefully make some sense.The main point is there are a gazillion other things to worry about than the IDE startup time,Software engineering is much more than just typing out stuff, there is so much thought process involved.Of course, if you think that using VIM or EMACS is cool,then go ahead, but do not advertise that it improves programmer productivity/makes you a better programmer.
 
 <a name="BeingCoolFactor"><u>The Being cool factor - Not being cool sucks</u></a>
 

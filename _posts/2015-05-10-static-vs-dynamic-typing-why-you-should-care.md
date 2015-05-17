@@ -18,7 +18,7 @@ Though this may sound like a rant, the actual purpose is to remove lot of myths 
 and interpreted languages, that is a design decision of a language designer.Our goal here is from programmer\'s perspective and what difference does it make.
 Also I am not comparing languages, but rather than the paradigm behind it which is more important and for the same reason some things might not be applicable to some dynamically typed languages.
 
-Bacto to the topic,in a nutshell, the type of the variable should be declared/known at compile time.Examples of these are Java,Scala,Go.
+Back to the topic,in a nutshell, the type of the variable should be declared/known at compile time.Examples of these are Java,Scala,Go.
 
 Languages such as PHP,Python,Javascript do not require the type information at compile time and they are evaluated at run time.
 
@@ -170,10 +170,19 @@ Phew !! that was a long one.This post does not imply that you should not use dyn
 
 That\'s all folks.Do let me know your thoughts using comments below.
 
+# References
+
+- [Team ten - Java for everything](http://www.teamten.com/lawrence/writings/java-for-everything.html)
+- [Stackoverflow - What do people find so appealing in dynamic languages](http://stackoverflow.com/questions/42934/what-do-people-find-so-appealing-about-dynamic-languages)
+- [Jooq - The inconvenient truth about dynamic typing](http://blog.jooq.org/2014/12/11/the-inconvenient-truth-about-dynamic-vs-static-typing/)
+- [Programmers SE - Dynamic vs Static language studies](http://programmers.stackexchange.com/questions/10032/dynamically-vs-statically-typed-languages-studies)
+- [Programmers - SE - Supposed productivity gain of dynamic typing](http://programmers.stackexchange.com/questions/122205/what-is-the-supposed-productivity-gain-of-dynamic-typing)
+
 <hr>
 # Categorized Under
 <br>
 <a id="category" href="/blog-list?item-0" onClick="nav()">Software Engineering</a>
+
 <a id="category" href="/blog-list?item-0&item-0-1" onClick="nav()">Programming Paradigms</a>
 
 
