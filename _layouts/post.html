@@ -1,5 +1,7 @@
 {% include _css-js.html %}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<title>{{ page.title }} - Samurai Coder</title>
 <div class="container">
   <div class="row">
     <div id="sidebar">
@@ -10,9 +12,18 @@
       <div class="content">
         <br>
         <main>
-            <blockquote><p>Posted on <span>{{ page.date | date: "%d %B %Y" }}</span></p></blockquote>
+          <div class="posted-date" style="display:inline-block;">
+            <time class="icon">
+            <span>{{ page.date | date: "%d " }}</span>
+             <strong>{{ page.date | date: "%B" }}</strong>
+             <em>{{ page.date | date: "%Y " }}</em>
+            </time>
+          </div>
+          <div class="page-title" style="display:inline-block;">
+            <h1>{{ page.title }}</h1>
+          </div>
+          <hr>
             {{ content }}
-          </article>
           {% include _blog-common.html %}
         </main>
       </div>

@@ -15,7 +15,7 @@ The main idea or purpose is to emphasize the importance of types in programming 
 >What it is not ?
 
 Though this may sound like a rant, the actual purpose is to remove lot of myths that surround both dynamic and static typing.This is not a comparison between compiled
-and interpreted languages, that is a design decision of a language designer.Our goal here is from programmer\'s perspective and what difference does it make.
+and interpreted languages, that is a design decision of a language designer.Our goal here is from programmer's perspective and what difference does it make.
 Also I am not comparing languages, but rather than the paradigm behind it which is more important and for the same reason some things might not be applicable to some dynamically typed languages.
 
 Back to the topic,in a nutshell, the type of the variable should be declared/known at compile time.Examples of these are Java,Scala,Go.
@@ -34,9 +34,9 @@ Note that these are just examples to give a feel, not to list things that are wr
  
 <a name = "NoReturn"><u>No return statements</u></a>
 
-Consider the below piece of python code which returns a result greater when a>b and does not do return anything when it is lesser.This is a programmer\'s fault, but the compiler or editor will not alert that there is something wrong, and when you print it out it prints \"None\" in python and \"Undefined\" in Javascript.
+Consider the below piece of python code which returns a result greater when a>b and does not do return anything when it is lesser.This is a programmer's fault, but the compiler or editor will not alert that there is something wrong, and when you print it out it prints "None" in python and "Undefined" in Javascript.
 
-<code data-gist-id="bf67aedb2eb9894eb864"></code>
+{% gist bf67aedb2eb9894eb864 %}
 
 This could cause potential problem, when you are evaluating these function values.
 
@@ -50,14 +50,14 @@ throw up some result, it will usually be some pretty useless information(read ty
 
 For an example, consider the below piece of code.
 
-<code data-gist-id="f13891bf1e9ff7547c36"></code>
+{% gist f13891bf1e9ff7547c36 %}
 
 The function does not have any type information coming in or going out of it.So, now the question is can you consume this function without any documentation or going
 through the code ?
 
 Where is the so called type freedom here ?
 
-On the other side, even though static typing is not self describing about the function/method\'s purpose, it would atleast save the hassle of calling it with the wrong
+On the other side, even though static typing is not self describing about the function/method's purpose, it would atleast save the hassle of calling it with the wrong
 type with compile time checking.
 
 >Being type free is not freedom
@@ -69,8 +69,8 @@ this, [here](https://www.destroyallsoftware.com/talks/wat){:target="_blank"} is 
 
 <a name = "MissedDependancies"><u>Missed Dependencies</u></a>
 
-This is something that I have personally faced, let\'s say we have two [pull requests](http://git-scm.com/docs/git-request-pull){:target="_blank"} and they depend on each other.
-A mistake happens and Pull request \#2 which depends on \#1 is merged first.Since there is no build, you would not know this unless you actually see this in run time as a
+This is something that I have personally faced, let's say we have two [pull requests](http://git-scm.com/docs/git-request-pull){:target="_blank"} and they depend on each other.
+A mistake happens and Pull request #2 which depends on #1 is merged first.Since there is no build, you would not know this unless you actually see this in run time as a
 user or possibly some in some logs.Of course, proper testing could have prevented this, but the point is in a static setting you cannot do this and your build will fail.
 
 The problems with dynamic typing is you would require a lot of work to prevent issues, such as documentation about types, careful testing.In a static setting you are protected
@@ -125,7 +125,7 @@ If you are waiting for a build, then you are doing it wrong.
 
 <a name="SkilledProgrammers"><u>Skilled programmers can avoid type problems</u></a>
 
-Let\'s face it, programmers are lazy, you cannot expect people to document something as monotonous as which type information that can go in and come out and all the 
+Let's face it, programmers are lazy, you cannot expect people to document something as monotonous as which type information that can go in and come out and all the 
 fallacies of dynamic typing.
 
 <a name = "TDD"><u>Test driven development can solve many of the type problems</u></a>
@@ -152,7 +152,7 @@ Other languages do have something similar.
 
 Heterogeneous types are possible in Java and even in other languages.Below is an example.
 
-Object[][] array = \{\{\"John Smith\", 000\}, \{\"Smith John\", 001\}\};
+Object\[\]\[\] array = \{\{\"John Smith\", 000\}, \{\"Smith John\", 001\}\};
 
 Although a class would be better in terms of design.The point is it is possible.
 
@@ -168,7 +168,7 @@ Phew !! that was a long one.This post does not imply that you should not use dyn
 - Small utilities - Python can almost be entirely used as a replacement for shell scripting.
 - Teaching programming - Teaching the core concepts of programming is easier without worrying about types.
 
-That\'s all folks.Do let me know your thoughts using comments below.
+That's all folks.Do let me know your thoughts using comments below.
 
 # References
 

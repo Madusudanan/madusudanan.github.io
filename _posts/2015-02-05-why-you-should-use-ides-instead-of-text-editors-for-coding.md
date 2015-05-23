@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "IDE vs Text Editor"
+title: "Why you should use IDEs instead of text editors for coding"
 permalink: blog/why-you-should-use-ides-instead-of-text-editors-for-coding
 ---
 
