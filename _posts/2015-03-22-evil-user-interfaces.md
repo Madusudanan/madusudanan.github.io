@@ -14,7 +14,13 @@ The [Dark patterns website](http://darkpatterns.org/){:target="_blank"} is defin
 
 <u>Dark Patterns</u>
 
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 70%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/1KVyFio8gw4' frameborder='0' allowfullscreen></iframe></div>
+<div class="row">
+<div class="col-lg-6">
+<div class="video-container">
+	<iframe src="https://www.youtube.com/embed/1KVyFio8gw4" width="800" height="450" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+</div>
 
 <hr>
 # Categorized Under

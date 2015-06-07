@@ -11,3 +11,4 @@ permalink: /blog/:title
 
 gems:
   - jekyll-sitemap
+  - jekyll-feed

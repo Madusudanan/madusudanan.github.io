@@ -9,7 +9,7 @@ title: Blog Listing by Category
     categoryNav();
 </script>
 
-<div class="css-treeview">
+<ul class="css-treeview">
     <ul>
         <li><input type="checkbox" id="item-0" /><label for="item-0">Software Engineering</label>
             <ul>
@@ -24,7 +24,13 @@ title: Blog Listing by Category
                          <li><a href="/blog/static-vs-dynamic-typing-why-you-should-care">Static vs Dynamic typing - Why you should care?</a></li>
                       </ul>
                 </li>
-            </ul>
+                    <li>
+                    <input type="checkbox" id="item-0-2" /><label for="item-0-2">Scala</label>
+                    <ul class="innerList">
+                        <li><a href="/blog/why-scala-will-be-the-next-big-thing">Why Scala will be the next big thing</a></li>
+                    </ul>
+                    </li>
+        </ul>
         </li>
         <li><input type="checkbox" id="item-1" /><label for="item-1">Miscellaneous</label>
             <ul class="innerList">
@@ -39,4 +45,3 @@ title: Blog Listing by Category
             </ul>
         </li>
     </ul>
-</div>

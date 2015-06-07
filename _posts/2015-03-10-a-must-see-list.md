@@ -10,7 +10,13 @@ This is not really a blog post but a compilation of talks/videos.The content is 
 
 <u>1.Donald Knuth - All questions answered</u>
 
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 70%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://youtube.com/embed/xLBvCB2kr4Q' frameborder='0' allowfullscreen></iframe></div>
+<div class="row">
+<div class="col-lg-6">
+<div class="video-container">
+	<iframe src="https://www.youtube.com/embed/xLBvCB2kr4Q" width="800" height="450" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+</div>
 
 <br>
 
@@ -18,25 +24,50 @@ This is not really a blog post but a compilation of talks/videos.The content is 
 
 This is actually a complete playlist,do not forget to watch the last one in the series, - You and your research
 
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 70%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/videoseries?list=PL2FF649D0C4407B30' frameborder='0' allowfullscreen></iframe></div>
+<div class="row">
+<div class="col-lg-6">
+<div class="video-container">
+	<iframe src="https://www.youtube.com/embed/videoseries?list=PL2FF649D0C4407B30" width="800" height="450" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+</div>
 
 <br>
 
 <u>3.Joshua Bloch - How To Design A Good API and Why it Matters</u>
 
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 70%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/aAb7hSCtvGw' frameborder='0' allowfullscreen></iframe></div>
+<div class="row">
+<div class="col-lg-6">
+<div class="video-container">
+	<iframe src="https://www.youtube.com/embed/aAb7hSCtvGw" width="800" height="450" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+</div>
 
 <br>
 
 <u>4.Alan Kay - The Future Doesn't Have To Be Incremental</u>
 
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 70%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://youtube.com/embed/gTAghAJcO1o' frameborder='0' allowfullscreen></iframe></div>
+<div class="row">
+<div class="col-lg-6">
+<div class="video-container">
+	<iframe src="https://www.youtube.com/embed/gTAghAJcO1o" width="800" height="450" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+
 
 <br>
 
 <u>5.Brian Fitzpatrick & Ben Collins-Sussman - Programming Well with Others: Social Skills for Geeks</u>
 
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 70%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/q-7l8cnpI4k' frameborder='0' allowfullscreen></iframe></div>
+<div class="row">
+<div class="col-lg-6">
+<div class="video-container">
+	<iframe src="https://www.youtube.com/embed/q-7l8cnpI4k" width="800" height="450" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+</div>
 
 <br>
 
