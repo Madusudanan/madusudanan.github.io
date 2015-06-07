@@ -148,6 +148,12 @@ If you find one that is really good, do let me know.
 
 There are several more,but hopefully that should get you started.
 
+## References
+
+- [Why we love Scala at Coursera](https://tech.coursera.org/blog/2014/02/18/why-we-love-scala-at-coursera/){:target="_blank"}
+- [The Play framework at Linkedin](https://engineering.linkedin.com/play/play-framework-linkedin){:target="_blank"}
+- [The Why and How of Scala at Twitter](http://www.slideshare.net/al3x/the-how-and-why-of-scala-at-twitter){:target="_blank"}
+
 Hopefully I have convinced you to adopt scala,do let me know your thoughts by commenting below.
 
 Happy Coding :)
