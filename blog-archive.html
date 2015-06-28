@@ -1,0 +1,16 @@
+---
+layout: index-page
+title: "Blog Archive"
+---
+
+<p>This page lists all of the blog posts in this site.For a more categorical listing,<a href="/blog-list"> check here.</a></p>
+
+<ul class="posts">
+    {% for post in site.posts %}
+    <li>
+        <span>{{ post.date | date_to_string }}</span> &raquo;
+        <a href="{{ post.url }}">
+            {{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>

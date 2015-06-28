@@ -22,6 +22,8 @@ Back to the topic,in a nutshell, the type of the variable should be declared/kno
 
 Languages such as PHP,Python,Javascript do not require the type information at compile time and they are evaluated at run time.
 
+<!--break-->
+
 <u>Problems with dynamic typing</u>
 
 Note that these are just examples to give a feel, not to list things that are wrong.

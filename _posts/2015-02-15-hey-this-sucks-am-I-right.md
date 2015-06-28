@@ -27,6 +27,8 @@ This is how I feel when someone rants about something which is really unnecessar
 <img src="/images/code-monkeys.jpg" alt="Code Monkeys"/>
 </a>
 
+<!--break-->
+
 Yes, monkeys on a laptop, basically having no idea what is going on.
 
 Below is a list that I have thought of why they exist.

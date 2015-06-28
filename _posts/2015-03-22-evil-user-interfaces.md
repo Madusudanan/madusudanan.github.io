@@ -4,6 +4,8 @@ title: "Evil User Interfaces"
 permalink: blog/evil-user-interfaces
 ---
 
+## Evil User Interfaces - What is that??
+
 When we think about the term evil user interfaces,normally what comes to mind is a malicious web site design.The actual meaning is pretty close,a bad design is done by mistake,but an evil design is carefully crafted and designed to trick viewers into doing things that they normally wont do.
 
 An example of normal human psychology is to get things done fast.When we go to websites to download something,there has been numerous instances that I have faced personally,like some ten buttons pop up for download and the user does not know which to click,some users might accidentally click the ads and the sites make money out of this.
@@ -21,6 +23,8 @@ The [Dark patterns website](http://darkpatterns.org/){:target="_blank"} is defin
 </div>
 </div>
 </div>
+
+<!--break-->
 
 <hr>
 # Categorized Under

@@ -18,6 +18,8 @@ Stop !! This blog post consists of Sarcasm and Constructive criticism, if you ar
 
 First off lets do some mythbusting and then compare IDEs vs text editors and what exactly is the problem of using either of them.
 
+<!--break-->
+
 - <a href="#TEBetterProgrammer">Myth #1: Using a text editor makes you a better programmer</a>
 - <a href="#TEProductivity">Myth #2: Using a text editor improves programmer productivity</a>
 - <a href="#TECustomization">Myth #3 : Text editors are highly extensible/customizable.IDEs are not</a>

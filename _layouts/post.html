@@ -13,19 +13,17 @@
       <div class="content">
         <br>
         <main>
-          <div class="posted-date" style="display:inline-block;">
-            <time class="icon">
-            <span>{{ page.date | date: "%d " }}</span>
-             <strong>{{ page.date | date: "%B" }}</strong>
-             <em>{{ page.date | date: "%Y " }}</em>
-            </time>
-          </div>
           <div class="page-title" style="display:inline-block;">
             <h1>{{ page.title }}</h1>
+              <p style="font-size: 17px"><i class="fa fa-calendar"></i><span class="post-date"> {{ page.date | date: "%B %d, %Y" }}</span></p>
           </div>
           <hr>
             {{ content }}
-          {% include _blog-common.html %}
+            <hr>
+            {% include _google-search-box.html %}
+            <hr>
+            {% include _keeping-up.html %}
+            {% include _blog-common.html %}
         </main>
       </div>
     </div>

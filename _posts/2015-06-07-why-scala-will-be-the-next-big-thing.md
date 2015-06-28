@@ -20,6 +20,8 @@ speak about its downsides and how to avoid them.I will not be putting up any cod
 
 No programming language is a silver bullet, it is upto to you to decide what is best for your job.
 
+<!--break-->
+
 PS : You are free to use this article to sell scala to your boss :)
 
 ##Heads Up !!
@@ -156,14 +158,18 @@ There are several more,but hopefully that should get you started.
 
 Hopefully I have convinced you to adopt scala,do let me know your thoughts by commenting below.
 
+Do watch out for more Scala articles.
+
 Happy Coding :)
 
 <hr>
 # Categorized Under
 <br>
-<a id="category" href="/blog-list?item-0" onClick="nav()">Software Engineering</a>
+<i class="fa fa-folder-o"><a id="category" href="/blog-list?item-0" onClick="nav()"> Software Engineering</a></i>
 
-<a id="category" href="/blog-list?item-0&item-0-2" onClick="nav()">Scala</a>
+<a id="category" href="/blog-list?item-0&item-0-2" onClick="nav()">Programming Languages</a>
+
+<a id="category" href="/blog-list?item-0&item-0-2&item-0-2-0" onClick="nav()">Scala</a>
 
 
 

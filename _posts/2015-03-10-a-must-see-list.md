@@ -20,6 +20,8 @@ This is not really a blog post but a compilation of talks/videos.The content is 
 
 <br>
 
+<!--break-->
+
 <u>2.Dr.Richard Hamming - The Art of Doing Science and Engineering : Learning to learn</u>
 
 This is actually a complete playlist,do not forget to watch the last one in the series, - You and your research

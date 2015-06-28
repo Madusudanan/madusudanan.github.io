@@ -3,7 +3,7 @@ layout: blog-list
 title: Blog Listing by Category
 ---
 
-<p>Below a listing of all blog posts on this site.</p>
+<p>Below a listing of all blog posts on this site in a categorical fashion.If you are looking for an archive page,<a href="/blog-archive"> check here</a>.</p>
 
 <script>
     categoryNav();
@@ -25,9 +25,13 @@ title: Blog Listing by Category
                       </ul>
                 </li>
                     <li>
-                    <input type="checkbox" id="item-0-2" /><label for="item-0-2">Scala</label>
-                    <ul class="innerList">
-                        <li><a href="/blog/why-scala-will-be-the-next-big-thing">Why Scala will be the next big thing</a></li>
+                    <input type="checkbox" id="item-0-2" /><label for="item-0-2">Programming Languages</label>
+                     <ul class="innerList">
+                            <li><input type="checkbox" id="item-0-2-0" /><label for="item-0-2-0">Scala</label>
+                            <ul>
+                                <li><a href="/blog/why-scala-will-be-the-next-big-thing">Why Scala will be the next big thing</a></li>
+                            </ul>
+                            </li>
                     </ul>
                     </li>
         </ul>
@@ -45,3 +49,4 @@ title: Blog Listing by Category
             </ul>
         </li>
     </ul>
+</ul>
