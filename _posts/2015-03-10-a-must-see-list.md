@@ -80,6 +80,6 @@ More to follow...
 <hr>
 # Categorized Under
 <br>
-<a id="category" href="/blog-list?item-0" onClick="nav()">Software Engineering</a>
+<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0" onClick="nav()">Software Engineering</a>
 
-<a id="category" href="/blog-list?item-0&item-0-0" onClick="nav()">Tutorials</a>
+&nbsp;<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0&item-0-0" onClick="nav()">Tutorials</a>

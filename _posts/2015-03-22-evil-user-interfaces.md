@@ -29,4 +29,4 @@ The [Dark patterns website](http://darkpatterns.org/){:target="_blank"} is defin
 <hr>
 # Categorized Under
 <br>
-<a id="category" href="/blog-list?item-2" onClick="nav()">Security</a>
+<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-2" onClick="nav()">Security</a>

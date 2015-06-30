@@ -165,11 +165,11 @@ Happy Coding :)
 <hr>
 # Categorized Under
 <br>
-<i class="fa fa-folder-o"><a id="category" href="/blog-list?item-0" onClick="nav()"> Software Engineering</a></i>
+<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0" onClick="nav()">Software Engineering</a>
 
-<a id="category" href="/blog-list?item-0&item-0-2" onClick="nav()">Programming Languages</a>
+&nbsp;<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0&item-0-2" onClick="nav()">Programming Languages</a>
 
-<a id="category" href="/blog-list?item-0&item-0-2&item-0-2-0" onClick="nav()">Scala</a>
+&nbsp;&nbsp;<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0&item-0-2&item-0-2-0" onClick="nav()">Scala</a>
 
 
 

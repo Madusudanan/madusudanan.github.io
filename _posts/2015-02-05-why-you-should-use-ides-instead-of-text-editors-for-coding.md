@@ -85,4 +85,4 @@ So what is the point here? Just use an IDE and never use a text editor.Definitel
 <hr>
 # Categorized Under
 <br>
-<a id="category" href="/blog-list?item-1" onClick="nav()">Miscellaneous</a>
+<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-1" onClick="nav()">Miscellaneous</a>
