@@ -1,9 +1,9 @@
-name: "Samurai Coder"
-description: "Home of the Samurai Coder"
+name: "Madusudanan.B.N"
+description: "Personal website of Madusudanan.B.N"
 author: "Madusudanan.B.N"
 
 # url: "http://localhost:4000"
-url: "http://samuraicoder.in"
+url: "http://madusudanan.com"
 
 exclude: [Rakefile]
 comments: true
