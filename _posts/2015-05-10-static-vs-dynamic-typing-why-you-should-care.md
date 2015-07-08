@@ -8,11 +8,11 @@ permalink: blog/static-vs-dynamic-typing-why-you-should-care
 
 If you have no idea about what that means then read [this](http://stackoverflow.com/questions/1517582/what-is-the-difference-between-statically-typed-and-dynamically-typed-languages){:target="_blank"}
 
->What this blog post is ?
+<i class="fa fa-info-circle fa-lg space-right"></i>  What this blog post is ?
 
 The main idea or purpose is to emphasize the importance of types in programming and why it matters for serious programming.
 
->What it is not ?
+<i class="fa fa-info-circle fa-lg space-right"></i>  What it is not ?
 
 Though this may sound like a rant, the actual purpose is to remove lot of myths that surround both dynamic and static typing.This is not a comparison between compiled
 and interpreted languages, that is a design decision of a language designer.Our goal here is from programmer's perspective and what difference does it make.
