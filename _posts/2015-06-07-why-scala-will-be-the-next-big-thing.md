@@ -22,7 +22,7 @@ No programming language is a silver bullet, it is upto to you to decide what is 
 
 <!--break-->
 
-PS : You are free to use this article to sell scala to your boss :)
+PS : You are free to use this article to sell scala to your boss <i class="fa fa-smile-o fa-lg"></i>
 
 ##Heads Up !!
 
@@ -160,7 +160,7 @@ Hopefully I have convinced you to adopt scala,do let me know your thoughts by co
 
 Do watch out for more Scala articles.
 
-Happy Coding :)
+Happy Coding <i class="fa fa-smile-o fa-lg"></i>
 
 <hr>
 # Categorized Under
