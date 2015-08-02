@@ -109,6 +109,10 @@ This kind of attitude is common with startup culture.Of course, you need to be c
 
 <a name="GoogleTech"><u>We need to develop our own versions of tools because google does that</u></a>
 
+<a class="image" href="http://imgs.xkcd.com/comics/standards.png">
+<img src="http://imgs.xkcd.com/comics/standards.png" alt="Standards"/>
+</a>
+
 This is another commonly heard thing.If Google is developing something in-house without using any open source versions of what is already out there or even paid software,then it has really good reason why to do it.Step back and think are you really at that level, and do you really need to develop it again, if yes, what does it do different ?
 
 Rants have their place,in the internet everything has its place.But do not let it creep in into your system.But if you do really hate something,try atleast to hate it with some logical reason.

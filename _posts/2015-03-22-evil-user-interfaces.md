@@ -14,6 +14,8 @@ Eventually these kind of sites form a pattern.Some call it evil design,some call
 
 The [Dark patterns website](http://darkpatterns.org/){:target="_blank"} is definitely an interesting read.When you come across any sites that are similar,make sure you put it up at darkpatterns web-site so that many come to know about it and it spreads awareness.
 
+<!--break-->
+
 <u>Dark Patterns</u>
 
 <div class="row">
@@ -24,7 +26,6 @@ The [Dark patterns website](http://darkpatterns.org/){:target="_blank"} is defin
 </div>
 </div>
 
-<!--break-->
 
 <hr>
 # Categorized Under

@@ -8,7 +8,15 @@ permalink: blog/a-must-see-list
 
 This is not really a blog post but a compilation of talks/videos.The content is mostly language/technology agnostic.
 
-<u>1.Donald Knuth - All questions answered</u>
+- [Donald Knuth - All questions answered](#Knuth)
+- [Dr.Richard Hamming - The Art of Doing Science and Engineering : Learning to learn](#Hamming)
+- [Joshua Bloch - How To Design A Good API and Why it Matters](#Joshua)
+- [Alan Kay - The Future Doesn't Have To Be Incremental](#Alan)
+- [Brian Fitzpatrick & Ben Collins-Sussman - Programming Well with Others: Social Skills for Geeks](#BrianAndBen)
+
+<!--break-->
+
+<a name="Knuth"><u>Donald Knuth - All questions answered</u></a>
 
 <div class="row">
 <div class="col-lg-6">
@@ -20,9 +28,7 @@ This is not really a blog post but a compilation of talks/videos.The content is 
 
 <br>
 
-<!--break-->
-
-<u>2.Dr.Richard Hamming - The Art of Doing Science and Engineering : Learning to learn</u>
+<a name="Hamming"><u>Dr.Richard Hamming - The Art of Doing Science and Engineering : Learning to learn</u></a>
 
 This is actually a complete playlist,do not forget to watch the last one in the series, - You and your research
 
@@ -36,7 +42,7 @@ This is actually a complete playlist,do not forget to watch the last one in the 
 
 <br>
 
-<u>3.Joshua Bloch - How To Design A Good API and Why it Matters</u>
+<a name="Joshua"><u>Joshua Bloch - How To Design A Good API and Why it Matters</u></a>
 
 <div class="row">
 <div class="col-lg-6">
@@ -48,7 +54,7 @@ This is actually a complete playlist,do not forget to watch the last one in the 
 
 <br>
 
-<u>4.Alan Kay - The Future Doesn't Have To Be Incremental</u>
+<a name="Alan"><u>Alan Kay - The Future Doesn't Have To Be Incremental</u></a>
 
 <div class="row">
 <div class="col-lg-6">
@@ -61,7 +67,7 @@ This is actually a complete playlist,do not forget to watch the last one in the 
 
 <br>
 
-<u>5.Brian Fitzpatrick & Ben Collins-Sussman - Programming Well with Others: Social Skills for Geeks</u>
+<a name="BrianAndBen"><u>Brian Fitzpatrick & Ben Collins-Sussman - Programming Well with Others: Social Skills for Geeks</u></a>
 
 <div class="row">
 <div class="col-lg-6">
@@ -72,8 +78,6 @@ This is actually a complete playlist,do not forget to watch the last one in the 
 </div>
 
 <br>
-
-<a href="https://blog.devbootcamp.com/2013/2013-02-25-10-must-watch-ted-talks-for-all-aspiring-programmers" target="_blank"><u>6.A Must watch TED talks list</u></a>
 
 More to follow...
 
