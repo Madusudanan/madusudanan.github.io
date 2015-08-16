@@ -20,8 +20,6 @@ speak about its downsides and how to avoid them.I will not be putting up any cod
 
 No programming language is a silver bullet, it is upto to you to decide what is best for your job.
 
-<!--break-->
-
 PS : You are free to use this article to sell scala to your boss <i class="fa fa-smile-o fa-lg"></i>
 
 ##Heads Up !!
@@ -42,7 +40,7 @@ The main goal of Scala was to be multi paradigm, focused on the JVM and to overc
 
 Below is a short presentation which you can read if you are curious.
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/t0iDsowkeSRWDv" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/Odersky/scala-evolution" title="The Evolution of Scala" target="_blank">The Evolution of Scala</a> </strong> from <strong><a href="//www.slideshare.net/Odersky" target="_blank">Martin Odersky</a></strong> </div>
+{% include _slideshare-embed.html id="t0iDsowkeSRWDv" %}
  
 ##Scala - The Good Stuff !!
 
@@ -66,13 +64,7 @@ Well that is not true.Why mix OOP and FP? - Because that's how the real world is
 
 But why functional programming in the first place? Below is an excellent talk by Martin Odersky himself on that.
 
-<div class="row">
-<div class="col-lg-6">
-<div class="video-container">
-	<iframe src="https://www.youtube.com/embed/3jg1AheF4n0" width="800" height="450" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>
-</div>
+{% include _youtube-vid.html id="3jg1AheF4n0" %}
 
 <br>
 

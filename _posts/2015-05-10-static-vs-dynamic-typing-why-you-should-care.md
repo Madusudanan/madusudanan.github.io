@@ -22,8 +22,6 @@ Back to the topic,in a nutshell, the type of the variable should be declared/kno
 
 Languages such as PHP,Python,Javascript do not require the type information at compile time and they are evaluated at run time.
 
-<!--break-->
-
 <u>Problems with dynamic typing</u>
 
 Note that these are just examples to give a feel, not to list things that are wrong.
@@ -38,7 +36,7 @@ Note that these are just examples to give a feel, not to list things that are wr
 
 Consider the below piece of python code which returns a result greater when a>b and does not do return anything when it is lesser.This is a programmer's fault, but the compiler or editor will not alert that there is something wrong, and when you print it out it prints "None" in python and "Undefined" in Javascript.
 
-{% gist bf67aedb2eb9894eb864 %}
+<code data-gist-id="bf67aedb2eb9894eb864"></code>
 
 This could cause potential problem, when you are evaluating these function values.
 
@@ -52,7 +50,7 @@ throw up some result, it will usually be some pretty useless information(read ty
 
 For an example, consider the below piece of code.
 
-{% gist f13891bf1e9ff7547c36 %}
+<code data-gist-id="f13891bf1e9ff7547c36"></code>
 
 The function does not have any type information coming in or going out of it.So, now the question is can you consume this function without any documentation or going
 through the code ?
@@ -156,7 +154,7 @@ Heterogeneous types are possible in Java and even in other languages.Below is an
 
 Object\[\]\[\] array = \{\{\"John Smith\", 000\}, \{\"Smith John\", 001\}\};
 
-Although a class would be better in terms of design.The point is it is possible.
+Although a class would be better in terms of design.The point is, it is possible.
 
 <a name = "PythonUniv"><u>Universities use python</u></a>
 
@@ -186,11 +184,6 @@ That's all folks.Do let me know your thoughts using comments below.
 <i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0" onClick="nav()">Software Engineering</a>
 
 &nbsp;<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0&item-0-1" onClick="nav()">Programming Paradigms</a>
-
-
-
-
-
 
 
 

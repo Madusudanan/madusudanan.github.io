@@ -10,24 +10,35 @@ title: "Personal website of Madusudanan.B.N"
   Use the side nav bar to navigate around if you are a human, use the <a href="/sitemap.xml">sitemap.xml</a> if you are a bot.
 </p>
 
+<a class="image" href="/images/word-cloud.jpg">
+    <img src="/images/word-cloud.jpg" alt="Word Cloud"/>
+</a>
+
+<br>
+
 <hr>
 
 <h1>Recent blog posts</h1>
 
-{% for post in site.posts limit:5 %}
-    <div class="post-preview">
-    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-    <br>
-    <div class="post-date">
-    <p><i class="fa fa-calendar"></i><span class="post-date"> {{ post.date | date: "%B %d, %Y" }}</span></p>
-    </div>
-    {{ post.content | split:'<!--break-->' | first }}
-    {% if post.content contains '<!--break-->' %}
-    <a href="{{ post.url }}">read more...</a>
-    {% endif %}
-</div>
+<ul class="posts">
+    {% for post in site.posts limit:5 %}
+    <li>
+        <span>{{ post.date | date_to_string }}</span> &raquo;
+        <a href="{{ post.url }}">
+            {{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
 <hr>
-{% endfor %}
+
+{% include _keeping-up.html %}
+
+<hr>
+
+{% include _google-search-box.html %}
+
+<hr>
 
 <h1>Looking for more posts ?</h1>
 <p>Visit the <a href="/blog-list">blog category list page</a> or the <a href="/blog-archive">blog archive page</a> to checkout more blog posts.</p>

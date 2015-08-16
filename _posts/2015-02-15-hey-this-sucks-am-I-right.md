@@ -27,8 +27,6 @@ This is how I feel when someone rants about something which is really unnecessar
 <img src="/images/code-monkeys.jpg" alt="Code Monkeys"/>
 </a>
 
-<!--break-->
-
 Yes, monkeys on a laptop, basically having no idea what is going on.
 
 Below is a list that I have thought of why they exist.
@@ -54,7 +52,7 @@ Below is a naive example of a Java and Ruby comparison where people say hey I ca
 
 <a name= "JavaVerbose"><u>Java is verbose</u></a>
 
-{% gist 4bc09fcac13f821f664a %}
+<code data-gist-id="4bc09fcac13f821f664a"></code>
     
 I have seen this far too many times.I fail to understand how many print statements do projects contain and how much productivity can be gained by this simple construct.Note that the actual print statement is still a one liner in both the languages.
 

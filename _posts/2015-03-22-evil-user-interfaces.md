@@ -14,18 +14,9 @@ Eventually these kind of sites form a pattern.Some call it evil design,some call
 
 The [Dark patterns website](http://darkpatterns.org/){:target="_blank"} is definitely an interesting read.When you come across any sites that are similar,make sure you put it up at darkpatterns web-site so that many come to know about it and it spreads awareness.
 
-<!--break-->
-
 <u>Dark Patterns</u>
 
-<div class="row">
-<div class="col-lg-6">
-<div class="video-container">
-	<iframe src="https://www.youtube.com/embed/1KVyFio8gw4" width="800" height="450" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>
-</div>
-
+{% include _youtube-vid.html id="1KVyFio8gw4" %}
 
 <hr>
 # Categorized Under

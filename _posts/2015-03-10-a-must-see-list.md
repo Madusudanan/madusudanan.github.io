@@ -14,17 +14,9 @@ This is not really a blog post but a compilation of talks/videos.The content is 
 - [Alan Kay - The Future Doesn't Have To Be Incremental](#Alan)
 - [Brian Fitzpatrick & Ben Collins-Sussman - Programming Well with Others: Social Skills for Geeks](#BrianAndBen)
 
-<!--break-->
-
 <a name="Knuth"><u>Donald Knuth - All questions answered</u></a>
 
-<div class="row">
-<div class="col-lg-6">
-<div class="video-container">
-	<iframe src="https://www.youtube.com/embed/xLBvCB2kr4Q" width="800" height="450" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>
-</div>
+{% include _youtube-vid.html id="xLBvCB2kr4Q" %}
 
 <br>
 
@@ -32,50 +24,25 @@ This is not really a blog post but a compilation of talks/videos.The content is 
 
 This is actually a complete playlist,do not forget to watch the last one in the series, - You and your research
 
-<div class="row">
-<div class="col-lg-6">
-<div class="video-container">
-	<iframe src="https://www.youtube.com/embed/videoseries?list=PL2FF649D0C4407B30" width="800" height="450" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>
-</div>
+{% include _youtube-vid.html id="videoseries?list=PL2FF649D0C4407B30" %}
 
 <br>
 
 <a name="Joshua"><u>Joshua Bloch - How To Design A Good API and Why it Matters</u></a>
 
-<div class="row">
-<div class="col-lg-6">
-<div class="video-container">
-	<iframe src="https://www.youtube.com/embed/aAb7hSCtvGw" width="800" height="450" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>
-</div>
+{% include _youtube-vid.html id="aAb7hSCtvGw" %}
 
 <br>
 
 <a name="Alan"><u>Alan Kay - The Future Doesn't Have To Be Incremental</u></a>
 
-<div class="row">
-<div class="col-lg-6">
-<div class="video-container">
-	<iframe src="https://www.youtube.com/embed/gTAghAJcO1o" width="800" height="450" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>
-</div>
-
+{% include _youtube-vid.html id="gTAghAJcO1o" %}
 
 <br>
 
 <a name="BrianAndBen"><u>Brian Fitzpatrick & Ben Collins-Sussman - Programming Well with Others: Social Skills for Geeks</u></a>
 
-<div class="row">
-<div class="col-lg-6">
-<div class="video-container">
-	<iframe src="https://www.youtube.com/embed/q-7l8cnpI4k" width="800" height="450" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>
-</div>
+{% include _youtube-vid.html id="q-7l8cnpI4k" %}
 
 <br>
 

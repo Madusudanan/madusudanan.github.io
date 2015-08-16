@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Best practices for using version control systems"
-category : Software Engineering
 permalink: blog/best-practices-for-using-version-control-systems
 ---
 
