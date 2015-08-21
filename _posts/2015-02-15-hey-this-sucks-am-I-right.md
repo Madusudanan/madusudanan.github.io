@@ -115,11 +115,14 @@ This is another commonly heard thing.If Google is developing something in-house 
 
 Rants have their place,in the internet everything has its place.But do not let it creep in into your system.But if you do really hate something,try atleast to hate it with some logical reason.
 
+
+>Be the pull request you wish to see in the world
+
+>Stop ranting and start learning
+
 <a class="image" href="/images/keep-calm-stop-ranting.jpg">
 <img src="/images/keep-calm-stop-ranting.jpg" alt="Keep calm and stop ranting"/>
 </a>
-
->Stop ranting and start learning.
 
 <hr>
 # Categorized Under
