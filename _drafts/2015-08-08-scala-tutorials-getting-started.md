@@ -16,6 +16,12 @@ Prerequisites
 
 All the tutorials will be very detailed and will be very in-depth, [no gimme the codez](http://thedailywtf.com/articles/plz-email-me-teh-codez){:target="_blank"} tutorials.Improvements are always welcome.
 
+A warning !! If you are from Java there are lot of things that can be difficult to get your head around, and the most easiest way to learn this is to unlearn and learn.
+
+<i class="fa fa-film fa-lg space-right"></i><a href="https://www.youtube.com/watch?v=OCxMYC5I3Nc" target="_blank">Be like water my friend !!</a>
+
+Let's get started.
+
 <i class="fa fa-list-ul fa-lg space-right"></i>Index
 
 Here is what this post covers.
@@ -23,8 +29,10 @@ Here is what this post covers.
 - [Short introduction to scala and environment setup](#Intro)
 - [The Scala REPL, a short presentation](#ScalaREPL)
 - [First Hello world !!](#ScalaHelloWorld)
-- [Variables]()
-- [Type inference]()
+- [Variables](#Variables)
+- [Data types in Scala](#DataTypes)
+- [Type inference](#TypeInference)
+- [Back to data types - Data type hierarchy]()
 
 <a name = "Intro"><u>Short introduction to scala and environment setup</u></a>
 
@@ -89,6 +97,102 @@ A simple hello world has opened up many topics to learn, three in particular
 - Methods(Covered in later tutorials)
 - Objects and Classes(Covered in later tutorials)
 - Type inference - The reason why scala is a statically typed dynamic language- Explained below
+
+<a name="Variables"><u>Variables in Scala</u></a>
+
+I should have explained data types before we jump into variables, but there is some fundamental differences that I want to speak about so that the we can understand them
+more deeply.
+
+<code>var</code> and <code>val</code> are two keywords which are used to declare variables in scala.
+
+<code>var</code> is used to declare variables that are mutable and <code>val</code> to declare immutable.But what kind of variables are these?
+For primitive data types, where does the concept of mutability come from? I encourage you to read this [SO](http://stackoverflow.com/questions/18037082/are-java-primitives-immutable) {:target="_blank"}.
+Primitives by themselves are immutable i.e their type cannot be changed once declared, but their values are mutable i.e they can be changed.
+
+This is confusing at first about why the concept of mutability comes for variables and not objects, this is explained below in data types section, there are no primitive
+types in scala, all are objects.
+
+Now that we are clear about the mutability/immutability concept (we are going to see more of this, scala is centered around the whole immutability principle for functional programming).
+
+If <code>val</code> is immutable, then it cannot be changed ? Is this similar to the Java final keyword or is it something related to String immutability ?
+
+Let's look some sample code below, to help us understand better.
+
+<code data-gist-id="08b652a8489ab89622e6"></code>
+
+If you run the above code, you will notice an error at compilation itself such as reassignment to val.If you are using an IDE this will show up as you type because
+of pre-compilation that the IDE gives.
+
+First thing is definitely not like String immutability where the immutability is not visible to the programmer, this is controlled at compilation level.Next question
+is is it similar to final in Java?
+
+From a bird's eye view, this seems to be similar that once a value is assigned to it, it cannot be changed, but inside the JVM <code>final</code> has nothing to do with
+immutability and it is used so that classes cannot be extended and int the case of methods it cannot be overridden.
+
+To put it in another way, final refers to the reference while immutability refers to the object itself.
+
+Let's consider the below Java code to demonstrate that this is different.
+
+<code data-gist-id="854dad554e10999f5b03"></code>
+
+If you try the same <code>final</code> with primitive types, you will notice that its value cannot be changed.Does this mean primitives are immutable ?
+This takes us back to the stackoverflow discussion above, but the reason why the error comes is because Java uses Pass by Value for primitive types,it makes no 
+sense to Pass by reference since they are not objects at all.So if a variable is changed,its reference(sorta - can be said place in memory) changes because of the Pass by value mechanism and not because that
+primitives are immutable.
+
+This can be confusing.If this mutability comparison is making your head hurt, then the simplest way is to unlearn and re-learn, be like water my friend.
+
+Immutable variables have certain performance benefits and leans closer to notion of writing code without side effects.
+
+By the time now, another question would have come up? Where are the types in the scala code ?
+
+Unlike java where we declare variables with data types and then give a variable name, scala has something called type inference(see the topics below), but don't jump there
+yet, there is a reason why I separated it out from the variables section.Read on to find out more.
+
+<a name="DataTypes"><u>Data types in Scala</u></a>
+
+Scala has the same data types as in Java,with the same memory and precision.Except the fact that there are no primitive types in Scala.
+
+All data types are Objects and methods can be called in them just as you would on an object.
+
+<code data-gist-id="4d7953af0626dd36b9aa"></code>
+
+<a name="TypeInference"><u>Type Inference</u></a>
+
+If you are not familiar with the term, it is nothing but the deduction of types at compile time.Hold on, isn’t that what dynamic typing means ? Well no, notice that I said deduction of types, 
+this is drastically different from what dynamically typed languages do and another thing is it is done at compile time and not run time.
+
+Many languages have this built in, but the implementation varies from one language to another.This might be confusing at the beginning, but it will be clearer with code examples.
+
+Let's jump into the Scala REPL for some experimentation.
+
+<a class="image" href="/images/type-inference-scala.png">
+<img src="/images/type-inference-scala.png" alt="Scala type inference"/>
+</a>
+
+From the image above, it is evident that there is no magic, the variables are inferred automatically to the best types they deem fit and at compile time.
+
+Here is some more code to understand further.
+
+<code data-gist-id="f431a256b5cc1153430b"></code>
+
+Go ahead and play with these variables, you are protected from compile time type safety, so do not hesitate to mess around.
+
+We can also mention the type explicitly, as below
+
+<code>val y : Integer = 20</code>, which makes more sense to the programmer and this brings us to another discussion, when to mention and not mention types ?
+
+This is dealt in a separate [blog post](/blog/when-to-use-type-inference-in-scala) and it is more related to coding style/design rather than understanding the language itself.I encourage you to read it once
+you have completed reading/understanding this article.
+
+
+
+
+
+
+
+
+
 
 
 

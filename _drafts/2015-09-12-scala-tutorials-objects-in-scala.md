@@ -6,10 +6,6 @@ permalink: blog/scala-tutorials-objects-in-scala
 
 ##Objects in Scala
 
-A warning !! If you are from Java there are lot of things that can be difficult to get your head around, and the most easiest way to learn this is to unlearn and learn.
-
-<i class="fa fa-film fa-lg space-right"></i><a href="https://www.youtube.com/watch?v=OCxMYC5I3Nc" target="_blank">Be like water my friend !!</a>
-
 We are going to deal with Objects in great depth.
 
 <i class="fa fa-info-circle fa-lg space-right"></i>What are objects ?
