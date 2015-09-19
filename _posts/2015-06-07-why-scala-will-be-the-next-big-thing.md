@@ -130,6 +130,7 @@ It takes time, but it is definitely not a prototype language, mission critical s
 
 But as mentioned earlier it is already built on the JVM and it can operate seamlessly with Java libraries.
 
+> Scala is the only language which is statically typed,multi paradigm (object, functional and imperative) and runs on the JVM.
 
 ## Resources
 
