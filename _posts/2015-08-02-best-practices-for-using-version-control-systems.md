@@ -132,10 +132,12 @@ Remember, there is always an established way of doing it instead of doing hacks 
 
 I have not covered all of them, and certain things are specific to the VCS that you are using.
 
-For git, there is a free book called [Git SCM](https://git-scm.com/book/en/v2){:target="_blank"} and another site [Gitready](http://gitready.com/){:target="_blank"}, which gives
-excellent tips and tricks.
+<u>Learning materials</u>
 
-If you are using Mercurial/Git, there is a [free GUI](https://www.atlassian.com/software/sourcetree/overview){:target="_blank"} from atlassian which is really good.
+- There is a free book called [Git SCM](https://git-scm.com/book/en/v2){:target="_blank"} that is pretty handy.Works as a good reference as well.  
+- [Gitready](http://gitready.com/){:target="_blank"} is a good site which gives excellent tips and tricks.
+- [Here](https://blog.udemy.com/git-tutorial-a-comprehensive-guide/){:target="_blank"} is an excellent getting started guide for git.
+- A GUI tool for both Mercurial/Git, [free GUI](https://www.atlassian.com/software/sourcetree/overview){:target="_blank"} from atlassian which is really good.
 
 That's all folks.Do let me know your thoughts using comments below.
 
