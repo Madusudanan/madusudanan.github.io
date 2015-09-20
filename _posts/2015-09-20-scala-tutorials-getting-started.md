@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Scala Tutorials #1 - Getting Started with Scala"
-permalink: blog/scala-tutorials-getting-started
+title: "Scala Tutorials Part #1 - Getting Started with Scala"
+permalink: blog/scala-tutorials-part-1-getting-started
 ---
 
 ## Getting Started with Scala
 
-This is the first of tutorial series that ill be publishing on scala.
+This is the first of a tutorial series that ill be publishing on scala.
 
 Prerequisites
 
@@ -32,7 +32,6 @@ Here is what this post covers.
 - [Variables](#Variables)
 - [Data types in Scala](#DataTypes)
 - [Type inference](#TypeInference)
-- [Back to data types - Data type hierarchy]()
 
 <a name = "Intro"><u>Short introduction to scala and environment setup</u></a>
 
@@ -100,7 +99,7 @@ A simple hello world has opened up many topics to learn, three in particular
 
 <a name="Variables"><u>Variables in Scala</u></a>
 
-I should have explained data types before we jump into variables, but there is some fundamental differences that I want to speak about so that the we can understand them
+I should have explained data types before we jump into variables, but there are some fundamental differences that I want to speak about so that the we can understand them
 more deeply.
 
 <code>var</code> and <code>val</code> are two keywords which are used to declare variables in scala.
@@ -123,8 +122,8 @@ Let's look some sample code below, to help us understand better.
 If you run the above code, you will notice an error at compilation itself such as reassignment to val.If you are using an IDE this will show up as you type because
 of pre-compilation that the IDE gives.
 
-First thing is definitely not like String immutability where the immutability is not visible to the programmer, this is controlled at compilation level.Next question
-is is it similar to final in Java?
+First thing is definitely not like String immutability where it is not visible to the programmer, and is controlled at compilation level.Next question, is 
+it similar to final in Java?
 
 From a bird's eye view, this seems to be similar that once a value is assigned to it, it cannot be changed, but inside the JVM <code>final</code> has nothing to do with
 immutability and it is used so that classes cannot be extended and int the case of methods it cannot be overridden.
@@ -137,7 +136,7 @@ Let's consider the below Java code to demonstrate that this is different.
 
 If you try the same <code>final</code> with primitive types, you will notice that its value cannot be changed.Does this mean primitives are immutable ?
 This takes us back to the stackoverflow discussion above, but the reason why the error comes is because Java uses Pass by Value for primitive types,it makes no 
-sense to Pass by reference since they are not objects at all.So if a variable is changed,its reference(sorta - can be said place in memory) changes because of the Pass by value mechanism and not because that
+sense to Pass by reference since they are not objects at all.So if a variable is changed,its reference(sorta - can be said as place in memory) changes because of the Pass by value mechanism and not because that
 primitives are immutable.
 
 This can be confusing.If this mutability comparison is making your head hurt, then the simplest way is to unlearn and re-learn, be like water my friend.
@@ -182,8 +181,32 @@ We can also mention the type explicitly, as below
 
 <code>val y : Integer = 20</code>, which makes more sense to the programmer and this brings us to another discussion, when to mention and not mention types ?
 
-This is dealt in a separate [blog post](/blog/when-to-use-type-inference-in-scala) and it is more related to coding style/design rather than understanding the language itself.I encourage you to read it once
-you have completed reading/understanding this article.
+This will be dealt with in a future blog post which will also deal with type inference in Scala in more greater depth.
+
+If you been curious on what classes do the variables extend and if you dig deeper, then you would have come across a class called AnyVal.This is part of an
+entirely different topic of Scala's unified type system, which is nothing but the class hierarchy.Again this requires an entire article of its own.
+
+This brings an end to this first blog post, we have started with the important parts.I encourage you to re read the post to understand it completely if you haven't 
+and also refer the documentation on the net.
+
+Translating simple code snippets from other languages also helps.
+
+I'll be updating links to this article as soon as I publish pending topics that I have mentioned here.You can also subscribe if you want to keep updated.
+
+Scala is not easy, but it is not hard either if we take one step at a time and learn things.
+
+Keep learning watch out for more posts <i class="fa fa-smile-o fa-lg"></i>
+
+<hr>
+# Categorized Under
+<br>
+<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0" onClick="nav()">Software Engineering</a>
+
+&nbsp;<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0&item-0-2" onClick="nav()">Programming Languages</a>
+
+&nbsp;&nbsp;<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0&item-0-2&item-0-2-0" onClick="nav()">Scala</a>
+
+
 
 
 
