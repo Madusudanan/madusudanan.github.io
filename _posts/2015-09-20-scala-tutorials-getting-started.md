@@ -17,7 +17,7 @@ Prerequisites
 All the tutorials will be very detailed and will be very in-depth, [no gimme the codez](http://thedailywtf.com/articles/plz-email-me-teh-codez){:target="_blank"} tutorials.Improvements are always welcome.
 
 A warning !! If you are from Java there are lot of things that can be difficult to get your head around, and the most easiest way to learn this is to unlearn and learn.
-
+    
 <i class="fa fa-film fa-lg space-right"></i><a href="https://www.youtube.com/watch?v=OCxMYC5I3Nc" target="_blank">Be like water my friend !!</a>
 
 Let's get started.
@@ -105,7 +105,7 @@ more deeply.
 <code>var</code> and <code>val</code> are two keywords which are used to declare variables in scala.
 
 <code>var</code> is used to declare variables that are mutable and <code>val</code> to declare immutable.But what kind of variables are these?
-For primitive data types, where does the concept of mutability come from? I encourage you to read this [SO](http://stackoverflow.com/questions/18037082/are-java-primitives-immutable) {:target="_blank"}.
+For primitive data types, where does the concept of mutability come from? I encourage you to read this [stackoverflow post](http://stackoverflow.com/questions/18037082/are-java-primitives-immutable){:target="_blank"}.
 Primitives by themselves are immutable i.e their type cannot be changed once declared, but their values are mutable i.e they can be changed.
 
 This is confusing at first about why the concept of mutability comes for variables and not objects, this is explained below in data types section, there are no primitive
@@ -181,7 +181,7 @@ We can also mention the type explicitly, as below
 
 <code>val y : Integer = 20</code>, which makes more sense to the programmer and this brings us to another discussion, when to mention and not mention types ?
 
-This will be dealt with in a future blog post which will also deal with type inference in Scala in more greater depth.
+This is dealt with in part 2 of this series [here](/blog/scala-tutorials-part-2-type-inference-in-scala) with greater depth.
 
 If you been curious on what classes do the variables extend and if you dig deeper, then you would have come across a class called AnyVal.This is part of an
 entirely different topic of Scala's unified type system, which is nothing but the class hierarchy.Again this requires an entire article of its own.
