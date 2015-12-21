@@ -8,7 +8,7 @@ permalink: blog/scala-tutorials-part-2-type-inference-in-scala
 
 This is part 2 of the scala tutorial series.Here is [part 1](/blog/scala-tutorials-part-1-getting-started).
 
-In this part we are going to deal with type inference in depth.If you recall from the first part, we briefly dealt with type inference and a few examples.
+If you recall from the first part, we briefly dealt with type inference and a few examples.
 Now we are going to deal it with a little more depth, below is what this article will cover.
 
 <i class="fa fa-sticky-note-o space-right"></i>Note: This is a pretty dry topic,mostly theory based with not much code examples,but also important.I have tried to cover the essential ones in the most minimalistic way possible.Many 
@@ -38,7 +38,7 @@ The primary purpose of type inference is to help the programmer avoiding verbose
 
 >Saying in a succinct manner, type inference is the best of both world's i.e static and dynamic typing.
 
-Or at-least it tries to be.The reality is largely dependant upon where we use type inference (later below).
+Or at-least it tries to be.The reality is largely dependant upon where we use type inference (read below).
 
 <a name="TypeSystemOverview"><u>An Overview of a type system</u><a>
 
@@ -102,10 +102,10 @@ When it saves programmer time and also where type information does not really ma
 
 When not to use them ?
 
-Simple, when type information is important i.e it does leave the programmer who reads to code guessing about types.With guessing comes mistakes, and with mistakes come bad code, and with bad code
+Simple, when type information is important i.e it should not leave the programmer who reads to code guessing about types.With guessing comes mistakes, and with mistakes come bad code, and with bad code
 comes frustration, with frustration comes the [axe murderer](http://blog.codinghorror.com/coding-for-violent-psychopaths/){:target="_blank"}
 
-With freedom comes responsibility <i class="fa fa-thumbs-o-up fa-lg"></i>
+It is a matter of code readability rather than anything else.With freedom comes responsibility <i class="fa fa-thumbs-o-up fa-lg"></i>
 
 <hr>
 # Categorized Under

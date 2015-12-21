@@ -6,7 +6,7 @@ permalink: blog/scala-tutorials-part-1-getting-started
 
 ## Getting Started with Scala
 
-This is the first of a tutorial series that ill be publishing on scala.
+This is the first part of a tutorial series that ill be publishing on scala.
 
 Prerequisites
 
@@ -71,19 +71,19 @@ The first thing to notice, is that the whole code is inside an Object block.Java
 deals with this in a more detailed way.Unlike Java, class names need not match with file names, it is not a big thing but we do have that freedom here <i class="fa fa-smile-o fa-lg"></i>.
 
 Next thing is the strange syntax of <code>def main()</code>.To begin with <code>def</code> is a keyword to declare methods.We will be dealing with methods in greater detail
-in a upcoming tutorial.
+in an upcoming tutorial.
 
-If there is a method then there has to be arguments to it.In our case, it is a <code>Array[String]</code>.This is similar to java's main method, where an array of string can
+If there is a method then there has to be arguments to it.In our case, it is a <code>Array[String]</code>.This is similar to java's main method, where an array of strings can
 be an argument to the main method.This can be startup configs or anything else, usage is completely optional of course.
 
 This is followed by a <code>println()</code> method call which prints statements on to the console.If you are using an IDE (you should be), you can trace the entire call
 by holding ctrl+click on the method.Python folks should find this syntax similar, and in fact to a programmer there is nothing to this except printing out a String to the console.
 
-But lets dig a little deeper, for the Java folks, a general print on the console will be like <code>System.out.println</code>.So, how is this different ?
+But let's dig a little deeper.For the Java folks, a general print on the console will be like <code>System.out.println</code>.So, how is this different ?
 
-In fact, it is not. <code>println()</code> is a method in class called Predef.scala, which then calls goes to Console.scala's println method which then calls <code>out.prinln</code>
+The answer is it is not so different, <code>println()</code> is a method in class called Predef.scala, which then calls goes to Console.scala's println method which then calls <code>out.prinln</code>
 on PrintStream.class or PrintStream.java if you have the source code attached, otherwise the decompiler from Intellij shows the decompiled code.Notice that, the print from 
-both scala and java end up in the same method call.To remind, scala is built on top of the JVM and can inter-operate with Java code seamlessly as we just saw, there would be a specific reason if the implementation was different, otherwise
+both scala and java end up in the same method call.As said before,scala is built on top of the JVM and can inter-operate with Java code seamlessly as we just saw, there would be a specific reason if the implementation was different, otherwise
 it would be just re-inventing the wheel.
 
 In fact there are many more examples which utilizes java libraries in our journey in learning about scala.
@@ -111,7 +111,7 @@ Primitives by themselves are immutable i.e their type cannot be changed once dec
 This is confusing at first about why the concept of mutability comes for variables and not objects, this is explained below in data types section, there are no primitive
 types in scala, all are objects.
 
-Now that we are clear about the mutability/immutability concept (we are going to see more of this, scala is centered around the whole immutability principle for functional programming).
+Now that we are clear about the mutability/immutability concept (we are going to see more of this, scala is centered around the whole immutability principle for functional programming) let's proceed further.
 
 If <code>val</code> is immutable, then it cannot be changed ? Is this similar to the Java final keyword or is it something related to String immutability ?
 
@@ -128,7 +128,7 @@ it similar to final in Java?
 From a bird's eye view, this seems to be similar that once a value is assigned to it, it cannot be changed, but inside the JVM <code>final</code> has nothing to do with
 immutability and it is used so that classes cannot be extended and int the case of methods it cannot be overridden.
 
-To put it in another way, final refers to the reference while immutability refers to the object itself.
+To put it in an another way, final refers to the reference while immutability refers to the object itself.
 
 Let's consider the below Java code to demonstrate that this is different.
 
@@ -187,13 +187,13 @@ If you been curious on what classes do the variables extend and if you dig deepe
 entirely different topic of Scala's unified type system, which is nothing but the class hierarchy.Again this requires an entire article of its own.
 
 This brings an end to this first blog post, we have started with the important parts.I encourage you to re read the post to understand it completely if you haven't 
-and also refer the documentation on the net.
+and also refer relevant documentation on the internet.
 
 Translating simple code snippets from other languages also helps.
 
 I'll be updating links to this article as soon as I publish pending topics that I have mentioned here.You can also subscribe if you want to keep updated.
 
-Scala is not easy, but it is not hard either if we take one step at a time and learn things.
+Scala is not easy, but it is not hard either if we take one step at a time and learn things.My goal is not to teach everything, but simply point in a direction that is much less shrouded that it was before.
 
 Keep learning watch out for more posts <i class="fa fa-smile-o fa-lg"></i>
 
