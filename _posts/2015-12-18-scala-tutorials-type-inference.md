@@ -6,7 +6,7 @@ permalink: blog/scala-tutorials-part-2-type-inference-in-scala
 
 ##Type inference
 
-This is part 2 of the scala tutorial series.Here is [part 1](/blog/scala-tutorials-part-1-getting-started).
+This is part 2 of the scala tutorial series.Check [here](/blog-list?item-0&item-0-2&item-0-2-0) for the full series.
 
 If you recall from the first part, we briefly dealt with type inference and a few examples.
 Now we are going to deal it with a little more depth, below is what this article will cover.
@@ -19,6 +19,8 @@ materials have been given for leisure study.
 - [What exactly is type inference from a programmer's perspective](#Perspective)
 - [An Overview of a type system](#TypeSystemOverview)
 - [Language classification according to their type system](#TypeSystem)
+- [Hindley-Milner type inference](#Hindley)
+- [Local vs Global type inference - Why scala choose local type inference](#LocalvsGlobal)
 - [A brief overview of scala's type system](#ScalaTypes)
 - [When to use type inference?](#Usage)
 - [References](#References)
@@ -78,6 +80,38 @@ There is also another course [here](https://www.youtube.com/playlist?list=PLOJWM
 Scala as already mentioned above can be classified as a statically typed language with type inference.There is a strong relation between functional programming and type inference which we 
 will keep re-visiting from time to time along with examples for ease of understanding.
 
+<a name="Hindley"><u>Hindley-Milner type inference</u></a>
+
+We can talk about type inference for days but perhaps the most famous algorithm of them all is [HM type inference algorithm](https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system){:target="_blank"}.
+
+The HM algorithm checks the program to deduce what type it belongs to.If you have taken the courses above, then you would have a pretty solid idea what that means.
+
+It would build a parse tree consisting of all the elements,analyses the elements of what type it could belong to and arrive at a final conclusion.The below image explains a simple example.
+
+<br>
+
+<a class="image" href="/images/HM-type-inference.png">
+<img src="/images/HM-type-inference.png" alt="Scala type system"/>
+</a>
+
+<br>
+
+Many algorithms work in almost the similar manner.As you can see, there is no guessing involved.If there is any type mistake that we do, for example multiplying two strings.It would throw an error.
+
+I would encourage you to do some entry level haskell programming.[Here](http://learnyouahaskell.com/){:target="_blank"} is a good website to start with.
+
+Hindley-Milner type inference is also called as Global type inference.In other words, it reads the whole of the code and deduces the types.Scala's type system works a little different as explained below.
+
+<a name="LocalvsGlobal"><u>Local vs Global type inference - Why scala choose local type inference</u></a>
+
+Scala's style of type inference can be called as a combination of sub-typing and local type inference.Let's understand them with an example.
+
+For a language that is multi-paradigm it is really hard to do global/hm style type inference since it restricts doing OOP features such as inheritance and method overloading.We are not going to in
+detail of why languages such as Haskell cannot do such things, but the point is scala has made a different trade-off.
+
+Systems do exist which combine these together, but in reality to a programmer if there is a type error, the compiler has to give meaningful error messages so that they can be fixed.In reality,
+this is very hard to do.Continuous research is being done in this area to improve systems.
+
 <a name="ScalaTypes"><u>A brief overview of scala's type system</u></a>
 
 As mentioned above a type system is made of pre-defined components of types and this forms the foundation of how scala infers them.
@@ -102,7 +136,13 @@ When it saves programmer time and also where type information does not really ma
 
 When not to use them ?
 
-Simple, when type information is important i.e it should not leave the programmer who reads to code guessing about types.With guessing comes mistakes, and with mistakes come bad code, and with bad code
+Simple, when type information is important i.e it should not leave the programmer who reads to code guessing about types.
+
+Let's take the two pieces of code to illustrate the differences.
+
+
+
+With guessing comes mistakes, and with mistakes come bad code, and with bad code
 comes frustration, with frustration comes the [axe murderer](http://blog.codinghorror.com/coding-for-violent-psychopaths/){:target="_blank"}
 
 It is a matter of code readability rather than anything else.With freedom comes responsibility <i class="fa fa-thumbs-o-up fa-lg"></i>

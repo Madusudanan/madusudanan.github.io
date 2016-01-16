@@ -6,7 +6,7 @@ permalink: blog/scala-tutorials-part-1-getting-started
 
 ## Getting Started with Scala
 
-This is the first part of a tutorial series that ill be publishing on scala.
+This is the first part of a tutorial series that ill be publishing on scala.Check [here](/blog-list?item-0&item-0-2&item-0-2-0) for the full series.
 
 Prerequisites
 
