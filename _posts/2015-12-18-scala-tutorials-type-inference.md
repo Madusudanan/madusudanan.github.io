@@ -96,6 +96,9 @@ It would build a parse tree consisting of all the elements,analyses the elements
 
 <br>
 
+The above code is not Scala, for the moment you can consider as a pseudo code for simplicity.It returns true if the sum is less than 10 and false if greater.Plain and simple as that.We can translate/build up
+from this example to other complicated workflows.
+
 Many algorithms work in almost the similar manner.As you can see, there is no guessing involved.If there is any type mistake that we do, for example multiplying two strings.It would throw an error.
 
 I would encourage you to do some entry level haskell programming.[Here](http://learnyouahaskell.com/){:target="_blank"} is a good website to start with.
@@ -106,11 +109,36 @@ Hindley-Milner type inference is also called as Global type inference.In other w
 
 Scala's style of type inference can be called as a combination of sub-typing and local type inference.Let's understand them with an example.
 
+If we consider the below code, it gives a compiler time error in Intellij.
+
+<code data-gist-id="4c7eadb90613fae2e901"></code>
+
+Error message
+
+<a class="image" href="/images/scala-factorial-error.png">
+<img src="/images/scala-factorial-error.png" alt="Scala type error"/>
+</a>
+
+The syntax details can be ignored for now (we can deal in lot more details in learning methods), but the program computes the factorial value based on the number passed in.Notice that the error
+in Intellij, it is not able to infer the type of the recursive function.The same(similar) code can be used in haskell without any errors.
+
+<code data-gist-id="4a6b1e61de6374de0d7c"></code>
+
+The above code when executed inside the haskell GHCI shell (kind of like scala REPL) it executes correctly.
+
+<a class="image" href="/images/haskell-factorial.png">
+<img src="/images/haskell-factorial.png" alt="Haskell Global type inference"/>
+</a>
+
+This is a real time example of Global vs Local type inference.In scala, we are explicitly required to annotate the types (see below on when to use type inference).
+
 For a language that is multi-paradigm it is really hard to do global/hm style type inference since it restricts doing OOP features such as inheritance and method overloading.We are not going to in
 detail of why languages such as Haskell cannot do such things, but the point is scala has made a different trade-off.
 
 Systems do exist which combine these together, but in reality to a programmer if there is a type error, the compiler has to give meaningful error messages so that they can be fixed.In reality,
 this is very hard to do.Continuous research is being done in this area to improve systems.
+
+Functional programming purists 
 
 <a name="ScalaTypes"><u>A brief overview of scala's type system</u></a>
 
