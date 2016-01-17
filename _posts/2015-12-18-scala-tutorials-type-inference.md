@@ -86,7 +86,7 @@ We can talk about type inference for days but perhaps the most famous algorithm 
 
 The HM algorithm checks the program to deduce what type it belongs to.If you have taken the courses above, then you would have a pretty solid idea what that means.
 
-Below is an example of a typical type system with type inference would work.It would build a parse tree consisting of all the elements,analyses the elements of what type it could belong to and arrive at a final conclusion.The below image explains a simple example.
+Below is an example of how a typical type system with type inference would work.It would build a parse tree consisting of all the elements,analyses the elements of what type it could belong to and arrive at a final conclusion.The below image explains a simple example.
 
 <br>
 
@@ -99,7 +99,7 @@ Below is an example of a typical type system with type inference would work.It w
 The above code is not Scala, for the moment you can consider as a pseudo code for simplicity.It returns true if the sum is less than 10 and false if greater.Plain and simple as that.We can translate/build up
 from this example to other complicated workflows.
 
-Many algorithms work in almost the similar manner.As you can see, there is no guessing involved.If there is any type mistake that we do, for example multiplying two strings.It would throw an error.
+Many algorithms work in almost the similar manner.If there is any type mistake that we do, for example multiplying two strings.It would throw an error.
 
 I would encourage you to do some entry level haskell programming.[Here](http://learnyouahaskell.com/){:target="_blank"} is a good website to start with.
 
@@ -120,7 +120,7 @@ Error message <i class="fa fa-level-down fa-lg space-right"></i>
 <img src="/images/scala-factorial-error.png" alt="Scala type error"/>
 </a>
 
-The syntax details can be ignored for now (we can deal in lot more details in learning methods), but the program computes the factorial value based on the number passed in.Notice that the error
+The syntax details can be ignored for now (we can deal with lot more detail while learning methods), but the program computes the factorial value based on the number passed in.Notice that the error
 in Intellij, it is not able to infer the type of the recursive function.The same(similar) code can be used in haskell without any errors.
 
 <code data-gist-id="4a6b1e61de6374de0d7c"></code>
