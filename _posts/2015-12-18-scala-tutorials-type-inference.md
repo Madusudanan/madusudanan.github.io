@@ -77,8 +77,8 @@ This might also come up on [coursera](https://www.coursera.org/course/proglang){
  
 There is also another course [here](https://www.youtube.com/playlist?list=PLOJWMozcY9B1NfDp_AJkJnFPaS7wOwEha){:target="_blank"} which is also really good.
 
-Scala as already mentioned above can be classified as a statically typed language with type inference.There is a strong relation between functional programming and type inference which we 
-will keep re-visiting from time to time along with examples for ease of understanding.
+Scala as mentioned above can be classified as a statically typed language with type inference.There is a strong relation between functional programming and type inference which we 
+will keep re-visiting from time to time.
 
 <a name="Hindley"><u>Hindley-Milner(HM) type inference</u></a>
 
@@ -86,7 +86,7 @@ We can talk about type inference for days but perhaps the most famous algorithm 
 
 The HM algorithm checks the program to deduce what type it belongs to.If you have taken the courses above, then you would have a pretty solid idea what that means.
 
-Below is an example of how a typical type system with type inference would work.It would build a parse tree consisting of all the elements,analyses the elements of what type it could belong to and arrive at a final conclusion.The below image explains a simple example.
+Below is an example of how a typical type system with type inference would work.It would build a parse tree consisting of all the elements,analyses the elements of what type it could belong to and arrive at a final conclusion.
 
 <br>
 
@@ -96,18 +96,18 @@ Below is an example of how a typical type system with type inference would work.
 
 <br>
 
-The above code is not Scala, for the moment you can consider as a pseudo code for simplicity.It returns true if the sum is less than 10 and false if greater.Plain and simple as that.We can translate/build up
+The above example is pseudo code, the syntax is not much important.It returns true if the sum is less than 10 and false if greater.Plain and simple as that.We can translate/build up
 from this example to other complicated workflows.
 
-Many algorithms work in almost the similar manner.If there is any type mistake that we do, for example multiplying two strings.It would throw an error.
+Many algorithms work in almost the similar manner.If there are any type errors such as multiplying two strings.It would throw an exception.
 
-I would encourage you to do some entry level haskell programming.[Here](http://learnyouahaskell.com/){:target="_blank"} is a good website to start with.
+Some entry level haskell programming will really help to understand this better.[Here](http://learnyouahaskell.com/){:target="_blank"} is a good website to start with.
 
-Hindley-Milner algorithm is also called as Global type inference.In other words, it reads the whole of the code and deduces the types.Scala's type system works a little different as explained below.
+Hindley-Milner algorithm is also called as Global type inference.It reads the whole of the code and deduces the types.Scala's type system works a little different as explained below.
 
 <a name="LocalvsGlobal"><u>Local vs Global type inference and sub-typing - Why scala choose local type inference</u></a>
 
-Scala's style follows a combination of sub-typing and local type inference.I tend to compare it with Haskell, since it one of the most famous Functional Programming(F.P) paradigm language out there.
+Scala's follows a combination of sub-typing and local type inference.I tend to compare it with Haskell, since it one of the most famous Functional Programming(F.P) paradigm language out there.
 Let's understand them with an example.
 
 If we consider the below code, it gives a compile time error in Intellij.
@@ -120,12 +120,12 @@ Error message <i class="fa fa-level-down fa-lg space-right"></i>
 <img src="/images/scala-factorial-error.png" alt="Scala type error"/>
 </a>
 
-The syntax details can be ignored for now (we can deal with lot more detail while learning methods), but the program computes the factorial value based on the number passed in.Notice that the error
-in Intellij, it is not able to infer the type of the recursive function.The same(similar) code can be used in haskell without any errors.
+Syntax details can be ignored for now (we can deal with lot more detail while learning methods).The program computes the factorial value based on the number passed in.If we notice the error
+,the pre-compiler is not able to infer the type of the recursive function.The same(similar) code can be used in haskell without any errors.
 
 <code data-gist-id="4a6b1e61de6374de0d7c"></code>
 
-The above code when executed inside the haskell GHCI shell (kind of like scala REPL) with no errors.
+The above code when executed inside the haskell GHCI shell (kind of like scala REPL) compiles with no errors.
 
 <a class="image" href="/images/haskell-factorial.png">
 <img src="/images/haskell-factorial.png" alt="Haskell Global type inference"/>
@@ -137,13 +137,11 @@ The correct version of the above code would be as follows.Notice the type Int is
 
 <code data-gist-id="643578d79670af2dc137"></code>
 
-For a language that is multi-paradigm it is really hard to do global/hm style type inference since it restricts doing OOP features such as inheritance and method overloading.We are not going to in
+For a language that is multi-paradigm,it is really hard to do global/hm style type inference since it restricts doing OOP features such as inheritance and method overloading.We are not going to in
 detail of why languages such as Haskell cannot do such things (there are lots of resources on the net if you are curious on systems programming/compiler hacking), but the point is scala has made a different trade-off.
 
 Systems do exist which combine these together, but in reality to a programmer if there is a type error, the compiler has to give meaningful error messages so that they can be fixed.In reality,
-this is very hard to do.Continuous research is being done in this area to improve systems.
-
-There is also another component to scala's type system i.e sub-typing which is explained below.
+this is very hard to do.Continuous research is being done in this area to improve them.
 
 <a name="ScalaTypes"><u>A brief overview of scala's type system and subtyping</u></a>
 
@@ -170,7 +168,7 @@ If it cannot be fit, it goes to the top level i.e the <code>'Any'</code> type.Al
 
 This makes Objected oriented programming much easier to handle.
 
-For more information on the type system visit the [scala docs](http://docs.scala-lang.org/tutorials/tour/unified-types.html){:target="_blank"}.
+For more information visit the [scala docs](http://docs.scala-lang.org/tutorials/tour/unified-types.html){:target="_blank"}.
 
 <a name="Usage"><u>When to use type inference?</u></a>
 
@@ -187,9 +185,9 @@ Simple, when type information is important i.e it should not leave the programme
 
 It is hard to give a code example since it really depends on application under consideration.The only fool-proof way to deal with this is to conduct code reviews with peer programmers and see if they can understand them.
 
-After all writing code is O(K) and reading code would be O(N), where K would be a constant with not much variation and N would be the size of your team trying to read the code.Which is bigger?
+After all writing code is O(K) and reading code would be O(N), where K would be a constant with not much variation, since only a single person would be writing it and N would be the size of your team trying to read the code.Which is bigger?
 
-With guessing comes mistakes, and with mistakes come bad code, and with bad code
+With guessing comes mistakes, with mistakes come bad code, and with bad code
 comes frustration, with frustration comes the [axe murderer](http://blog.codinghorror.com/coding-for-violent-psychopaths/){:target="_blank"}
 
 It is a matter of code readability rather than anything else.With freedom comes responsibility <i class="fa fa-thumbs-o-up fa-lg"></i>
