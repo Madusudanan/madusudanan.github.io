@@ -1,12 +1,32 @@
 ---
 layout: post
-title: "Scala Tutorials #2 - Objects in Scala"
-permalink: blog/scala-tutorials-objects-in-scala
+title: "Scala Tutorials #3 - Objects & Classes in Scala"
+permalink: blog/scala-tutorials-part-3-objects-and-classes-in-scala
 ---
 
-##Objects in Scala
+##Classes & Objects in Scala
 
-We are going to deal with Objects in great depth.
+This is part 3 of the scala tutorial series.Check [here](/blog-list?item-0&item-0-2&item-0-2-0) for the full series.
+
+<i class="fa fa-list-ul fa-lg space-right"></i>Index
+
+- [Classes and its syntax](#Classes)
+- [Instantiating Classes](#Instantiation)
+- []()
+- [Getters, setters and private](#Getters_Setters)
+
+<a name="Classes"><u>Classes and its syntax</u></a>
+
+Classes are the foundations of Object oriented programming.Scala as already discussed is a multi-paradigm language which fully supports object oriented programming.
+
+Creating a class is pretty straight forward as below.
+
+<code data-gist-id="53700847279dfcff4222"></code>
+
+It is a simple class with two variables age and name.
+
+<a name="Objects"><u>Objects in depth</u></a>
+
 
 <i class="fa fa-info-circle fa-lg space-right"></i>What are objects ?
 
