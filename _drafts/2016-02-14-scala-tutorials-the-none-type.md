@@ -18,7 +18,7 @@ Next we have to figure out the code part and give it a non null default value or
 
 <i class="fa fa-film fa-lg space-right"></i><a href="https://www.youtube.com/watch?v=RlfLCWKxHJ0&list=PL693EFD059797C21E" target="_blank">Clean code - Don't look for things</a>
 
-What can we do about it in scala ? Read on to find out more.
+What can we do about it ? There are several ways that it can be handled, but in scala there is a much nicer way to do things.Read on to find out more.
 
 <a name="Initialization"><u>Variable initialization</u></a>
 
@@ -69,6 +69,12 @@ If you are developing in Intellij, the pre-compilation in the compiler would war
 
 But developers are dumb enough to check in code without checking the error.Human stupidity always wins against computers.
 
-The main point is the difference between a compilation error and a run time error.Java code compiles fine, but it gives errors at run time.
+The main point is the difference between a compilation error and a run time error.Java code compiles fine, but it gives errors at run time.This makes it more harder to test and makes the 
+code more brittle.
+
+None type should be used as the default when you cannot decide how the value will be mutated/changed down the line.Of course this applies only for <code>var</code> types and for
+<code>val</code> it is always a good thing to re-think the way we are doing code and think of the value of the immutable variable beforehand.
+
+
 
 
