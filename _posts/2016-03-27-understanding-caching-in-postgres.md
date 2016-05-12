@@ -18,14 +18,15 @@ While this post is mainly focused on postgres, it can be easily compared and und
 - [Memory areas](#MemoryAreas)
 - [The LRU/Clock sweep cache algorithm](#LRU)
 - [Dirty pages and cache invalidation](#DirtyPages)
-- [The case for sequential scans](#SeqScans)
 - [Understanding caches from explain analyze](#CacheExplain)
-- [The role of the operating system in caching](#OSCaching)
+- [The case for sequential scans](#SeqScans)
+- [Memory flow and OS caching](#OSCaching)
 - [Notion of disk thrashing](#DiskThrashing)
 - [Initial configuration](#Initial)
 - [Optimize as you go](#Optimize)
 - [Understanding how cache grows](#CacheGrowth)
 - [Sniffing with pg_buffer_cache](#Pgbuffer)
+- [Inside the OS cache using pgfincore](#Pgfincore)
 - [Using pg-prewarm to bring back DB to a natural state](#Pgprewarm)
 
 <br>
@@ -160,6 +161,26 @@ which writes the so called dirty pages to disk periodically and controlled by a 
 
 This is the most common way of pages getting evicted from memory, the LRU eviction almost never happens in a typical scenario.
 
+<a name="CacheExplain"><u>Understanding caches from explain analyze</u></a>
+
+Postgres explain is a wonderful way to understand what is happening under the hoods.It can even tell how much data blocks came from memory and how much came from shared_buffers
+i.e memory.
+
+A query plan below gives an example,
+
+<a class="image" href="/images/postgres-read.png">
+<img src="/images/postgres-read.png" alt="Postgres Buffers Read"/>
+</a>
+
+Shared read, means it comes from the disk and it was not cached.If the query is run again, and if the cache configuration is correct (we will discuss about it below),
+it will show up as shared hit.
+
+<a class="image" href="/images/postgres-shared-hit.png">
+<img src="/images/postgres-shared-hit.png" alt="Postgres Shared Hit"/>
+</a>
+
+It is very convenient this way to learn about how much is cached from a query perspective rather than fiddling with the internals of the OS/Postgres.
+
 <a name="SeqScans"><u>The case for sequential scans</u></a>
 
 A sequential scan i.e when there is no index and postgres has to fetch all the data from disk are a problem area for a cache like this.
@@ -168,31 +189,25 @@ Since a single seq scan can wipe all of the data from a cache, it is handled dif
 
 Instead of using a normal LRU/clock sweep algorithm, it uses a series of buffers of total 256 K.B in size.The below experimentation should give a good idea on it.
 
-    performance_test=# explain (analyze,buffers) select count(*) from users;
-                                                          QUERY PLAN                                                       
-    -----------------------------------------------------------------------------------------------------------------------
-     Aggregate  (cost=48214.95..48214.96 rows=1 width=0) (actual time=3874.445..3874.445 rows=1 loops=1)
-       Buffers: shared read=35715
-       ->  Seq Scan on users  (cost=0.00..45714.96 rows=999996 width=0) (actual time=6.024..3526.606 rows=1000000 loops=1)
-             Buffers: shared read=35715
-     Planning time: 0.114 ms
-     Execution time: 3874.509 ms
-
+<code data-gist-id="333e6662b7b78220c6292d575aaf091d"></code>
 
 Executing the above query again.
 
-    performance_test=# explain (analyze,buffers) select count(*) from users;
-                                                          QUERY PLAN                                                      
-    ----------------------------------------------------------------------------------------------------------------------
-     Aggregate  (cost=48214.95..48214.96 rows=1 width=0) (actual time=426.385..426.385 rows=1 loops=1)
-       Buffers: shared hit=32 read=35683
-       ->  Seq Scan on users  (cost=0.00..45714.96 rows=999996 width=0) (actual time=0.036..285.363 rows=1000000 loops=1)
-             Buffers: shared hit=32 read=35683
-     Planning time: 0.048 ms
-     Execution time: 426.431 ms
+<code data-gist-id="81e0d7cd6735a76d9642cd273f054171"></code>
+
+We can see that exactly 32 blocks have moved into memory i.e 32 * 8 = 256 KB.This is explained in the [src/backend/storage/buffer/README](https://github.com/postgres/postgres/blob/master/src/backend/storage/buffer/README#L208){:target="_blank"}
+
+<a name="OSCaching"><u>Memory flow and OS caching</u>/a>
+
+Postgres as a cross platform database, relies heavily on the operating system for its caching.
+
+The shared_buffers is actually duplicating what the OS does.A typical picture of how the data flows through postgres is given below.
+
+<a class="image" href="/images/postgres-cache-flow.png">
+<img src="/images/postgres-cache-flow.png" alt="Postgres Cache flow"/>
+</a>
 
 
-We can see that exactly 32 blocks have moved into memory i.e 32 * 8 = 256 KB.
 
 
 http://stackoverflow.com/questions/7142335/how-does-postgresql-cache-statements-and-data
@@ -202,6 +217,8 @@ http://dba.stackexchange.com/questions/25513/postgresql-index-caching
 http://www.westnet.com/~gsmith/content/postgresql/InsideBufferCache.pdf
 
 http://facility9.com/2011/03/postgresql-row-storage-fundamentals/
+
+https://github.com/klando/pgfincore
 
 
 Postgres data flow - http://4.bp.blogspot.com/-FXWs_cq2NPg/T4r0BQaquqI/AAAAAAAAAKQ/aUOg8Ic8W14/s1600/caching1.png
