@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Understanding caching in Postgres"
-permalink: blog/understanding-caching-in-postgres
+title: "Understanding caching in Postgres - An in-depth guide"
+permalink: blog/understanding-postgres-caching-in-depth
 ---
 
 ##Caching
@@ -13,7 +13,7 @@ While this post is mainly focused on postgres, it can be easily compared and und
 <i class="fa fa-list-ul fa-lg space-right"></i>Index
 
 - [What is a cache and why do we need one?](#CachePurpose)
-- [Storage abstraction](#StorageAbs)
+- [Understanding terminologies](#StorageAbs)
 - [What is cached?](#Contents)
 - [Memory areas](#MemoryAreas)
 - [The LRU/Clock sweep cache algorithm](#LRU)
@@ -21,19 +21,17 @@ While this post is mainly focused on postgres, it can be easily compared and und
 - [Understanding caches from explain analyze](#CacheExplain)
 - [The case for sequential scans](#SeqScans)
 - [Memory flow and OS caching](#OSCaching)
-- [Notion of disk thrashing](#DiskThrashing)
 - [Initial configuration](#Initial)
 - [Optimize as you go](#Optimize)
-- [Understanding how cache grows](#CacheGrowth)
-- [Sniffing with pg_buffer_cache](#Pgbuffer)
-- [Inside the OS cache using pgfincore](#Pgfincore)
-- [Using pg-prewarm to bring back DB to a natural state](#Pgprewarm)
+- [References](#References)
 
 <br>
 
 <a name="CachePurpose"><u>What is a cache and why do we need one</u></a>
 
-Different computer components operate at different speeds.We humans are extremely poor at understanding numbers at the scale that computers do.So looking at the table below (taken from [here](http://blog.codinghorror.com/the-infinite-space-between-words/){:target="_blank"})
+Different computer components operate at different speeds.We humans are extremely poor at understanding numbers at the scale that computers do.
+
+Looking at the table below (taken from [here](http://blog.codinghorror.com/the-infinite-space-between-words/){:target="_blank"}) we can have an idea.
 
 The numbers are approximated at human scale.
 
@@ -62,7 +60,7 @@ Most [OLTP](https://en.wikipedia.org/wiki/Online_transaction_processing){:target
  
 To overcome this, postgres caches data in RAM which can greatly improves performance.Even in the case of SSDs,RAM is much faster.
 
-This is the general idea of a cache which is common to almost all databases.
+This general idea of a cache is common to almost all database systems.
 
 <a name="StorageAbs"><u>Understanding terminologies</u></a>
 
@@ -81,7 +79,7 @@ Regardless of the content, postgres has a storage abstraction called a page(8KB 
 <img src="/images/postgres_page_structure.png" alt="Postgres page"/>
 </a>
 
-This abstraction is what we will be dealing with down the line.
+This abstraction is what we will be dealing with in the rest of this post.
 
 <a name="Contents"><u>What is cached?</u></a>
 
@@ -121,7 +119,7 @@ The mechanisms involved in putting data into a cache and evicting from them is c
 
 It is built to handle OLTP workloads, so that almost all of the traffic are dealt with in memory.
 
-Let's talk about each action in the cache in detail.
+Let's talk about each action in detail.
 
 <u>Buffer allocation</u>
 
@@ -132,7 +130,7 @@ When a process requests for a page in the LRU cache (this is done whenever that 
 If the block is already in cache, it gets pinned and then returned.The process of pinning is a way to increase the usage count discussed below.A page is said to be unpinned
 when the usage count is zero.
 
-Only if there are any new buffers/slots free for a page, then it goes for buffer eviction below.
+Only if there are no buffers/slots free for a page, then it goes for buffer eviction.
  
 <u>Buffer eviction</u>
 
@@ -141,8 +139,6 @@ Deciding which pages should be evicted from memory and written to disk is a clas
 A plain LRU(Least Recently Used) algorithm does not work well in reality since it has no memory of the previous run.
 
 Postgres keeps track of page usage count, so if a page usage count is zero, it is evicted from memory and written to disk.It is also written to disk when the page is dirty (see below).
-
-[This presentation](http://www.westnet.com/~gsmith/content/postgresql/InsideBufferCache.pdf){:target="_blank"} goes a little more depth in understanding them.
 
 Regardless of the nitty-gritty details, the cache algorithm by itself requires almost no tweaking and is much smarter than what people would usually think.
 
@@ -163,7 +159,7 @@ This is the most common way of pages getting evicted from memory, the LRU evicti
 
 <a name="CacheExplain"><u>Understanding caches from explain analyze</u></a>
 
-Postgres explain is a wonderful way to understand what is happening under the hoods.It can even tell how much data blocks came from memory and how much came from shared_buffers
+Explain is a wonderful way to understand what is happening under the hoods.It can even tell how much data blocks came from disk and how much came from shared_buffers
 i.e memory.
 
 A query plan below gives an example,
@@ -187,7 +183,7 @@ A sequential scan i.e when there is no index and postgres has to fetch all the d
 
 Since a single seq scan can wipe all of the data from a cache, it is handled differently.
 
-Instead of using a normal LRU/clock sweep algorithm, it uses a series of buffers of total 256 K.B in size.The below experimentation should give a good idea on it.
+Instead of using a normal LRU/clock sweep algorithm, it uses a series of buffers of total 256 K.B in size.The below queries show how it is handled.
 
 <code data-gist-id="333e6662b7b78220c6292d575aaf091d"></code>
 
@@ -197,7 +193,7 @@ Executing the above query again.
 
 We can see that exactly 32 blocks have moved into memory i.e 32 * 8 = 256 KB.This is explained in the [src/backend/storage/buffer/README](https://github.com/postgres/postgres/blob/master/src/backend/storage/buffer/README#L208){:target="_blank"}
 
-<a name="OSCaching"><u>Memory flow and OS caching</u>/a>
+<a name="OSCaching"><u>Memory flow and OS caching</u></a>
 
 Postgres as a cross platform database, relies heavily on the operating system for its caching.
 
@@ -207,49 +203,160 @@ The shared_buffers is actually duplicating what the OS does.A typical picture of
 <img src="/images/postgres-cache-flow.png" alt="Postgres Cache flow"/>
 </a>
 
+This is confusing at first, since caching is managed by both the OS and postgres as well, but there are reasons to this.
 
+Talking about operating system cache requires another post of its own, but there are many resources on the net which can leveraged.
 
+Keep in mind that the OS caches data for the same reason we saw above, i.e why do we need a cache ?
 
-http://stackoverflow.com/questions/7142335/how-does-postgresql-cache-statements-and-data
+We can classify the I/O as two types, i.e reads and writes.To put it even more simpler, data flows from disk to memory for reads and flows from memory to disk for writes.
 
-http://dba.stackexchange.com/questions/25513/postgresql-index-caching
+<u>Reads</u>
 
-http://www.westnet.com/~gsmith/content/postgresql/InsideBufferCache.pdf
+For reads, when you consider the flow diagram above, the data flows from disk to OS cache and then to shared_buffers.We have already discussed how the pages will get
+pinned on to the shared_buffers until they get dirty/unpinned.
 
-http://facility9.com/2011/03/postgresql-row-storage-fundamentals/
+Sometimes, both the OS cache and shared_buffers can hold the same pages.This may lead for space wastage, but remember the OS cache is using a simple LRU and not a database
+optimized clock sweep.Once the pages take a hit on shared_buffers, the reads never reach the OS cache, and if there are any duplicates, they get removed easily.
 
-https://github.com/klando/pgfincore
+In reality, there are not much pages which gets stacked on both the memory areas.
 
+This is one of the reasons why it is advised to size the shared_buffers carefully.Using hard and fast rules such as giving it the lion's share of the memory or
+giving it too little is going to hurt performance.
 
-Postgres data flow - http://4.bp.blogspot.com/-FXWs_cq2NPg/T4r0BQaquqI/AAAAAAAAAKQ/aUOg8Ic8W14/s1600/caching1.png
+We will discuss more on optimization below.
 
+<u>Writes</u>
 
-Questions still pending
+Writes flow from memory to disk.This is where the concept of dirty pages come in.
 
-If postgres relies on OS caching, isn't the data duplicated on both the caches.Postgres data flow image above might answer this question.
+Once a page is marked dirty, it gets flushed to the OS cache which then writes to disk.This is where the OS has more freedom to schedule I/O based on the incoming traffic.
+
+As said above, if the OS cache size is less, then it cannot re-order the writes and optimize I/O.This is particularly important for a write heavy workload.So the OS cache size
+is important as well.
 
 <a name="Initial"><u>Initial configuration</u></a>
 
 As with many database systems,there is no silver bullet configuration which will just work.PostgreSQL ships with a basic configuration tuned for wide compatibility rather than performance.
 
-It is the responsibility of the database administrator/developer to tune the configuration
-according to the application/workload.However, the folks at postgres have a good documentation of where to start [here](http://www.postgresql.org/docs/current/static/runtime-config-resource.html#GUC-SHARED-BUFFERS){:target="_blank"}
+It is the responsibility of the database administrator/developer to tune the configuration according to the application/workload.
+However, the folks at postgres have a good documentation of where to start [here](http://www.postgresql.org/docs/current/static/runtime-config-resource.html#GUC-SHARED-BUFFERS){:target="_blank"}
+
+Once the default/startup configuration is set.We can do load/performance testing to see how it is holding up.
+
+Keep in mind that the initial configuration is tuned for availability rather than performance, it is better to always experiment and arrive at a config that is more
+suitable for the workload under consideration.
 
 <a name="Optimize"><u>Optimize as you go</u></a>
 
-If you cannot measure something, you cannot optimize it.With postgres, there are two ways you can measure.
+> If you cannot measure something, you cannot optimize it
 
-- Operating system
+With postgres, there are two ways you can measure.
+
+<u> Operating system </u>
   
-  While there is no general consensus on which platform postgres works best,I am assuming that you are using something in the linux family of operating systems.But the idea
-  is kind of similar.
+While there is no general consensus on which platform postgres works best,I am assuming that you are using something in the linux family of operating systems.But the idea
+is kind of similar.
   
-  To start with, there is a tool called [Io top](http://guichaz.free.fr/iotop/){:target="_blank"} which can measure disk I/O.Similar to top, this can come in handy
-  when measuring disk I/O.Just run the command <code>iotop</code> to measure writes/reads.
+To start with, there is a tool called [Io top](http://guichaz.free.fr/iotop/){:target="_blank"} which can measure disk I/O.Similar to top, this can come in handy
+when measuring disk I/O.Just run the command <code>iotop</code> to measure writes/reads.
   
-  This can give useful insights into how postgres is behaving under load.
+<a class="image" href="/images/iotop-in-action.png">
+<img src="/images/iotop-in-action.png" alt="IO top in action"/>
+</a>
   
-- Using [Pg stat statements](http://www.postgresql.org/docs/current/static/pgstatstatements.html){:target="_blank"}
+This can give useful insights into how postgres is behaving under load i.e how much is hitting the disk and how much is from RAM which can be arrived based on the load
+being generated.
+
+<u> Directly from postgres </u>
+
+It is always better to monitor something directly from postgres,rather than going through the OS route.
+
+Typically we would do OS level monitoring if we believe that there is something wrong with postgres itself, but this is rarely the case.
+
+With postgres, there are several tools at our disposal for measuring performance with respect to memory.
+
+- [Explain](http://www.postgresql.org/docs/current/static/sql-explain.html){:target="_blank"}
+
+  The default is SQL explain.Gives more information than any other database system, but a little hard to get your head around.Needs practice to get used to.
+  Don't miss the several useful flags, that can be given especially buffers which we previously saw.
+  
+  Check out the below links to understand explain in depth.
+  
+  - [More about explain on postgresguide.com](http://postgresguide.com/performance/explain.html){:target="_blank"}
+  - [Explain visualizer](https://github.com/AlexTatiyants/pev){:target="_blank"}
+  
+- [Query logs](http://www.postgresql.org/docs/current/static/runtime-config-logging.html){:target="_blank"}
+  
+  Query logs are another way to understand what is happening inside the system.
+  
+  Instead of logging everything, we can log only queries that cross certain duration or otherwise called slow query logs using the log_min_duration_statement parameter.
+  
+- [Auto explain](http://www.postgresql.org/docs/current/static/auto-explain.html){:target="_blank"}
+  
+  This is another cool thing that you can do which will automatically log the execution plan along with the slow queries.
+  Very useful for debugging without having the need to run explain by hand.
+
+- [Pg stat statements](http://www.postgresql.org/docs/current/static/pgstatstatements.html){:target="_blank"}
+
+  The above methods are good, but lack a consolidated view.
+
+  This is a module built within postgres itself, but disabled by default.
+  
+  We can enable this by doing <code>create extension pg_stat_statements</code>
+  
+  Once this is enabled, after a fair amount of queries are run, then we can fire a query such as below.
+  
+  <code data-gist-id="cf41ad220182f1d2595677572303e34a"></code>
+  
+  Gives lot of details on how much time queries took and their average. 
+  
+  The disadvantage with this approach is it takes some amount of performance, so it is not generally recommended in production systems.
+  
+- [PG Buffer cache](http://www.postgresql.org/docs/current/static/pgbuffercache.html){:target="_blank"} and [PG fincore](http://pgfoundry.org/projects/pgfincore){:target="_blank"}
+  
+  If you want to get a little deeper, then there are two modules which can dig directly into shared_buffers and OS cache itself.
+  
+  An important thing to note is that the explain (analyze,buffers) shows data from shared_buffers only and not from the OS cache.
+
+  - PG buffer cache
+    
+    This helps us see the data in shared buffers in real time.Collects information from shared_buffers and puts it inside of pg_buffercache for viewing.
+    
+    A sample query goes as below, which lists the top 10 tables along with the number of pages cached.
+    
+    <code data-gist-id="cf41ad220182f1d2595677572303e34a"></code>
+    
+  - PG fincore
+    
+    This an external module, that gives information on how the OS caches the pages.It is pretty low level and also very powerful.
+    
+- [Pg prewarm](http://www.postgresql.org/docs/current/static/pgprewarm.html){:target="_blank"}
+
+  This is an in built module that can actually load the data into shared_buffers/OS cache or both.If you think memory warm up is the problem, then this is pretty useful
+  for debugging.
 
 
-http://www.craigkerstiens.com/2013/01/10/more-on-postgres-performance/
+There are several more, but I have listed the most popular and easy to use ones for understanding postgres cache and also in general.Armed with these tools, there
+are no more excuses for a slow database because of memory problems <i class="fa fa-smile-o fa-lg"></i>
+
+
+<a name="References"><u>References</u></a>
+
+- [Robert haas on shared and wal buffers](http://rhaas.blogspot.in/2012/03/tuning-sharedbuffers-and-walbuffers.html){:target="_blank"}
+
+- [Craig kerstiens - PG performance](http://www.craigkerstiens.com/2013/01/10/more-on-postgres-performance/){:target="_blank"}
+
+- [Greg smith - Inside postgres buffers](http://www.westnet.com/~gsmith/content/postgresql/InsideBufferCache.pdf){:target="_blank"}
+
+- [Raghav T - Caching in postgres](http://raghavt.blogspot.in/2012/04/caching-in-postgresql.html){:target="_blank"}
+
+
+<hr>
+# Categorized Under
+<br>
+<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0" onClick="nav()">Software Engineering</a>
+
+&nbsp;<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0&item-0-4" onClick="nav()">Database Systems</a>
+
+&nbsp;&nbsp;<i class="fa fa-folder-o"></i><a id="category" href="/blog-list?item-0&item-0-4&item-0-4-0" onClick="nav()">Postgres</a>

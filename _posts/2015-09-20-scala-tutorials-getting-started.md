@@ -18,7 +18,7 @@ All the tutorials will be very detailed and will be very in-depth, [no gimme the
 
 A warning !! If you are from Java there are lot of things that can be difficult to get your head around, and the most easiest way to learn this is to unlearn and learn.
     
-<i class="fa fa-film fa-lg space-right"></i><a href="https://www.youtube.com/watch?v=OCxMYC5I3Nc" target="_blank">Be like water my friend !!</a>
+<i class="fa fa-film fa-lg space-right"></i><a href="https://www.youtube.com/watch?v=APx2yFA0-B4" target="_blank">Be like water my friend !!</a>
 
 Let's get started.
 
