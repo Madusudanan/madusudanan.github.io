@@ -1,0 +1,34 @@
+# Dependencies
+markdown:         kramdown
+highlighter:      rouge
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:             Madusudanan
+tagline:          "Madusudanan.B.N"
+description:      'Everyday life is like programming, I guess. If you love something you can put beauty into it - Donald Knuth'
+url:              http://madusudanan.com
+baseurl:          ''
+
+author:
+  name:           'Madusudanan.B.N'
+  url:            https://twitter.com/BMadusudanan
+
+paginate:         5
+
+# Custom vars
+version:          2.1.0
+
+github:
+  repo:           https://github.com/Madusudanan/madusudanan.github.io
+
+#gems
+gems: [jekyll-gist,jekyll-paginate,jekyll-feed,jekyll-sitemap]
+paginate: 5
+paginate_path: "page:num"
+
+feed:
+  path: atom.xml
+

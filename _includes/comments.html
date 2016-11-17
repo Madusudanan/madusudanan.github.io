@@ -1,0 +1,47 @@
+<h2>
+    Blog Comments
+</h2>
+<p>Please feel free to share your comments below for discussion</p>
+<div id="disqus_thread"></div>
+<div class="comments"></div>
+<script type="text/javascript">
+
+    var comments = document.getElementsByClassName('comments')[0],
+            disqusLoaded=false;
+
+    function loadDisqus() {
+        var disqus_shortname = 'samuraicoderin';
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        disqusLoaded = true;
+    }
+
+    //Get the offset of an object
+    function findTop(obj) {
+        var curtop = 0;
+        if (obj.offsetParent) {
+            do {
+                curtop += obj.offsetTop;
+            } while (obj = obj.offsetParent);
+            return curtop;
+        }
+    }
+
+    if(window.location.hash.indexOf('#comments') > 0)
+        loadDisqus();
+
+    if(comments) {
+        var commentsOffset = findTop(comments);
+
+        window.onscroll = function() {
+            if(!disqusLoaded && window.pageYOffset > commentsOffset - 1500) {
+                loadDisqus();
+            }
+        }
+    }
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a>

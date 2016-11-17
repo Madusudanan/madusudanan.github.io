@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+<div class="post">
+  <h1 class="post-title">{{ page.title }}</h1>
+  <p> </p>
+   <span class="post-date">Originally Posted On : <i class="fa fa-calendar space-right"></i> {{ page.date | date_to_string }}</span>
+   {% if page.last_updated %}
+    <span class="post-date"> Last Updated : <i class="fa fa-calendar space-right"></i>  {{ page.last_updated | date_to_string  }}</span>
+   {% endif %}
+  <hr>
+  {{ content }}
+</div>
+
+{% include google_analytics.html %}
+
+<hr>
+<h2>Tagged Under</h2>
+<br>
+  {% for tag in page.tags %}
+    <p><i class="fa fa-tags" aria-hidden="true"></i> <a href="/tags#{{ tag }}" class="tag">{{ tag }}</a>
+    </p>
+  {% endfor %}
+
+
+<hr>
+<h2>Search this website</h2>
+<br>
+{% include duck_duck_go.html %}
+
+
+<hr>
+<h2>Keeping up with blogs</h2>
+{% include keeping_up.html %}
+
+<hr>
+<h2>Share &amp Like</h2>
+If you like this post, then you can either share/discuss/vote up on the below sites.
+
+{% include share_buttons.html %}
+
+<hr>
+{% include comments.html %}
+
