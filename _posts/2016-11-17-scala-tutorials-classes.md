@@ -5,7 +5,8 @@ permalink: blog/scala-tutorials-part-5-classes/
 tags: [Scala]
 ---
 
-## Classes
+Classes
+-------
 
 This is part 5 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
@@ -415,7 +416,7 @@ This requires more knowledge of traits, but we will briefly touch upon two situa
    
   Since traits are something specific to scala, abstract classes are better in terms of compatibility.
    
-With this, I would like to bring an end to this tutorial. The next in this series would be understanding traits and why they are really cool.    
+With this, I would like to bring an end to this tutorial. The next in this series would be understanding case classes, traits and why they are really cool.    
 
 Stay tuned  <i class="fa fa-smile-o fa-lg"></i>
 
