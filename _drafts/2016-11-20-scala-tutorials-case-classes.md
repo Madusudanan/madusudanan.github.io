@@ -33,7 +33,7 @@ case class Book(id:Int,title:String,isbn:Long)
 
 Yes, it is a valid syntax and it takes just one line of code.
 
-
+-- insert screenshot of declaration --
 
 <a name="Consumption"><u>Creating classes without the new keyword</u></a>
 
