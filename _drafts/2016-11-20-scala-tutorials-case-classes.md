@@ -13,9 +13,12 @@ Case classes are very similar to classes, but they do lot of boiler plate stuff 
 This is part 6 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
 - [Declaring case classes](#Declaration)
-- [Consuming without the new keyword](#Consumption)
-- [Automatic getters & Immutable classes](#Immutable)
-- 
+- [Creating classes without the new keyword](#Consumption)
+- [Reading variables](#Reading)
+- [Immutable classes]
+- [Changing constuctors to vars] - This creates mutable classes with getters
+- [Automatic hashCode,equals,toString]
+- [Under the hood - Apply Method] - This enables creating classes without the new keyword
 
 
 <a name="Declaration"><u>Declaring case classes</u></a>
@@ -30,7 +33,9 @@ case class Book(id:Int,title:String,isbn:Long)
 
 Yes, it is a valid syntax and it takes just one line of code.
 
-<a name="Consumption"><u>Consuming without the new keyword</u></a>
+
+
+<a name="Consumption"><u>Creating classes without the new keyword</u></a>
 
 Case classes can be created without using the new keyword. 
 
@@ -44,11 +49,13 @@ object RunExample extends App{
 
 {% endhighlight %}
 
-This is just for removing verbosity, in fact we can include the new keyword and it works just fine.
+This is just for removing verbosity, in fact we can include the new keyword and it works in the same manner.
 
 Can be compared syntactically to java strings. They can can be created without using the new keyword as well.
 
-<a name="Immutable"><u>Automatic getters & Immutable classes</u></a>
+<a name="Reading"><u>Reading variables</u></a>
+
+
 
 
 
