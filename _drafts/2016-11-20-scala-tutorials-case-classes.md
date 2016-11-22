@@ -14,8 +14,8 @@ This is part 6 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 
 - [Declaring case classes](#Declaration)
 - [Creating classes without the new keyword](#Consumption)
-- [Reading variables](#Reading)
-- [Immutable classes]
+- [Accessing variables](#Access)
+- [Immutable classes](#Immutable)
 - [Changing constuctors to vars] - This creates mutable classes with getters
 - [Automatic hashCode,equals,toString]
 - [Under the hood - Apply Method] - This enables creating classes without the new keyword
@@ -33,7 +33,9 @@ case class Book(id:Int,title:String,isbn:Long)
 
 Yes, it is a valid syntax and it takes just one line of code.
 
--- insert screenshot of declaration --
+We would be tempted to put it along wherever we wan't since it is just one line, but the [scala style guide](http://docs.scala-lang.org/style/files.html){:target="_blank"} pretty much sumps up on the styling part.
+
+Of course this can be different based on the requirement, one can group together multiple case classes into one single file with having similar functionality. This discussion is a separate topic, but if you are in doubt on where to place a case class, then put it in a separate file.
 
 <a name="Consumption"><u>Creating classes without the new keyword</u></a>
 
@@ -53,7 +55,23 @@ This is just for removing verbosity, in fact we can include the new keyword and 
 
 Can be compared syntactically to java strings. They can can be created without using the new keyword as well.
 
-<a name="Reading"><u>Reading variables</u></a>
+<a name="Access"><u>Accessing variables</u></a>
+
+Variables can be accessed similar to their class counterparts.
+
+{% highlight scala %}
+
+object RunExample extends App{
+
+  val book = Book(100,"Stephen hawkings : A brief history of time",9788370017361L)
+
+  println(book.id)
+  println(book.title)
+  println(book.isbn)
+
+}
+
+{% endhighlight %}
 
 
 
