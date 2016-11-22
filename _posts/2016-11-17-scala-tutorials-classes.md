@@ -3,6 +3,7 @@ layout: post
 title: "Scala Tutorials Part #5 - Classes"
 permalink: blog/scala-tutorials-part-5-classes/
 tags: [Scala]
+last_updated: 2016-11-22
 ---
 
 Classes
@@ -176,7 +177,6 @@ Apart from the access modifiers there are certain other ways to control access t
 <u>Immutable classes</u>
  
 We can declare the variables as immutable in class constructors.
- 
 
 {% highlight scala %}
  class Person (val name:String,val age:Int) {
@@ -196,6 +196,8 @@ We can declare the variables as immutable in class constructors.
 Once the values are declared, it cannot be re-assigned again, this is the default behaviour as explored in the first part.
 
 ![Val constructors](/images/val_constructors.png)
+
+> This process is called promoting class parameters to class fields.
 
 Declaring the values during initialization and changing the assigned values after initialization are two different things. 
 In this case, we have achieved something similar to immutable classes, i.e once declared their values cannot be changed. 

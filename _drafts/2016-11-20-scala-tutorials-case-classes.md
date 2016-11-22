@@ -15,8 +15,9 @@ This is part 6 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [Declaring case classes](#Declaration)
 - [Creating classes without the new keyword](#Consumption)
 - [Accessing variables](#Access)
-- [Immutable classes](#Immutable)
-- [Changing constuctors to vars] - This creates mutable classes with getters
+- [Immutable objects](#Immutable)
+- [Mutable objects](#Mutable)
+- [Getters & Setters](#GettersSetters)
 - [Automatic hashCode,equals,toString]
 - [Under the hood - Apply Method] - This enables creating classes without the new keyword
 
@@ -72,6 +73,61 @@ object RunExample extends App{
 }
 
 {% endhighlight %}
+
+<a name="Immutable"><u>Immutable classes</u></a>
+
+Case classes by default are immutable i.e once declared they cannot be changed. In the previous tutorial we briefly touched upon something similar in classes.
+But case classes are naturally suited in creating immutable classes and they have a whole suite of advantages which we will see below.
+
+![Constructor no value](/images/case_class_immutable.png)
+
+In the case of immutable classes then you need not worry about direct variable access/creating getters and setters since they cannot be changed. This gives you a much more 
+neater syntax.
+
+> Passing around objects to different functions and mutating them is bad design. If a method/component mutates its values, then its state is changed. It is better to create
+> another instance instead of the mutated one. This has several advantages including not to lock objects across multiple threads and create something akin to a event passing
+> system. This is another topic/design decision which we will explore in further tutorials.
+
+<a name="Mutable"><u>Mutable objects</u></a>
+
+Immutable objects are good design. But it is a decision that should be taken by the programmer.
+
+The language by itself provides a way to create mutable classes. We saw this in the previous tutorial where we promote the class parameter to a class field.
+
+We can change the case class variables as below.
+
+{% highlight scala %}
+
+case class Book(
+var id:Int,var title:String,var isbn:Long
+)
+
+{% endhighlight %}
+
+This enables us to change the variables as and when required.
+
+{% highlight scala %}
+
+object RunExample extends App{
+
+  val x = Book(100,"Stephen hawkings : A brief history of time",9788370017361L)
+  x.id = 200
+
+  println(x.id)
+
+}
+
+{% endhighlight %}
+
+Of course, this is one way to do this. But this is bad design in a variety of ways.
+
+In java, you would typically create these variables as private and use getters and setters.
+
+
+
+
+
+
 
 
 
