@@ -16,51 +16,51 @@ This is part 5 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [Introduction](#Intro)
 - [Access and visibility](#AccessVisibility)
 - [Constructors](#Constructors)
-- [Immutable classes and direct member access](#AccessMods)
+- [Class parameters and Class fields](#FieldParams)
+- [Promoting class parameters](#PromotingParams)
+- [Direct member access](#Direct)
+- [Immutable objects and Mutable objects](#ImmutabilityAndMutability)
+- [When to use Getters and Setters](#WhenToUse)
+- [Scala style Getters and Setters](#ScalaStyleGetter)
 - [Auxiliary constructors](#AuxiliaryConstructors)
 - [Default constructor values](#DefaultConstructorValues)
 - [Abstract classes](#AbsClasses)
 - [The Override keyword](#Override)
-- [When to use abstract classes](#WhenToUse)
+- [When to use abstract classes](#WhenToUseAbs)
 
 <a name="Intro"><u>Introduction</u></a>
 
 The concept of a class in scala is very similar to their counterpart in java. But there are lot of differences in the functionality they provide.
- 
+
 To start off, lets take a simple example.
- 
+
 {% highlight scala %}
- 
- //Typical java style class
- class Person {
- 
+
+//Typical java style class
+class Person {
    var name = "Noname"
    var age = -1
- 
-   
    def setName (name:String)  {
       this.name = name
    }
-   
-   
+
    def setAge (age:Int) {
      this.age = age
    }
-   
+
    def getName () : String = {
      name
    }
-   
+
    def getAge () : Int = {
      age
    }
-   
-   
- 
- }
- 
+
+
+}
+
 {% endhighlight %}
- 
+
 We have two variables name and age with getters and setters which can be accessed as follows.
 
 {% highlight scala %}
@@ -76,7 +76,6 @@ object RunExample extends App{
 
 {% endhighlight %}
 
- 
 <a name="AccessVisibility"><u>Access and visibility</u></a>
 
 Previous example had the default access modifier. Let's look at other modifiers in detail.
@@ -85,7 +84,7 @@ To recap, java has four access modifiers.
 
 Java access levels
 
-<table border="1">
+<table>
      <th align="left">Modifier</th>
      <th align="left">Class</th>
      <th align="left">Package</th>
@@ -94,12 +93,12 @@ Java access levels
      <tr><td>Public</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td></tr>
      <tr><td>Protected</td><td>Y</td><td>Y</td><td>Y</td><td>N</td></tr>
      <tr><td>Default/No modifier</td><td>Y</td><td>Y</td><td>N</td><td>N</td></tr>
-     <tr><td>Private</td><td>Y</td><td>N</td><td>N</td><td>N</td></tr> 
+     <tr><td>Private</td><td>Y</td><td>N</td><td>N</td><td>N</td></tr>
 </table>
 
 A similar representation can be drawn for scala.
 
-<table border="1">
+<table>
      <th align="left">Modifier</th>
      <th align="left">Class</th>
      <th align="left">Companion Object</th>
@@ -109,17 +108,17 @@ A similar representation can be drawn for scala.
      <tr><td>Default/No modifier</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td></tr>
      <tr><td>Protected</td><td>Y</td><td>Y</td><td>Y</td><td>N</td><td>N</td></tr>
      <tr><td>Private</td><td>Y</td><td>Y</td><td>N</td><td>N</td><td>N</td></tr>
- </table>
- 
+</table>
+
 It is more or less similar to java's access modifiers, except that there are only three levels. There is no equivalent of java's default access, and the default in scala
 is equal to java's public.
- 
-This should be enough to get going, but if you are interested in taking a more deeper look, 
+
+This should be enough to get going, but if you are interested in taking a more deeper look,
 [scala access modifiers](http://www.jesperdj.com/2016/01/08/scala-access-modifiers-and-qualifiers-in-detail/){:target="_blank"} is a good read.
- 
+
 The [official documentation](http://www.scala-lang.org/files/archive/spec/2.11/05-classes-and-objects.html#modifiers){:target="_blank"} can also be referred.
- 
-You would find that, the scala access levels are slightly better in contrast to java. 
+
+You would find that, the scala access levels are slightly better in contrast to java.
 
 <a name="Constructors"><u>Constructors</u></a>
 
@@ -144,8 +143,8 @@ class Person (name:String,age:Int) {
 {% endhighlight %}
 
 The class implementation is similar to the original one, except that there are no setters and only getters.
- 
-They can be consumed as below. 
+
+They can be consumed as below.
 
 {% highlight scala %}
 
@@ -156,7 +155,7 @@ object RunExample extends App{
   println(personObj.getName)
   println(personObj.getAge)
 
-} 
+}
 
 {% endhighlight %}
 
@@ -167,49 +166,53 @@ Once a constructor is declared, we cannot create a class without providing the d
 ![Constructor no value](/images/constructor_error_no_value.png)
 
 We cannot call the variables directly as they resort to `private val` by default and as per the access levels defined above, it would throw an error.
- 
+
 ![Class creation error](/images/class_creation_error.png)
 
-<a name="AccessMods"><u>Immutable classes and direct member access</u></a>
+<a name="FieldParams"><u>Class parameters and Class fields</u></a>
 
-Apart from the access modifiers there are certain other ways to control access to members of a class.
+It is important to understand that for a class, there are two components i.e class parameters and class fields.
 
-<u>Immutable classes</u>
- 
-We can declare the variables as immutable in class constructors.
+Class parameters are one which you mention in declaration i.e the primary constructor.
+
+Class field are regular member variables.
+
+The above example had getters, without those it would be impossible for another class to access the variables of that particular class.
+
+If we take a closer look, the actual reason is more subtle than just private, the parameters have scope only to the constructor and do not live beyond that. 
+This is very similar to accessing a variable that is declared inside a loop. These are class parameters and live only inside the scope of the constructor.
+
+Class fields on the other hand can be accessed (based on their access level) outside the class.
+
+This distinction is important and it forms the basis of the following discussions.
+
+<a name="PromotingParams"><u>Promoting class parameters</u></a>
+
+The process of promoting class parameters is nothing but changing their scope for usage beyond the constructor.
+
+This can be done in two ways. Either by affixing `val` or `var` before the variables in the constructor parameters.
 
 {% highlight scala %}
- class Person (val name:String,val age:Int) {
- 
-   def getName () : String = {
-     name
-   }
- 
-   def getAge () : Int = {
-     age
-   }
- 
- }
- 
+
+class Person (val name:String,val age:Int) {}
+
 {% endhighlight %}
 
-Once the values are declared, it cannot be re-assigned again, this is the default behaviour as explored in the first part.
+or 
 
-![Val constructors](/images/val_constructors.png)
+{% highlight scala %}
 
-> This process is called promoting class parameters to class fields.
+class Person (var name:String,var age:Int) {}
 
-Declaring the values during initialization and changing the assigned values after initialization are two different things. 
-In this case, we have achieved something similar to immutable classes, i.e once declared their values cannot be changed. 
- 
-Scala has something called `case classes` which are specifically built for handling situations like immutable classes along with several other usage advantages.
-We will be exploring cases classes in a future tutorial.
+{% endhighlight %}
 
-If we want to directly change the class variables, then we can change val to var. But that would be a bad idea from a design perspective.
+Even though the classes do not have a body, instances can still be created and consumed. 
 
-<u>Direct variable access</u>
+<a name="Direct"><u>Direct member access</u></a>
 
-The above example also enables us to directly access the class variables, without a getter/setter.   
+Changing the parameters to val/var enables us to directly access the class variables, without a getter/setter.
+
+The above example with either val/var can be consumed as below.
 
 {% highlight scala %}
 
@@ -225,11 +228,153 @@ object RunExample extends App{
 
 {% endhighlight %}
 
+We can access the variables directly since it is the default access level. In fact, val/var do not have anything to do with access.
 
-As we previously saw, the default access modifier is private val which is not visible to the programmer and there is val/var in front of the variables.
-If we change it to val/var, we also change the access modifier to default access and hence it is now accessible outside the class.
+Designing things like this is a bad idea, but it is something that can be done.  
 
-Designing things like this is a bad idea, but it is something that can be done.
+This gives rise to two ways in which a class can be designed i.e mutable/immutable.
+
+<a name="ImmutabilityAndMutability"><u>Immutable objects and Mutable objects</u></a>
+
+With val, we can have immutable objects.
+
+<u>Immutable objects</u>
+
+We can declare the variables as immutable in class constructors.
+
+{% highlight scala %}
+class Person (val name:String,val age:Int) {
+
+   def getName () : String = {
+     name
+   }
+
+   def getAge () : Int = {
+     age
+   }
+
+}
+
+{% endhighlight %}
+
+Once the values are declared, it cannot be re-assigned again, this is the default behaviour of val as explored in the first part.
+
+![Val constructors](/images/val_constructors.png)
+
+Scala has something called `case classes` which are specifically built for handling situations like immutable classes along with several other usage advantages.
+We will be exploring cases classes in a future tutorial.
+
+<u>Mutable objects</u>
+
+{% highlight scala %}
+class Person (var name:String,var age:Int) {
+
+   def getName () : String = {
+     name
+   }
+
+   def getAge () : Int = {
+     age
+   }
+
+}
+
+{% endhighlight %}
+
+We can then declare an instances and change the name directly.
+
+{% highlight scala %}
+
+
+object RunExample extends App{
+
+  val p = new Person("Rob",43)
+
+  p.name = "Jacob"
+
+  //Prints the changed name
+  println(p.name)
+
+}
+
+{% endhighlight %}
+
+<a name="WhenToUse"><u>When to use Getters and Setters</u></a>
+
+There are two key decisions to be made when designing a class.
+
+- Whether it should be mutable/immutable (Read [objects should be immutable](http://www.yegor256.com/2014/06/09/objects-should-be-immutable.html){:target="_blank"})
+- Using getters/setters vs direct variable access.
+
+For the first point, it is basically trade offs. The linked article summarizes the advantages of immutable objects.
+
+The second point is something to ponder over.
+
+[Traditional wisdom](http://stackoverflow.com/questions/1568091/why-use-getters-and-setters){:target="_blank"} in java on when to use getters and setters still apply.
+
+A simple example is to do more than just setting values to the variable, we can do several other things such as checking access, logging etc.,
+
+But the [scala style guide](http://docs.scala-lang.org/style/naming-conventions.html#accessorsmutators){:target="_blank"} says a different story.
+
+What is being advised is that the users of the class need not have knowledge on whether a method/class member is being accessed. They can simply choose to
+change/access it with the variable name itself. This greatly simplifies code and it looks much cleaner.
+
+The next section describes on how to create such a getter/setter with somewhat obscure syntax.
+
+<a name="ScalaStyleGetter"><u>Scala style Getters and Setters</u></a>
+
+As mentioned above, scala has a different way of creating getters/setters although the java style is still supported as we saw in the first example.
+
+Lets take the below class.
+
+{% highlight scala %}
+
+class Person() {
+
+  private var _age: Int = -1
+
+  def age: Int = _age
+
+  def age_=(value: Int) = {
+    _age = value
+  }
+
+
+}
+
+{% endhighlight %}
+
+This can be consumed as below.
+
+{% highlight scala %}
+
+object RunExample extends App{
+
+  val p = new Person
+
+  p.age = 20
+
+  println(p.age)
+
+}
+
+{% endhighlight %}
+
+Parameter `age` is actually a method inside the class Person, however the user can access this as if it was a variable.
+
+The syntax might look bizarre, but understanding where they fit in will give a more clear picture. Lets take it apart piece by piece. 
+
+`age` is actually `_age` behind the scenes. The getter is pretty clear, just return the `_age` variable. 
+The setter is little more confusing. First the method name is `def age_=`, the underscore is a special character which enables a space in calling the method.
+This enables us to call the method like `age =`. Notice that the method name, underscore and the equal sign should be together without any space.
+Everything else should make sense already i.e it takes in a parameter `value` and assigns it to the `_age` variable.
+
+This definition should be enough to get your head around it, but the underscore character has more to it and there is something called the 
+[uniform access principle](https://en.wikipedia.org/wiki/Uniform_access_principle){:target="_blank"}. We will explore that in later dedicated tutorial.
+
+Scala plugin in Intellij can do all the [code generation](https://www.jetbrains.com/help/idea/2016.2/generating-getters-and-setters.html){:target="_blank"} for you.
+ 
+Getters and setters in general are viewed as second class citizens since scala encourages immutable objects.  
 
 <a name="AuxiliaryConstructors"><u>Auxiliary constructors</u></a>
 
@@ -244,12 +389,12 @@ class Person (name:String,age:Int) {
   def this(){
     this("",-1)
   }
-  
+
   //When name is provided, but age is not
   def this(name:String){
     this(name,-1)
   }
-  
+
   //When age is provided, but name is not
   def this(age:Int){
     this("",age)
@@ -301,14 +446,14 @@ class Person (name:String,age:Int,phone:String) {
 {% endhighlight %}
 
 
-Please note that the all of the auxiliary constructors have to now include the phone as a parameter. 
+Please note that the all of the auxiliary constructors have to now include the phone as a parameter.
 This might seem as an overhead, but it is actually good design.
 
 <a name="DefaultConstructorValues"><u>Default constructor values</u></a>
 
 Auxiliary constructors are good for implementing polymorphic behaviour, i.e different constructors can exhibit different flows in the class execution/functionality.
 
-A most common bad practice is to use these to implement default variable values. Like methods, we can provide the default values during constructor 
+A most common bad practice is to use these to implement default variable values. Like methods, we can provide the default values during constructor
 declaration itself.
 
 {% highlight scala %}
@@ -349,8 +494,8 @@ object RunExample extends App{
 {% endhighlight %}
 
 Listed example will work correctly and would print the default values Unnamed,-1,No number.
- 
-This is a pretty handy way of declaring pre-defined class values. 
+
+This is a pretty handy way of declaring pre-defined class values.
 
 <a name="AbsClasses"><u>Abstract classes</u></a>
 
@@ -387,8 +532,8 @@ abstract class Parent(name:String = "Noname") {
 The comments give a good idea of what the methods do. The `abstract` keyword is not necessary, when the method body is not defined it is taken to be as a abstract method.
 
 If we extend this to another class, we need to implement the three methods `getAge`,`getID` and `getEmail`.
- 
-We may choose to override/not override the `getName` method since it is already implemented. 
+
+We may choose to override/not override the `getName` method since it is already implemented.
 
 <a name="Override"><u>The Override keyword</u></a>
 
@@ -398,30 +543,26 @@ Scala has an `override` keyword which is mandatory in case of overriding a concr
 
 ![Override Error](/images/override_error.png)
 
-This promotes better type safety and accidental overriding. 
+This promotes better type safety and accidental overriding.
 
 We can add a `override` keyword in front of the method to work as expected.
 
 ![Override no error](/images/override_no_error.png)
 
-<a name="WhenToUse"><u>When to use abstract classes</u></a>
+<a name="WhenToUseAbs"><u>When to use abstract classes</u></a>
 
 As I said before, abstract classes were superseded by `traits`, so in what situation we need to use Abstract classes ?
 
 This requires more knowledge of traits, but we will briefly touch upon two situations.
 
 - When we want a base class with constructor arguments
-  
+
   We will see in further tutorials why traits do not allow this.
-  
+
 - When we want to use the class from Java code
-   
+
   Since traits are something specific to scala, abstract classes are better in terms of compatibility.
-   
-With this, I would like to bring an end to this tutorial. The next in this series would be understanding case classes, traits and why they are really cool.    
+
+With this, I would like to bring an end to this tutorial. The next in this series would be understanding case classes, traits and why they are really cool.
 
 Stay tuned  <i class="fa fa-smile-o fa-lg"></i>
-
-
-
-
