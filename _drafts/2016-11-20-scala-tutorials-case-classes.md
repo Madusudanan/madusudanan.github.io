@@ -18,10 +18,10 @@ This is part 6 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [Accessing variables](#Access)
 - [Immutable objects](#Immutable)
 - [Structural equality - Automatic equals generation](#Equals)
+- [Reference equality](#ReferenceEquality)
 - [String representation](#String)
 - [Automatic hashcode generation](#Hashcode)
 - [Case class decompiled](#Decompiled)
-- [Automatic hashCode,equals,toString]
 - [Under the hood - Apply Method] - This enables creating classes without the new keyword
 
 
@@ -212,6 +212,13 @@ provide a customized implementation.
 
 <a name="Hashcode"><u>Automatic hashcode generation</u></a>
 
+I am assuming that readers are familiar with the java's implementation of hashcode if not then its nothing but an implementation for the convenience of 
+putting them into hash tables.
+
+The [java docs](http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#hashCode()){:target="_blank"} explanation sums it up well.
+
+Another thing to understand is the implementations are [native methods](http://stackoverflow.com/questions/10578764/why-are-hashcode-and-getclass-native-methods){:target="_blank"}.
+A native method is nothing but replying upon the direct machine implementation rather than a java based implementation.
 
 
 
