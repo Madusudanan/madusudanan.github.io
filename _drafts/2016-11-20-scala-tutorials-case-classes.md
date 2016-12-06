@@ -22,7 +22,6 @@ This is part 6 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [String representation](#String)
 - [Automatic hashcode generation](#Hashcode)
 - [Case class decompiled](#Decompiled)
-- [Under the hood - Apply Method] - This enables creating classes without the new keyword
 - [Pattern matching]
 
 
@@ -264,30 +263,58 @@ provide a customized implementation.
 
 <a name="Hashcode"><u>Automatic hashcode generation</u></a>
 
-I am assuming that readers are familiar with the java's implementation of hashcode if not then its nothing but an implementation for the convenience of 
-putting them into hash tables.
+- What on earth is a hashcode?
 
-The [java docs](http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#hashCode()){:target="_blank"} explanation sums it up well.
+  I am assuming that readers are familiar with the java's implementation of hashcode if not then its nothing but an implementation for the convenience of 
+  putting them into hash tables.
 
-Another thing to understand is the implementations in java are [native methods](http://stackoverflow.com/questions/10578764/why-are-hashcode-and-getclass-native-methods){:target="_blank"}.
-A native method is one that relies upon the direct machine implementation rather than a java based implementation.
+  The [java docs](http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#hashCode()){:target="_blank"} explanation sums it up well.
 
-The internals of the exact implementation is not necessary to understand for a developer, but if you are curios you can take a look at it.
+- Implementation in java
 
-It is important to understand the hashcode API contract which is summed up as below.
+  Another thing to understand is the implementations in java are [native methods](http://stackoverflow.com/questions/10578764/why-are-hashcode-and-getclass-native-methods){:target="_blank"}.
+  A native method is one that relies upon the direct machine implementation rather than a java based implementation.
 
-- Whenever it is invoked on the same object more than once during an execution of a Java application, 
-the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. 
-This integer need not remain consistent from one execution of an application to another execution of the same application.
-- If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result.
-- It is not required that if two objects are unequal according to the equals(java.lang.Object) method, 
-then calling the hashCode method on each of the two objects must produce distinct integer results. 
-However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hashtables
+  The internals of the exact implementation is not necessary to understand for a developer, but if you are curious you can take a look at it.
 
-That should pretty much sum up how java does the hashcode part.
+- The hashcode contract
 
-In scala the things are a bit different.
+  It is important to understand the hashcode API contract which is summed up as below.
 
-http://stackoverflow.com/questions/40980193/scala-murmur-hash-vs-java-native-hash
+   - Whenever it is invoked on the same object more than once during an execution of a Java application, 
+     the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. 
+     This integer need not remain consistent from one execution of an application to another execution of the same application.
+   - If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result.
+   - It is not required that if two objects are unequal according to the equals(java.lang.Object) method, 
+     then calling the hashCode method on each of the two objects must produce distinct integer results. 
+     However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hashtables
 
-https://gist.github.com/Madusudanan/f903809a968be6d15688acaaadc6f17b
+- Hashcode in Scala
+
+  The default hash implementation in java is pretty fast but does not give good collision resistance i.e more susceptible to collisions. That should pretty much sum up how java does the hashcode part
+
+  In scala the things are a bit different. Case classes use an algorithm called [murmur hash] (https://en.wikipedia.org/wiki/MurmurHash){:target="_blank"} and regular classes use
+  the default hash.
+
+  A nice discussion of this topic is available on the [scala mailing list](https://groups.google.com/forum/#!searchin/scala-language/what$20type$20of$20hashing$20in$20scala%7Csort:relevance/scala-language/t_iDssWTplU/5mlp25lsDgAJ){:target="_blank"}
+
+  The main point is that the hashing implementation might change and developers should not rely on it.
+
+- When to worry about hashcode?
+  
+  The underlying implementation is guaranteed by language/platform developers and developers need not generally worry about it. But if you are implementing you own hashing algorithm
+  for whatever reason then you need to pay attention on how it is handled differently in case classes,normal classes and collection libraries.
+  
+
+The main takeaway from this discussion of hashcode in scala is that there is a contract with equals and hashcode and when a class changes these guarantees must be taken care.
+In case classes, this is done automatically.
+
+<a name="Decompiled"><u>Case class decompiled</u></a>
+
+A good way to understand how toString,equals and hashCode is by looking at the [decompiled class](https://gist.github.com/Madusudanan/f903809a968be6d15688acaaadc6f17b){:target="_blank"}
+
+We can see that there are methods generated for `equals`, `toString` and `hashCode`. A default constructor is also generated.
+
+There are some other methods such as `copy` and getters for the fields of the case class which is common to classes as well.
+
+Another curious method is called `apply`
