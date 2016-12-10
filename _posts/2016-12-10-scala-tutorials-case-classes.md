@@ -22,12 +22,11 @@ This is part 6 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [String representation](#String)
 - [Automatic hashcode generation](#Hashcode)
 - [Case class decompiled](#Decompiled)
-- [Pattern matching]
 
 
 <a name="Declaration"><u>Declaring case classes</u></a>
 
-The code below declares a class called Book with three member variables `id`,`title`,`isbn`
+The code below declares a class called `Book` with three member variables `id`,`title`,`isbn`
 
 {% highlight scala %}
 
@@ -35,11 +34,12 @@ case class Book(id:Int,title:String,isbn:Long)
 
 {% endhighlight %}
 
-Yes, it is a valid syntax and it takes just one line of code.
+Perfectly valid syntax and it takes just one line of code.
 
 We would be tempted to put it along wherever we wan't since it is just one line, but the [scala style guide](http://docs.scala-lang.org/style/files.html){:target="_blank"} pretty much sumps up on the styling part.
 
-Of course this can be different based on the requirement, one can group together multiple case classes into one single file with having similar functionality. This discussion is a separate topic, but if you are in doubt on where to place a case class, then put it in a separate file.
+Of course this can be different based on the requirement, one can group together multiple case classes into one single file with having similar functionality. 
+This discussion is a separate topic, but if you are in doubt on where to place a case class, then put it in a separate file.
 
 <a name="Consumption"><u>Creating classes without the new keyword</u></a>
 
@@ -49,7 +49,7 @@ Case classes can be created without using the new keyword.
 
 object RunExample extends App{
 
-  val x = Book(100,"Stephen hawkings : A brief history of time",9788370017361L)
+  val x = Book(100,"Stephen hawking's : A brief history of time",9788370017361L)
 
 }
 
@@ -57,7 +57,7 @@ object RunExample extends App{
 
 This is just for removing verbosity, in fact we can include the new keyword and it works in the same manner.
 
-Can be compared syntactically to java strings. They can can be created without using the new keyword as well.
+Can be compared syntactically to java strings where they can can be created without using the new keyword as well.
 
 <a name="Access"><u>Accessing variables</u></a>
 
@@ -67,7 +67,7 @@ Variables can be accessed similar to their class counterparts.
 
 object RunExample extends App{
 
-  val book = Book(100,"Stephen hawkings : A brief history of time",9788370017361L)
+  val book = Book(100,"Stephen hawking's : A brief history of time",9788370017361L)
 
   println(book.id)
   println(book.title)
@@ -157,7 +157,7 @@ But case classes are naturally suited in creating immutable classes and they hav
 In the case of immutable classes then you need not worry about direct variable access/creating getters and setters since they cannot be changed. This gives you a much more 
 neater syntax.
 
-All of the other stuff for regular classes such as val/var field promotion,getters/setters still apply.
+All of the other stuff for regular classes such as val/var field promotion,getters/setters still apply here as well.
 
 <a name="Equals"><u>Structural equality - Automatic equals generation</u></a>
 
@@ -291,9 +291,9 @@ provide a customized implementation.
 
 - Hashcode in Scala
 
-  The default hash implementation in java is pretty fast but does not give good collision resistance i.e more susceptible to collisions. That should pretty much sum up how java does the hashcode part
+  The default hash implementation in java is pretty fast but does not give good collision resistance i.e more susceptible to collisions.
 
-  In scala the things are a bit different. Case classes use an algorithm called [murmur hash] (https://en.wikipedia.org/wiki/MurmurHash){:target="_blank"} and regular classes use
+  In scala the things are a bit different. Case classes use an algorithm called [murmur hash](https://en.wikipedia.org/wiki/MurmurHash){:target="_blank"} and regular classes use
   the default hash.
 
   A nice discussion of this topic is available on the [scala mailing list](https://groups.google.com/forum/#!searchin/scala-language/what$20type$20of$20hashing$20in$20scala%7Csort:relevance/scala-language/t_iDssWTplU/5mlp25lsDgAJ){:target="_blank"}
@@ -302,7 +302,7 @@ provide a customized implementation.
 
 - When to worry about hashcode?
   
-  The underlying implementation is guaranteed by language/platform developers and developers need not generally worry about it. But if you are implementing you own hashing algorithm
+  The underlying implementation is guaranteed by language/platform developers and we need not generally worry about it. But if you are implementing you own hashing algorithm
   for whatever reason then you need to pay attention on how it is handled differently in case classes,normal classes and collection libraries.
   
 
@@ -311,10 +311,13 @@ In case classes, this is done automatically.
 
 <a name="Decompiled"><u>Case class decompiled</u></a>
 
-A good way to understand how toString,equals and hashCode is by looking at the [decompiled class](https://gist.github.com/Madusudanan/f903809a968be6d15688acaaadc6f17b){:target="_blank"}
+A good way to understand how toString, equals and hashCode work is by looking at the [decompiled class](https://gist.github.com/Madusudanan/f903809a968be6d15688acaaadc6f17b){:target="_blank"}
 
 We can see that there are methods generated for `equals`, `toString` and `hashCode`. A default constructor is also generated.
 
-There are some other methods such as `copy` and getters for the fields of the case class which is common to classes as well.
+Some other methods such as `copy` and getters for the fields of the case class are present which is common to regular classes as well.
 
-Another curious method is called `apply`
+There are two main topics that are very closely related to case classes i.e the `apply` method and pattern matching. In fact the very name for case classes come from matching
+cases for several patterns, but I am not going to explain them here since they are complex topics of their own and I will be covering them in later tutorials.
+
+Stay tuned  <i class="fa fa-smile-o fa-lg"></i>
