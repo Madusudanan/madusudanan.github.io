@@ -3,6 +3,7 @@ layout: post
 title: "Scala Tutorials Part #4 - Objects"
 permalink: blog/scala-tutorials-part-4-objects/
 tags : Scala
+last_updated: 2016-12-17
 ---
 
 Objects in Scala
@@ -19,6 +20,7 @@ We are going to deal with `objects` in this article.
 - [Static and OOP](#Static)
 - [Companion objects](#CompanionObj)
 - [Hello world revisited](#HelloWorldReVisit)
+- [Deeper understanding of main methods](#DeeperMain)
 
 <a name="Intro"><u>What are objects?</u></a>
 
@@ -273,6 +275,259 @@ Here we are extending a trait called `App`. In fact we can look at the source co
 A notable excerpt from the comments is "The App trait can be used to quickly turn objects into executable programs". 
 
 It does so via inheriting the main method of the trait App.scala.
+
+<a name="DeeperMain"><u>Deeper understanding of main methods</u></a>
+
+The traditional understanding in java is every program will have a entry point with a method named `main` and it is static.
+
+Since there is no static keyword in scala, lets dig a little bit further to understand what is going on.
+
+We know that there are two ways to create a runnable application in scala. One would be using the main method inside of an object and other would by
+extending the `App` trait. Let's look at the decompiled versions of both.
+
+<u>Object extending App trait</u>
+
+Actual Code :
+
+{% highlight scala %}
+
+object RunExample extends App{
+
+ println("Hello World !!")
+  
+}
+{% endhighlight %}
+
+Decompiled : 
+
+```
+public final class RunExample {
+  public static void main(java.lang.String[]);
+    Code:
+       0: getstatic     #16                 // Field RunExample$.MODULE$:LRunExample$;
+       3: aload_0
+       4: invokevirtual #18                 // Method RunExample$.main:([Ljava/lang/String;)V
+       7: return
+
+  public static void delayedInit(scala.Function0<scala.runtime.BoxedUnit>);
+    Code:
+       0: getstatic     #16                 // Field RunExample$.MODULE$:LRunExample$;
+       3: aload_0
+       4: invokevirtual #22                 // Method RunExample$.delayedInit:(Lscala/Function0;)V
+       7: return
+
+  public static java.lang.String[] args();
+    Code:
+       0: getstatic     #16                 // Field RunExample$.MODULE$:LRunExample$;
+       3: invokevirtual #26                 // Method RunExample$.args:()[Ljava/lang/String;
+       6: areturn
+
+  public static void scala$App$_setter_$executionStart_$eq(long);
+    Code:
+       0: getstatic     #16                 // Field RunExample$.MODULE$:LRunExample$;
+       3: lload_0
+       4: invokevirtual #30                 // Method RunExample$.scala$App$_setter_$executionStart_$eq:(J)V
+       7: return
+
+  public static long executionStart();
+    Code:
+       0: getstatic     #16                 // Field RunExample$.MODULE$:LRunExample$;
+       3: invokevirtual #34                 // Method RunExample$.executionStart:()J
+       6: lreturn
+
+  public static void delayedEndpoint$RunExample$1();
+    Code:
+       0: getstatic     #16                 // Field RunExample$.MODULE$:LRunExample$;
+       3: invokevirtual #38                 // Method RunExample$.delayedEndpoint$RunExample$1:()V
+       6: return
+}
+```
+
+We can see that there is a `public static void main` method created.
+
+<u>Object with main method</u>
+
+Actual Code : 
+
+{% highlight scala %}
+
+object RunExample {
+
+  def main(args: Array[String]) = {
+    println("Hello World !!")
+
+  }
+
+}
+
+{% endhighlight %}
+
+Decompiled : 
+
+```
+public final class RunExample {
+  public static void main(java.lang.String[]);
+    Code:
+       0: getstatic     #16                 // Field RunExample$.MODULE$:LRunExample$;
+       3: aload_0
+       4: invokevirtual #18                 // Method RunExample$.main:([Ljava/lang/String;)V
+       7: return
+}
+```
+
+This also generates a `public static void main`, but the difference is the decompiled code is much shorter since it does not extend the App trait. We will see the reason behind that in a later tutorial once we have explored traits.
+
+From the above examples we can conclude why both ways of creating a runnable application works in scala. But an important point to note is that both
+of them have to be objects.
+
+As explained before, objects are treated special by the compiler as a singleton with one instance. So the concepts of creating a running application
+does not really apply to classes.
+
+Let's see what happens if we try to create a scala application with class as runnable.
+
+<u>Class with main method</u>
+
+Actual code :
+
+{% highlight scala %}
+
+class RunExample {
+
+  def main(args: Array[String]) = {
+    println("Hello World !!")
+
+  }
+
+}
+
+{% endhighlight %}
+
+Decompiled :
+
+```
+public class RunExample {
+  public void main(java.lang.String[]);
+    Code:
+       0: getstatic     #16                 // Field scala/Predef$.MODULE$:Lscala/Predef$;
+       3: ldc           #18                 // String Hello World !!
+       5: invokevirtual #22                 // Method scala/Predef$.println:(Ljava/lang/Object;)V
+       8: return
+
+  public RunExample();
+    Code:
+       0: aload_0
+       1: invokespecial #30                 // Method java/lang/Object."<init>":()V
+       4: return
+}
+
+```
+
+The generated main method is not static and hence it cannot be run.
+
+<u>Class extending the App trait</u>
+
+Actual Code : 
+
+{% highlight scala %}
+
+class RunExample extends App{
+
+    println("Hello World !!")
+
+}
+
+{% endhighlight %}
+
+
+Decompiled : 
+
+```
+public class RunExample implements scala.App {
+  public long executionStart();
+    Code:
+       0: aload_0
+       1: getfield      #20                 // Field executionStart:J
+       4: lreturn
+
+  public java.lang.String[] scala$App$$_args();
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field scala$App$$_args:[Ljava/lang/String;
+       4: areturn
+
+  public void scala$App$$_args_$eq(java.lang.String[]);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #25                 // Field scala$App$$_args:[Ljava/lang/String;
+       5: return
+
+  public scala.collection.mutable.ListBuffer<scala.Function0<scala.runtime.BoxedUnit>> scala$App$$initCode();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field scala$App$$initCode:Lscala/collection/mutable/ListBuffer;
+       4: areturn
+
+  public void scala$App$_setter_$executionStart_$eq(long);
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #20                 // Field executionStart:J
+       5: return
+
+  public void scala$App$_setter_$scala$App$$initCode_$eq(scala.collection.mutable.ListBuffer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #31                 // Field scala$App$$initCode:Lscala/collection/mutable/ListBuffer;
+       5: return
+
+  public java.lang.String[] args();
+    Code:
+       0: aload_0
+       1: invokestatic  #41                 // Method scala/App$class.args:(Lscala/App;)[Ljava/lang/String;
+       4: areturn
+
+  public void delayedInit(scala.Function0<scala.runtime.BoxedUnit>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #46                 // Method scala/App$class.delayedInit:(Lscala/App;Lscala/Function0;)V
+       5: return
+
+  public void main(java.lang.String[]);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #52                 // Method scala/App$class.main:(Lscala/App;[Ljava/lang/String;)V
+       5: return
+
+  public final void delayedEndpoint$RunExample$1();
+    Code:
+       0: getstatic     #60                 // Field scala/Predef$.MODULE$:Lscala/Predef$;
+       3: ldc           #62                 // String Hello World !!
+       5: invokevirtual #66                 // Method scala/Predef$.println:(Ljava/lang/Object;)V
+       8: return
+
+  public RunExample();
+    Code:
+       0: aload_0
+       1: invokespecial #69                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: invokestatic  #73                 // Method scala/App$class.$init$:(Lscala/App;)V
+       8: aload_0
+       9: new           #75                 // class RunExample$delayedInit$body
+      12: dup
+      13: aload_0
+      14: invokespecial #78                 // Method RunExample$delayedInit$body."<init>":(LRunExample;)V
+      17: invokevirtual #80                 // Method delayedInit:(Lscala/Function0;)V
+      20: return
+}
+```
+
+While extending the trait generates the main method there is no static modifier for it. This also cannot be used to create a runnable application.
+
+This should explain how the concept of static is linked to objects in scala and a runnable application entry point can only be generated with an object.
 
 That's it for this post. In the next post, I plan to explain about classes in detail which will lead to case classes and traits. 
 
