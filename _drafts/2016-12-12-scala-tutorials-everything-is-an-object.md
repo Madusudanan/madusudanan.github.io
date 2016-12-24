@@ -18,6 +18,7 @@ This is part 7 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [Introduction](#Introduction)
 - [Data types as Objects](#DataTypes)
 - [Operations on types](#Operations)
+- [Creation of custom types](#Creation)
 - [Java's data type boxing/unboxing compared](#Java)
 
 <a name = "Introduction"><u>Introduction</u></a>
@@ -102,6 +103,148 @@ Below is a list of data types that convert directly to [native types on the JVM]
 
 Scala variables do not have any additional overhead of creating objects, they all map to a native type in the JVM.
 
+
+<a name = "Operations"><u>Operations on types</u></a>
+
+We have established that all base types are objects in scala. The next important thing that comes to mind is that how will one do operations on it ?
+Since adding two objects is not possible, scala resorts to something called synthetic methods which we saw earlier in case classes.
+
+All operations that we do in primitive java types such as `+`,`-`,`*` etc ., are implemented as methods. Let's take [Int.scala](http://www.scala-lang.org/api/2.12.0/scala/Int.html){:target="_blank"} for example and look at how addition is implemented.
+
+{% highlight scala %}
+ /** Returns the sum of this value and `x`. */
+  def +(x: Byte): Int
+  /** Returns the sum of this value and `x`. */
+  def +(x: Short): Int
+  /** Returns the sum of this value and `x`. */
+  def +(x: Char): Int
+  /** Returns the sum of this value and `x`. */
+  def +(x: Int): Int
+  /** Returns the sum of this value and `x`. */
+  def +(x: Long): Long
+  /** Returns the sum of this value and `x`. */
+  def +(x: Float): Float
+  /** Returns the sum of this value and `x`. */
+  def +(x:Double): Double
+{% endhighlight %}  
+
+Many things can be inferred from the above code snippet and `Int.scala`.
+
+- Above code sample defines all of the possible addition operations for other types with the `Int` type. Other type operations for `Boolean`,`Double` etc have the same kind of logic.
+- The above definition is inside of an abstract class and it is final hence cannot be extended.
+- As we saw in the second part, all the variables with value types extend `AnyVal` which again extends from `Any`.
+
+All of the mentioned methods which define the fundamental operators are abstract. So how does it get implemented ?
+
+If you try the same with regular classes you will get an error.
+
+{% highlight scala %}
+
+abstract class CustomVariable {
+
+  def +(x: Byte): Int
+
+}
+{% endhighlight %}  
+
+Insert image from CentOS
+
+So how does it work and gets translated to native type ? It's all compiler magic. As usual, lets understand by de-compiling a few classes.
+
+Remember that scala type classes have special meaning since they follow a hierarchy and that is the reason why the Int.scala is abstract but still we are able to use it.
+
+Let's consider the below class with a custom `+` function implemented.
+
+{% highlight scala %}
+
+class CustomVariable {
+
+  def +(y:Int) : Int = {
+    this+y
+  }
+
+}
+
+{% endhighlight %}  
+
+This gets compiled as below.
+
+{% highlight java %}
+
+
+public class CustomVariable {
+  public int $plus(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: invokevirtual #12                 // Method $plus:(I)I
+       5: ireturn
+
+  public CustomVariable();
+    Code:
+       0: aload_0
+       1: invokespecial #20                 // Method java/lang/Object."<init>":()V
+       4: return
+}
+
+{% endhighlight %}  
+
+The `+` gets compiled to `$plus` since the former is not a legal definition as per java.
+
+Let's see another example.
+
+{% highlight scala %}
+
+class CustomVariable {
+
+  def add_1(x: Int, y: Int) = x + y
+
+  def add_2(x: Int, y: Int) = (x).+(y)
+
+}
+
+{% endhighlight %}  
+
+It gets decompiled as,
+
+{% highlight java %}
+
+public class CustomVariable {
+  public int add_1(int, int);
+    Code:
+       0: iload_1
+       1: iload_2
+       2: iadd
+       3: ireturn
+
+  public int add_2(int, int);
+    Code:
+       0: iload_1
+       1: iload_2
+       2: iadd
+       3: ireturn
+
+  public CustomVariable();
+    Code:
+       0: aload_0
+       1: invokespecial #20                 // Method java/lang/Object."<init>":()V
+       4: return
+}
+
+{% endhighlight %}  
+
+The `+` and `.+` gets compiled to same to the `iadd` operation. This way of calling a class member without the dot operator is called [infix notation](http://docs.scala-lang.org/style/method-invocation.html#suffix-notation){:target="_blank"} which we will in-detail below.
+
+Since the `+` magic is done while compilation, the `+` by itself is represented as a synthetic function.
+
+<a name = "Creation"><u>Creation of custom types</u></a>
+
+We looked at how `Int.scala` was coded. But how would you go about creating something fundamental as this without the help of the compiler.
+
+If you took the course in Coursera "Functional Programming principles in Scala - by Martin Odersky", then you would be familiar with this. 
+Nonetheless, below is the video where he explains it in a succinct way.
+
+https://www.youtube.com/watch?v=Uu9BaV6sKPQ
 
 
 
