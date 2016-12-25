@@ -20,6 +20,10 @@ This is part 7 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [Operations on types](#Operations)
 - [Creation of custom types](#Creation)
 - [Java's data type boxing/unboxing compared](#Java)
+- [Bigint example](#Bigint)
+- [Typecasting](#Typecasting)
+- [Implementations in other languages and some notes](#Compared)
+
 
 <a name = "Introduction"><u>Introduction</u></a>
 
@@ -145,9 +149,10 @@ abstract class CustomVariable {
   def +(x: Byte): Int
 
 }
+
 {% endhighlight %}  
 
-Insert image from CentOS
+![Abstract class error](/images/abstract_class_error.png)
 
 So how does it work and gets translated to native type ? It's all compiler magic. As usual, lets understand by de-compiling a few classes.
 
@@ -233,7 +238,9 @@ public class CustomVariable {
 
 {% endhighlight %}  
 
-The `+` and `.+` gets compiled to same to the `iadd` operation. This way of calling a class member without the dot operator is called [infix notation](http://docs.scala-lang.org/style/method-invocation.html#suffix-notation){:target="_blank"} which we will in-detail below.
+The `+` and `.+` gets compiled to same to the `iadd` operation. 
+This way of calling a class member without the dot operator is called [infix notation](http://docs.scala-lang.org/style/method-invocation.html#suffix-notation){:target="_blank"} 
+which we see later in a dedicated tutorial.
 
 Since the `+` magic is done while compilation, the `+` by itself is represented as a synthetic function.
 
@@ -244,7 +251,214 @@ We looked at how `Int.scala` was coded. But how would you go about creating some
 If you took the course in Coursera "Functional Programming principles in Scala - by Martin Odersky", then you would be familiar with this. 
 Nonetheless, below is the video where he explains it in a succinct way.
 
-https://www.youtube.com/watch?v=Uu9BaV6sKPQ
+[![Martin Odersky - Objects everywhere](https://img.youtube.com/vi/Uu9BaV6sKPQ/0.jpg)](https://www.youtube.com/watch?v=Uu9BaV6sKPQ){:target="_blank"}
+
+If by any chance the above listed youtube video is taken down, just sign up for the course in Coursera, 
+even if you don't need the certificate you can audit the course/see the videos
+
+There might be some parts of the video that you might not fully understand, just ignore them for them, I will definitely cover them later.
+
+This should give you an intuition on why such a choice was made in scala.
+
+<a name = "Java"><u>Java's data type boxing/unboxing compared</u></a>
+
+Unlike scala, java has both primitive and boxed types. This is kind of ugly when you compare it with scala since everything is an object here.
+
+We already saw how scala types convert to native JVM primitive types, but how do they work in java ?
+ 
+Let's take the below class for example.
+
+{% highlight java %}
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        Integer i = 10;
+
+        Integer k = 30;
+
+        System.out.println(i+k);
+
+    }
+}
+
+{% endhighlight %}  
+
+It gets compiled to,
 
 
+{% highlight java %}
+
+public class Test {
+  public Test();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: bipush        10
+       2: invokestatic  #2                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       5: astore_1
+       6: bipush        30
+       8: invokestatic  #2                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      11: astore_2
+      12: getstatic     #3                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      15: aload_1
+      16: invokevirtual #4                  // Method java/lang/Integer.intValue:()I
+      19: aload_2
+      20: invokevirtual #4                  // Method java/lang/Integer.intValue:()I
+      23: iadd
+      24: invokevirtual #5                  // Method java/io/PrintStream.println:(I)V
+      27: return
+}
+
+{% endhighlight %}  
+
+There are two operations that are fundamental here
+
+- `Integer.valueOf` which wraps the primitive types 10,30 to boxed types.
+- The addition `i+k` gets converted to `i.intValue + k.intValue`. The `intValue` method returns the primitive type assigned to that boxed type.
+
+So the above operation has created four instances of the Integer.java class. This has to be done since Integer.java is truly an object at runtime unlike scala's int which
+gets converted to primitive type at compile time.
+
+This distinction is important and will be crucial in understanding scala collections.
+
+We will discuss two advantages about this whole everything is an object representation.
+
+<a name = "Bigint"><u>Bigint example</u></a>
+
+Apart from the advantage that scala does not create objects for native types, it is also offers convenient syntax for other types such as Bigint.
+
+In java, to add two BigInteger types, we need to use special method calls.
+
+{% highlight java %}
+
+import java.math.BigInteger;
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        BigInteger a = new BigInteger("2000");
+        BigInteger b = new BigInteger("3000");
+
+        //Results in an error
+        System.out.println(a+b);
+        
+        //Correct version
+        System.out.println(a.add(b));
+
+
+    }
+}
+
+{% endhighlight %}  
+
+
+Now this is fine for Big integers since we know that in java it is not a primitive type, but it is an additional tax imposed on developers.
+
+In scala, since everything is an object and also the operators by themselves are just methods, adding two Big integers is pretty straightforward.
+
+{% highlight scala %}
+
+object Runnable extends App{
+
+
+  val x = BigInt("92839283928392839239829382938")
+
+  val y = BigInt("19020930293293209302932309032")
+
+  println(x+y)
+
+}
+
+{% endhighlight %}  
+
+We have to represent them as strings since they are too big even for long type.
+
+This offers a convenient syntax and we can use the same operators we use for our known data types.
+
+One could view this as a convenience feature for developers, but this it is much more. As we venture more into the world of scala, we will also encounter more
+advanced data types such Algebraic types which are useful in Machine learning/math related computations.
+What is more interesting is since everything is represented as an object we can now abstract certain things which makes it easier for programmers to write types
+of their own.
+
+<a name = "Typecasting"><u>Typecasting</u></a>
+
+Since all of the types are now objects/classes and they all follow the tree hierarchy from the top type that is `Any`, they can have some common methods
+which are useful for all types.
+
+We will explore some of the below.
+
+{% highlight scala %}
+
+object Runnable extends App{
+
+
+  val IntegerType = 20
+  val DoubleType = 20.0
+  val LongType : Long = 20
+  val FloatType : Float = 20.4f
+
+  println(IntegerType.toDouble)
+  println(DoubleType.toInt)
+  println(LongType.toShort)
+  println(FloatType.toDouble)
+
+
+}
+
+{% endhighlight %}  
+
+Each of the types will have type conversions to one or more other types. One need not worry about the current type under consideration
+since these methods are common and if there are any mistakes, they would be at compile time rather than run time.
+
+In java, these kind of conversions is rather cumbersome.
+
+{% highlight java %}
+
+public class Test {
+
+    public static void main(String[] args) {
+
+        int a = 20;
+        double d = 30.0;
+        long b = 30l;
+        float c = 20.0f;
+
+        //Primitive type conversions
+        System.out.println((double) a);
+        System.out.println((int) d);
+        System.out.println((short) b);
+        System.out.println((double) c);
+
+        //Boxed type conversions
+        System.out.println(Integer.valueOf(a).doubleValue());
+        System.out.println(Double.valueOf(d).intValue());
+        System.out.println(Long.valueOf(b).shortValue());
+        System.out.println(Float.valueOf(c).doubleValue());
+
+
+    }
+}
+
+{% endhighlight %}  
+
+This is another example of how if everything is an object is advantageous. There are several more, but the point was to bring an intuition rather than an exhaustive listing.
+
+<a name = "Compared"><u>Implementations in other languages and some notes</u></a>
+
+Turns out that scala is not the first language to implement this "objects everywhere" concept.
+
+[In Ruby](http://stackoverflow.com/questions/10158791/java-and-ruby-everything-is-an-object-in-oo){:target="_blank"} there are no primitive types and they operate
+almost similar to scala.
+
+=== Topics to cover
+
+- Is everything an object in scala? Unlike ruby are there any exceptions
+- Closing notes if any
 
