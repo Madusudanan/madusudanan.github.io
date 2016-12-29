@@ -8,7 +8,7 @@ tags: [Scala]
 Objects Everywhere
 ------------------
 
-In this post we discuss on why the concept of an object in scala is more prevalent and what are its advantages. We compare extensively with data types since they are fundamental to the language.
+In this post we discuss on why the concept of an object in scala is more prevalent and what are its advantages. Examples are mostly with data types since they are fundamental to the language.
 
 This is part 7 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
@@ -31,21 +31,21 @@ Scala is a multi-paradigm language, mainly a combination of object oriented and 
 
 To support this kind of a language, it is necessary to formulate an idea around which things are built. 
 As we saw earlier, in scala there are no primitive types and everything is an object. This is not be confused with singleton objects which we saw in part 4, but object
-as in instance of a class. In the rest of this article and object means an instance of a class an in regular java speak.
+as in instance of a class. In the rest of this article an object means an instance of a class an in regular java speak.
 
 ![Objects everywhere](/images/objects-everywhere.jpg)
 
-I have explained before that these two concepts i.e object oriented and functional are [kind of orthogonal](http://stackoverflow.com/questions/3949618/are-fp-and-oo-orthogonal){:target="_blank"} to each other.
+We have seen before that these two concepts i.e object oriented and functional are [kind of orthogonal](http://stackoverflow.com/questions/3949618/are-fp-and-oo-orthogonal){:target="_blank"} to each other.
 
 I am not going to give a exhaustive list on what are all objects and what are not, but I will be explaining the idea and advantages behind it and why it is important.
 
 <a name = "DataTypes"><u>Data types as Objects</u></a>
 
-We have seen this before. There are no native data types in scala and all of the data types have a class of their own.
+There are no native data types in scala and all of the data types have a class of their own.
 
-Now how would you go by designing something as fundamental as a data type ? Turns out that all of the data typs map to native data types in java whenever it seems appropriate. We will take a look at one example i.e Int since it is simpler to explain and the same idea extends to almost all of the types.
+Now how would you go by designing something as fundamental as a data type ? Turns out that all of the data types map to native data types in java whenever it seems appropriate. We will take a look at one example i.e Int since it is simpler to explain and the same idea extends to almost all of the types.
 
-You can try decompiling a class containing an `Int` and see it compiles to `public static int age` i.e the java primitive type int.
+You can try decompiling a class containing an `Int` and see it compiles to `public static int` i.e the java primitive type int.
 
 All of the data types in scala except `String` are present inside the [package scala](http://www.scala-lang.org/api/current/scala/AnyVal.html){:target="_blank"}
 
@@ -140,7 +140,7 @@ Many things can be inferred from the above code snippet and `Int.scala`.
 
 All of the mentioned methods which define the fundamental operators are abstract. So how does it get implemented ?
 
-If you try the same with regular classes you will get an error.
+If you try the same with regular classes you will get an error of course.
 
 {% highlight scala %}
 
@@ -254,7 +254,7 @@ Nonetheless, below is the video where he explains it in a succinct way.
 [![Martin Odersky - Objects everywhere](https://img.youtube.com/vi/Uu9BaV6sKPQ/0.jpg)](https://www.youtube.com/watch?v=Uu9BaV6sKPQ){:target="_blank"}
 
 If by any chance the above listed youtube video is taken down, just sign up for the course in Coursera, 
-even if you don't need the certificate you can audit the course/see the videos
+even if you don't need the certificate you can audit the course/see the videos. This video is listed as Lecture 4.1 in the course.
 
 There might be some parts of the video that you might not fully understand, just ignore them for them, I will definitely cover them later.
 
@@ -317,10 +317,9 @@ public class Test {
 
 {% endhighlight %}  
 
-There are two operations that are fundamental here
-
-- `Integer.valueOf` which wraps the primitive types 10,30 to boxed types.
-- The addition `i+k` gets converted to `i.intValue + k.intValue`. The `intValue` method returns the primitive type assigned to that boxed type.
+- `Integer.valueOf` wraps the primitive types 10,30 to boxed types.
+- The addition `i+k` gets converted to `i.intValue + k.intValue`. 
+- The `intValue` method returns the primitive type assigned to that boxed type.
 
 So the above operation has created four instances of the Integer.java class. This has to be done since Integer.java is truly an object at runtime unlike scala's int which
 gets converted to primitive type at compile time.
@@ -448,17 +447,18 @@ public class Test {
 
 {% endhighlight %}  
 
-This is another example of how if everything is an object is advantageous. There are several more, but the point was to bring an intuition rather than an exhaustive listing.
+This is another example of how if everything is an object is advantageous. One can even include a method such as `toRoman` which converts the given value to a roman numeral. The programmer can choose which class to place this, an example would be Int.scala.
+
+There are several more, but the point was to bring an intuition rather than an exhaustive listing.
 
 <a name = "Compared"><u>Implementations in other languages and some notes</u></a>
 
 Turns out that scala is not the first language to implement this "objects everywhere" concept.
 
-[In Ruby](http://stackoverflow.com/questions/10158791/java-and-ruby-everything-is-an-object-in-oo){:target="_blank"} there are no primitive types and they operate
-almost similar to scala.
+[In Ruby](http://stackoverflow.com/questions/10158791/java-and-ruby-everything-is-an-object-in-oo){:target="_blank"} there are no primitive types and they operate almost similar to scala except for that fact that scala is object oriented in a very pure form, which means that everything is an object.
 
-=== Topics to cover
+In later tutorials we will explore on how this concept enables us to write custom methods in fundamental types such as `toRoman` for example and custom types such as [Algebraic data types](https://en.wikipedia.org/wiki/Algebraic_data_type){:target="_blank"}
 
-- Is everything an object in scala? Unlike ruby are there any exceptions
-- Closing notes if any
+Part 8 i.e the next part, I will explain about another cool feature of scala which is traits (more cooler than case classes ?) and how it really takes Object oriented programming to the next level.
 
+Stay tuned and happy new year <i class="fa fa-smile-o fa-lg"></i> 
