@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #2 - Type Inference & types in Scala"
 permalink: blog/scala-tutorials-part-2-type-inference-in-scala/
 tags: [Scala]
-last_updated: 2016-08-03
+last_updated: 2017-01-04
 ---
 
 Type inference
@@ -11,11 +11,10 @@ Type inference
 
 This is part 2 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
-If you recall from the first part, we briefly dealt with type inference and a few examples.
+If you recall from the first part, we briefly dealt with type inference with a few examples.
 Now we are going to deal it with a little more depth, below is what this article will cover.
 
-<i class="fa fa-sticky-note-o space-right"></i> Note: This is a pretty dry topic,mostly theory based with not much code examples, but also important. I have tried to cover the essential ones in the most minimalistic way possible. 
-Many materials have been given for leisure study.
+<i class="fa fa-sticky-note-o space-right"></i> Note: This is a pretty dry topic,mostly theory based, but also important. I have tried to cover the essential ones in the most minimalistic way possible. Many materials have been given for leisure study.
 
 <i class="fa fa-list-ul space-right"></i> Index
 
@@ -30,7 +29,7 @@ Many materials have been given for leisure study.
 
 <a name="Perspective"><u>What exactly is type inference from a programmer's perspective</u></a>
 
-As said before this is not a new concept to the programming world. Many languages such as OCaml, Haskell, Rust, Swift, C#(starting with version 3.0) 
+This is not something unique to scala. Many languages such as OCaml, Haskell, Rust, Swift, C#(starting with version 3.0) 
 already have these. 
 
 Let's start with the [wikipedia's definition](https://en.wikipedia.org/wiki/Type_inference){:target="_blank"}.
@@ -43,21 +42,21 @@ The primary purpose is to help the programmer avoiding verbose typing but still 
 
 >Saying in a succinct manner, type inference is the best of both world's i.e static and dynamic typing.
 
-Or at-least it tries to be. The reality is largely dependant upon where/how we use it(read below).
+Or at-least it tries to be. The reality is largely dependant upon where/how we use it.
 
 <a name="TypeSystemOverview"><u>An Overview of a type system</u><a>
 
-A type system is a software component that is responsible for type checking.  
-Scala is a statically typed language(read classification below), so there are always a defined set of types, and anything that 
-does not belong to that is not regarded as a valid type and an error is thrown at compile time.
+A type system is a language component that is responsible for type checking.  
+Scala is a statically typed language, so there are always a defined set of types(, and anything that 
+does not belong in that set is not regarded as a valid type and an error is thrown at compile time.
 
 Why have any type system at all?
 
 Because computers cannot match human stupidity, and certain things are better handled by the compiler rather than relying on people for getting it right. It also can prevent a ton of bugs
 that pop up due to improper types. A type system exists to give [type safety](https://en.wikipedia.org/wiki/Type_safety){:target="_blank"}, and the levels of strictness is what differentiates 
-between different systems.
+between different languages and runtimes.
 
-This brings us to another question, what kind of type systems exist and how do these languages fit in those.
+This brings us to another question, what kind of type systems exist and based upon which we can classify different languages.
 
 <a name="TypeSystem"><u>Language classification according to their type system</u></a>
 
@@ -74,7 +73,7 @@ Quoting from this [wikipedia page](https://en.wikipedia.org/wiki/Type_system){:t
 - Uniqueness typing
 - Strong and weak typing
 
-That was a dizzying number of systems that exist. I also highly encourage you take this [course](https://courses.cs.washington.edu/courses/cse341/13wi/){:target="_blank"}, to understand more.
+That was a dizzying number of systems. I also highly encourage you take this [course](https://courses.cs.washington.edu/courses/cse341/13wi/){:target="_blank"}, to understand more.
 Videos are available for download/offline viewing.
 
 This might also come up on [coursera](https://www.coursera.org/course/proglang){:target="_blank"} as well, so make sure you add it to your watchlist.
@@ -96,10 +95,9 @@ Below is an example of how a typical type system with type inference would work.
 
 <br>
 
-The above example is pseudo code, the syntax is not much important. It returns true if the sum is less than 10 and false if greater. Plain and simple as that. We can translate/build up
-from this example to other complicated workflows.
+The above example is pseudo code, the syntax is not much important. It returns true if the sum is less than 10 and false if greater. We can translate/build up from this example to other complicated workflows.
 
-Many algorithms work in almost the similar manner. If there are any type errors such as multiplying two strings. It would throw an exception.
+Many algorithms work in almost the same manner. If there are any type errors such as multiplying two strings, it would throw an exception.
 
 Some entry level haskell programming will really help to understand this better. [Learn you a haskell](http://learnyouahaskell.com/){:target="_blank"} is a good website to start with.
 
@@ -108,7 +106,8 @@ Hindley-Milner algorithm is also called as Global type inference. It reads the w
 <a name="LocalvsGlobal"><u>Local vs Global type inference and sub-typing - Why scala choose local type inference</u></a>
 
 Scala's follows a combination of sub-typing and local type inference. I tend to compare it with Haskell, since it one of the most famous Functional Programming(F.P) paradigm language out there.
-Let's understand them with an example.
+
+Let's understand with an example.
 
 If we consider the below code, it gives a compile time error in Intellij.
 
@@ -135,7 +134,7 @@ The above code when executed inside the haskell GHCI shell (kind of like scala R
 
 ![Haskell Global type inference](/images/haskell-factorial.png)
 
-This is a real world example of Global vs Local type inference. In scala, we are explicitly required to annotate the types wherever local type inference does not help (also see below on when to use type inference).
+This is a real world example of Global vs Local type inference. In scala, we have to annotate the types wherever local type inference does not help (also see below on when to use type inference).
 
 The correct version of the above code would be as follows. Notice the type Int is explicitly mentioned which is not present in the code above.
 
@@ -147,7 +146,7 @@ The correct version of the above code would be as follows. Notice the type Int i
   
 {% endhighlight %}  
 
-For a language that is multi-paradigm, it is really hard to do global/hm style type inference since it restricts doing OOP features such as inheritance and method overloading. We are not going to in
+For a language that is multi-paradigm, it is really hard to do global/hindley-milner style type inference since it restricts doing OOP features such as inheritance and method overloading. We are not going to in
 detail of why languages such as Haskell cannot do such things (there are lots of resources on the net if you are curious on systems programming/compiler hacking), but the point is scala has made a different trade-off.
 
 Systems do exist which combine these together, but to a programmer if there is a type error, the compiler has to give meaningful error messages so that they can be fixed. In reality,
@@ -160,7 +159,7 @@ As mentioned above a type system is made of pre-defined components of types and 
 ![Scala type system](/images/scala-type-system.png)
 
 The picture says it all, you can try to dig into the source code by the usual intellij route of ctrl+click and it all points to the Any class. Please note that types are not regular classes, although 
-they seem to be. We are not going to discuss the difference between them, we will deal with it in a different article in detail.
+they seem to be. We will deal with it in a future article in detail.
 
 [Sub-typing](https://en.wikipedia.org/wiki/Subtyping){:target="_blank"} is something that is not supported by the Hindley-Milner algorithm, but is essential in a multi-paradigm world. This is also 
 another reason why scala does not use the HM algorithm.
@@ -174,7 +173,7 @@ If it cannot be fit, it goes to the top level i.e the `Any` type. All of this co
 
 This makes Objected oriented programming much easier to handle.
 
-For more information visit the [scala docs](http://docs.scala-lang.org/tutorials/tour/unified-types.html){:target="_blank"}.
+For more information you can visit the [scala docs](http://docs.scala-lang.org/tutorials/tour/unified-types.html){:target="_blank"}.
 
 <a name="Usage"><u>When to use type inference?</u></a>
 
@@ -191,7 +190,7 @@ Simple, when type information is important i.e it should not leave the programme
 
 It is hard to give a code example since it really depends on application under consideration. The only fool-proof way to deal with this is to conduct code reviews with peer programmers and see if they can understand them.
 
-After all writing code is O(K) and reading code would be O(N), where K would be a constant with not much variation, since only a single person would be writing it and N would be the size of your team trying to read the code. Which is bigger?
+After all writing code is O(K) and reading code would be O(N), where K would be a constant with not much variation, since only a single person would be writing it and N would be the size of your team trying to read the code. It multiplies with team size.
 
 With guessing comes mistakes, with mistakes come bad code, and with bad code
 comes frustration, with frustration comes the [axe murderer](http://blog.codinghorror.com/coding-for-violent-psychopaths/){:target="_blank"}
