@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #4 - Objects"
 permalink: blog/scala-tutorials-part-4-objects/
 tags : Scala
-last_updated: 2016-12-17
+last_updated: 2017-01-10
 ---
 
 Objects in Scala
@@ -84,7 +84,7 @@ There are approaches to make it thread safe, but we are not going to go into it.
 
 A scala `object` is similar, except the fact that the singleton instance is taken care by the language/compiler itself rather than making the programmer explicitly do it.
 
-We cannot create an instance of an object, there exists only one instance, and this is enforced by the language. Below is an example.
+Since there exists only one instance, there is no concept of object creation and this is enforced by the language. Below is an example.
 
 ![Object instance error](/images/object_no_instance.png)
 
@@ -526,6 +526,8 @@ public class RunExample implements scala.App {
 ```
 
 While extending the trait generates the main method there is no static modifier for it. This also cannot be used to create a runnable application.
+
+It is also clear that a object instance creation is controlled at compile time. An object at run time is still a regular class which can be seen from the above de-compiled code. The restriction at compile time enables only one instance creation during runtime which is a pretty neat way of doing things.
 
 This should explain how the concept of static is linked to objects in scala and a runnable application entry point can only be generated with an object.
 

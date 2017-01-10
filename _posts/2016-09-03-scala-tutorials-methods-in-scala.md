@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #3 - Methods"
 permalink: blog/scala-tutorials-part-3-methods/
 tags : Scala
-last_updated: 2016-11-17
+last_updated: 2017-01-10
 ---
 
 Methods in scala
