@@ -32,7 +32,7 @@ This is part 5 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 
 The concept of a class in scala is very similar to their counterpart in java. But there are lot of differences in the functionality they provide.
 
-To start off, lets take a simple example.
+To start off, let's take a simple example.
 
 {% highlight scala %}
 
@@ -61,7 +61,7 @@ class Person {
 
 {% endhighlight %}
 
-We have two variables name and age with getters and setters which can be accessed as follows.
+We have two variables `name` and `age` with getters and setters which can be accessed as follows.
 
 {% highlight scala %}
 
@@ -261,7 +261,7 @@ Once the values are declared, it cannot be re-assigned again, this is the defaul
 
 ![Val constructors](/images/val_constructors.png)
 
-Scala has something called `case classes` which are specifically built for handling situations like immutable classes along with several other usage advantages.
+Scala has something called `case classes` which are specifically built for handling situations like immutable classes along with several other neat features.
 We will be exploring cases classes in a future tutorial.
 
 <u>Mutable objects</u>
@@ -281,7 +281,7 @@ class Person (var name:String,var age:Int) {
 
 {% endhighlight %}
 
-We can then declare an instances and change the name directly.
+We can then declare an instance and change the name directly.
 
 {% highlight scala %}
 
@@ -319,11 +319,11 @@ But the [scala style guide](http://docs.scala-lang.org/style/naming-conventions.
 What is being advised is that the users of the class need not have knowledge on whether a method/class member is being accessed. They can simply choose to
 change/access it with the variable name itself. This greatly simplifies code and it looks much cleaner.
 
-The next section describes on how to create such a getter/setter with somewhat obscure syntax.
+The next section describes on how to create such a getter/setter with a somewhat obscure syntax.
 
 <a name="ScalaStyleGetter"><u>Scala style Getters and Setters</u></a>
 
-As mentioned above, scala has a different way of creating getters/setters although the java style is still supported as we saw in the first example.
+Scala has a different way of creating getters/setters although the java style is still supported as we saw in the first example.
 
 Lets take the below class.
 
@@ -366,7 +366,9 @@ The syntax might look bizarre, but understanding where they fit in will give a m
 
 `age` is actually `_age` behind the scenes. The getter is pretty clear, just return the `_age` variable. 
 The setter is little more confusing. First the method name is `def age_=`, the underscore is a special character which enables a space in calling the method.
-This enables us to call the method like `age =`. Notice that the method name, underscore and the equal sign should be together without any space.
+This enables us to call the method like `age =`. 
+
+Notice that the method name, underscore and the equal sign should be together without any space.
 Everything else should make sense already i.e it takes in a parameter `value` and assigns it to the `_age` variable.
 
 This definition should be enough to get your head around it, but the underscore character has more to it and there is something called the 
@@ -414,7 +416,7 @@ class Person (name:String,age:Int) {
 The comments on the code pretty much sums up the idea. An important thing to note is that an auxiliary constructor is not an actual constructor, but acts as a wrapper
 to the existing constructor.
 
-When we wan't to add a parameter to the above person class, say a phone number, then we add it to the primary constructor i.e the class parameters.
+When we want to add a parameter to the above person class, say a phone number, then we add it to the primary constructor i.e the class parameters.
 
 {% highlight scala %}
 class Person (name:String,age:Int,phone:String) {
@@ -453,8 +455,9 @@ This might seem as an overhead, but it is actually good design.
 
 Auxiliary constructors are good for implementing polymorphic behaviour, i.e different constructors can exhibit different flows in the class execution/functionality.
 
-A most common bad practice is to use these to implement default variable values. Like methods, we can provide the default values during constructor
-declaration itself.
+A most common bad practice is to use these to implement default variable values. 
+
+Like methods, we can provide the default values during constructor declaration itself.
 
 {% highlight scala %}
 class Person(name:String = "Unnamed",age:Int = -1,phone:String = "No number") {
