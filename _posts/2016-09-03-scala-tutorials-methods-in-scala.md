@@ -9,7 +9,7 @@ last_updated: 2016-11-17
 Methods in scala
 ----------------
 
-It has been a long time since I wrote the last blog on scala which was back in December 2015. Hopefully I should be writing more  <i class="fa fa-smile-o fa-lg"></i> 
+It has been a long time since I wrote the last article on scala which was back in December 2015. Hopefully I should be writing more  <i class="fa fa-smile-o fa-lg"></i> 
 
 This is part 3 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
@@ -31,9 +31,9 @@ This entire post is about dealing with methods in scala. Most of them are about 
 
 Back in the days of assembly programming, there was something called [sub-routines](https://en.wikipedia.org/wiki/Subroutine){:target="_blank"} 
 
-The same ideas evolved to what methods are today. A simple way to organize programs into little chunks that do something unique.
+The same ideas evolved to what methods are today. A simple way to organize programs into little chunks of code that do something unique.
 
-Sub-routines, Procedures , Functions, Methods may or may not mean the same thing and it is really hard to give a generalized difference. It has different meanings depending upon the programming language under consideration.
+Sub-routines, Procedures , Functions, Methods may or may not mean the same thing and it is really hard to give a generalized difference since has different meanings depending upon the programming language under consideration.
 
 In scala, we care only about Functions and Methods.
 
@@ -63,7 +63,7 @@ How do x and y get returned ? Hold on to that question , we will get there.
 
 <a name="Method2"><u>Method without curly braces</u></a>
 
-Similar to java, method declarations come within the curly braces, but this is optional as below.
+Similar to java, method declarations come within the curly braces, but this is optional.
 
 {% highlight scala %}
 def max(x:Int, y:Int):Int= if (x>y) x else y
@@ -107,9 +107,7 @@ def greetPerson(msg :String) = "Hello " + msg + "!!!"
 
 This returns "Hello" concatenated with whatever string that you passed in.
 
-In all of the examples, wherever the type information is required, scala uses type inference as mentioned in the previous post of this series.
-
-We can call methods simply be their name similar to many other languages.
+In all of the examples, wherever type information is required, scala uses [type inference](/blog/scala-tutorials-part-2-type-inference-in-scala/).
 
 One thing to note is that if we omit the `=` symbol, the compiler treats it as a `Unit` type method even if we return something from that method.
 
@@ -127,7 +125,7 @@ def whichIsGreater (a : Int , b: Int)  {
 
 ![Method with no equals](/images/no_return.png)
 
-In functional programming terms a method which does not return anything i.e which returns `Unit` are called procedures. These are methods which have no side effects and 
+In functional programming terms a method which does not return any value i.e which returns `Unit` are called procedures. These are methods which have no side effects and 
 are independent of state.
  
 <a name="Unit"><u>The Unit type</u></a>
@@ -140,7 +138,7 @@ def printHelloMsg = println("Hello there !!!!")
 
 We can see that the method type is of Unit.
 
-Recall from the previous article that all types in Scala are actually objects and there are no primitive types. An equivalent example of the above method in java would be something like below.
+An equivalent example of the above method in java would be something like below.
 
 {% highlight java %}
 void printHelloMsg() {
@@ -150,7 +148,7 @@ void printHelloMsg() {
 
 This should gives us an idea about the Unit type. But is it actually equivalent to void?
 
-They are similar, but not the same. Unit is actually a type in scala whereas in java it is a keyword. Below example should illustrate why this difference is important.
+They are similar, but not the same. `Unit` is actually a [class](http://www.scala-lang.org/api/2.12.0/scala/Unit.html){:target="_blank"} in the type system hierarchy in scala. Below example should illustrate why this difference is important.
 
 {% highlight scala %}
 def someMethod(): Unit = {
@@ -165,15 +163,11 @@ If we call this method, nothing gets printed/returned.
  println(t)
 {% endhighlight %}
 
-Assigning the return type to a variable will give an output as `()`. This is clearly mentioned in the unboxing code of Unit.scala.
-
-{% highlight scala %}
-def unbox(x: java.lang.Object): Unit = ()
-{% endhighlight %}
-
 The compiler will throw a warning such as below.
 
 <cite> warning: enclosing method someMethod has result type Unit: return value discarded </cite>
+
+Assigning the return type to a variable will give an output as `()`. Can be understood from the [runtime boxed unit](https://github.com/scala/scala/blob/05016d9035ab9b1c866bd9f12fdd0491f1ea0cbb/src/library/scala/runtime/BoxedUnit.java#L34){:target="_blank"} which is called from [Unit.scala unboxing](https://github.com/scala/scala/blob/v2.12.0/src/library/scala/Unit.scala#L46){:target="_blank"}. This is nothing but a `toString` representation of the type `Unit`.
 
 <a name="MethodParameters"><u>Immutable method parameters</u></a>
 
@@ -197,8 +191,7 @@ We will learn more about immutability once we start to explore the functional pr
 
 The scala compiler is built in a way to take the last statement and return it in the absence of a return statement. 
 
-
-But, in situations where the last statement is not intended to be the output of the method, then the results might be different from what we expect.
+But, in situations where the last statement is not intended to be the output of the method, then the results could be different from what we might expect.
 
 {% highlight scala %}
 def whichIsGreater (a : Int , b: Int)  = {
@@ -368,7 +361,7 @@ When declaring methods, we can also specify the default value of the parameters 
   
 {% endhighlight %}
 
-The value of default gets assigned to the string <cite>url</cite> in the case of value not provided. 
+The value of default gets assigned to the string `url` in the case of value not provided. 
 
 <a name="Stubbing"><u>Stubbing out methods</u></a>
 
