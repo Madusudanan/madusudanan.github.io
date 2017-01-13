@@ -3,6 +3,7 @@ layout: post
 title: "Scala Tutorials Part #6 - Case Classes"
 permalink: blog/scala-tutorials-part-6-case-classes/
 tags: [Scala]
+last_updated: 2017-01-13
 ---
 
 Case Classes
@@ -21,6 +22,7 @@ This is part 6 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [Reference equality](#ReferenceEquality)
 - [String representation](#String)
 - [Automatic hashcode generation](#Hashcode)
+- [Case class copy](#Copy)
 - [Case class decompiled](#Decompiled)
 
 
@@ -309,6 +311,69 @@ provide a customized implementation.
 The main takeaway from this discussion of hashcode in scala is that there is a contract with equals and hashcode and when a class changes these guarantees must be taken care.
 In case classes, this is done automatically.
 
+<a name="Copy"><u>Case class copy</u></a>
+
+An instance of a case class can easily be copied around to other case class instances.
+
+This is kind of different from a clone. Copy creates a new object behind the scenes, but it is kind of abstracted away from the programmer.
+
+Once again we will take the Book case class.
+
+{% highlight scala %}
+
+case class Book(id:Int,title:String,isbn:Long)
+
+{% endhighlight %}
+
+
+- Full copy 
+  
+  We can copy the whole of a case class values into a new instance. This is like a full copy.
+
+  {% highlight scala %}
+
+  case class Book(id:Int,title:String,isbn:Long)
+
+  object RunExample extends App {
+
+  val book1 = Book(100,"The Lord of the Rings : The fellowship of the ring",9780261103573l)
+
+  val book_fullcopy = book1.copy()
+
+  //Will copy all of the members
+  println(book_fullcopy.id)
+  println(book_fullcopy.title)
+  println(book_fullcopy.isbn)
+
+  } 
+
+  {% endhighlight %}
+
+- Using custom values
+  
+  The programmer can choose which elements can be copied directly and which values can be customized.
+
+  {% highlight scala %}
+
+  case class Book(id:Int = 2000,title:String,isbn:Long)
+
+  object RunExample extends App {
+
+  val book1 = Book(100,"The Lord of the Rings : The fellowship of the ring",9780261103573l)
+
+  val book_partialcopy = book1.copy(title = "The Lord of the Rings : The two towers")
+
+  //Only the title is changed. Rest remains the same
+  println(book_partialcopy.id)
+  println(book_partialcopy.title)
+  println(book_partialcopy.isbn)
+
+  }
+
+  {% endhighlight %}
+
+Notice that we cannot just copy one value and leave the rest non-existent i.e creating an instance only with the `id` variable, because that would change the structure of the object itself.
+
 <a name="Decompiled"><u>Case class decompiled</u></a>
 
 A good way to understand how toString, equals and hashCode work is by looking at the [decompiled class](https://gist.github.com/Madusudanan/f903809a968be6d15688acaaadc6f17b){:target="_blank"}
@@ -319,5 +384,8 @@ Some other methods such as `copy` and getters for the fields of the case class a
 
 There are two main topics that are very closely related to case classes i.e the `apply` method and pattern matching. In fact the very name for case classes come from matching
 cases for several patterns, but I am not going to explain them here since they are complex topics of their own and I will be covering them in later tutorials.
+
+One other topic that I left off for further discussion is case class inheritance. Inheritance in case classes is somewhat tricky because of automatic equals and hashcode.
+I will be explaining them once I cover traits since they give a better way to performance inheritance.
 
 Stay tuned  <i class="fa fa-smile-o fa-lg"></i>

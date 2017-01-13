@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #1 - Getting Started with Scala"
 permalink: blog/scala-tutorials-part-1-getting-started/
 tags: [Scala]
-last_updated: 2016-10-16
+last_updated: 2017-01-13
 ---
 
 Getting Started with Scala
