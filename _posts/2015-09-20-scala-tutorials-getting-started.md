@@ -11,8 +11,8 @@ Getting Started with Scala
 
 This is the first part of a tutorial series that ill be publishing on scala. Check [here](/tags/#Scala) for the full series.
 
-A warning !! If you are from Java there are lot of things that can be difficult to get your head around, and the most easiest way to learn this is to unlearn and learn.
-    
+If you are from Java there are lot of things that can be difficult to get your head around, and the most easiest way to learn this is to unlearn and learn.
+
 <i class="fa fa-film fa-lg space-right"></i> <a href="https://www.youtube.com/watch?v=APx2yFA0-B4" target="_blank">Be like water my friend !!</a>
 
 Let's get started.
@@ -168,12 +168,12 @@ arrList = null;
 
 If you try the same `final` with primitive types, then its value cannot be changed. Does this mean primitives are immutable ?
 This takes us back to the stackoverflow discussion above, but the reason why the error comes is because Java uses Pass by Value for primitive types, it makes no 
-sense to Pass by reference since they are not objects at all. So if a variable is changed, its reference(sorta - can be said as place in memory) changes because of the Pass by value mechanism and not because that
-primitives are immutable.
+sense to pass by reference since they are not objects at all. So if a variable is changed, its reference(can be said as place in memory) 
+changes because of the pass by value mechanism and not because that primitives are immutable.
 
-The important point to understand is reference vs value immutability. As explained in the data types section, scala does not have primitive types at all and only has objects.
+The important point to understand is reference vs value immutability does not matter much in scala since scala does not have primitive types at all and only has objects.
 
-So whenever we are talking about immutability, we are talking about reference immutability.
+So whenever we are talking about immutability in scala, we are talking about reference immutability.
 
 Immutable variables have certain performance benefits and leans closer to notion of writing code without side effects.
 
@@ -192,6 +192,8 @@ class Parent {
 {% endhighlight %}
 
 On seeing the emitted bytecode, we can see that it gets translated to a java primitive type, there is nothing special going as far as the run time is concerned.
+
+`javap -c filename.class` gives the below decompiled code.
 
 {% highlight java %}
 public class Parent {
@@ -213,15 +215,15 @@ public class Parent {
 
 {% endhighlight %}
 
-It is clear that `val` is just a compile time restriction and has nothing to do with the emitted bytecode.
+It is clear that `val` is just a compile time restriction and has nothing to do with the emitted byte code.
 
-We can take this approach of reading the byte code to understand things more deeply, but in most of the cases it is not required.
+We can take this approach of reading the decompiled byte code to understand things more deeply, but in most of the cases it is not required.
 
 <a name="ValVsFinal"><u>Comparing and Contrasting val and final</u></a>
 
 Scala on the other hand also has the `final` keyword which works pretty similar.
 
-A better way to visualize the difference between a val and a final is via a simple example.
+A better way to visualize the difference between a val and a final is via an example.
 
 Let's take a simple parent class.
 
@@ -252,7 +254,7 @@ Now if we declare the variable `age` as final in the Parent class, then it would
 
 ![Final override error](/images/final_override_error.png)
 
-This is a real time example of where one would use `final`.
+This is a real world example of where one would use `final`.
 
 Notice that we are not breaking immutability here by overriding a val in child class. The child class creates an instance of its own just like a string in java string pool.
 
@@ -276,14 +278,16 @@ println(s.charAt(2))
 By the time now, another question would have come up? Where are the types in the scala code?
 
 Unlike java where we declare variables with data types and then give a variable name, scala has something called type inference(see the topics below), but don't jump there
-yet, there is a reason why I separated it out from the variables section. Read on to find out more.
+yet, there is a reason why I separated it out from the variables section.
 
 <a name="TypeInference"><u>Type Inference</u></a>
 
-If you are not familiar with the term, it is nothing but the deduction of types at compile time. Hold on, isn’t that what dynamic typing means? Well no, notice that I said deduction of types, 
-this is drastically different from what dynamically typed languages do, and another thing is it is done at compile time and not run time.
+If you are not familiar with the term, it is nothing but the deduction of types at compile time. Hold on, isn’t that what dynamic typing means? 
+Well no, notice that I said deduction of types, this is drastically different from what dynamically typed languages do, 
+and another thing is it is done at compile time and not run time.
 
-Many languages have this built in, but the implementation varies from one language to another. This might be confusing at the beginning, but it will be clearer with code examples.
+Many languages have this built in, but the implementation varies from one language to another. 
+This might be confusing at the beginning, but it will be clearer with code examples.
 
 Let's jump into the Scala REPL for some experimentation.
 
@@ -306,13 +310,12 @@ val z = 40
 println(z * "justastring")
 {% endhighlight %}
 
-
 Go ahead and play with these variables, you are protected from compile time type safety, so do not hesitate to mess around.
 
 If you are curious on what classes do the variables extend, you can dig deeper and find a class called `AnyVal`. This is part of an
 entirely different topic of Scala's unified type system, which is nothing but the class hierarchy.
 
-This is dealt with in part 2 of this series [here](/blog/scala-tutorials-part-2-type-inference-in-scala) with greater depth.
+This is dealt with in [part 2](/blog/scala-tutorials-part-2-type-inference-in-scala) of this series with greater depth.
 
 <a name="Initialize"><u>Variable initialization</u></a>
 
@@ -330,7 +333,7 @@ Scala has the facility where we can mention the type explicitly.
 
 `val y : Integer = 20`
 
-These kind of type annotations are important in public facing APIs. 
+These kind of type annotations are important in public facing APIs/methods. 
 
 Note : Methods are explained in [part 3](/blog/scala-tutorials-part-3-methods/)
 
