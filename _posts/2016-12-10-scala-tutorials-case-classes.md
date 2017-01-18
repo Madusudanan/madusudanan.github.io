@@ -13,6 +13,8 @@ Case classes are very similar to classes, but they do lot of boiler plate stuff 
 
 This is part 6 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
+<i class="fa fa-list-ul space-right"></i> Index
+
 - [Declaring case classes](#Declaration)
 - [Creating classes without the new keyword](#Consumption)
 - [Default and partial constructor values](#Defaults)
