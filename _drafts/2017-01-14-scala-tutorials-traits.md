@@ -18,6 +18,13 @@ This is part 8 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [Concept of abstract variables in java](#JavaAbsVariables)
 - [Type annotations for abstract variables](#TypeAnnotations)
 - [Mixing abstract and concrete members](#AbsConcrete)
+- [Java syntax differences](#JavaSyntaxDifference)
+- [Extending traits](#ExtendingTraits)
+- [Trait mixins](#Mixins)
+- [Sealed traits](#Sealed)
+- [Trait linearization](#Linearization)
+- [When to use traits vs abstract classes](#TraitsVsAbs)
+
 
 <a name = "Intro"><u>Introduction to traits</u></a>
 
@@ -73,19 +80,7 @@ Abstract variables should have their [types annotated](/blog/scala-tutorials-par
 
 If we do not mention the type, then we get an error as below.
 
----
-
-Put error screenshot of below code
-
-trait Book {
-
-  val id
-  val name
-  val isbn
-
-}
-
----
+![Abstract variables without types](/images/abstract_variables_without_types.png)
 
 Remember that scala has [local type inference](/blog/scala-tutorials-part-2-type-inference-in-scala#LocalvsGlobal), so we need to annotate the types explicitly.
 
@@ -131,6 +126,145 @@ So far we have seen only abstract variables. In reality we would use a mixture o
 Let's take an example.
 
 
+{% highlight scala %}
+
+trait Book {
+
+    val id : Int
+    val name : String
+    val isbn : Long
+    val price : Double
+    //Concrete variable
+    val category = "Uncategorized"
+  
+   //Concrete implementation  
+   def getTaxOnPrice : Double = {
+     (price * 14)/100
+   }
+
+}
+
+{% endhighlight %}
 
 
+As we saw in the methods tutorial, if we omit the part after the `=` then it becomes an abstract method.
+
+Notice that type inference works for concrete variables since it is known at compile time and type annotation is optional.
+
+<a name = "JavaSyntaxDifference"><u>Java syntax differences</u></a>
+
+In java, we have interfaces and abstract classes and we extend abstract classes/classes and implement interfaces.
+
+{% highlight java %}
+
+public class Child extends Root implements Interface1,Interface2 {
+}
+
+{% endhighlight %}
+
+Scala does not have both interface and the implements keyword.
+
+![No implements error](/images/implements_error.png)
+
+![Interface error](/images/interface_error.png)
+
+There are subtle differences in syntax and there is also a new keyword called `with` which we will explore below.
+
+<a name = "ExtendingTraits"><u>Extending traits</u></a>
+
+Similar to java, scala has the `extends` keyword which can be used for extending classes and traits.
+
+Traits can be extended by other traits,abstract classes,concrete classes and case classes as well.
+
+<u>Traits extending traits</u>
+
+Since traits cannot be instantiated, it is not necessary that the abstract members have to implemented.
+
+{% highlight scala %}
+
+trait ScienceBook extends Book{
+  
+}
+
+{% endhighlight %}
+
+But if we need to implement any of the concrete members, we need the override modifier.
+
+![Trait override error](/images/override_error_trait.png)
+
+A correct version of the above would be.
+
+{% highlight scala %}
+
+trait ScienceBook extends Book{
+
+  override val category: String = "Science Book"
+
+}
+
+{% endhighlight %}
+
+<u>Abstract classes extending traits</u>
+
+Abstract classes can also extend traits.
+
+The same principles which apply to traits extending traits are also applicable here.
+
+{% highlight scala %}
+
+abstract class ScienceBook extends Book{
+
+  override val category: String = "Science Book"
+
+}
+
+{% endhighlight %}
+
+<u>Classes extending traits</u>
+
+Since classes are concrete i.e instances can be created, the abstract members of the trait should be implemented.
+
+![Abstract members impl](/images/class_abs_members_error.png)
+
+A correctly implemented version of the class would be as follows.
+
+{% highlight scala %}
+
+class ScienceBook extends Book{
+
+  override val id: Int = 1000
+  override val name: String = "A Brief History of Time"
+  override val isbn: Long = 9783499605550l
+  override val price: Double = 7.43
+  
+}
+
+{% endhighlight %}
+
+We did not implement the `getTaxOnPrice` method and the variable `category` variable which is fine since they are concrete members. The type annotations are of course
+optional, they were present in my code example since Intellij auto-generated them.
+  
+If we need to change the logic we can of course override their implementation.
+
+{% highlight scala %}
+
+class ScienceBook extends Book{
+
+  override val id: Int = 1000
+  override val name: String = "A Brief History of Time"
+  override val isbn: Long = 9783499605550l
+  override val price: Double = 7.43
+
+  override val category: String = "Science book"
+
+  override def getTaxOnPrice : Double = {
+    (price * 10)/100
+  }
+  
+}
+
+{% endhighlight %}
+
+
+Since case class inheritance is a complex topic, I will be explaining that in a dedicated tutorial.
 
