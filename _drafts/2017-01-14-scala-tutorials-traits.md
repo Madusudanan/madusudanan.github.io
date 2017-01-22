@@ -20,9 +20,8 @@ This is part 8 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [Mixing abstract and concrete members](#AbsConcrete)
 - [Java syntax differences](#JavaSyntaxDifference)
 - [Extending traits](#ExtendingTraits)
-- [Trait mixins](#Mixins)
-- [Sealed traits](#Sealed)
-- [Trait linearization](#Linearization)
+- [The with keyword](#WithKeyword)
+- [Mixin class composition](#Mixin)
 - [When to use traits vs abstract classes](#TraitsVsAbs)
 
 
@@ -68,7 +67,9 @@ And since we do not have abstract variables, we also cannot override variables.
 
 ![Field override error](/images/field_override_error_java.png)
 
-The reason why scala is different in this aspect i.e why it has abstract variables has to do with two functional programming concepts. One is [uniform access principle](https://en.wikipedia.org/wiki/Uniform_access_principle){:target="_blank"}  which we saw earlier in classes and another is [referential transparency](https://en.wikipedia.org/wiki/Referential_transparency){:target="_blank"}.
+The reason why scala is different in this aspect i.e why it has abstract variables has to do with two functional programming concepts. 
+One is [uniform access principle](https://en.wikipedia.org/wiki/Uniform_access_principle){:target="_blank"}  
+which we saw earlier in classes and another is [referential transparency](https://en.wikipedia.org/wiki/Referential_transparency){:target="_blank"}.
 
 As these concepts are complex they require additional posts of their own, we will explore them later.
 
@@ -268,3 +269,106 @@ class ScienceBook extends Book{
 
 Since case class inheritance is a complex topic, I will be explaining that in a dedicated tutorial.
 
+<a name = "WithKeyword"><u>The with keyword</u></a>
+
+Since there is no concept of interfaces and implements keyword in scala, how would you go about extending a trait and then a class
+at the same time?
+
+{% highlight java %}
+
+In java you would typically do it like
+
+public class Root extends Ex1 implements Intef1,Intef2 {
+}
+
+{% endhighlight %}
+
+Scala has a new keyword for it.
+
+Let's consider another abstract class called `Product`
+
+{% highlight scala %}
+
+abstract class Product {
+
+  val prodID : Int
+  val skuID : Int
+
+
+}
+
+{% endhighlight %}
+
+
+Now since a book is a product we can combine the logic.
+
+{% highlight scala %}
+
+class ScienceBook extends Product with Book{
+
+  override val id: Int = 1000
+  override val name: String = "A Brief History of Time"
+  override val isbn: Long = 9783499605550l
+  override val price: Double = 7.43
+
+  override val category: String = "Science book"
+
+  override def getTaxOnPrice : Double = {
+    (price * 10)/100
+  }
+
+ //Members of product abstract class
+  override val prodID: Int = 20001504
+  override val skuID: Int = 4574555
+}
+
+{% endhighlight %}
+
+<a name = "Mixin"><u>Mixin class composition</u></a>
+
+Now imagine that there are situations where we need not extend `Product` class and situations where we also need to extend.
+
+This is impossible to solve with the OOP concepts that exist in java since we need to declare what the `ScienceBook` class extends beforehand.
+
+Scala has something called mixins which can enable to do a mix of class compositions where we can choose to extend the `Product` features without modifying
+its original class hierarchy.
+
+To demonstrate, we need to make a simple change to our abstract class `Product` and change it to a trait.
+
+{% highlight scala %}
+
+trait Product {
+
+  val prodID : Int
+  val skuID : Int
+  
+}
+
+{% endhighlight %}
+
+
+Next during instance declaration we can now extend the product trait with a different syntax as below.
+
+{% highlight scala %}
+
+object Runnable extends App {
+
+  val scBook = new ScienceBook with Product {
+    override val prodID: Int = 1000
+    override val skuID: Int = 2000
+  }
+
+}
+
+{% endhighlight %}
+
+Since we are creating an actual instance we need to override the abstract variables.
+
+The original `ScienceBook` class however remains intact in its logic i.e it need not extend the `Product` trait. Now we have a the functionality of the Book,ScienceBook,Product 
+classes and traits in a pretty neatly laid out way.
+
+The [scala doc article](http://docs.scala-lang.org/tutorials/tour/mixin-class-composition.html){:target="_blank"} on understanding these mixins is also good.
+
+<a name = "TraitsVsAbs"><u>When to use traits vs abstract classes</u></a>
+
+Traits are more related to abstract classes than to interfaces.
