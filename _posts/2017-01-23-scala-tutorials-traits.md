@@ -22,7 +22,7 @@ This is part 8 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [Extending traits](#ExtendingTraits)
 - [The with keyword](#WithKeyword)
 - [Mixin class composition](#Mixin)
-- [When to use traits vs abstract classes](#TraitsVsAbs)
+- [Conclusion](#Conclusion)
 
 
 <a name = "Intro"><u>Introduction to traits</u></a>
@@ -73,11 +73,12 @@ which we saw earlier in classes and another is [referential transparency](https:
 
 As these concepts are complex they require additional posts of their own, we will explore them later.
 
-Since scala strives to see methods and values as the same using uniform access principle i.e everything is a value type we also have abstract variables as well.
+Since scala strives to see methods and values as the same using uniform access principle i.e everything is a value type we have abstract variables as well.
 
 <a name = "TypeAnnotations"><u>Type annotations for abstract variables</u></a>
 
-Abstract variables should have their [types annotated](/blog/scala-tutorials-part-1-getting-started/#TypeAnnotations) regardless of whether they are in traits or in abstract classes. I should have explained this concept in the classes article itself but since traits also use them I thought I will explain it here.
+Abstract variables should have their [types annotated](/blog/scala-tutorials-part-1-getting-started/#TypeAnnotations) regardless of whether they are in traits or in abstract classes. 
+I should have explained this concept when I was explaining scala classes but since traits also use them I thought I will explain it here.
 
 If we do not mention the type, then we get an error as below.
 
@@ -274,10 +275,9 @@ Since case class inheritance is a complex topic, I will be explaining that in a 
 Since there is no concept of interfaces and implements keyword in scala, how would you go about extending a trait and then a class
 at the same time?
 
-{% highlight java %}
-
 In java you would typically do it like
 
+{% highlight java %}
 public class Root extends Ex1 implements Intef1,Intef2 {
 }
 
@@ -353,10 +353,14 @@ Next during instance declaration we can now extend the product trait with a diff
 
 object Runnable extends App {
 
-  val scBook = new ScienceBook with Product {
+  //Extension with mixin
+  val scBook = new ScienceBook() with Product {
     override val prodID: Int = 1000
     override val skuID: Int = 2000
   }
+  
+  //Original class instance
+  val scBookWithoutProduct = new ScienceBook()
 
 }
 
@@ -369,6 +373,20 @@ classes and traits in a pretty neatly laid out way.
 
 The [scala doc article](http://docs.scala-lang.org/tutorials/tour/mixin-class-composition.html){:target="_blank"} on understanding these mixins is also good.
 
-<a name = "TraitsVsAbs"><u>When to use traits vs abstract classes</u></a>
+<a name = "Conclusion"><u>Conclusion</u></a>
 
-Traits are more related to abstract classes than to interfaces.
+Traits are more related to abstract classes than to interfaces. Main difference being traits do not have a constructor.
+Whenever you need to have a constructor for your OOP logic, then an abstract class will suit better, for all else traits are much better.
+
+There are much more complex topics that traits open up, two in particular that I will cover in later tutorials are
+
+1) Trait linearization - Since traits allow definitions and we can extend multiple traits how is the old problem of multiple inheritance handled?
+
+2) Sealed traits - The sealed keyword says that classes in other files cannot extend the trait, but there is much more to this.
+
+This brings an end to this article. I have covered the introductory and easier topics in this post and plan to cover advanced topics one at a time in later articles. 
+
+Stay tuned  <i class="fa fa-smile-o fa-lg"></i>
+
+
+
