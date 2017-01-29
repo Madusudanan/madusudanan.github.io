@@ -58,7 +58,7 @@ computer as below.
 
 ![Von Neumann](/images/von_neumann.png)
 
-Image Source : [Wikipedia commons](https://commons.wikimedia.org/wiki/File:Von_Neumann_Architecture.svg){:target="_blank"}
+Image Source : [Wikimedia commons](https://commons.wikimedia.org/wiki/File:Von_Neumann_Architecture.svg){:target="_blank"}
 
 Today's programming style has a strong correlation with the above architecture.
 
@@ -74,6 +74,14 @@ If you have studied/programmed in assembly before, then the above instructions w
 greek and latin to you then perhaps a refresher on [computer architecture](https://www.youtube.com/playlist?list=PL5PHm2jkkXmi5CxxI7b3JCL1TWybTDtKq){:target="_blank"}
 would be of great help. The course goes very deep into architectures, but nonetheless should give you a very good idea of what we are talking about.
 
+Programs written in assembly or imperative languages are called as instruction sequences where they present step-step instructions for the computer to execute.
+ 
+This concept has shaped programming languages like C/, C++, Java, C# to a great extent.
 
 
+<a name="WrongVonNeumann"><u>What's wrong with von-neumann style</u></a>
 
+So what is wrong with von neumann's style and why do we need a new paradigm?
+
+This is addressed in the class research paper by [John Backus](http://en.wikipedia.org/wiki/John_Backus){:target="_blank"}, 
+[can programming be liberated from von-neumann style](http://www.cs.ucf.edu/~dcm/Teaching/COT4810-Fall%202012/Literature/Backus.pdf){:target="_blank"}
