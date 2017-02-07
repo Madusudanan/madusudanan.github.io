@@ -14,7 +14,7 @@ because of hardware developments in the recent years leading to multi-core perfo
 This is part 9 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
 In the previous 8 parts of this series, I would not have touched the functional programming side of scala at all. If you are new to this paradigm
-which the majority of the world is then the language, environment can be a little overwhelming to learn along with the completely new and difficult paradigm.
+(which the majority of the world is) then the language, environment can be a little overwhelming to learn along with the completely new and difficult paradigm.
 
 Since we have covered the object oriented programming side to somewhat depth, let's start with the more interesting side 
 
@@ -45,7 +45,7 @@ Java is [object oriented](https://en.wikipedia.org/wiki/Object-oriented_programm
 C is [procedural](https://en.wikipedia.org/wiki/Procedural_programming){:target="_blank"} although you can do procedural programming in Java, but it is largely focused on
 object oriented programming.
 
-I would highly recommend that you take [Stanford CS107 - Programming Paradigms](https://see.stanford.edu/Course/CS107){:target="_blank"}, which gives you an excellent overview
+If you are not familiar with different paradigms then I would highly recommend that you take [Stanford CS107 - Programming Paradigms](https://see.stanford.edu/Course/CS107){:target="_blank"}, which gives you an excellent overview
 of the popular paradigms out there.
 
 <a name="VonNeumann"><u>Understanding the von-neumann programming style</u></a>
@@ -83,5 +83,10 @@ This concept has shaped programming languages like C/, C++, Java, C# to a great 
 
 So what is wrong with von neumann's style and why do we need a new paradigm?
 
-This is addressed in the class research paper by [John Backus](http://en.wikipedia.org/wiki/John_Backus){:target="_blank"}, 
-[can programming be liberated from von-neumann style](http://www.cs.ucf.edu/~dcm/Teaching/COT4810-Fall%202012/Literature/Backus.pdf){:target="_blank"}
+This is addressed in the classic research paper [can programming be liberated from von-neumann style](http://www.cs.ucf.edu/~dcm/Teaching/COT4810-Fall%202012/Literature/Backus.pdf){:target="_blank"} by [John Backus](http://en.wikipedia.org/wiki/John_Backus){:target="_blank"} 
+
+It is a little long for a research paper, but I highly recommend that you read it. Many of the concepts might not make sense to you now, but it will definitely make sense later.
+
+
+
+
