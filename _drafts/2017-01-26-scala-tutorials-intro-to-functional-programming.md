@@ -23,8 +23,9 @@ Since we have covered the object oriented programming side to somewhat depth, le
 - [What is a programming paradigm?](#ProgrammingParadigm)
 - [Understanding the von-neumann programming style](#VonNeumann)
 - [What's wrong with von-neumann style](#WrongVonNeumann)
-- [Map reduce and Immutability](#MapReduce)
+- [Map reduce & Immutability](#MapReduce)
 - [Pure functions in scala](#PureFunctions)
+- [Statelessness & Avoiding variable assignments](#Statelessness)
 - [Higher level abstractions & avoiding conceptualizing programs word by word](#Abstractions)
 
 <a name="ProgrammingParadigm"><u>What is a programming paradigm?</u></a>
@@ -92,7 +93,7 @@ ill present several functional programming constructs/concepts which can help us
 
 ![FP Alien](/images/fp_alien.jpg)
 
-<a name="MapReduce"><u>Map reduce and Immutability</u></a>
+<a name="MapReduce"><u>Map reduce & Immutability</u></a>
 
 When the big data explosion happened, map reduce was at its core. [Introduction to hadoop and map reduce](https://classroom.udacity.com/courses/ud617){:target="_blank"}
 is one good source to start learning hadoop and map reduce.
@@ -220,7 +221,7 @@ object Runnable extends App {
 
 Java programmers might argue that for objects it is pass by reference and in that case would the function be impure? It could be, but the function is only taking in
 primitive types. This is slightly different in scala where there is only [call by value and call by name](/blog/scala-tutorials-part-3-methods/#CallByNamevsValue) 
-(will explore later)
+(we will explore later)
 
 Pure functions can be incredibly helpful, they have several advantages as below.
 
@@ -228,10 +229,79 @@ Pure functions can be incredibly helpful, they have several advantages as below.
 - Reduces the [cognitive load of your code](http://www.ppig.org/papers/15th-shaffer.pdf){:target="_blank"} . More on this in later tutorials.
 - Since they don't depend on any external resource, they provide excellent encapsulation i.e one need not understand what is happening underneath to use them.
 
+<a name="Statelessness"><u>Statelessness & Avoiding variable assignments</u></a>
+
+To support immutability there are several concepts involved in functional programming of which the two most important ones are statelessness and higher level abstractions.
+
+<u>Avoiding variable assignments</u>
+
+To avoid variable assignments might sound a little weird but pure functions also do not use variable assignments. 
+
+A program state is an enemy to multi-threading and thereby thread safety. If a variable is assigned a value and another thread accesses it then we need to synchronize again.
+This is avoided in pure functions since they place variables in the call stack and since each thread has its 
+[own call stack](http://blog.jamesdbloom.com/JVMInternals.html#per_thread){:target="_blank"} there is no need of locking.
+
+In linux, [java threads map to native OS threads](http://stackoverflow.com/a/1888358/2677430){:target="_blank"} so that they get the best performance.
+
+<u>Statelessness</u>
+
+State usually refers to the current snapshot of the execution environment such the Program Counter, Call stack , Variables etc .,
+
+How to bring statelessness when there are actually different states involved? Let's take a simple for loop as an example.
+
+{% highlight scala %}
+
+object Runnable extends App {
+    //Prints from 10 to 20
+    for(i <- 10 to 20){
+        println(i)
+      }
+
+}
+
+{% endhighlight %}
+
+This is a classic example of how state is involved. Print numbers from 10 to 20. If you cannot count/mutate the variable then how can you print?
+
+Behold, the code snippet below uses something called anonymous functions and recursion(both of which we will see later) to avoid mutation using the function call stack.
+
+{% highlight scala %}
+
+object Runnable extends App {
+
+  val loop = new ((Int,Int) => Unit){
+
+    def apply(limit:Int,start:Int):Unit = {
+
+      if(start>=limit) {
+        println(start)
+      }
+
+      else {
+        println(start)
+        apply(limit,start+1)
+      }
+
+    }
+
+  }
+
+  loop(20,10)
+
+}
+
+{% endhighlight %}
+
+
+This is a working code snippet, you can copy and paste it into your IDE/environment to check that it is working.
+
+The functional version initially might be verbose, but as we go along we will understand that the imperative version tends to get out of hand and the functional
+one starts to make more sense. It is all a matter of perspective, once you are familiar with both of the paradigms, you would be better at judging them.
 
 <a name="Abstractions"><u>Higher level abstractions & avoiding conceptualizing programs word by word</u></a>
 
-The key to tackling complexity is abstractions. This is the main concept that was described by the paper presented by John backus.
+The key to tackling complexity is abstractions. This is the main concept that was described by the paper presented by John backus and not necessarily
+multi-threading and horizontal scaling. This has become famous recently because of moore's law and single core processor performance seeing a limit.
 
 We can take code from the map reduce example as a good example of abstraction.
 
@@ -251,7 +321,7 @@ object Runnable extends App {
 
 This is a map transformation which multiplies each element in the list by 3 and gives a new list. 
 
-With a traditional for loop this is a little trickier.
+With a traditional for loop this is a little tedious.
 
 {% highlight scala %}
 
@@ -273,7 +343,6 @@ object Runnable extends App {
 
 {% endhighlight %}
 
-
 Since `List` is an immutable data structure we need to introduce an additional mutable data structure called `ListBuffer`. This already breaks the immutability principle
-that discussed before. 
+that we discussed before. 
 
