@@ -8,18 +8,16 @@ tags: [Scala]
 Intro to Functional Programming in Scala
 ----------------------------------------
 
-Functional programming is a paradigm in scala, one that is becoming pretty famous in the recent years due its elegance and performance characteristics
-because of hardware developments in the recent years leading to multi-core performance of software programs rather than single core.
+The functional programming paradigm in scala is becoming pretty famous in the recent years due its elegance and performance characteristics.
 
 This is part 9 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
 In the previous 8 parts of this series, I would not have touched the functional programming side of scala at all. If you are new to this paradigm
-(which the majority of the world is) then the language, environment can be a little overwhelming to learn along with the completely new and difficult paradigm.
-
-Since we have covered the object oriented programming side to somewhat depth, let's start with the more interesting side 
+(which the majority of the world is) then the language, environment can be a little overwhelming to learn along with the completely new and difficult paradigm and that is the reason why I did not touch them in the beginning itself. Since we have covered the object oriented programming side to somewhat depth, let's start with the more interesting side 
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
+- [Taking a look at moore's law in 2017](#Moores)
 - [What is a programming paradigm?](#ProgrammingParadigm)
 - [Understanding the von-neumann programming style](#VonNeumann)
 - [What's wrong with von-neumann style](#WrongVonNeumann)
@@ -27,6 +25,31 @@ Since we have covered the object oriented programming side to somewhat depth, le
 - [Pure functions in scala](#PureFunctions)
 - [Statelessness & Avoiding variable assignments](#Statelessness)
 - [Higher level abstractions & avoiding conceptualizing programs word by word](#Abstractions)
+
+<a name="Moores"><u>Taking a look at moore's law in 2017</u></a>
+
+[Moore's law](https://en.wikipedia.org/wiki/Moore's_law){:target="_blank"} is a projection that talks about the number of transistors in a circuit doubles every two years. It is quite recently that chip manufacturers such as [Intel](https://en.wikipedia.org/wiki/Intel){:target="_blank"} , [AMD](https://en.wikipedia.org/wiki/Advanced_Micro_Devices){:target="_blank"}
+and many others realized that moore's law can be respected by increasing core counts rather than focussing on single core clock speed.
+
+The below graph shows the performance per core and how it scaled year on year.
+
+![Core count](/images/core_counts.jpg)
+
+Image Source : [Wikipedia commons](https://en.wikipedia.org/wiki/Ian_A._Young#/media/File:Clock_CPU_Scaling.jpg){:target="_blank"}
+
+We can see that the performance per core is kind of stalled at around 3 Ghz and has not seen the growth that was there previously.
+
+Here is another graph which talks about the core counts increase in relation with the clock speed increase.
+
+![Core count increase](/images/core_counts_cpu_perf.png)
+
+<cite> Data from Kunle Olukotun, Lance Hammond, Herb Sutter, Burton Smith, Chris Batten and Krste Asanovic </cite>
+
+It is evident that moore's law is now achieved by increasing number of cores rather than single core clock speed increase.
+
+This hardware issue has become a software problem now and programs/operating systems must be inherently better at multi-core utilization. 
+
+How is this related to functional programming? The F.P paradigm gives programs the ability to solve this problem in the best way possible along with a host of other benefits. Read on to find out more.
 
 <a name="ProgrammingParadigm"><u>What is a programming paradigm?</u></a>
 
@@ -76,7 +99,7 @@ If you have studied/programmed in assembly before, then the above instructions w
 greek and latin to you then perhaps a refresher on [computer architecture](https://www.youtube.com/playlist?list=PL5PHm2jkkXmi5CxxI7b3JCL1TWybTDtKq){:target="_blank"}
 would be of great help. The course goes very deep into architectures, but nonetheless should give you a very good idea of what we are talking about.
 
-Programs written in assembly or imperative languages are called as instruction sequences where they present step-step instructions for the computer to execute.
+Programs written in assembly or imperative languages are called as instruction sequences where they present step by step instructions for the computer to execute.
  
 This concept has shaped programming languages like C/, C++, Java, C# to a great extent.
 
@@ -88,7 +111,7 @@ This is addressed in the classic research paper [can programming be liberated fr
 
 It is a little long for a research paper, but I highly recommend that you read it. Many of the concepts might not make sense to you now, but it will definitely make sense later.
 
-Understanding what is wrong with von neumann style coding requires to learn functional programming so that we can compare and contrast them. In the following sections,
+Understanding what is wrong with von neumann style coding requires in-depth knowledge of functional programming so that we can compare and contrast them. In the following sections,
 ill present several functional programming constructs/concepts which can help us understand.
 
 ![FP Alien](/images/fp_alien.jpg)
@@ -98,7 +121,8 @@ ill present several functional programming constructs/concepts which can help us
 When the big data explosion happened, map reduce was at its core. [Introduction to hadoop and map reduce](https://classroom.udacity.com/courses/ud617){:target="_blank"}
 is one good source to start learning hadoop and map reduce.
 
-We are going to see a very small example of how map reduce works in apache spark. In fact the syntax or the knowledge is not much important.
+We are going to see a very small example of how map reduce works in [Apache Spark](http://spark.apache.org/){:target="_blank"}. 
+The syntax is not much important but the concepts behind it are.
  
 Below is a simple working code snippet that does the famous word count problem.
 
@@ -129,9 +153,9 @@ Let's take apart the word count example code piece by piece.
  
 `val textFile = sc.textFile("hdfs://...")`
  
-First we are reading a text file from HDFS. This text file contains contents similar to the example given above.
+First we are reading a text file from [HDFS](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html){:target="_blank"}. This text file contains contents similar to the example given above.
 
-Then the syntax begins to get weird, I have specifically chose the scala part of the code instead of java since it would be better to explain the concepts.
+Then the syntax begins to get weird, I have specifically chosen the scala part of the code instead of java since it would be better to explain the concepts.
 
 `flatMap`, `map` is part of the collection library in scala. I am not going to explain them in detail since they are extensive topics of their own, but rather focus
 on simpler terms of what they do.
@@ -144,8 +168,7 @@ Walking through the steps
     
 - The output of the `flatMap` would be individual words <i class="fa fa-arrow-right" aria-hidden="true"></i> It,is,a,simple .... 
 - `map` then takes the individual words then maps them into a key value pair <i class="fa fa-arrow-right" aria-hidden="true"></i> (It,1),(is,1),(a,1) ....
-- `reduceByKey` does what is named after. It takes the words for example (It,1) and the next (it,1) and then combines them into (It,2) assuming the output is case
- insensitive
+- `reduceByKey` does what it is named after. It takes the words for example (It,1) and the next (it,1) and then combines them into (It,2) assuming the output is case insensitive.
    
 ![Map reduce in picture](/images/map_reduce.png)
 
@@ -156,12 +179,12 @@ can easily scale to multiple cores or even multiple machines.
 
 [Immutable objects are thread safe](http://stackoverflow.com/questions/9303532/immutable-objects-are-thread-safe-but-why){:target="_blank"} considering
 that their content cannot be changed. Thread safety is directly related to parallelism and multi-core/multi-machine performance/scalability. If there are too many locks then
-they slow down the entire operation and there are no locks then it will lead to wrong results.
+they slow down the entire operation and if there are no locks then it will lead to wrong results.
 
 To eliminate this, we need immutable programming concepts so that there is no thread safety needed. In scala 
 [immutability implies thread safety](http://rcardin.github.io/programming/thread-safety/immutability/java/scala/2015/09/09/immutability-equal-thread-safety.html){:target="_blank"}.
 
-In other languages they may or may not mean the same. Case class are classic examples of immutable objects/classes in scala. Except the creation part, they 
+In other languages it may or may not mean the same. Case class are classic examples of immutable objects/classes in scala. Except the creation part, they 
 can be passed around multiple threads and wont cause any thread safety issues since the data cannot be changed. 
  
 We already saw in the [case classes chapter](/blog/scala-tutorials-part-6-case-classes/) that changing the values of a case class variable after creation
@@ -184,7 +207,7 @@ A function is considered not pure if it does one or more of the following.
 - Printing to console of anywhere else
 - Saving data to a database
 
-There are many more. At first thought, one would think that if I can't do any of the above then how the heck can I write any code?
+There are more benefits. At first thought, one would think that if I can't do any of the above then how the heck can I write any code?
 
 In functional languages there are [monads](https://en.wikipedia.org/wiki/Monad_(functional_programming)){:target="_blank"} to handle I/O, but that
 is an advanced which we will cover later. But keep in mind that scala is multi-paradigm, the programmer can choose which style depending upon the problem at hand.
@@ -235,7 +258,7 @@ To support immutability there are several concepts involved in functional progra
 
 <u>Avoiding variable assignments</u>
 
-To avoid variable assignments might sound a little weird but pure functions also do not use variable assignments. 
+Avoiding variable assignments might sound a little bit weird but there is a reason behind it. 
 
 A program state is an enemy to multi-threading and thereby thread safety. If a variable is assigned a value and another thread accesses it then we need to synchronize again.
 This is avoided in pure functions since they place variables in the call stack and since each thread has its 
