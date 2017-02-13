@@ -12,8 +12,10 @@ The functional programming paradigm in scala is becoming pretty famous in the re
 
 This is part 9 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
-In the previous 8 parts of this series, I would not have touched the functional programming side of scala at all. If you are new to this paradigm
-(which the majority of the world is) then the language, environment can be a little overwhelming to learn along with the completely new and difficult paradigm and that is the reason why I did not touch them in the beginning itself. Since we have covered the object oriented programming side to somewhat depth, let's start with the more interesting side 
+In the previous 8 parts of this series, I would not have touched the functional programming side of scala at all and that is because if you are new to this paradigm
+(which the majority of the world is) then the language, environment can be a little overwhelming to learn along with the completely new and difficult paradigm 
+and that is the reason why I did not touch them in the beginning itself. Since we have covered the object oriented programming side to somewhat depth, it will be slightly
+easier to understand. 
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
@@ -23,13 +25,14 @@ In the previous 8 parts of this series, I would not have touched the functional 
 - [What's wrong with von-neumann style](#WrongVonNeumann)
 - [Map reduce & Immutability](#MapReduce)
 - [Pure functions in scala](#PureFunctions)
-- [Statelessness & Avoiding variable assignments](#Statelessness)
 - [Higher level abstractions & avoiding conceptualizing programs word by word](#Abstractions)
 
 <a name="Moores"><u>Taking a look at moore's law in 2017</u></a>
 
-[Moore's law](https://en.wikipedia.org/wiki/Moore's_law){:target="_blank"} is a projection that talks about the number of transistors in a circuit doubles every two years. It is quite recently that chip manufacturers such as [Intel](https://en.wikipedia.org/wiki/Intel){:target="_blank"} , [AMD](https://en.wikipedia.org/wiki/Advanced_Micro_Devices){:target="_blank"}
-and many others realized that moore's law can be respected by increasing core counts rather than focussing on single core clock speed.
+[Moore's law](https://en.wikipedia.org/wiki/Moore's_law){:target="_blank"} is a projection that talks about the number of transistors in a circuit doubles every two years. 
+It is quite recently that chip manufacturers such as [Intel](https://en.wikipedia.org/wiki/Intel){:target="_blank"} , 
+[AMD](https://en.wikipedia.org/wiki/Advanced_Micro_Devices){:target="_blank"} and many others realized that moore's law can be respected by increasing core counts 
+rather than focusing on single core clock speed.
 
 The below graph shows the performance per core and how it scaled year on year.
 
@@ -109,10 +112,11 @@ So what is wrong with von neumann's style and why do we need a new paradigm?
 
 This is addressed in the classic research paper [can programming be liberated from von-neumann style](http://www.cs.ucf.edu/~dcm/Teaching/COT4810-Fall%202012/Literature/Backus.pdf){:target="_blank"} by [John Backus](http://en.wikipedia.org/wiki/John_Backus){:target="_blank"} 
 
-It is a little long for a research paper, but I highly recommend that you read it. Many of the concepts might not make sense to you now, but it will definitely make sense later.
+It is a little long for a research paper, but I highly recommend that you read it. Many of the concepts might not make sense to you now, 
+but it will definitely make sense later.
 
-Understanding what is wrong with von neumann style coding requires in-depth knowledge of functional programming so that we can compare and contrast them. In the following sections,
-ill present several functional programming constructs/concepts which can help us understand.
+Understanding what is wrong with von neumann style coding requires in-depth knowledge of functional programming so that we can compare and contrast them. 
+In the following sections, we will take a look at several functional programming constructs/concepts which can help us understand.
 
 ![FP Alien](/images/fp_alien.jpg)
 
@@ -138,7 +142,7 @@ counts.saveAsTextFile("hdfs://...")
 
 Map reduce comes in two phases, i.e the Map phase and the reduce phase.
 
-For our understanding, lets assume that below is the content on which we must perform word count i.e count how many times each word has occurred in a given dataset.
+For our understanding, let's assume that below is the content on which we must perform word count i.e count how many times each word has occurred in a given dataset.
 
     This is one of few movies that are truly timeless. And it's entertaining and moving, no matter how many times you view it.
     
@@ -149,11 +153,12 @@ For our understanding, lets assume that below is the content on which we must pe
 When you give the above sentences as a text file input to the above code, it is going to give out the unique words in the set and how many times they appeared in the given
 set. For example the word `movies` appeared twice in the set.
 
-Let's take apart the word count example code piece by piece.
+Let's understand the word count example one line at a time.
  
 `val textFile = sc.textFile("hdfs://...")`
  
-First we are reading a text file from [HDFS](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html){:target="_blank"}. This text file contains contents similar to the example given above.
+First we are reading a text file from [HDFS](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html){:target="_blank"}. 
+This text file contains contents similar to the example given above.
 
 Then the syntax begins to get weird, I have specifically chosen the scala part of the code instead of java since it would be better to explain the concepts.
 
@@ -184,7 +189,7 @@ they slow down the entire operation and if there are no locks then it will lead 
 To eliminate this, we need immutable programming concepts so that there is no thread safety needed. In scala 
 [immutability implies thread safety](http://rcardin.github.io/programming/thread-safety/immutability/java/scala/2015/09/09/immutability-equal-thread-safety.html){:target="_blank"}.
 
-In other languages it may or may not mean the same. Case class are classic examples of immutable objects/classes in scala. Except the creation part, they 
+In other languages it may or may not mean the same. Case classes are classic examples of immutable objects/classes in scala. Except the creation part, they 
 can be passed around multiple threads and wont cause any thread safety issues since the data cannot be changed. 
  
 We already saw in the [case classes chapter](/blog/scala-tutorials-part-6-case-classes/) that changing the values of a case class variable after creation
@@ -194,8 +199,8 @@ This is one of the reason why immutability is favoured in Scala as opposed to mu
 
 <a name="PureFunctions"><u>Pure functions in scala</u></a>
 
-The core of functional programming is pure functions. At first glance this is confusing since the questions "Aren't methods same as functions". Turns out that they are not
-the same in scala.
+The core of functional programming is pure functions. At first glance this is confusing since the questions "Aren't methods the same as functions". 
+Turns out that they are not the same in scala.
 
 Note : We will only briefly touch upon the notion of functions. There is lot more to it which will be explained in future articles.
 
@@ -252,75 +257,6 @@ Pure functions can be incredibly helpful, they have several advantages as below.
 - Reduces the [cognitive load of your code](http://www.ppig.org/papers/15th-shaffer.pdf){:target="_blank"} . More on this in later tutorials.
 - Since they don't depend on any external resource, they provide excellent encapsulation i.e one need not understand what is happening underneath to use them.
 
-<a name="Statelessness"><u>Statelessness & Avoiding variable assignments</u></a>
-
-To support immutability there are several concepts involved in functional programming of which the two most important ones are statelessness and higher level abstractions.
-
-<u>Avoiding variable assignments</u>
-
-Avoiding variable assignments might sound a little bit weird but there is a reason behind it. 
-
-A program state is an enemy to multi-threading and thereby thread safety. If a variable is assigned a value and another thread accesses it then we need to synchronize again.
-This is avoided in pure functions since they place variables in the call stack and since each thread has its 
-[own call stack](http://blog.jamesdbloom.com/JVMInternals.html#per_thread){:target="_blank"} there is no need of locking.
-
-In linux, [java threads map to native OS threads](http://stackoverflow.com/a/1888358/2677430){:target="_blank"} so that they get the best performance.
-
-<u>Statelessness</u>
-
-State usually refers to the current snapshot of the execution environment such the Program Counter, Call stack , Variables etc .,
-
-How to bring statelessness when there are actually different states involved? Let's take a simple for loop as an example.
-
-{% highlight scala %}
-
-object Runnable extends App {
-    //Prints from 10 to 20
-    for(i <- 10 to 20){
-        println(i)
-      }
-
-}
-
-{% endhighlight %}
-
-This is a classic example of how state is involved. Print numbers from 10 to 20. If you cannot count/mutate the variable then how can you print?
-
-Behold, the code snippet below uses something called anonymous functions and recursion(both of which we will see later) to avoid mutation using the function call stack.
-
-{% highlight scala %}
-
-object Runnable extends App {
-
-  val loop = new ((Int,Int) => Unit){
-
-    def apply(limit:Int,start:Int):Unit = {
-
-      if(start>=limit) {
-        println(start)
-      }
-
-      else {
-        println(start)
-        apply(limit,start+1)
-      }
-
-    }
-
-  }
-
-  loop(20,10)
-
-}
-
-{% endhighlight %}
-
-
-This is a working code snippet, you can copy and paste it into your IDE/environment to check that it is working.
-
-The functional version initially might be verbose, but as we go along we will understand that the imperative version tends to get out of hand and the functional
-one starts to make more sense. It is all a matter of perspective, once you are familiar with both of the paradigms, you would be better at judging them.
-
 <a name="Abstractions"><u>Higher level abstractions & avoiding conceptualizing programs word by word</u></a>
 
 The key to tackling complexity is abstractions. This is the main concept that was described by the paper presented by John backus and not necessarily
@@ -367,5 +303,20 @@ object Runnable extends App {
 {% endhighlight %}
 
 Since `List` is an immutable data structure we need to introduce an additional mutable data structure called `ListBuffer`. This already breaks the immutability principle
-that we discussed before. 
+that we discussed before, also the functional version is a lot more cleaner.
+
+Now the runtime can take this piece of code and perform lot of optimizations on it when compared to a for loop and the that's the power of higher level constructs.
+
+To summarize what we have seen so far in this article, 
+
+- We have seen why functional programming has become famous recently and the significance of moore's law.
+- Why immutability is important to thread safety and performance
+- We saw the concept of pure functions and what are its advantages 
+- Higher level constructs and their importance
+
+This is beginning of a very long but rewarding journey into the world of functional programming. There are many more core concepts to cover, but this post is focused
+on why this is a big deal.
+
+Until next time <i class="fa fa-smile-o fa-lg"></i>
+
 
