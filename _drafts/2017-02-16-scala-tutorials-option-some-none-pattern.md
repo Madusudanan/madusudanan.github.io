@@ -15,7 +15,7 @@ is not good.
 
 Scala addresses this issue with the Option/Some/None pattern. Let's jump right in.
 
-This is part 10 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 11 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
