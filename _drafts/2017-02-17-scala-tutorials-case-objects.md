@@ -16,6 +16,11 @@ This is part 10 of the scala tutorial series. Check [here](/tags/#Scala) for the
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
 - [Introduction](#Intro)
+- [Case objects vs Case classes](#ComparisonCOvsCC)
+- [Advantages of case objects](#Advantages)
+- [Conclusion](#Conclusion)
+
+<a name="Intro"><u>Introduction</u></a>
 
 Case objects are pretty useful if you want the boilerplate stuff that is there for case classes.
 
@@ -31,5 +36,98 @@ case object CaseObjectDemo {
 
 {% endhighlight %}  
 
-When you compare the [decompiled version](https://gist.github.com/Madusudanan/1c11276cdef43dd6c95e896fc8a768c6){:target="_blank"}  of [case object](https://gist.github.com/Madusudanan/f903809a968be6d15688acaaadc6f17b){:target="_blank"}  with case class then you will be able to see the difference.
+When you compare the [decompiled version](https://gist.github.com/Madusudanan/1c11276cdef43dd6c95e896fc8a768c6){:target="_blank"}  
+of [case object](https://gist.github.com/Madusudanan/f903809a968be6d15688acaaadc6f17b){:target="_blank"}  with case class then you will be able to see the differences.
+
+
+<a name="ComparisonCOvsCC"><u>Case objects vs Case classes</u></a>
+
+Things that are missing in case objects.
+
+- Apply, Un-apply methods. We will see about this later
+- There is no copy methods since this is a singleton
+- No method for structural equality comparison
+- No constructor as well 
+
+and a few other small things as well.
+
+The missing pieces actually are the ones that are not needed when compared to case classes.
+ 
+<a name="Advantages"><u>Advantages of case objects</u></a>
+
+We can clearly see what boilerplate is being generated in the decompiled class.
+
+- `toString` method
+- `hashCode` based on [murmur hash](https://en.wikipedia.org/wiki/MurmurHash){:target="_blank"}
+-  Case object/Case class is serializable by default 
+
+We can verify this with the below code example.
+
+
+{% highlight scala %}
+
+object Runnable extends App  {
+
+  //Will print false
+  println(SerializationExample.isInstanceOf[Serializable])
+  //Will print true
+  println(CaseObjectSerializationExample.isInstanceOf[Serializable])
+
+
+}
+
+object SerializationExample {
+
+}
+
+case object CaseObjectSerializationExample {
+
+}
+
+{% endhighlight %}  
+- [Conclusion](#Conclusion)
+
+The `SerializationExample` can extend the `Serializable` trait so that it can also become serializable.
+
+
+{% highlight scala %}
+
+object Runnable extends App  {
+
+  //Will print true since it extends the Serializable trait
+  println(SerializationExample.isInstanceOf[Serializable])
+  //Will print true
+  println(CaseObjectSerializationExample.isInstanceOf[Serializable])
+
+
+}
+
+object SerializationExample extends Serializable{
+
+}
+
+case object CaseObjectSerializationExample {
+
+}
+
+{% endhighlight %}  
+
+
+<a name="Conclusion"><u>Conclusion</u></a>
+
+We have reached the end of the article. This was a pretty short one and we saw that there is something called case objects and why they exist.
+
+The syntactic sugar that case objects offer over regular objects can be argued when comparing with its counterpart i.e case classes
+At first sight they do not seem to have much advantages, but that is not true.
+
+In the following tutorials we will see usages of case objects where the syntactic sugar is actually turned into good, readable code, particularly in two scenarios
+
+1) Where we can do pattern matching with case class and case objects
+
+2) Using case objects as the base structure for Enumerations in scala
+
+These are advanced topics requiring knowledge of various other functional programming concepts. We will conquer them one at a time.
+
+Stay tuned <i class="fa fa-smile-o fa-lg"></i>
+
 
