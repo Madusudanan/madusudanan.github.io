@@ -8,7 +8,8 @@ tags: [Scala]
 Case Objects
 -------------
 
-We have seen [objects](/blog/scala-tutorials-part-4-objects/) and [case classes](/blog/scala-tutorials-part-6-case-classes/) before. Case objects are a mix of both i.e it is a singleton similar to an object and with lot of boilerplate as in a case class. 
+We have seen [objects](/blog/scala-tutorials-part-4-objects/) and [case classes](/blog/scala-tutorials-part-6-case-classes/) before. 
+Case objects are a mix of both i.e it is a singleton similar to an object and with lot of boilerplate as in a case class. 
 The only difference is that the boilerplate is done for an object instead of a class.
 
 This is part 10 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
@@ -36,26 +37,23 @@ case object CaseObjectDemo {
 
 {% endhighlight %}  
 
-When you compare the [decompiled version](https://gist.github.com/Madusudanan/1c11276cdef43dd6c95e896fc8a768c6){:target="_blank"}  
-of [case object](https://gist.github.com/Madusudanan/f903809a968be6d15688acaaadc6f17b){:target="_blank"}  with case class then you will be able to see the differences.
-
+When you compare the decompiled version  of a [case object](https://gist.github.com/Madusudanan/1c11276cdef43dd6c95e896fc8a768c6){:target="_blank"} 
+with a [case class](https://gist.github.com/Madusudanan/f903809a968be6d15688acaaadc6f17b){:target="_blank"} then you will be able to see the differences.
 
 <a name="ComparisonCOvsCC"><u>Case objects vs Case classes</u></a>
 
 Things that are missing in case objects.
 
 - Apply, Un-apply methods. We will see about this later
-- There is no copy methods since this is a singleton
+- There are no copy methods since this is a singleton
 - No method for structural equality comparison
 - No constructor as well 
 
-and a few other small things as well.
-
-The missing pieces actually are the ones that are not needed when compared to case classes.
+The missing pieces are the ones that are actually not needed when compared to case classes.
  
 <a name="Advantages"><u>Advantages of case objects</u></a>
 
-We can clearly see what boilerplate is being generated in the decompiled class.
+We can clearly see what boilerplate is being generated in the decompiled class when compared to a regular `Object`.
 
 - `toString` method
 - `hashCode` based on [murmur hash](https://en.wikipedia.org/wiki/MurmurHash){:target="_blank"}
@@ -85,9 +83,8 @@ case object CaseObjectSerializationExample {
 }
 
 {% endhighlight %}  
-- [Conclusion](#Conclusion)
 
-The `SerializationExample` can extend the `Serializable` trait so that it can also become serializable.
+The `SerializationExample` can extend the `Serializable` trait so that it can also be made serializable.
 
 
 {% highlight scala %}
@@ -115,14 +112,14 @@ case object CaseObjectSerializationExample {
 
 <a name="Conclusion"><u>Conclusion</u></a>
 
-We have reached the end of the article. This was a pretty short one and we saw that there is something called case objects and why they exist.
+We have reached the end of the article. This was a pretty short one and we saw that there is something called case object and why it exists.
 
 The syntactic sugar that case objects offer over regular objects can be argued when comparing with its counterpart i.e case classes
 At first sight they do not seem to have much advantages, but that is not true.
 
 In the following tutorials we will see usages of case objects where the syntactic sugar is actually turned into good, readable code, particularly in two scenarios
 
-1) Where we can do pattern matching with case class and case objects
+1) Where we can do pattern matching with case classes and case objects
 
 2) Using case objects as the base structure for Enumerations in scala
 
