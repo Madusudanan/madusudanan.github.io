@@ -170,11 +170,13 @@ Lets understand with the below example,
     It is a simple film, yet it has an everlasting message.
     
 Walking through the steps
+
+For simplicity we assume that the input words are all converted to lower case before it is processed by the map reduce task.
     
-- The output of the `flatMap` would be individual words <i class="fa fa-arrow-right" aria-hidden="true"></i> It,is,a,simple .... 
-- `map` then takes the individual words then maps them into a key value pair <i class="fa fa-arrow-right" aria-hidden="true"></i> (It,1),(is,1),(a,1) ....
-- `reduceByKey` does what it is named after. It takes the words for example (It,1) and the next (it,1) and then combines them into (It,2) assuming the output is case insensitive.
-   
+- The output of the `flatMap` would be individual words <i class="fa fa-arrow-right" aria-hidden="true"></i> it,is,a,simple .... 
+- `map` then takes the individual words then maps them into a key value pair <i class="fa fa-arrow-right" aria-hidden="true"></i> (it,1),(is,1),(a,1) ....
+- `reduceByKey` does what it is named after. It takes the words for example (it,1) and the next (it,1) and then combines them into (it,2). 
+
 ![Map reduce in picture](/images/map_reduce.png)
 
 Image Source : [Wikipedia commons](https://en.wikipedia.org/wiki/File:Mapreduce_Overview.svg){:target="_blank"}

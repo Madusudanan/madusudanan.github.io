@@ -84,7 +84,7 @@ def s(args: Any*): String = standardInterpolator(treatEscapes, args)
 
 {% endhighlight %}
 
-which then agains calls another method called `standardInterpolator`. 
+which then again calls another method called `standardInterpolator`. 
 
 In scala there are three string interpolators,
 
@@ -94,9 +94,11 @@ In scala there are three string interpolators,
 
 We will look at the other ones in sections below.
 
-If we follow the code path, it ends up in the method called `standardInterpolator` which does a couple of steps to transform the given result into a complete string. One important point to note is that the entire process uses a `StringBuilder` underneath. 
+If we follow the code path, it ends up in the method called `standardInterpolator` which does a couple of steps to transform the given result into a complete string. 
+One important point to note is that the entire process uses a `StringBuilder` underneath. 
 
-This is different in terms of performance with the traditional string concatenation which in the above example creates additional 3 strings including the space string. Of course we can code that string using a `StringBuilder` but the syntactic sugar is pretty nice.
+This is different in terms of performance with the traditional string concatenation which in the above example creates additional 3 strings including the space string. 
+Of course we can code that string using a `StringBuilder` but the syntactic sugar is pretty nice.
 
 The `$` symbol is used to differentiate variables and strings.
 
