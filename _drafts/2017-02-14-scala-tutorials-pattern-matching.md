@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Scala Tutorials Part #12 - Pattern Matching in Scala "
-permalink: blog/why-scala-tutorials-part-12-pattern-matching-in-scala/
+title: "Scala Tutorials Part #13 - Pattern Matching in Scala "
+permalink: blog/why-scala-tutorials-part-13-pattern-matching-in-scala/
 tags: [Scala]
 ---
 
