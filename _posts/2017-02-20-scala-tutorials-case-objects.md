@@ -53,13 +53,13 @@ The missing pieces are the ones that are actually not needed when compared to ca
  
 <a name="Advantages"><u>Advantages of case objects</u></a>
 
-We can clearly see what boilerplate is being generated in the decompiled class when compared to a regular `Object`.
+We can clearly see what is being generated in the decompiled class when compared to a regular `Object`.
 
 - `toString` method
 - `hashCode` based on [murmur hash](https://en.wikipedia.org/wiki/MurmurHash){:target="_blank"}
 -  Case object/Case class is serializable by default 
 
-We can verify this with the below code example.
+We can verify that it is `Serializable` with the below code example.
 
 
 {% highlight scala %}
@@ -82,9 +82,9 @@ case object CaseObjectSerializationExample {
 
 }
 
-{% endhighlight %}  
+{% endhighlight %} 
 
-The `SerializationExample` can extend the `Serializable` trait so that it can also be made serializable.
+If we want the regular `Object` to become serializable then it can extend the `Serializable` trait.
 
 
 {% highlight scala %}
@@ -114,7 +114,7 @@ case object CaseObjectSerializationExample {
 
 We have reached the end of the article. This was a pretty short one and we saw that there is something called case object and why it exists.
 
-The syntactic sugar that case objects offer over regular objects can be argued when comparing with its counterpart i.e case classes
+The syntactic sugar that case objects offer over regular objects can be argued when comparing with its counterpart i.e case classes. 
 At first sight they do not seem to have much advantages, but that is not true.
 
 In the following tutorials we will see usages of case objects where the syntactic sugar is actually turned into good, readable code, particularly in two scenarios
