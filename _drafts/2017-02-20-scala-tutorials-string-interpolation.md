@@ -17,8 +17,12 @@ This is part 11 of the scala tutorial series. Check [here](/tags/#Scala) for the
 
 - [String concatenation in java](#Intro)
 - [Concatenation vs Interpolation](#Comparison)
-- [Anatomy of string interpolation in scala](#Anatomy)
-
+- [Anatomy of a string interpolator in scala](#Anatomy)
+- [Combining operations with standard interpolation](#OpCombine)
+- [Format interpolator](#Format)
+- [Raw interpolator](#Raw)
+- [Interpolation in other languages](#Other)
+- [Scala library interpolation examples](#Library)
 
 <a name="Tntro"><u>String concatenation in java</u></a>
 
@@ -72,7 +76,7 @@ Both the versions produce the same result, but the interpolation seems to be sli
 
 Also there is lesser probability to make mistakes in the interpolated version.
 
-<a name="Anatomy"><u>Anatomy of string interpolation in scala</u></a>
+<a name="Anatomy"><u>Anatomy of a string interpolator in scala</u></a>
 
 The syntax that we encountered might be weird in the beginning but the `s""` before the string is actually a method in `StringContext.scala`.
 
@@ -102,8 +106,42 @@ Of course we can code that string using a `StringBuilder` but the syntactic suga
 
 The `$` symbol is used to differentiate variables and strings.
 
+<a name="OpCombine"><u>Combining operations with standard interpolation</u></a>
+
+We can combine arithmetic operations with interpolation as follows.
+
+{% highlight scala %}
+
+object Runnable extends App  {
+
+  val name = "John"
+  val weight = 154
+  val unit = "Pounds"
+
+  val name2 = "Jack"
+  val weight2 = 166
 
 
+  println(s"$name2 weighs ${weight2 - weight} $unit more than $name ")
+
+
+}
+
+{% endhighlight %}
+
+The operation needs to be inside `${}` to work correctly, otherwise it would replace the variables but will not perform the minus operation. For example,
+
+{% highlight scala %}
+
+println(s"$name2 weighs $weight2-$weight $unit more than $name ")
+
+{% endhighlight %}
+
+would just print <cite>Jack weighs 166-154 Pounds more than John</cite>.
+
+In fact, any arbitrary expression can be embedded inside `${}` and it would just work.
+
+Another thing to note is that string interpolation is typesafe, you can't just include variables that don't exist or perform any syntax errors inside of `${}`.
 
 
 
