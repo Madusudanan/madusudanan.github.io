@@ -8,7 +8,8 @@ tags: [Scala]
 String Interpolation
 --------------------
 
-In this part we are going to see a pretty nifty feature of scala called [String interpolation](https://en.wikipedia.org/wiki/String_interpolation){:target="_blank"}.
+In this part we are going to see a pretty nifty feature of scala called 
+[String interpolation](https://en.wikipedia.org/wiki/String_interpolation){:target="_blank"}.
 
 This is part 11 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
@@ -97,11 +98,12 @@ In scala there are three string interpolators,
 
 We will look at the other ones in sections below.
 
-If we follow the code path, it ends up in the method called `standardInterpolator` which does a couple of steps to transform the given result into a complete string. 
+If we follow the code path, it ends up in the method called `standardInterpolator` 
+which does a couple of steps to transform the given result into a complete string. 
 One important point to note is that the entire process uses a `StringBuilder` underneath. 
 
-This is different in terms of performance with the traditional string concatenation which in the above example creates additional 3 strings including the space string. 
-Of course we can code that string using a `StringBuilder` but the syntactic sugar is pretty nice.
+This is different in terms of performance with the traditional string concatenation which in the above example 
+creates additional 3 strings including the space string. Of course we can code that string using a `StringBuilder` but the syntactic sugar is pretty nice.
 
 The `$` symbol is used to differentiate variables and strings.
 
@@ -136,11 +138,12 @@ println(s"$name2 weighs $weight2-$weight $unit more than $name ")
 
 {% endhighlight %}
 
-would just print <cite>Jack weighs 166-154 Pounds more than John</cite>.
+would just print <cite>Jack weighs 166-154 Pounds more than John</cite>, so the `${}` is important.
 
-In fact, any arbitrary expression can be embedded inside `${}` and it would just work.
+Any arbitrary expression can be embedded inside `${}` and it would just work.
 
-Another thing to note is that string interpolation is typesafe, you can't just include variables that don't exist or perform any syntax errors inside of `${}`.
+Another thing to note is that string interpolation is typesafe, 
+you can't just include variables that don't exist or perform any syntax errors inside of `${}`.
 
 <a name="Format"><u>Format interpolator</u></a>
 
@@ -158,11 +161,13 @@ object RunExample extends App  {
 
 {% endhighlight %}
 
-Here instead of `s""` we use `f""` as the prefix. `%s` is used to denote a string and `%f` to denote double.
+Here instead of `s""` we use `f""` as the prefix. 
+
+In the given example `%s` is used to denote a string and `%f` to denote double.
 
 The `2.2f` is used to denote precision i.e 2 decimals before the point and 2 after the point. 
 
-If our need is just printing to the console we can just the `printf` method.
+If our need is just printing to the console we can just use the `printf` method.
 
 {% highlight scala %}
 
@@ -182,7 +187,8 @@ object RunExample extends App  {
 
 {% endhighlight %}
 
-But in many cases we would want to use the formatted value as a string elsewhere. A good example is printing out values in logs. Without string interpolation we would have to rely the logging library or use string concatenation.
+But in many cases we would want to use the formatted value as a string elsewhere. 
+A good example is printing out values in logs. Without string interpolation we would have to rely on the logging library or use string concatenation.
 
 <a name="Raw"><u>Raw interpolator</u></a>
 
@@ -219,11 +225,16 @@ println(s"$name is \\t $height meters tall")
 
 {% endhighlight %}
 
-It is a design decision the developer can take. If there are only a handful of literals to be ignored then we can hardcode them or else use the raw interpolator. 
+It is a design decision that the developer can take. 
+If there are only a handful of literals to be ignored then we can hard code them or else use the raw interpolator.
+ 
+We can also write our own [interpolator](http://docs.scala-lang.org/overviews/core/string-interpolation.html#advanced-usage){:target="_blank"}, but
+that is kind of advanced and not needed in most of the cases.
 
 <a name="OtherLang"><u>Interpolation in other languages</u></a>
 
-As mentioned in the [string intepolation wiki](https://en.wikipedia.org/wiki/String_interpolation){:target="_blank"}, this concept of embedding variable references is not new to scala.
+As mentioned in the [string intepolation wiki](https://en.wikipedia.org/wiki/String_interpolation){:target="_blank"}, 
+this concept of embedding variable references is not new to scala.
 
 In fact very early languages such as `bash` and `perl` had this functionality. 
 
@@ -233,7 +244,8 @@ We will look at how to use scala for scripting in future articles.
 
 Interpolation is commonly used across many frameworks/libraries in scala. In fact it is considered a de-facto standard instead of string concatenation.
 
-On the whole this might not seem such a pretty big thing when compared to Java string concatenation, but it is small things like these that transform the entire language into a better one.
+On the whole this might not seem as a pretty big thing when compared to Java string concatenation, 
+but it is small things like these that transform the entire language into a better one.
 
 Stay tuned <i class="fa fa-smile-o fa-lg"></i>
 
