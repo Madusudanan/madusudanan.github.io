@@ -21,8 +21,7 @@ This is part 11 of the scala tutorial series. Check [here](/tags/#Scala) for the
 - [Combining operations with standard interpolation](#OpCombine)
 - [Format interpolator](#Format)
 - [Raw interpolator](#Raw)
-- [Interpolation in other languages](#Other)
-- [Scala library interpolation examples](#Library)
+- [Interpolation in other languages](#OtherLang)
 
 <a name="Tntro"><u>String concatenation in java</u></a>
 
@@ -74,7 +73,7 @@ object RunExample extends App  {
 
 Both the versions produce the same result, but the interpolation seems to be slightly better in terms of syntax when compared with concatenation. 
 
-Also there is lesser probability to make mistakes in the interpolated version.
+Also there are lesser chances to make mistakes in the interpolated version.
 
 <a name="Anatomy"><u>Anatomy of a string interpolator in scala</u></a>
 
@@ -143,10 +142,100 @@ In fact, any arbitrary expression can be embedded inside `${}` and it would just
 
 Another thing to note is that string interpolation is typesafe, you can't just include variables that don't exist or perform any syntax errors inside of `${}`.
 
+<a name="Format"><u>Format interpolator</u></a>
+
+The format interpolator is similar to the `printf` command in the C language. 
+
+{% highlight scala %}
+
+object RunExample extends App  {
+
+  val height = 1.9d
+  val name = "James Sawyer"
+  println(f"$name%s is $height%2.2f meters tall")
+
+}
+
+{% endhighlight %}
+
+Here instead of `s""` we use `f""` as the prefix. `%s` is used to denote a string and `%f` to denote double.
+
+The `2.2f` is used to denote precision i.e 2 decimals before the point and 2 after the point. 
+
+If our need is just printing to the console we can just the `printf` method.
+
+{% highlight scala %}
+
+object RunExample extends App  {
+
+  val height = 1.9d
+  val name = "James Sawyer"
+
+  //The format interpolator. Produces a string as an output
+  println(f"$name%s is $height%2.2f meters tall")
+
+  //C Style abstraction over java PrintStream
+  printf("%s is %2.2f meters tall",name,height)
 
 
+}
+
+{% endhighlight %}
+
+But in many cases we would want to use the formatted value as a string elsewhere. A good example is printing out values in logs. Without string interpolation we would have to rely the logging library or use string concatenation.
+
+<a name="Raw"><u>Raw interpolator</u></a>
+
+The raw interpolator is pretty similar to the standard one, except that literals are not escaped within the string.
+
+{% highlight scala %}
+
+object RunExample extends App {
+
+  val height = 1.9d
+
+  val name = "James Sawyer"
+
+  //Tab is printed after $name is
+  println(s"$name is \t $height meters tall")
+
+  // \t is just printed as a string
+  println(raw"$name is \t $height meters tall")
 
 
+}
+
+{% endhighlight %}
+
+It was not named just `r""` cause that would cause confusion with regular expressions.
+
+This is useful when we dont want to escape literals. 
+
+One can also use the standard interpolator and ignore literals as below,
+
+{% highlight scala %}
+
+println(s"$name is \\t $height meters tall")
+
+{% endhighlight %}
+
+It is a design decision the developer can take. If there are only a handful of literals to be ignored then we can hardcode them or else use the raw interpolator. 
+
+<a name="OtherLang"><u>Interpolation in other languages</u></a>
+
+As mentioned in the [string intepolation wiki](https://en.wikipedia.org/wiki/String_interpolation){:target="_blank"}, this concept of embedding variable references is not new to scala.
+
+In fact very early languages such as `bash` and `perl` had this functionality. 
+
+This is a pretty neat feature considering that Scala was aimed to used for everything including scripting.
+
+We will look at how to use scala for scripting in future articles.
+
+Interpolation is commonly used across many frameworks/libraries in scala. In fact it is considered a de-facto standard instead of string concatenation.
+
+On the whole this might not seem such a pretty big thing when compared to Java string concatenation, but it is small things like these that transform the entire language into a better one.
+
+Stay tuned <i class="fa fa-smile-o fa-lg"></i>
 
 
 
