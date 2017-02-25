@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #1 - Getting Started with Scala"
 permalink: blog/scala-tutorials-part-1-getting-started/
 tags: [Scala]
-last_updated: 2017-01-13
+last_updated: 2017-02-25
 ---
 
 Getting Started with Scala
@@ -13,13 +13,14 @@ This is the first part of a tutorial series that ill be publishing on scala. Che
 
 If you are from Java there are lot of things that can be difficult to get your head around, and the most easiest way to learn this is to unlearn and learn.
 
-<i class="fa fa-film fa-lg space-right"></i> <a href="https://www.youtube.com/watch?v=APx2yFA0-B4" target="_blank">Be like water my friend !!</a>
+<i class="fa fa-film fa-lg space-right"></i> : <a href="https://www.youtube.com/watch?v=APx2yFA0-B4" target="_blank">Be like water my friend !!</a>
+
+<i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by [ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, you can check it out
+[here](http://www.itran.cc/2017/02/23/yin-du-peng-you-shou-ba-shou-jiao-ni-xue-scala-1-scalaru-men/){:target="_blank"}.
 
 Let's get started.
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
-
-Here is what this post covers.
 
 - [Introduction to scala and environment setup](#Intro)
 - [The Scala REPL, a short presentation](#ScalaREPL)

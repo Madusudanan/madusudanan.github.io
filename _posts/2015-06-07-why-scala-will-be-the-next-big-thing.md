@@ -3,7 +3,7 @@ layout: post
 title: "Why Scala will be the next big thing"
 permalink: blog/why-scala-will-be-the-next-big-thing/
 tags: [Scala]
-last_updated: 2016-12-31
+last_updated: 2017-02-25
 ---
 
 Why Learn Scala ?
@@ -17,6 +17,9 @@ speak about its downsides and how to avoid them. There won't be any code, but th
 No programming language is a silver bullet, it is up to you to decide what is best for your job.
 
 PS : You are free to use this article to sell scala to your boss <i class="fa fa-smile-o fa-lg"></i>
+
+<i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by [ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, you can check it out
+[here](http://www.itran.cc/2017/02/22/wei-shi-yao-scalahui-cheng-wei-xia-yi-ge-shen-qi/){:target="_blank"}.
 
 Heads Up !!
 -----------
