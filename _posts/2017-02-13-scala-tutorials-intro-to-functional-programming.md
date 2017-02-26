@@ -17,6 +17,10 @@ In the previous 8 parts of this series, I would not have touched the functional 
 and that is the reason why I did not touch them in the beginning itself. Since we have covered the object oriented programming side to somewhat depth, it will be slightly
 easier to understand. 
 
+<i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by 
+[ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, 
+you can check it out [here](http://www.itran.cc/2017/02/26/scalaru-men-jiao-cheng-xi-lie-di-jiu-zhang-han-shu-shi-bian-cheng-jian-jie/){:target="_blank"}
+
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
 - [Taking a look at moore's law in 2017](#Moores)

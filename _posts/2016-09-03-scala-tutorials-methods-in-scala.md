@@ -9,11 +9,17 @@ last_updated: 2017-01-10
 Methods in scala
 ----------------
 
-It has been a long time since I wrote the last article on scala which was back in December 2015. Hopefully I should be writing more  <i class="fa fa-smile-o fa-lg"></i> 
+It has been a long time since I wrote the last article on scala which was back in December 2015. 
+Hopefully I should be writing more  <i class="fa fa-smile-o fa-lg"></i> 
 
 This is part 3 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
-This entire post is about dealing with methods in scala. Most of them are about style, but very important to know as we get into the world of functional programming.
+This entire post is about dealing with methods in scala. 
+Most of them are about style, but very important to know as we get into the world of functional programming.
+
+<i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by 
+[ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, 
+you can check it out [here](http://www.itran.cc/2017/02/23/yin-du-peng-you-shou-ba-shou-jiao-ni-xue-scala-3-fang-fa-2/){:target="_blank"}
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 

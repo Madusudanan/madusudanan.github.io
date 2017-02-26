@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Scala Tutorials Part #12 - Option/Some/None pattern "
+title: "Scala Tutorials Part #Unknown - Option/Some/None pattern "
 permalink: blog/scala-tutorials-part-12-option-some-none-pattern/
 tags: [Scala]
 ---

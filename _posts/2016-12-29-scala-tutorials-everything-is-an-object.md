@@ -110,7 +110,7 @@ Scala variables do not have any additional overhead of creating objects, they al
 
 <a name = "Operations"><u>Operations on types</u></a>
 
-We have established that all base types are objects in scala. The next important thing that comes to mind is that how will one do operations on it ?
+We have understood that all base types are objects in scala. The next important thing that comes to mind is that how will one do operations on it ?
 Since adding two objects is not possible, scala resorts to something called synthetic methods which we saw earlier in case classes.
 
 All operations that we do in primitive java types such as `+`,`-`,`*` etc ., are implemented as methods. Let's take [Int.scala](http://www.scala-lang.org/api/2.12.0/scala/Int.html){:target="_blank"} for example and look at how addition is implemented.
