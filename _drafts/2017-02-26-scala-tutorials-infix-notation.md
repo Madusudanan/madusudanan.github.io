@@ -72,7 +72,7 @@ public class Test {
 
 {% endhighlight %}
 
-So this works fine. Let's understand what infix notation means and why it can be used in place the dot notation.
+This works fine. Let's understand what infix notation means and why it can be used in place the dot notation.
 
 <a name="InfixNotation"><u>Infix notation introduction</u></a>
 
@@ -171,4 +171,15 @@ The [Bigint type](/blog/scala-tutorials-part-7-objects-everywhere/#Bigint) which
 A programmer need not invent special syntax to work with complex types. In fact with this syntax one can write almost any type that seems sensible
 and give all this syntactic sugar over it such `+`,`-` etc.,
 
+
+<a name="Arity"><u>Method arity</u></a>
+
+Now that we understand how this notation thingie works. There are cases where they should not be used and why.
+
+In [part 3](/blog/scala-tutorials-part-3-methods/#Method4) we saw that a method which has does not take any parameters and 
+returns nothing is called as a [0 arity method](http://docs.scala-lang.org/style/method-invocation.html#arity-0){:target="_blank"} and it can be called either with or without an empty circular param depending on how the original method is defined. This is called suffix notation as described in the scala docs.
+
+One important point to note is that these kind of methods should be used only if it is a [pure function](/blog/scala-tutorials-part-9-intro-to-functional-programming/#PureFunctions).
+
+This a situation where the infix notation would cause problem. Let's take the below example.
 
