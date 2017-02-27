@@ -21,7 +21,8 @@ This is part 12 of the scala tutorial series. Check [here](/tags/#Scala) for the
 - [Dot notation in java](#DotNotation)
 - [Infix notation introduction](#InfixNotation)
 - [Dealing with verbosity](#Verbosity)
-- [Method arity](#Arity)
+- [Avoiding infix in suffix notation methods](#Suffix)
+- [N-Arity methods](#N-Arity)
 
 <a name="DotNotation"><u>Dot notation in java</u></a>
 
@@ -76,7 +77,7 @@ This works fine. Let's understand what infix notation means and why it can be us
 
 <a name="InfixNotation"><u>Infix notation introduction</u></a>
 
-We already saw that even the `+` operation is a method call in part 7. In fact it is a pretty good example of how the infix notation works.
+We already saw that even the `+` operation is a method call in part 7. In fact it is a pretty good example of how this works.
 
 The `.+` can be called without the `.` and with the `+` alone and even with spaces. This is in fact a feature of the scala compiler and not syntactic
 sugar i.e its built right into the language.
@@ -85,7 +86,7 @@ Let's understand with our own example.
 
 We will consider a case class which can represent a complex number and have an addition operation inside it.
 
-{% highlight scala %}
+{% highlight scala %}he infix
 
 case class ComplexNumber(real: Double, imaginary: Double) {
 
@@ -95,6 +96,9 @@ case class ComplexNumber(real: Double, imaginary: Double) {
 }
   
 {% endhighlight %}
+
+This defines a method with the name `+` and adds two instances of the `ComplexNumber` class. Not to be confused with recursion, here we are just calling
+the constructor with different values.
 
 As we saw in [part 6](/blog/scala-tutorials-part-6-case-classes/) creating instances of these is pretty simple. We can even create two instances and make
 use of the plus method to add them together.
@@ -172,14 +176,115 @@ A programmer need not invent special syntax to work with complex types. In fact 
 and give all this syntactic sugar over it such `+`,`-` etc.,
 
 
-<a name="Arity"><u>Method arity</u></a>
+<a name="Suffix"><u>Avoiding infix in suffix notation methods</u></a>
 
-Now that we understand how this notation thingie works. There are cases where they should not be used and why.
+Now that we understand how this notation thingie works. There are cases where they should not be used.
 
 In [part 3](/blog/scala-tutorials-part-3-methods/#Method4) we saw that a method which has does not take any parameters and 
-returns nothing is called as a [0 arity method](http://docs.scala-lang.org/style/method-invocation.html#arity-0){:target="_blank"} and it can be called either with or without an empty circular param depending on how the original method is defined. This is called suffix notation as described in the scala docs.
+returns nothing is called as a [0 arity method](http://docs.scala-lang.org/style/method-invocation.html#arity-0){:target="_blank"} and it can be called either 
+with or without an empty circular param depending on how the original method is defined. This is called 
+[suffix notation](http://docs.scala-lang.org/style/method-invocation.html#suffix-notation){:target="_blank"}.
 
 One important point to note is that these kind of methods should be used only if it is a [pure function](/blog/scala-tutorials-part-9-intro-to-functional-programming/#PureFunctions).
 
-This a situation where the infix notation would cause problem. Let's take the below example.
+This is a situation where the infix notation would cause a problem. Let's take the below example.
+
+![Method arity error](/images/arity_method_error.png)
+
+As explained in the docs, since there is no semicolon after the `a x` infix call, it also considers the next statement i.e the `println` also as the method argument.
+
+If we gave the method a dummy parameter of the `Unit` type as below.
+
+{% highlight scala %}
+
+object Runnable extends App  {
+
+  val a = new A
+  a x
+  println("b")
+
+}
+
+class A {
+
+  def x(f: Unit): Unit = println("a")
+
+}
+
+{% endhighlight %}
+
+Then something funny happens. It prints out `b` and then `a` as opposed to `a` and then `b`. This happens since the entire `println` is passed as an argument to the
+`x` method.
+
+I also encourage to debug through the code to understand what happens.
+
+So it is better to follow the regular dot notation and avoid infix for the above suffix/no argument pure functions.
+
+{% highlight scala %}
+
+object Runnable extends App  {
+
+  val a = new A
+  a.x
+  println("b")
+
+}
+
+class A {
+
+  def x(): Unit = println("a")
+
+}
+
+{% endhighlight %}
+
+This works as expected i.e printing `a` before `b`.
+
+<a name="N-Arity"><u>N-Arity methods</u></a>
+
+Any method that has greater than zero arguments can be considered as an n-arity method where n is the number of arguments to that method.
+
+As always an example speaks more than mere words.
+
+-- Below example is not that good --
+
+{% highlight scala %}
+
+
+object Runnable extends App  {
+
+ val tuple1 = Tuple(1,2,3)
+
+ val tuple2 = Tuple(2,3,4)
+
+ val tuple3 = Tuple(3,4,5)
+
+ val result = tuple1 + tuple2 + tuple3
+
+ result prettyPrint (tuple1,"|")
+
+
+}
+
+
+case class Tuple(arg1:Int, arg2:Int, arg3:Int) {
+
+  def +(adder:Tuple) = {
+    Tuple(arg1 + adder.arg1,arg2 + adder.arg2 , arg3 + adder.arg3)
+  }
+
+  //Helper method to print
+  def prettyPrint(tuple: Tuple,separator: String) = {
+    println(s"${tuple.arg1} | ${tuple.arg2} | ${tuple.arg3}")
+  }
+
+
+
+
+
+{% endhighlight %}
+
+
+
+
 
