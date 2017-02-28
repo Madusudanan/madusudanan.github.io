@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Scala Tutorials Part #12 - Infix notation"
-permalink: blog/scala-tutorials-part-12-extractor-patterns-in-scala/
+permalink: blog/scala-tutorials-part-12-infix-notation/
 tags: [Scala]
 ---
 
