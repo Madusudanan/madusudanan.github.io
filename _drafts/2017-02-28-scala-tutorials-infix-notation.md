@@ -11,7 +11,7 @@ Infix Notation
 We already saw what [infix notation](https://en.wikipedia.org/wiki/Infix_notation){:target="_blank"} was 
 in [part 7](/blog/scala-tutorials-part-7-objects-everywhere/#Operations) in a very brief manner.
  
-In this article we are going to see what it is in a detailed manner and where it actually helps.
+In this article we are going to see what it is in detail and where it actually helps.
 
 This is part 12 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
@@ -48,7 +48,7 @@ public class Test {
 
 {% endhighlight %}
 
-The dot indicates that it is a method call. In fact it is also used to refer variables as well.
+The dot indicates that it is a method call. It is also used to refer variables as well.
 
 {% highlight java %}
 
@@ -73,20 +73,19 @@ public class Test {
 
 {% endhighlight %}
 
-This works fine. Let's understand what infix notation means and why it can be used in place the dot notation.
 
 <a name="InfixNotation"><u>Infix notation introduction</u></a>
 
-We already saw that even the `+` operation is a method call in part 7. In fact it is a pretty good example of how this works.
+We already saw that even the `+` operation is in fact a method call in part 7. It is a pretty good example of how this works.
 
-The `.+` can be called without the `.` and with the `+` alone and even with spaces. This is in fact a feature of the scala compiler and not syntactic
+The `.+` can be called without the `.` and with the `+` alone and even with spaces. This is a feature of the scala compiler and not syntactic
 sugar i.e its built right into the language.
 
 Let's understand with our own example.
 
-We will consider a case class which can represent a complex number and have an addition operation inside it.
+Consider a case class which can represent a complex number and have an addition operation inside it.
 
-{% highlight scala %}he infix
+{% highlight scala %}
 
 case class ComplexNumber(real: Double, imaginary: Double) {
 
@@ -139,7 +138,7 @@ object Runnable extends App  {
 
 <a name="Verbosity"><u>Dealing with verbosity</u></a>
 
-Assume that we don't have the infix notation option then we would have deal with the below syntax.
+If we don't have the infix notation option then we would have deal with the below syntax.
 
 {% highlight scala %}
 
@@ -151,7 +150,7 @@ object Runnable extends App  {
 
 {% endhighlight %}
 
-With infix notation this much more simpler.
+Life is much more simpler with infix notation.
 
 {% highlight scala %}
 
@@ -170,7 +169,7 @@ Not only that the syntax is natural, but there are lesser chances to make mistak
 Verbosity does not necessarily mean that it is bad, but it should not get in the way of a programmer, there is a fine line that divides where it helps and where
 it is just a headache.
 
-The [Bigint type](/blog/scala-tutorials-part-7-objects-everywhere/#Bigint) which we saw earlier is also another good example of this can be useful.
+The [Bigint type](/blog/scala-tutorials-part-7-objects-everywhere/#Bigint) which we saw earlier is an another good example of this can be useful.
 
 A programmer need not invent special syntax to work with complex types. In fact with this syntax one can write almost any type that seems sensible
 and give all this syntactic sugar over it such `+`,`-` etc.,
@@ -178,20 +177,20 @@ and give all this syntactic sugar over it such `+`,`-` etc.,
 
 <a name="Suffix"><u>Avoiding infix in suffix notation methods</u></a>
 
-Now that we understand how this notation thingie works. There are cases where they should not be used.
+Now that we understand how this notation thingie works, there are cases where they should not be used.
 
 In [part 3](/blog/scala-tutorials-part-3-methods/#Method4) we saw that a method which has does not take any parameters and 
 returns nothing is called as a [0 arity method](http://docs.scala-lang.org/style/method-invocation.html#arity-0){:target="_blank"} and it can be called either 
 with or without an empty circular param depending on how the original method is defined. This is called 
 [suffix notation](http://docs.scala-lang.org/style/method-invocation.html#suffix-notation){:target="_blank"}.
 
-One important point to note is that these kind of methods should be used only if it is a [pure function](/blog/scala-tutorials-part-9-intro-to-functional-programming/#PureFunctions).
+One important point to note is that this notation should be used only if it is a [pure function](/blog/scala-tutorials-part-9-intro-to-functional-programming/#PureFunctions).
 
 This is a situation where the infix notation would cause a problem. Let's take the below example.
 
 ![Method arity error](/images/arity_method_error.png)
 
-As explained in the docs, since there is no semicolon after the `a x` infix call, it also considers the next statement i.e the `println` also as the method argument.
+As explained in the docs, since there is no semicolon after the `a x` infix call, it considers the next statement i.e the `println` also as a method argument.
 
 If we gave the method a dummy parameter of the `Unit` type as below.
 
@@ -213,10 +212,9 @@ class A {
 
 {% endhighlight %}
 
-Then something funny happens. It prints out `b` and then `a` as opposed to `a` and then `b`. This happens since the entire `println` is passed as an argument to the
-`x` method.
+Then something unexpected happens. It prints out `b` and then `a` as opposed to `a` and then `b`. This occurs since the entire `println` is passed as an argument to the `x` method.
 
-I also encourage to debug through the code to understand what happens.
+I also encourage to debug through the code for more clarity.
 
 So it is better to follow the regular dot notation and avoid infix for the above suffix/no argument pure functions.
 
@@ -238,53 +236,50 @@ class A {
 
 {% endhighlight %}
 
-This works as expected i.e printing `a` before `b`.
+Works as expected i.e printing `a` before `b`.
 
 <a name="N-Arity"><u>N-Arity methods</u></a>
 
 Any method that has greater than zero arguments can be considered as an n-arity method where n is the number of arguments to that method.
 
-As always an example speaks more than mere words.
+As always, an example speaks more than words.
 
--- Below example is not that good --
 
 {% highlight scala %}
 
+object RunExample extends App  {
 
-object Runnable extends App  {
+  val list = List(1,2,3,4)
 
- val tuple1 = Tuple(1,2,3)
-
- val tuple2 = Tuple(2,3,4)
-
- val tuple3 = Tuple(3,4,5)
-
- val result = tuple1 + tuple2 + tuple3
-
- result prettyPrint (tuple1,"|")
-
+  println(list mkString "|")
 
 }
 
+{% endhighlight %}
 
-case class Tuple(arg1:Int, arg2:Int, arg3:Int) {
+`mkString` is a method which takes one string argument as a separator and then turns the given list to a `String`.
 
-  def +(adder:Tuple) = {
-    Tuple(arg1 + adder.arg1,arg2 + adder.arg2 , arg3 + adder.arg3)
-  }
+If there is more than one argument, then it needs to be wrapped up to into a param.
 
-  //Helper method to print
-  def prettyPrint(tuple: Tuple,separator: String) = {
-    println(s"${tuple.arg1} | ${tuple.arg2} | ${tuple.arg3}")
-  }
+{% highlight scala %}
 
+object RunExample extends App  {
 
+  val string = "Hi there"
+  
+  //Wrong - Will result in compilation error
+  string substring 1,3
+  
+  //Correct
+  string substring (1,3)
 
-
+}
 
 {% endhighlight %}
 
+Infix notation is one of the core concepts in scala and it is used all over the place. It is particularly useful to design Domain Specific Languages(DSLs). A good understanding of it is necessary. 
 
+Stay tuned <i class="fa fa-smile-o fa-lg"></i>
 
 
 
