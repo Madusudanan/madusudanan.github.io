@@ -13,6 +13,10 @@ This is part 4 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 
 We are going to deal with `objects` in this article.
 
+<i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by 
+[ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, 
+you can check it out [here](http://www.itran.cc/2017/03/01/yin-du-peng-you-shou-ba-shou-jiao-ni-xue-scala-4-dui-xiang/){:target="_blank"}
+
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
 - [What are objects?](#Intro)

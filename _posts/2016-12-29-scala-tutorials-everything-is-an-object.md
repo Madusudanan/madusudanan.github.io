@@ -3,6 +3,7 @@ layout: post
 title: "Scala Tutorials Part #7 - Objects Everywhere"
 permalink: blog/scala-tutorials-part-7-objects-everywhere/
 tags: [Scala]
+last_updated: 2017-03-05
 ---
 
 Objects Everywhere
@@ -22,6 +23,7 @@ This is part 7 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [Java's data type boxing/unboxing compared](#Java)
 - [Bigint example](#Bigint)
 - [Typecasting](#Typecasting)
+- [Value comparison](#Value)
 - [Implementations in other languages and some notes](#Compared)
 
 
@@ -450,6 +452,39 @@ public class Test {
 This is another example of how if everything is an object is advantageous. One can even include a method such as `toRoman` which converts the given value to a roman numeral. The programmer can choose which class to place this, an example would be Int.scala.
 
 There are several more, but the point was to bring an intuition rather than an exhaustive listing.
+
+<a name = "Value"><u>Value comparison</u></a>
+
+In java you would have been taught not to use the `==` operator for comparing object types since they would compare references.
+
+Scala has a different perspective to this. As we saw in [case classes](/blog/scala-tutorials-part-6-case-classes/#Equals) comparison can be done with `==`. This is
+because everything is a [value in scala](https://en.wikipedia.org/wiki/Uniform_access_principle){:target="_blank"}.
+
+With that said, since everything is also an object we can define our own method for the `==` comparison.
+
+Just like the `+` method above, the `==` is a synthetic function in the scala library.
+
+{% highlight scala %}
+
+
+  /** Returns `true` if this value is equal to x, `false` otherwise. */
+  def ==(x: Byte): Boolean
+  /** Returns `true` if this value is equal to x, `false` otherwise. */
+  def ==(x: Short): Boolean
+  /** Returns `true` if this value is equal to x, `false` otherwise. */
+  def ==(x: Char): Boolean
+  /** Returns `true` if this value is equal to x, `false` otherwise. */
+  def ==(x: Int): Boolean
+  /** Returns `true` if this value is equal to x, `false` otherwise. */
+  def ==(x: Long): Boolean
+  /** Returns `true` if this value is equal to x, `false` otherwise. */
+  def ==(x: Float): Boolean
+  /** Returns `true` if this value is equal to x, `false` otherwise. */
+  def ==(x: Double): Boolean
+
+{% endhighlight %}  
+
+Above code compiles to native java like comparison i.e for string it would be the `equals` method which does a character by character comparison underneath.
 
 <a name = "Compared"><u>Implementations in other languages and some notes</u></a>
 
