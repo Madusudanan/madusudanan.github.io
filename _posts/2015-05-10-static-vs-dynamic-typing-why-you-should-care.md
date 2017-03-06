@@ -22,11 +22,11 @@ This may sound like a rant, but the actual purpose is to remove lot of myths tha
 and interpreted languages, that is a design decision of the language developer. Our goal here is to understand it from a programmer's perspective and what difference does it make. 
 Also I am not comparing languages, but rather than the paradigm behind it which is more important, and for that reason certain things might not be applicable to all dynamically typed languages.
 
-Back to the topic, in a nutshell what static typing means is that the type of the variable should be declared/known at compile time. Examples of these are Java, Scala, Go.
+Back to the topic, in a nutshell what static typing means is that the type of the variable should be declared/known at compile time. 
+Examples of these are Java, Scala, Go. Languages such as PHP, Python, Javascript do not require the type information at compile time 
+and they are evaluated at run time.
 
-Languages such as PHP, Python, Javascript do not require the type information at compile time and they are evaluated at run time.
-
-<u>Problems with dynamic typing</u>
+<h3>Problems with dynamic typing</h3>
 
 Note that these are just examples to give a feel, not to list things that are wrong.
 
@@ -36,10 +36,11 @@ Note that these are just examples to give a feel, not to list things that are wr
 - <a href="#MissedDependancies">Rune time error checking</a>
 - <a href="#Slow">Performance factor</a>
  
-<a name = "NoReturn"><u>No return statements</u></a>
+<h3><b><a name="NoReturn" class="inter-header">No return statements</a></b></h3> 
 
 Consider the below piece of python code which returns a result greater when a>b and does not do return anything when it is lesser. 
-This is a programmer's fault, but the compiler and/or editor will not alert that there is something wrong, and when you print it out it prints "None" in python and "Undefined" in Javascript.
+This is a programmer's fault, but the compiler and/or editor will not alert that there is something wrong, 
+and when you print it out it prints "None" in python and "Undefined" in Javascript.
 
 {% highlight python %}
 
@@ -52,16 +53,13 @@ print(greater(10, 22))
 {% endhighlight %}
 
 
-This could cause problems, when you are evaluating these function values.
+This could cause problems, when you are evaluating these function values. In a statically typed language such as Java, 
+the code would not even compile and if you are using an IDE (you should be) it would highlight the problem.
 
-In a statically typed language such as Java, the code would not even compile and if you are using an IDE (you should be) it would highlight the problem.
-
-<a name = "NoTypeInfo"><u>No type information</u></a>
+<h3><b><a name = "NoTypeInfo" class="inter-header">No type information</a></b></h3>
 
 Dynamic typing is notoriously known for better programmer productivity (whatever that is) due to the type freedom when coding. But people forget something that is
-fundamentally wrong with this idea, you still have to know what type you are dealing with.
-
-You cannot add two classes or subtract two strings, although the compiler would
+fundamentally wrong with this idea, you still have to know what type you are dealing with. You cannot add two classes or subtract two strings, although the compiler would
 throw up some result, it will usually be some pretty useless information(read typecasting below).
 
 For an example, consider the below piece of code.
@@ -77,35 +75,33 @@ function readFromWebServiceAndParse($data){
 
 
 The function does not have any type information coming in or going out of it. Now the question is, can you consume this function without any documentation or going
-through/understanding the code completely?
-
-Where is the so called type freedom here?
+through/understanding the code completely? Where is the so called type freedom here?
 
 On the contrary, even though static typing is not self describing about the function/method's purpose, it would at least save the hassle of calling it with the wrong
 type with compile time checking.
 
 >Being type free is not freedom
 
-<a name = "TypeCastingHell"><u>Type casting is hell</u></a>
+<h3><b><a name = "TypeCastingHell" class="inter-header">Type casting is hell</a></b></h3>
 
-Type casting needs to be done in all languages, but it is painful in dynamically typed languages. Although there are no naive code examples that I can give to demonstrate
-this, [Wat](https://www.destroyallsoftware.com/talks/wat){:target="_blank"} is a fun talk(video) below given by [Gary Bernhardt](https://twitter.com/garybernhardt){:target="_blank"} which just gives you the idea. Take it on a lighter note BTW.
+Type casting needs to be done in all languages, but it is painful in dynamically typed languages. 
+Although there are no naive code examples that I can give to demonstrate this, 
+[Wat](https://www.destroyallsoftware.com/talks/wat){:target="_blank"} is a fun talk(video) 
+below given by [Gary Bernhardt](https://twitter.com/garybernhardt){:target="_blank"} which just gives you the idea. Take it on a lighter note BTW.
 
-<a name = "MissedDependancies"><u>Run time error checking</u></a>
+<h3><b><a name = "MissedDependancies" class="inter-header">Run time error checking</a></b></h3>
 
 This is something that I have personally faced, let's say we have two [pull requests](http://git-scm.com/docs/git-request-pull){:target="_blank"} and they depend on each other. 
 A mistake happens and Pull request #2 which depends on #1 is merged first. Since there is no build, you would not know this unless you actually see this in run time as a
-user or possibly some in some logs. Of course, proper testing could have prevented this, but in a static language system you cannot do this and your build will fail.
-
-The problems with dynamic typing is you would require a lot of work to prevent issues, such as documentation about types, careful testing. In a static setting you are protected
-against some of these due to compile time checking rather than at runtime.
+user or possibly some in some logs. Of course, proper testing could have prevented this, but in a static language system you cannot do this and your build will fail. 
+The problems with dynamic typing is you would require a lot of work to prevent issues, such as documentation about types, careful testing. 
+In a static setting you are protected against some of these due to compile time checking rather than at runtime.
 
 Certain error checking for dynamic languages are provided my modern IDEs, but the compiler/interpreter does not provide this. 
-This is the nature of dynamic languages, they were not meant to catch errors are compile time, since the language itself is interpreted rather than compiled.
-
+This is the nature of dynamic languages, they were not meant to catch errors are compile time, since the language itself is interpreted rather than compiled. 
 Why make it harder for yourself when the compiler does all the error checking for you?
  
-<a name = "Slow"><u>Performance factor</u></a>
+<h3><b><a name = "Slow" class="inter-header">Performance factor</a></b></h3>
 
 Of course there is the performance issue, but I have put this last since most of the applications do not even near this.Something at the scale of facebook, it does matter
 and [HHVM](http://hhvm.com/){:target="_blank"} is a practical example of this.
@@ -115,7 +111,7 @@ idea what Software Engineering is and how it should be done.
 
 >The sooner you catch an error, they easier and cheaper it is to fix it.
 
-<u>Myths</u>
+<h3>Myths</h3>
 
 There are some myths that surround both of these paradigms. Time for some myth-busting.
 
@@ -128,7 +124,7 @@ There are some myths that surround both of these paradigms. Time for some myth-b
 - <a href="#HeterogenousTypes">Heterogeneous data structures</a>
 - <a href="#PythonUniv">Universities use python</a>
 
-<a name = "Verbosity"><u>Verbosity of static typing</u></a>
+<h3><b><a name = "Verbosity" class="inter-header">Verbosity of static typing</a></b></h3>
 
 What is verbosity?
 
@@ -136,7 +132,7 @@ Well people call some languages verbose because they are lazy to type, but the a
 are some places where you call out Java as verbose, but the language by itself cannot be categorized in such a way. Some newer languages such as Scala and Go, 
 fare much better at this while maintaining type information. And with strong support from IDEs for things like auto-complete, verbosity is a thing of the past.
 
-<a name = "Build"><u>Build/Compilation is slow</u></a>
+<h3><b><a name = "Build" class="inter-header">Build/Compilation is slow</a></b></h3>
 
 Of all the things listed here, this actually is a real problem. The compilation is slower and it is at times frustrating. Reality is many web frameworks such as Play have hot reload built in
 , where it automatically compiles where you have done the changes. There are some standalone solutions such as [JRebel](http://zeroturnaround.com/software/jrebel/){:target="_blank"}
@@ -152,16 +148,16 @@ to maintain/sync automatic builds.
  
 If you are wasting time waiting for a build to complete, then you are doing it wrong.
 
-<a name="SkilledProgrammers"><u>Skilled programmers can avoid type problems</u></a>
+<h3><b><a name="SkilledProgrammers" class="inter-header">Skilled programmers can avoid type problems</a></b></h3>
 
 Let's face it, programmers are lazy, you cannot expect people to document something as monotonous as which type information that can go in and come out and all the 
 fallacies of dynamic typing.
 
-<a name = "TDD"><u>Test driven development can solve many of the type problems</u></a>
+<h3><b><a name = "TDD" class="inter-header">Test driven development can solve many of the type problems</a></b></h3>
 
 Using TDD to test type casting and conversions is an abuse of TDD. It should be used to validate/test functionality, not something that is fundamental such as types.
  
-<a name = "Productivity"><u>Dynamic typing has better productivity</u></a>
+<h3><b><a name = "Productivity" class="inter-header">Dynamic typing has better productivity</a></b></h3>
 
 Yes it has better productivity if you are the only person in the project and you know the code very well.If there is another person who wants to come in and read your code
 and work on top of it, it is the exact opposite and it gets worse with the increase in number of people.
@@ -170,7 +166,7 @@ The supposed productivity gain is a myth on the longer run.
 
 > [Reading code takes more time than writing code](https://blog.codinghorror.com/when-understanding-means-rewriting/){:target="_blank"}
 
-<a name = "TypeFreedom"><u>Static typing is rigid</u></a>
+<h3><b><a name = "TypeFreedom" class="inter-header">Static typing is rigid</a></b></h3>
 
 Java has something called [generics](http://en.wikipedia.org/wiki/Generics_in_Java){:target="_blank"}, in which you can write a functionality that works independent of 
 types.Not exactly type freedom, but this is the fundamental way you write something in Java that does not depend on types and avoids boilerplate code.
@@ -179,7 +175,7 @@ Of course, method overloading is another way.
 
 Other languages do have something similar.
 
-<a name = "HeterogenousTypes"><u>Heterogeneous data structures</u></a>
+<h3><b><a name = "HeterogenousTypes" class="inter-header">Heterogeneous data structures</a></b></h3>
 
 Heterogeneous types are possible in Java and even in other languages.Below is an example.
 
@@ -191,7 +187,7 @@ Object[][] array = {
 
 Although a class would be better in terms of design.The point is, it is possible, you just have to understand and design it in a different (better) way.
 
-<a name = "PythonUniv"><u>Universities use python</u></a>
+<h3><b><a name = "PythonUniv" class="inter-header">Universities use python</a></b></h3>
 
 Another popular argument. Universities use it because there is lot less startup time to teach them and does not necessarily mean that it is better. In a production setting
 there is always code maintenance, try maintaining the all the throw away code from those systems.
