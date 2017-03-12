@@ -37,7 +37,7 @@ Let's get started.
 - [Lazy val](#LazyVal)
 
 
-<a name = "Intro"><u>Introduction to scala and environment setup</u></a>
+<h3><b><a name = "Intro" class="inter-header">Introduction to scala and environment setup</a></b></h3>
 
 If you are completely new to scala then I encourage you to read [this blog post](/blog/why-scala-will-be-the-next-big-thing).
 
@@ -50,7 +50,7 @@ The setup that I would recommend is as follows.
 
 If you are done setting those up, then lets begin.
 
-<a name = "ScalaREPL"><u>The Scala REPL, a short presentation</u></a>
+<h3><b><a name = "ScalaREPL" class="inter-header">The Scala REPL, a short presentation</a></b></h3>
 
 Below is a link to a short presentation about scala REPL.
 
@@ -58,7 +58,7 @@ Below is a link to a short presentation about scala REPL.
 
 The REPL will act as your swiss army knife in learning scala.
 
-<a name = "ScalaHelloWorld"><u>First Hello World !!</u></a>
+<h3><b><a name = "ScalaHelloWorld" class="inter-header">First Hello World !!</a></b></h3>
 
 If you are coming from a Java background then scala is a little different in how it is represented. Let's directly jump into some code.
 
@@ -103,7 +103,7 @@ A simple hello world has opened up many topics to learn, three in particular
 - Objects and Classes(Covered in later tutorials)
 - Type inference - The reason why scala is a statically typed dynamic language- Explained below
 
-<a name="Variables"><u>Variables in Scala</u></a>
+<h3><b><a name = "Variables" class="inter-header">Variables</a></b></h3>
 
 I should have explained data types before we jump into variables, but there are some fundamental differences that I want to speak about so that the we can understand them
 more deeply.
@@ -117,7 +117,7 @@ Primitives by themselves are immutable i.e their type cannot be changed once dec
 This is confusing at first about why the concept of mutability comes for variables and not objects, this is explained below in data types section, there are no primitive
 types in scala, all are objects.
 
-<a name="ReferenceVsValue"><u>Reference vs Value Immutability</u></a>
+<h3><b><a name = "ReferenceVsValue" class="inter-header">Reference vs Value Immutability</a></b></h3>
 
 If `val` is immutable, then it cannot be changed ? Is this similar to the Java final keyword or is it something related to String immutability ?
 
@@ -178,7 +178,7 @@ So whenever we are talking about immutability in scala, we are talking about ref
 
 Immutable variables have certain performance benefits and leans closer to notion of writing code without side effects.
 
-<a name="AdvancedUnderstanding"><u>Immutability under the hood</u></a>
+<h3><b><a name = "AdvancedUnderstanding" class="inter-header">Immutability under the hood</a></b></h3>
 
 Let's take our understanding of immutability even further by examining the byte code emitted by decompiling generated scala class files.
 
@@ -220,7 +220,7 @@ It is clear that `val` is just a compile time restriction and has nothing to do 
 
 We can take this approach of reading the decompiled byte code to understand things more deeply, but in most of the cases it is not required.
 
-<a name="ValVsFinal"><u>Comparing and Contrasting val and final</u></a>
+<h3><b><a name = "ValVsFinal" class="inter-header">Comparing and Contrasting val and final</a></b></h3>
 
 Scala on the other hand also has the `final` keyword which works pretty similar.
 
@@ -259,7 +259,7 @@ This is a real world example of where one would use `final`.
 
 Notice that we are not breaking immutability here by overriding a val in child class. The child class creates an instance of its own just like a string in java string pool.
 
-<a name="DataTypes"><u>Data types in Scala</u></a>
+<h3><b><a name = "DataTypes" class="inter-header">Data types in Scala</a></b></h3>
 
 Scala has the same data types as in Java, with the same memory and precision.
 
@@ -281,7 +281,7 @@ By the time now, another question would have come up? Where are the types in the
 Unlike java where we declare variables with data types and then give a variable name, scala has something called type inference(see the topics below), but don't jump there
 yet, there is a reason why I separated it out from the variables section.
 
-<a name="TypeInference"><u>Type Inference</u></a>
+<h3><b><a name = "TypeInference" class="inter-header">Type Inference</a></b></h3>
 
 If you are not familiar with the term, it is nothing but the deduction of types at compile time. Hold on, isn’t that what dynamic typing means? 
 Well no, notice that I said deduction of types, this is drastically different from what dynamically typed languages do, 
@@ -318,7 +318,7 @@ entirely different topic of Scala's unified type system, which is nothing but th
 
 This is dealt with in [part 2](/blog/scala-tutorials-part-2-type-inference-in-scala) of this series with greater depth.
 
-<a name="Initialize"><u>Variable initialization</u></a>
+<h3><b><a name = "Initialize" class="inter-header">Variable initialization</a></b></h3>
 
 In scala you cannot simply create a variable and leave it un-initialized. 
 
@@ -328,7 +328,7 @@ This is a design choice that the scala language developers took. The obvious rea
 
 The only place where we don't assign values to variables is inside abstract classes. We will see more of it when learn about classes in scala.
 
-<a name="TypeAnnotations"><u>Type annotations</u></a>
+<h3><b><a name = "TypeAnnotations" class="inter-header">Type annotations</a></b></h3>
 
 Scala has the facility where we can mention the type explicitly.
 
@@ -369,7 +369,7 @@ A better version would as below.
 
 This concept not just applies to method parameters but also to variables declared using the `val` keyword. The example just demonstrates the idea in a better understandable way.
 
-<a name="TypeAscriptions"><u>Type ascriptions</u></a>
+<h3><b><a name = "TypeAscriptions" class="inter-header">Type ascriptions</a></b></h3>
 
 Type ascriptions are something more complicated. It is process of telling the compiler of what type you would expect out of an operation that you are going to perform.
 
@@ -422,7 +422,7 @@ In the above case, you can observe that it does not throw an error at compile ti
 Type ascriptions can be incredibly useful when performing type casting/conversion. You can check type safety at compile time rather than run time to ensure it does not result
 in buggy code.
 
-<a name="LazyVal"><u>Lazy val</u></a>
+<h3><b><a name = "LazyVal" class="inter-header">Lazy val</a></b></h3>
 
 As the name suggests, lazy val in scala is similar to a val, but its value is evaluated only when the variable is used.
 

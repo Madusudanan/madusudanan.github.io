@@ -27,13 +27,13 @@ you can check it out [here](http://www.itran.cc/2017/02/23/yin-du-peng-you-shou-
 - [Syntax of methods](#Syntax)
 - [The Unit type](#Unit)
 - [Immutable method parameters](#MethodParameters)
-- [Notes on the return keyword](#Return)
+- [Note on the return keyword](#Return)
 - [Heterogeneous return types](#Heterogeneous)
 - [Call by name vs Call by value](#CallByNamevsValue)
 - [Default values for method parameters](#DefaultValues)
 - [Stubbing out methods](#Stubbing)
 
-<a name="Primer"><u>Primer</u></a>
+<h3><b><a name = "Primer" class="inter-header">Primer</a></b></h3>
 
 Back in the days of assembly programming, there was something called [sub-routines](https://en.wikipedia.org/wiki/Subroutine){:target="_blank"} 
 
@@ -43,8 +43,7 @@ Sub-routines, Procedures , Functions, Methods may or may not mean the same thing
 
 In scala, we care only about Functions and Methods.
 
-
-<a name="Syntax"><u>Syntax of methods</u></a>
+<h3><b><a name = "Syntax" class="inter-header">Syntax of methods</a></b></h3>
 
 There are several ways of declaring and using methods. Below are examples just to get familiar with the syntactic sugar.
 
@@ -54,7 +53,8 @@ There are several ways of declaring and using methods. Below are examples just t
 - [Method with no return type, parameters](#Method4)
 - [Method with return type not mentioned](#Method5)
 
-<a name="Method1"><u>Method which takes two parameters and returns a value</u></a>
+<i class="fa fa-hashtag" aria-hidden="true"></i> <a name="Method1" class="inter-header">Method which takes two parameters and returns a value</a>
+
 {% highlight scala %}
 def max(x:Int, y:Int) : Int = {
 	if (x>y) x else y
@@ -67,7 +67,7 @@ All methods start with the `def` keyword, followed by the method name. Then come
 
 How do x and y get returned ? Hold on to that question , we will get there.
 
-<a name="Method2"><u>Method without curly braces</u></a>
+<i class="fa fa-hashtag" aria-hidden="true"></i> <a name="Method2" class="inter-header">Method without curly braces</a>
 
 Similar to java, method declarations come within the curly braces, but this is optional.
 
@@ -77,7 +77,7 @@ def max(x:Int, y:Int):Int= if (x>y) x else y
 
 This is purely for simplicity's sake, when the method is smaller then we can ignore the braces. But when it gets big, it is better to put inside a curly brace code block.
 
-<a name="Method3"><u>Method which does not take any parameters</u></a>
+<i class="fa fa-hashtag" aria-hidden="true"></i> <a name="Method3" class="inter-header">Method which does not take any parameters</a>
 
 As mentioned before, method parameters can be optional.
 
@@ -91,7 +91,7 @@ Note that I have omitted the circular braces for readablity. It can also be empt
 def getValueOfPi (): Double = 3.14159
 {% endhighlight %}
 
-<a name="Method4"><u>Method with no return type, parameters</u></a>
+<i class="fa fa-hashtag" aria-hidden="true"></i> <a name="Method4" class="inter-header">Method with no return type, parameters</a>
 
 Prints a hello world message to the console.
 
@@ -105,7 +105,7 @@ When calling it with the circular brace, it means that we are passing in a empty
 
 This is called a 0-arity method which is explained in the [method invocation docs](http://docs.scala-lang.org/style/method-invocation.html){:target="_blank"}
 
-<a name="Method5"><u>Method with return type not mentioned</u></a>
+<i class="fa fa-hashtag" aria-hidden="true"></i> <a name="Method5" class="inter-header">Method with return type not mentioned</a>
 
 {% highlight scala %}
 def greetPerson(msg :String) = "Hello " + msg + "!!!"
@@ -134,7 +134,7 @@ def whichIsGreater (a : Int , b: Int)  {
 In functional programming terms a method which does not return any value i.e which returns `Unit` are called procedures. These are methods which have no side effects and 
 are independent of state.
  
-<a name="Unit"><u>The Unit type</u></a>
+<h3><a name="Unit" class="inter-header">The Unit type</a></h3>
 
 If we run the below example in the scala REPL, 
 
@@ -175,7 +175,7 @@ The compiler will throw a warning such as below.
 
 Assigning the return type to a variable will give an output as `()`. Can be understood from the [runtime boxed unit](https://github.com/scala/scala/blob/05016d9035ab9b1c866bd9f12fdd0491f1ea0cbb/src/library/scala/runtime/BoxedUnit.java#L34){:target="_blank"} which is called from [Unit.scala unboxing](https://github.com/scala/scala/blob/v2.12.0/src/library/scala/Unit.scala#L46){:target="_blank"}. This is nothing but a `toString` representation of the type `Unit`.
 
-<a name="MethodParameters"><u>Immutable method parameters</u></a>
+<h3><a name="MethodParameters" class="inter-header">Immutable method parameters</a></h3>
 
 By default method parameters that are passed into methods are immutable and cannot be changed. The below image shows an example.
 
@@ -193,7 +193,7 @@ Re-writing it to not change the method parameters is pretty straighforward, but 
 
 We will learn more about immutability once we start to explore the functional programming side of scala.
 
-<a name="Return"><u>Note on the return keyword</u></a>
+<h3><a name="Return" class="inter-header">Note on the return keyword</a></h3>
 
 The scala compiler is built in a way to take the last statement and return it in the absence of a return statement. 
 
@@ -253,7 +253,7 @@ We can infer the following points from our analysis.
  
 Avoiding the return keyword might seem bizarre at first, but will sink in once we learn more about functional programming.
   
-<a name="Heterogeneous"><u>Heterogeneous return types</u></a>
+<h3><a name="Heterogeneous" class="inter-header">Heterogeneous return types</a></h3>
 
 Sub-typing enables us to do a lot of things. One of them is mixing up types in heterogeneous way.
 
@@ -273,7 +273,7 @@ The type qualifies to the `Any` type, which is at the top level. If you are a Ja
 Using `instanceof` is an anti-pattern and considered bad programming practice. In scala you would use the [Either](http://www.scala-lang.org/api/rc2/scala/Either.html){:target="_blank"} type. But that is a topic
 of another blog post.
 
-<a name="CallByNamevsValue"><u>Call by name vs Call by value</u></a>
+<h3><a name="CallByNamevsValue" class="inter-header">Call by name vs Call by value</a></h3>
 
 When you are calling methods, it is imperative to understand how the compiler treats it. In scala, there are two ways a method can treat its parameters.
 
@@ -352,7 +352,7 @@ Ok, but in what situations we need to call by name and where do we need to call 
 
 That question requires further understanding of functional programming which will be dealt with in the following posts. Usually you would call by value, but there are situations where call by name would be a better choice.
 
-<a name="DefaultValues"><u>Default values for method parameters</u></a>
+<h3><a name="DefaultValues" class="inter-header">Default values for method parameters</a></h3>
 
 When declaring methods, we can also specify the default value of the parameters in case the caller does not provide any.
 
@@ -369,7 +369,7 @@ When declaring methods, we can also specify the default value of the parameters 
 
 The value of default gets assigned to the string `url` in the case of value not provided. 
 
-<a name="Stubbing"><u>Stubbing out methods</u></a>
+<h3><a name="Stubbing" class="inter-header">Stubbing out methods</a></h3>
 
 A general widely used programming practice is to declare methods as stubs i.e without their logic implemented. 
 There might be several reasons where one would choose to do this and it depends upon the developer to use it at the right places.

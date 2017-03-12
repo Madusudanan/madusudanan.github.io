@@ -27,7 +27,7 @@ This is part 7 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [Implementations in other languages and some notes](#Compared)
 
 
-<a name = "Introduction"><u>Introduction</u></a>
+<h3><b><a name = "Introduction" class="inter-header">Introduction</a></b></h3>
 
 Scala is a multi-paradigm language, mainly a combination of object oriented and functional.
 
@@ -41,7 +41,7 @@ We have seen before that these two concepts i.e object oriented and functional a
 
 I am not going to give a exhaustive list on what are all objects and what are not, but I will be explaining the idea and advantages behind it and why it is important.
 
-<a name = "DataTypes"><u>Data types as Objects</u></a>
+<h3><b><a name = "DataTypes" class="inter-header">Data types as Objects</a></b></h3>
 
 There are no native data types in scala and all of the data types have a class of their own.
 
@@ -109,8 +109,7 @@ Below is a list of data types that convert directly to [native types on the JVM]
 
 Scala variables do not have any additional overhead of creating objects, they all map to a native type in the JVM.
 
-
-<a name = "Operations"><u>Operations on types</u></a>
+<h3><b><a name = "Operations" class="inter-header">Operations on types</a></b></h3>
 
 We have understood that all base types are objects in scala. The next important thing that comes to mind is that how will one do operations on it ?
 Since adding two objects is not possible, scala resorts to something called synthetic methods which we saw earlier in case classes.
@@ -246,7 +245,7 @@ which we see later in a dedicated tutorial.
 
 Since the `+` magic is done while compilation, the `+` by itself is represented as a synthetic function.
 
-<a name = "Creation"><u>Creation of custom types</u></a>
+<h3><b><a name = "Creation" class="inter-header">Creation of custom types</a></b></h3>
 
 We looked at how `Int.scala` was coded. But how would you go about creating something fundamental as this without the help of the compiler.
 
@@ -262,7 +261,7 @@ There might be some parts of the video that you might not fully understand, just
 
 This should give you an intuition on why such a choice was made in scala.
 
-<a name = "Java"><u>Java's data type boxing/unboxing compared</u></a>
+<h3><b><a name = "Java" class="inter-header">Java's data type boxing/unboxing compared</a></b></h3>
 
 Unlike scala, java has both primitive and boxed types. This is kind of ugly when you compare it with scala since everything is an object here.
 
@@ -330,7 +329,7 @@ This distinction is important and will be crucial in understanding scala collect
 
 We will discuss two advantages about this whole everything is an object representation.
 
-<a name = "Bigint"><u>Bigint example</u></a>
+<h3><b><a name = "Bigint" class="inter-header">Bigint example</a></b></h3>
 
 Apart from the advantage that scala does not create objects for native types, it is also offers convenient syntax for other types such as Bigint.
 
@@ -388,7 +387,7 @@ advanced data types such Algebraic types which are useful in Machine learning/ma
 What is more interesting is since everything is represented as an object we can now abstract certain things which makes it easier for programmers to write types
 of their own.
 
-<a name = "Typecasting"><u>Typecasting</u></a>
+<h3><b><a name = "Typecasting" class="inter-header">Typecasting</a></b></h3>
 
 Since all of the types are now objects/classes and they all follow the tree hierarchy from the top type that is `Any`, they can have some common methods
 which are useful for all types.
@@ -453,7 +452,7 @@ This is another example of how if everything is an object is advantageous. One c
 
 There are several more, but the point was to bring an intuition rather than an exhaustive listing.
 
-<a name = "Value"><u>Value comparison</u></a>
+<h3><b><a name = "Value" class="inter-header">Value comparison</a></b></h3>
 
 In java you would have been taught not to use the `==` operator for comparing object types since they would compare references.
 
@@ -486,7 +485,7 @@ Just like the `+` method above, the `==` is a synthetic function in the scala li
 
 Above code compiles to native java like comparison i.e for string it would be the `equals` method which does a character by character comparison underneath.
 
-<a name = "Compared"><u>Implementations in other languages and some notes</u></a>
+<h3><b><a name = "Compared" class="inter-header">Implementations in other languages and some notes</a></b></h3>
 
 Turns out that scala is not the first language to implement this "objects everywhere" concept.
 

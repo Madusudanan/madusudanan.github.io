@@ -21,7 +21,7 @@ This is part 10 of the scala tutorial series. Check [here](/tags/#Scala) for the
 - [Advantages of case objects](#Advantages)
 - [Conclusion](#Conclusion)
 
-<a name="Intro"><u>Introduction</u></a>
+<h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
 Case objects are pretty useful if you want the boilerplate stuff that is there for case classes.
 
@@ -40,7 +40,7 @@ case object CaseObjectDemo {
 When you compare the decompiled version  of a [case object](https://gist.github.com/Madusudanan/1c11276cdef43dd6c95e896fc8a768c6){:target="_blank"} 
 with a [case class](https://gist.github.com/Madusudanan/f903809a968be6d15688acaaadc6f17b){:target="_blank"} then you will be able to see the differences.
 
-<a name="ComparisonCOvsCC"><u>Case objects vs Case classes</u></a>
+<h3><b><a name = "ComparisonCOvsCC" class="inter-header">Case objects vs Case classes</a></b></h3>
 
 Things that are missing in case objects.
 
@@ -51,7 +51,7 @@ Things that are missing in case objects.
 
 The missing pieces are the ones that are actually not needed when compared to case classes.
  
-<a name="Advantages"><u>Advantages of case objects</u></a>
+<h3><b><a name = "Advantages" class="inter-header">Advantages of case objects</a></b></h3>
 
 We can clearly see what is being generated in the decompiled class when compared to a regular `Object`.
 
@@ -109,8 +109,7 @@ case object CaseObjectSerializationExample {
 
 {% endhighlight %}  
 
-
-<a name="Conclusion"><u>Conclusion</u></a>
+<h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
 
 We have reached the end of the article. This was a pretty short one and we saw that there is something called case object and why it exists.
 

@@ -24,7 +24,7 @@ This is part 12 of the scala tutorial series. Check [here](/tags/#Scala) for the
 - [Avoiding infix in suffix notation methods](#Suffix)
 - [N-Arity methods](#N-Arity)
 
-<a name="DotNotation"><u>Dot notation in java</u></a>
+<h3><b><a name = "DotNotation" class="inter-header">Dot notation in java</a></b></h3>
 
 The regular way to call methods in a language such as `java` would be like,
 
@@ -74,7 +74,7 @@ public class Test {
 {% endhighlight %}
 
 
-<a name="InfixNotation"><u>Infix notation introduction</u></a>
+<h3><b><a name = "InfixNotation" class="inter-header">Infix notation introduction</a></b></h3>
 
 We already saw that even the `+` operation is in fact a method call in part 7. It is a pretty good example of how this works.
 
@@ -136,7 +136,7 @@ object Runnable extends App  {
 
 {% endhighlight %}
 
-<a name="Verbosity"><u>Dealing with verbosity</u></a>
+<h3><b><a name = "Verbosity" class="inter-header">Dealing with verbosity</a></b></h3>
 
 If we don't have the infix notation option then we would have deal with the below syntax.
 
@@ -174,8 +174,7 @@ The [Bigint type](/blog/scala-tutorials-part-7-objects-everywhere/#Bigint) which
 A programmer need not invent special syntax to work with complex types. In fact with this syntax one can write almost any type that seems sensible
 and give all this syntactic sugar over it such `+`,`-` etc.,
 
-
-<a name="Suffix"><u>Avoiding infix in suffix notation methods</u></a>
+<h3><b><a name = "Suffix" class="inter-header">Avoiding infix in suffix notation methods</a></b></h3>
 
 Now that we understand how this notation thingie works, there are cases where they should not be used.
 
@@ -238,12 +237,11 @@ class A {
 
 Works as expected i.e printing `a` before `b`.
 
-<a name="N-Arity"><u>N-Arity methods</u></a>
+<h3><b><a name = "N-Arity" class="inter-header">N-Arity methods</a></b></h3>
 
 Any method that has greater than zero arguments can be considered as an n-arity method where n is the number of arguments to that method.
 
 As always, an example speaks more than words.
-
 
 {% highlight scala %}
 

@@ -24,7 +24,7 @@ This is part 11 of the scala tutorial series. Check [here](/tags/#Scala) for the
 - [Raw interpolator](#Raw)
 - [Interpolation in other languages](#OtherLang)
 
-<a name="Tntro"><u>String concatenation in java</u></a>
+<h3><b><a name = "Intro" class="inter-header">String concatenation in java</a></b></h3>
 
 There is no string interpolation/string variable substitution in java so to speak. Seasoned java programmers are used to string concatenation.
 
@@ -47,8 +47,7 @@ public class JavaRunner {
 
 This works as intended so what is so special with interpolation? Read on to find out more.
 
-
-<a name="Comparison"><u>Concatenation vs Interpolation</u></a>
+<h3><b><a name = "Comparison" class="inter-header">Concatenation vs Interpolation</a></b></h3>
 
 Let's see how we do the same thing with string interpolation.
 
@@ -76,7 +75,7 @@ Both the versions produce the same result, but the interpolation seems to be sli
 
 Also there are lesser chances to make mistakes in the interpolated version.
 
-<a name="Anatomy"><u>Anatomy of a string interpolator in scala</u></a>
+<h3><b><a name = "Anatomy" class="inter-header">Anatomy of a string interpolator in scala</a></b></h3>
 
 The syntax that we encountered might be weird in the beginning but the `s""` before the string is actually a method in `StringContext.scala`.
 
@@ -107,7 +106,7 @@ creates additional 3 strings including the space string. Of course we can code t
 
 The `$` symbol is used to differentiate variables and strings.
 
-<a name="OpCombine"><u>Combining operations with standard interpolation</u></a>
+<h3><b><a name = "OpCombine" class="inter-header">Combining operations with standard interpolation</a></b></h3>
 
 We can combine arithmetic operations with interpolation as follows.
 
@@ -145,7 +144,7 @@ Any arbitrary expression can be embedded inside `${}` and it would just work.
 Another thing to note is that string interpolation is typesafe, 
 you can't just include variables that don't exist or perform any syntax errors inside of `${}`.
 
-<a name="Format"><u>Format interpolator</u></a>
+<h3><b><a name = "Format" class="inter-header">Format interpolator</a></b></h3>
 
 The format interpolator is similar to the `printf` command in the C language. 
 
@@ -190,7 +189,7 @@ object RunExample extends App  {
 But in many cases we would want to use the formatted value as a string elsewhere. 
 A good example is printing out values in logs. Without string interpolation we would have to rely on the logging library or use string concatenation.
 
-<a name="Raw"><u>Raw interpolator</u></a>
+<h3><b><a name = "Raw" class="inter-header">Raw interpolator</a></b></h3>
 
 The raw interpolator is pretty similar to the standard one, except that literals are not escaped within the string.
 
@@ -231,7 +230,7 @@ If there are only a handful of literals to be ignored then we can hard code them
 We can also write our own [interpolator](http://docs.scala-lang.org/overviews/core/string-interpolation.html#advanced-usage){:target="_blank"}, but
 that is kind of advanced and not needed in most of the cases.
 
-<a name="OtherLang"><u>Interpolation in other languages</u></a>
+<h3><b><a name = "OtherLang" class="inter-header">Interpolation in other languages</a></b></h3>
 
 As mentioned in the [string intepolation wiki](https://en.wikipedia.org/wiki/String_interpolation){:target="_blank"}, 
 this concept of embedding variable references is not new to scala.

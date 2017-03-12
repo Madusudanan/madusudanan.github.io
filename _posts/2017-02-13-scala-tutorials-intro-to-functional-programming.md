@@ -31,7 +31,7 @@ you can check it out [here](http://www.itran.cc/2017/02/26/scalaru-men-jiao-chen
 - [Pure functions in scala](#PureFunctions)
 - [Higher level abstractions & avoiding conceptualizing programs word by word](#Abstractions)
 
-<a name="Moores"><u>Taking a look at moore's law in 2017</u></a>
+<h3><b><a name = "Moores" class="inter-header">Taking a look at moore's law in 2017</a></b></h3>
 
 [Moore's law](https://en.wikipedia.org/wiki/Moore's_law){:target="_blank"} is a projection that talks about the number of transistors in a circuit doubles every two years. 
 It is quite recently that chip manufacturers such as [Intel](https://en.wikipedia.org/wiki/Intel){:target="_blank"} , 
@@ -58,7 +58,7 @@ This hardware issue has become a software problem now and programs/operating sys
 
 How is this related to functional programming? The F.P paradigm gives programs the ability to solve this problem in the best way possible along with a host of other benefits. Read on to find out more.
 
-<a name="ProgrammingParadigm"><u>What is a programming paradigm?</u></a>
+<h3><b><a name = "ProgrammingParadigm" class="inter-header">What is a programming paradigm?</a></b></h3>
 
 Quoting from [wikipedia](https://en.wikipedia.org/wiki/Programming_paradigm){:target="_blank"},
 
@@ -80,7 +80,7 @@ object oriented programming.
 If you are not familiar with different paradigms then I would highly recommend that you take [Stanford CS107 - Programming Paradigms](https://see.stanford.edu/Course/CS107){:target="_blank"}, which gives you an excellent overview
 of the popular paradigms out there.
 
-<a name="VonNeumann"><u>Understanding the von-neumann programming style</u></a>
+<h3><b><a name = "VonNeumann" class="inter-header">Understanding the von-neumann programming style</a></b></h3>
 
 Imperative programming/Object oriented programming is based on something called 
 [Von Neumann architecture](https://en.wikipedia.org/wiki/Von_Neumann_architecture){:target="_blank"} which is a computer architecture depicting various parts of a 
@@ -110,7 +110,7 @@ Programs written in assembly or imperative languages are called as instruction s
  
 This concept has shaped programming languages like C/, C++, Java, C# to a great extent.
 
-<a name="WrongVonNeumann"><u>What's wrong with von-neumann style</u></a>
+<h3><b><a name = "WrongVonNeumann" class="inter-header">What's wrong with von-neumann style</a></b></h3>
 
 So what is wrong with von neumann's style and why do we need a new paradigm?
 
@@ -124,7 +124,7 @@ In the following sections, we will take a look at several functional programming
 
 ![FP Alien](/images/fp_alien.jpg)
 
-<a name="MapReduce"><u>Map reduce & Immutability</u></a>
+<h3><b><a name = "MapReduce" class="inter-header">Map reduce & Immutability</a></b></h3>
 
 When the big data explosion happened, map reduce was at its core. [Introduction to hadoop and map reduce](https://classroom.udacity.com/courses/ud617){:target="_blank"}
 is one good source to start learning hadoop and map reduce.
@@ -203,7 +203,7 @@ leads to a compile time exception and they can be identified easily.
 
 This is one of the reason why immutability is favoured in Scala as opposed to mutable programming constructs.
 
-<a name="PureFunctions"><u>Pure functions in scala</u></a>
+<h3><b><a name = "PureFunctions" class="inter-header">Pure functions in scala</a></b></h3>
 
 The core of functional programming is pure functions. At first glance this is confusing since the questions "Aren't methods the same as functions". 
 Turns out that they are not the same in scala.
@@ -263,7 +263,7 @@ Pure functions can be incredibly helpful, they have several advantages as below.
 - Reduces the [cognitive load of your code](http://www.ppig.org/papers/15th-shaffer.pdf){:target="_blank"} . More on this in later tutorials.
 - Since they don't depend on any external resource, they provide excellent encapsulation i.e one need not understand what is happening underneath to use them.
 
-<a name="Abstractions"><u>Higher level abstractions & avoiding conceptualizing programs word by word</u></a>
+<h3><b><a name = "Abstractions" class="inter-header">Higher level abstractions & avoiding conceptualizing programs word by word</a></b></h3>
 
 The key to tackling complexity is abstractions. This is the main concept that was described by the paper presented by John backus and not necessarily
 multi-threading and horizontal scaling. This has become famous recently because of moore's law and single core processor performance seeing a limit.

@@ -32,7 +32,7 @@ you can check it out [here](http://www.itran.cc/2017/02/23/yin-du-peng-you-shou-
 - [When to use type inference?](#Usage)
 - [References](#References)
 
-<a name="Perspective"><u>What exactly is type inference from a programmer's perspective</u></a>
+<h3><b><a name = "Perspective" class="inter-header">What exactly is type inference from a programmer's perspective</a></b></h3>
 
 This is not something unique to scala. Many languages such as OCaml, Haskell, Rust, Swift, C#(starting with version 3.0) 
 already have these. 
@@ -49,7 +49,7 @@ The primary purpose is to help the programmer avoiding verbose typing but still 
 
 Or at-least it tries to be. The reality is largely dependant upon where/how we use it.
 
-<a name="TypeSystemOverview"><u>An Overview of a type system</u><a>
+<h3><b><a name = "TypeSystemOverview" class="inter-header">An Overview of a type system</a></b></h3>
 
 A type system is a language component that is responsible for type checking.  
 Scala is a statically typed language, so there are always a defined set of types(, and anything that 
@@ -64,7 +64,7 @@ runtimes.
 
 This brings us to another question, what kind of type systems exist and based upon which we can classify different languages.
 
-<a name="TypeSystem"><u>Language classification according to their type system</u></a>
+<h3><b><a name = "TypeSystem" class="inter-header">Language classification according to their type system</a></b></h3>
 
 Quoting from this [wikipedia page](https://en.wikipedia.org/wiki/Type_system){:target="_blank"},
 
@@ -89,7 +89,7 @@ There is also [another course](https://www.youtube.com/playlist?list=PLOJWMozcY9
 Scala as mentioned above can be classified as a statically typed language with type inference. 
 There is a strong relation between functional programming and type inference which we will keep re-visiting from time to time.
 
-<a name="Hindley"><u>Hindley-Milner(HM) type inference</u></a>
+<h3><b><a name = "Hindley" class="inter-header">Hindley-Milner(HM) type inference</a></b></h3>
 
 We can talk about type inference for days but perhaps the most famous algorithm of them all is 
 [HM type inference algorithm](https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system){:target="_blank"}.
@@ -114,7 +114,7 @@ is a good website to start with.
 Hindley-Milner algorithm is also called as Global type inference. It reads the whole of the code and deduces the types. 
 Scala's type system works a little different as explained below.
 
-<a name="LocalvsGlobal"><u>Local vs Global type inference and sub-typing - Why scala choose local type inference</u></a>
+<h3><b><a name = "LocalvsGlobal" class="inter-header">Local vs Global type inference and sub-typing - Why scala choose local type inference</a></b></h3>
 
 Scala's follows a combination of sub-typing and local type inference. I tend to compare it with Haskell, since it one of the most famous 
 Functional Programming(F.P) paradigm language out there.
@@ -168,7 +168,7 @@ Systems do exist which combine these together, but to a programmer if there is a
 the compiler has to give meaningful error messages so that they can be fixed. In reality, this is very hard to do. 
 Continuous research is being done in this area to improve them.
 
-<a name="ScalaTypes"><u>A brief overview of scala's type system and subtyping</u></a>
+<h3><b><a name = "ScalaTypes" class="inter-header">A brief overview of scala's type system and subtyping</a></b></h3>
 
 As mentioned above a type system is made of pre-defined components of types and this forms the foundation of how scala infers them.
 
@@ -192,7 +192,7 @@ This makes Objected oriented programming much easier to handle.
 
 For more information you can visit the [scala docs](http://docs.scala-lang.org/tutorials/tour/unified-types.html){:target="_blank"}.
 
-<a name="Usage"><u>When to use type inference?</u></a>
+<h3><b><a name = "Usage" class="inter-header">When to use type inference?</a></b></h3>
 
 There is a fine line that divides dynamic typing (no types) and static typing with type inference. 
 As they say "all code should look like well written prose", it is important to know when to use them and when not to.
@@ -222,7 +222,7 @@ I would say it is a very non-intuitive one to get your head around.
 
 <i class="fa fa-hourglass-start space-right"></i> Stay tuned !! This is just the beginning.
 
-<a name="References"><u>References</u></a>
+<h3><b><a name = "References" class="inter-header">References</a></b></h3>
 
 - [University of washington - Programming Languages](https://courses.cs.washington.edu/courses/cse341/13wi/){:target="_blank"}
 - [Arizona State University - Principles of Programming Languages](https://www.youtube.com/playlist?list=PLOJWMozcY9B1NfDp_AJkJnFPaS7wOwEha){:target="_blank"}

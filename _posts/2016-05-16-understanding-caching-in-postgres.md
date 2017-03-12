@@ -28,7 +28,7 @@ While this post is mainly focused on postgres, it can be easily compared and und
 - [Optimize as you go](#Optimize)
 - [References](#References)
 
-<a name="CachePurpose"><u>What is a cache and why do we need one</u></a>
+<h3><b><a name = "CachePurpose" class="inter-header">What is a cache and why do we need one</a></b></h3>
 
 Different computer components operate at different speeds. We humans are extremely poor at understanding numbers at the scale that computers do.
 
@@ -64,7 +64,7 @@ To overcome this, postgres caches data in RAM which can greatly improve performa
 
 This general idea of a cache is common to almost all database systems.
 
-<a name="StorageAbs"><u>Understanding terminologies</u></a>
+<h3><b><a name = "StorageAbs" class="inter-header">Understanding terminologies</a></b></h3>
 
 Before we move forward, it is necessary to understand certain terminologies.
 
@@ -81,7 +81,7 @@ Regardless of the content, postgres has a storage abstraction called a page(8KB 
 
 This abstraction is what we will be dealing with in the rest of this post.
 
-<a name="Contents"><u>What is cached?</u></a>
+<h3><b><a name = "Contents" class="inter-header">What is cached?</a></b></h3>
 
 Postgres caches the following.
 
@@ -102,7 +102,7 @@ Postgres caches the following.
   
 We will explore how table data and indexes are cached in detail further in this post.
 
-<a name="MemoryAreas"><u>Memory areas</u></a>
+<h3><b><a name = "MemoryAreas" class="inter-header">Memory areas</a></b></h3>
 
 Postgres has several configuration parameters and understanding what they mean is really important.
 
@@ -113,7 +113,7 @@ Internally in the postgres source code, this is known as the NBuffers, and this 
 The shared_buffers is simply an array of 8KB blocks.Each page has metadata within itself to distinguish itself as mentioned above. Before postgres checks out the data from the disk,
 it first does a lookup for the pages in the shared_buffers, if there is a hit then it returns the data from there itself and thereby avoiding a disk I/O.
 
-<a name="LRU"><u>The LRU/Clock sweep cache algorithm</u></a>
+<h3><b><a name = "LRU" class="inter-header">The LRU/Clock sweep cache algorithm</a></b></h3>
 
 The mechanisms involved in putting data into a cache and evicting from them is controlled by a clock sweep algorithm.
 
@@ -121,7 +121,7 @@ It is built to handle OLTP workloads, so that almost all of the traffic are deal
 
 Let's talk about each action in detail.
 
-<u>Buffer allocation</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Buffer allocation
 
 Postgres is a process based system, i.e each connection has a native OS process of its own which is spawned from the postgres root process(previously called postmaster).
 
@@ -132,7 +132,7 @@ when the usage count is zero.
 
 Only if there are no buffers/slots free for a page, then it goes for buffer eviction.
  
-<u>Buffer eviction</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Buffer eviction
 
 Deciding which pages should be evicted from memory and written to disk is a classic computer science problem.
 
@@ -142,7 +142,7 @@ Postgres keeps track of page usage count, so if a page usage count is zero, it i
 
 Regardless of the nitty-gritty details, the cache algorithm by itself requires almost no tweaking and is much smarter than what people would usually think.
 
-<a name="DirtyPages"><u>Dirty pages and cache invalidation</u></a>
+<h3><b><a name = "DirtyPages" class="inter-header">Dirty pages and cache invalidation</a></b></h3>
 
 We were talking about select queries till now, what happens to DML queries?
 
@@ -157,7 +157,7 @@ which writes the so called dirty pages to disk periodically and controlled by a 
 
 This is the most common way of pages getting evicted from memory, the LRU eviction almost never happens in a typical scenario.
 
-<a name="CacheExplain"><u>Understanding caches from explain analyze</u></a>
+<h3><b><a name = "CacheExplain" class="inter-header">Understanding caches from explain analyze</a></b></h3>
 
 Explain is a wonderful way to understand what is happening under the hoods. It can even tell how much data blocks came from disk and how much came from shared_buffers
 i.e memory.
@@ -194,7 +194,7 @@ performance_test=# explain (analyze,buffers) select * from users order by userid
 
 It is very convenient this way to learn about how much is cached from a query perspective rather than fiddling with the internals of the OS/Postgres.
 
-<a name="SeqScans"><u>The case for sequential scans</u></a>
+<h3><b><a name = "SeqScans" class="inter-header">The case for sequential scans</a></b></h3>
 
 A sequential scan i.e when there is no index and postgres has to fetch all the data from disk are a problem area for a cache like this.
 
@@ -228,7 +228,7 @@ performance_test=# explain (analyze,buffers) select count(*) from users;
 
 We can see that exactly 32 blocks have moved into memory i.e 32 * 8 = 256 KB. This is explained in the [src/backend/storage/buffer/README](https://github.com/postgres/postgres/blob/master/src/backend/storage/buffer/README#L208){:target="_blank"}
 
-<a name="OSCaching"><u>Memory flow and OS caching</u></a>
+<h3><b><a name = "OSCaching" class="inter-header">Memory flow and OS caching</a></b></h3>
 
 Postgres as a cross platform database, relies heavily on the operating system for its caching.
 
@@ -244,7 +244,7 @@ Keep in mind that the OS caches data for the same reason we saw above, i.e why d
 
 We can classify the I/O as two types, i.e reads and writes. To put it even more simpler, data flows from disk to memory for reads and flows from memory to disk for writes.
 
-<u>Reads</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Reads
 
 For reads, when you consider the flow diagram above, the data flows from disk to OS cache and then to shared_buffers. We have already discussed how the pages will get
 pinned on to the shared_buffers until they get dirty/unpinned.
@@ -259,7 +259,7 @@ giving it too little is going to hurt performance.
 
 We will discuss more on optimization below.
 
-<u>Writes</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Writes
 
 Writes flow from memory to disk. This is where the concept of dirty pages come in.
 
@@ -268,7 +268,7 @@ Once a page is marked dirty, it gets flushed to the OS cache which then writes t
 As said above, if the OS cache size is less, then it cannot re-order the writes and optimize I/O. This is particularly important for a write heavy workload. So the OS cache size
 is important as well.
 
-<a name="Initial"><u>Initial configuration</u></a>
+<h3><b><a name = "Initial" class="inter-header">Initial configuration</a></b></h3>
 
 As with many database systems, there is no silver bullet configuration which will just work. PostgreSQL ships with a basic configuration tuned for wide compatibility rather than performance.
 
@@ -280,13 +280,13 @@ Once the default/startup configuration is set. We can do load/performance testin
 Keep in mind that the initial configuration is also tuned for availability rather than performance, it is better to always experiment and arrive at a config that is more
 suitable for the workload under consideration.
 
-<a name="Optimize"><u>Optimize as you go</u></a>
+<h3><b><a name = "Optimize" class="inter-header">Optimize as you go</a></b></h3>
 
 > If you cannot measure something, you cannot optimize it
 
 With postgres, there are two ways you can measure.
 
-<u> Operating system </u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Operating system
   
 While there is no general consensus on which platform postgres works best, I am assuming that you are using something in the linux family of operating systems. But the idea
 is kind of similar.
@@ -299,7 +299,7 @@ when measuring disk I/O. Just run the command `iotop` to measure writes/reads.
 This can give useful insights into how postgres is behaving under load i.e how much is hitting the disk and how much is from RAM which can be arrived based on the load
 being generated.
 
-<u> Directly from postgres </u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Directly from postgres
 
 It is always better to monitor something directly from postgres,rather than going through the OS route.
 
@@ -382,12 +382,10 @@ With postgres, there are several tools at our disposal for measuring performance
   This is an in built module that can actually load the data into shared_buffers/OS cache or both. If you think memory warm up is the problem, then this is pretty useful
   for debugging.
 
-
 There are several more, but I have listed the most popular and easy to use ones for understanding postgres cache and also in general. Armed with these tools, there
 are no more excuses for a slow database because of memory problems <i class="fa fa-smile-o fa-lg"></i>
 
-
-<a name="References"><u>References</u></a>
+<h3><b><a name = "References" class="inter-header">References</a></b></h3>
 
 - [Robert haas on shared and wal buffers](http://rhaas.blogspot.in/2012/03/tuning-sharedbuffers-and-walbuffers.html){:target="_blank"}
 - [Craig kerstiens - PG performance](http://www.craigkerstiens.com/2013/01/10/more-on-postgres-performance/){:target="_blank"}

@@ -38,7 +38,7 @@ So here is a list of things that you should adopt to make the best out of VCS. T
 - [Follow up/be updated with the best practices of the VCS that you are using](#FollowUp)
 
 
-<a name = "Distributed"><u>Use a distributed version control system</u></a>
+<h3><b><a name = "Distributed" class="inter-header">Use a distributed version control system</a></b></h3>
 
 Using a distributed VCS gives you many advantages over a centralized one and I am not going to write down all of the advantages since it has already been dealt with.
 Most of the open source projects such as Apache and others have already migrated to Git or some of the other systems and besides that migrating them is not a herculian task
@@ -53,13 +53,13 @@ Good reads on centralized vs distributed systems.
 - [A Stack overflow discussion](http://stackoverflow.com/questions/111031/comparison-between-centralized-and-distributed-version-control-systems){:target="_blank"}
 
  
-<a name = "Right-tools"><u>Knowledge of the tools</u></a>
+<h3><b><a name = "Right-tools" class="inter-header">Knowledge of the tools</a></b></h3>
 
 Different tools have different ways of using them. I have used Git and I find the command line to be much easier to work with, other developers might find IDE integration
 to be better. The important thing is they should understand their way thought it and master it. There are situations that I have faced where one developer was not comfortable
 with the IDE's integration with the VCS and practically all the files that he had experimenting with got committed.
 
-<a name ="Workflow"><u>Agree upon a common workflow</u></a>
+<h3><b><a name = "Workflow" class="inter-header">Agree upon a common workflow</a></b></h3>
 
 Workflows for version control are like coding standards for code. Agreeing upon a common one is very critical to the quality of the repository which makes maintenance easier.
 
@@ -68,7 +68,7 @@ production environment.
 
 Another [branching model](http://nvie.com/posts/a-successful-git-branching-model/){:target="_blank"} explained well.
 
-<a name ="UnnecessaryFiles"><u>Don't commit unnecessary files</u></a>
+<h3><b><a name = "UnnecessaryFiles" class="inter-header">Don't commit unnecessary files</a></b></h3>
 
 There are a long list of things that you don't want to commit, but following are a few commonly abused ones.
 
@@ -78,12 +78,12 @@ There are a long list of things that you don't want to commit, but following are
   Stop putting crap inside your repo, it is not a garbage bin.
 - Formatting/Whitespace changes - This should be done when setting up the environment. Most IDE's/code editors have these built in.
 
-<a name = "BigCommits"><u>Avoid big commits, commit early and commit often</u></a>
+<h3><b><a name = "BigCommits" class="inter-header">Avoid big commits, commit early and commit often</a></b></h3>
 
 A commit can be regarded as a single piece of work, there is nothing wrong in splitting two commits if it makes sense to have them separate. Commits are not just 
 for pushing them inside the repository, but also to help retrieve/rollback when it is necessary.
 
-<a name = "CommitMessages"><u>Good commit messages</u></a>
+<h3><b><a name = "CommitMessages" class="inter-header">Good commit messages</a></b></h3>
 
 Commit messages are like documentation for code. They are always better to look at instead of staring through gigantic diff files. They are like history, whenever something
 goes wrong, which often happens this is the first place people look at.
@@ -105,29 +105,29 @@ There’s a saying (source unknown), along the lines of “Write every commit me
 
 Do not turn people into axe murderers or motivate someone who is already an axe-murderer.
 
-<a name = "CleanHistory"><u>Keep commit history clean</u></a>
+<h3><b><a name = "CleanHistory" class="inter-header">Keep commit history clean</a></b></h3>
 
 This goes hand in hand with commit messages. Sometimes we end up writing lot of commit messages and it is better to prune them.
 
 Git has something like rebasing to [squash commits](http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html){:target="_blank"}. There are similar ones for 
 others as well.
 
-<a name = "SmallerRepos"><u>Prefer smaller repositories instead of one giant one</u></a>
+<h3><b><a name = "SmallerRepos" class="inter-header">Prefer smaller repositories instead of one giant one</a></b></h3>
 
 Smaller repos are easier to maintain and are generally faster.Something like having the front-ent part of a codebase in a different repo and the backend in another one.
 That was an obvious example, but you get the idea.
 
-<a name = "VCSInternals"><u>Never mess with the internals of a VCS </u><a>
+<h3><b><a name = "VCSInternals" class="inter-header">Never mess with the internals of a VCS</a></b></h3>
 
 As the title says it all, never mess with the internals of a VCS. You can experiment all you want in a personal fun project. But in a team, it can lead to chaos.
 
 Remember, there is always an established way of doing it instead of doing hacks and workarounds.
 
-<a name = "FollowUp"><u>Follow up/be updated with the best practices of the VCS that you are using</u></a>
+<h3><b><a name = "FollowUp" class="inter-header">Follow up/be updated with the best practices of the VCS that you are using</a></b></h3>
 
 I have not covered all of them, and there might be certain things that are specific to the VCS that you are using.
 
-<u>Learning materials</u>
+<h3>Learning materials</h3>
 
 - There is a free book called [Git SCM](https://git-scm.com/book/en/v2){:target="_blank"} that is pretty handy. Works as a good reference as well.  
 - [Gitready](http://gitready.com/){:target="_blank"} is a web site which gives excellent tips and tricks.

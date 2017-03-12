@@ -32,7 +32,7 @@ you can check it out [here](http://www.itran.cc/2017/03/05/yin-du-peng-you-shou-
 - [The Override keyword](#Override)
 - [When to use abstract classes](#WhenToUseAbs)
 
-<a name="Intro"><u>Introduction</u></a>
+<h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
 The concept of a class in scala is very similar to their counterpart in java. But there are lot of differences in the functionality they provide.
 
@@ -80,7 +80,7 @@ object RunExample extends App{
 
 {% endhighlight %}
 
-<a name="AccessVisibility"><u>Access and visibility</u></a>
+<h3><b><a name = "AccessVisibility" class="inter-header">Access and visibility</a></b></h3>
 
 Previous example had the default access modifier. Let's look at other modifiers in detail.
 
@@ -124,7 +124,7 @@ The [official documentation](http://www.scala-lang.org/files/archive/spec/2.11/0
 
 You would find that, the scala access levels are slightly better in contrast to java.
 
-<a name="Constructors"><u>Constructors</u></a>
+<h3><b><a name = "Constructors" class="inter-header">Constructors</a></b></h3>
 
 Next obvious thing to understand in a class would be constructors. Unlike java, there are some unique ways to create constructors.
 
@@ -173,7 +173,7 @@ We cannot call the variables directly as they resort to `private val` by default
 
 ![Class creation error](/images/class_creation_error.png)
 
-<a name="FieldParams"><u>Class parameters and Class fields</u></a>
+<h3><b><a name = "FieldParams" class="inter-header">Class parameters and Class fields</a></b></h3>
 
 It is important to understand that for a class, there are two components i.e class parameters and class fields.
 
@@ -190,7 +190,7 @@ Class fields on the other hand can be accessed (based on their access level) out
 
 This distinction is important and it forms the basis of the following discussions.
 
-<a name="PromotingParams"><u>Promoting class parameters</u></a>
+<h3><b><a name = "PromotingParams" class="inter-header">Promoting class parameters</a></b></h3>
 
 The process of promoting class parameters is nothing but changing their scope for usage beyond the constructor.
 
@@ -212,7 +212,7 @@ class Person (var name:String,var age:Int) {}
 
 Even though the classes do not have a body, instances can still be created and consumed. 
 
-<a name="Direct"><u>Direct member access</u></a>
+<h3><b><a name = "Direct" class="inter-header">Direct member access</a></b></h3>
 
 Changing the parameters to val/var enables us to directly access the class variables, without a getter/setter.
 
@@ -238,11 +238,11 @@ Designing things like this is a bad idea, but it is something that can be done.
 
 This gives rise to two ways in which a class can be designed i.e mutable/immutable.
 
-<a name="ImmutabilityAndMutability"><u>Immutable objects and Mutable objects</u></a>
+<h3><b><a name = "ImmutabilityAndMutability" class="inter-header">Immutable objects and Mutable objects</a></b></h3>
 
 With val, we can have immutable objects.
 
-<u>Immutable objects</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Immutable objects
 
 We can declare the variables as immutable in class constructors.
 
@@ -268,7 +268,7 @@ Once the values are declared, it cannot be re-assigned again, this is the defaul
 Scala has something called `case classes` which are specifically built for handling situations like immutable classes along with several other neat features.
 We will be exploring cases classes in a future tutorial.
 
-<u>Mutable objects</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Mutable objects
 
 {% highlight scala %}
 class Person (var name:String,var age:Int) {
@@ -303,7 +303,7 @@ object RunExample extends App{
 
 {% endhighlight %}
 
-<a name="WhenToUse"><u>When to use Getters and Setters</u></a>
+<h3><b><a name = "WhenToUse" class="inter-header">When to use Getters and Setters</a></b></h3>
 
 There are two key decisions to be made when designing a class.
 
@@ -325,7 +325,7 @@ change/access it with the variable name itself. This greatly simplifies code and
 
 The next section describes on how to create such a getter/setter with a somewhat obscure syntax.
 
-<a name="ScalaStyleGetter"><u>Scala style Getters and Setters</u></a>
+<h3><b><a name = "ScalaStyleGetter" class="inter-header">Scala style Getters and Setters</a></b></h3>
 
 Scala has a different way of creating getters/setters although the java style is still supported as we saw in the first example.
 
@@ -382,7 +382,7 @@ Scala plugin in Intellij can do all the [code generation](https://www.jetbrains.
  
 Getters and setters in general are viewed as second class citizens since scala encourages immutable objects.  
 
-<a name="AuxiliaryConstructors"><u>Auxiliary constructors</u></a>
+<h3><b><a name = "AuxiliaryConstructors" class="inter-header">Auxiliary constructors</a></b></h3>
 
 In a real world scenario we often need to have two or three constructors with different parameters.
 
@@ -455,7 +455,7 @@ class Person (name:String,age:Int,phone:String) {
 Please note that the all of the auxiliary constructors have to now include the phone as a parameter.
 This might seem as an overhead, but it is actually good design.
 
-<a name="DefaultConstructorValues"><u>Default constructor values</u></a>
+<h3><b><a name = "DefaultConstructorValues" class="inter-header">Default constructor values</a></b></h3>
 
 Auxiliary constructors are good for implementing polymorphic behaviour, i.e different constructors can exhibit different flows in the class execution/functionality.
 
@@ -504,7 +504,7 @@ Listed example will work correctly and would print the default values Unnamed,-1
 
 This is a pretty handy way of declaring pre-defined class values.
 
-<a name="AbsClasses"><u>Abstract classes</u></a>
+<h3><b><a name = "AbsClasses" class="inter-header">Abstract classes</a></b></h3>
 
 Abstract classes in scala are similar to java, but they are superseded by a concept called `traits`. We will explore traits in a later tutorial.
 
@@ -542,7 +542,7 @@ If we extend this to another class, we need to implement the three methods `getA
 
 We may choose to override/not override the `getName` method since it is already implemented.
 
-<a name="Override"><u>The Override keyword</u></a>
+<h3><b><a name = "Override" class="inter-header">The Override keyword</a></b></h3>
 
 In Java when we need to override a method from a parent class we need to do anything special. For clarity we can use the `@Override` annotation.
 
@@ -556,7 +556,7 @@ We can add a `override` keyword in front of the method to work as expected.
 
 ![Override no error](/images/override_no_error.png)
 
-<a name="WhenToUseAbs"><u>When to use abstract classes</u></a>
+<h3><b><a name = "WhenToUseAbs" class="inter-header">When to use abstract classes</a></b></h3>
 
 As I said before, abstract classes were superseded by `traits`, so in what situation we need to use Abstract classes ?
 

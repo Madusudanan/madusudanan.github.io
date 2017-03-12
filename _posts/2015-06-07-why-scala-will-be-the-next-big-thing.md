@@ -52,8 +52,7 @@ Scala - The Good Stuff !!
 - <a href="#DistributedParallelComputing">Built for Concurrent/Parallel computing</a>
 - <a href="#SupportAndEcosytem">Support and Ecosystem</a>
 
-
-<a name = "MultiParadigm"><u>Multi Paradigm</u></a>
+<h3><b><a name = "MultiParadigm" class="inter-header">Multi Paradigm</a></b></h3>
 
 Scala [orthogonally combines](http://stackoverflow.com/questions/3949618/are-fp-and-oo-orthogonal){:target="_blank"} functional programming and object oriented programming 
 which no other language has done till date or at least not to the level of Scala on the JVM. 
@@ -70,7 +69,7 @@ But why use functional programming in the first place? Below is an excellent tal
 
 [![Martin Odersky, "Working Hard to Keep It Simple"](https://img.youtube.com/vi/3jg1AheF4n0/0.jpg)](https://youtu.be/3jg1AheF4n0){:target="_blank"}
 
-<a name = "RunsOnJVM"><u>Runs on the JVM</u></a>
+<h3><b><a name = "RunsOnJVM" class="inter-header">Runs on the JVM</a></b></h3>
 
 Scala was designed to run on the JVM platform. Despite several people ranting about JVM for several reasons, it is a very powerful platform 
 which developers can leverage. Making scala run in its own environment would have been re-inventing the wheel. The designers of scala took a very good decision in this aspect.
@@ -78,7 +77,7 @@ This has several advantages, mainly being able to directly use Java libraries an
 
 This where Scala's close counterpart [OCaml](https://ocaml.org/){:target="_blank"} loses out. Although things are improving, there are many libraries that are missing.
 
-<a name = "StaticallyTyped"><u>Statically typed</u></a>
+<h3><b><a name = "StaticallyTyped" class="inter-header">Statically typed</a></b></h3>
 
 Yes, scala is statically typed. Why is this even mentioned as an advantage? I encourage you to read [this](/blog/static-vs-dynamic-typing-why-you-should-care) post that explains
 the advantages of static typing.
@@ -87,13 +86,13 @@ the advantages of static typing.
 There is a [typed closure](http://typedclojure.org/){:target="_blank"} version, I have not tried that yet so I cannot comment on it. 
 Until then ill go with Scala.
 
-<a name = "DistributedParallelComputing"><u>Built for Concurrent/Parallel computing</u></a>
+<h3><b><a name = "DistributedParallelComputing" class="inter-header">Built for Concurrent/Parallel computing</a></b></h3>
 
 As [Moore's law](http://en.wikipedia.org/wiki/Moore%27s_law){:target="_blank"} draws near, the need for concurrency is greater than ever. 
 Companies today are looking out for scaling out rather than scaling up and distributed systems come more into play. 
 With these things in mind, Scala was built to handle concurrency at a more fundamental level using Functional programming.
 
-<a name = "SupportAndEcosytem"><u>Support and Ecosystem</u></a>
+<h3><b><a name = "SupportAndEcosytem" class="inter-header">Support and Ecosystem</a></b></h3>
 
 Scala has gained extensive support. Companies including Linkedin, Twitter, Coursera, Foursquare etc have ported majority of their code bases to Scala. 
 There is a commercial company called [typesafe](https://www.typesafe.com/){:target="_blank"}, 
@@ -117,7 +116,7 @@ The Shortcomings !!
 - <a href="#Popularity">Not yet popular - Well really?</a>
 
 
-<a name = "NotPurelyFunctional"><u>Not purely functional</u></a>
+<h3><b><a name = "NotPurelyFunctional" class="inter-header">Not purely functional</a></b></h3>
 
 If you are familiar with the functional programming world, then you can find lot of people arguing that Scala is not purely functional and is ugly at doing some functional
 programming constructs. This is not entirely true, while Scala is not a pure functional language, it was not intended to either, it has the right mix of constructs for the real
@@ -125,12 +124,12 @@ world implementations. I find the programming constructs comparison a little too
 
 But nonetheless, if you are looking for a pure functional language, then you might want to look elsewhere.
 
-<a name = "LearningCurve"><u>Larger learning curve</u></a>
+<h3><b><a name = "LearningCurve" class="inter-header">Larger learning curve</a></b></h3>
 
 This is common for any new language, but I would admit that it has a steeper learning curve to it. Fortunately things have improved and there are many resources that I have listed
 separately below that can be leveraged to overcome this.
 
-<a name = "Popularity"><u>Not yet popular - Well really?</u></a>
+<h3><b><a name = "Popularity" class="inter-header">Not yet popular - Well really?</a></b></h3>
 
 You might be surprised that after mentioning many big names that popularity is listed as a shortcoming. Well yes, the software industry is slow to adopt new technologies, primarily because
 companies don't really feel comfortable in the cost of migration and developers who don't adapt fearing losing their jobs. Scala is not yet as popular as Java and other languages.

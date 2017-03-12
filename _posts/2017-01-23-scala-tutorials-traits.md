@@ -25,7 +25,7 @@ This is part 8 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 - [Conclusion](#Conclusion)
 
 
-<a name = "Intro"><u>Introduction to traits</u></a>
+<h3><b><a name = "Intro" class="inter-header">Introduction to traits</a></b></h3>
 
 Traits are a new concept to scala just like case classes are. They complement to the already existing features in OOP.
 
@@ -36,7 +36,7 @@ traits do not have constructors.
 
 Best way to understand them is via examples. So let's get our hands dirty.
 
-<a name = "TraitSyntax"><u>A basic trait - Syntax explanation</u></a>
+<h3><b><a name = "TraitSyntax" class="inter-header">A basic trait - Syntax explanation</a></b></h3>
 
 Declaring a trait begins with the `trait` keyword and then the trait name, followed by the body/content of the trait.
 
@@ -53,7 +53,7 @@ trait Book {
 {% endhighlight %}
 
 
-<a name = "JavaAbsVariables"><u>Concept of abstract variables in java</u></a>
+<h3><b><a name = "JavaAbsVariables" class="inter-header">Concept of abstract variables in java</a></b></h3>
 
 If you are coming from a java background, then the above example might confuse you. In java, there is no such thing as abstract variable in java.
 
@@ -75,7 +75,7 @@ As these concepts are complex they require additional posts of their own, we wil
 
 Since scala strives to see methods and values as the same using uniform access principle i.e everything is a value type we have abstract variables as well.
 
-<a name = "TypeAnnotations"><u>Type annotations for abstract variables</u></a>
+<h3><b><a name = "TypeAnnotations" class="inter-header">Type annotations for abstract variables</a></b></h3>
 
 Abstract variables should have their [types annotated](/blog/scala-tutorials-part-1-getting-started/#TypeAnnotations) regardless of whether they are in traits or in abstract classes. 
 I should have explained this concept when I was explaining scala classes but since traits also use them I thought I will explain it here.
@@ -121,7 +121,7 @@ object RunExample extends App  {
 
 It would print `()` but it doesn't make sense to annotate a variable with a `Unit` type.
 
-<a name = "AbsConcrete"><u>Mixing abstract and concrete members</u></a>
+<h3><b><a name = "AbsConcrete" class="inter-header">Mixing abstract and concrete members</a></b></h3>
 
 So far we have seen only abstract variables. In reality we would use a mixture of abstract variables,methods and/or concrete variables/methods.
 
@@ -153,7 +153,7 @@ As we saw in the methods tutorial, if we omit the part after the `=` then it bec
 
 Notice that type inference works for concrete variables since it is known at compile time and type annotation is optional.
 
-<a name = "JavaSyntaxDifference"><u>Java syntax differences</u></a>
+<h3><b><a name = "JavaSyntaxDifference" class="inter-header">Java syntax differences</a></b></h3>
 
 In java, we have interfaces and abstract classes and we extend abstract classes/classes and implement interfaces.
 
@@ -172,13 +172,13 @@ Scala does not have both interface and the implements keyword.
 
 There are subtle differences in syntax and there is also a new keyword called `with` which we will explore below.
 
-<a name = "ExtendingTraits"><u>Extending traits</u></a>
+<h3><b><a name = "ExtendingTraits" class="inter-header">Extending traits</a></b></h3>
 
 Similar to java, scala has the `extends` keyword which can be used for extending classes and traits.
 
 Traits can be extended by other traits,abstract classes,concrete classes and case classes as well.
 
-<u>Traits extending traits</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Traits extending traits
 
 Since traits cannot be instantiated, it is not necessary that the abstract members have to implemented.
 
@@ -206,7 +206,7 @@ trait ScienceBook extends Book{
 
 {% endhighlight %}
 
-<u>Abstract classes extending traits</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Abstract classes extending traits
 
 Abstract classes can also extend traits.
 
@@ -222,7 +222,7 @@ abstract class ScienceBook extends Book{
 
 {% endhighlight %}
 
-<u>Classes extending traits</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Classes extending traits
 
 Since classes are concrete i.e instances can be created, the abstract members of the trait should be implemented.
 
@@ -270,7 +270,7 @@ class ScienceBook extends Book{
 
 Since case class inheritance is a complex topic, I will be explaining that in a dedicated tutorial.
 
-<a name = "WithKeyword"><u>The with keyword</u></a>
+<h3><b><a name = "WithKeyword" class="inter-header">The with keyword</a></b></h3>
 
 Since there is no concept of interfaces and implements keyword in scala, how would you go about extending a trait and then a class
 at the same time?
@@ -324,7 +324,7 @@ class ScienceBook extends Product with Book{
 
 {% endhighlight %}
 
-<a name = "Mixin"><u>Mixin class composition</u></a>
+<h3><b><a name = "Mixin" class="inter-header">Mixin class composition</a></b></h3>
 
 Now imagine that there are situations where we need not extend `Product` class and situations where we also need to extend.
 
@@ -373,7 +373,7 @@ classes and traits in a pretty neatly laid out way.
 
 The [scala doc article](http://docs.scala-lang.org/tutorials/tour/mixin-class-composition.html){:target="_blank"} on understanding these mixins is also good.
 
-<a name = "Conclusion"><u>Conclusion</u></a>
+<h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
 
 Traits are more related to abstract classes than to interfaces. Main difference being traits do not have a constructor.
 Whenever you need to have a constructor for your OOP logic, then an abstract class will suit better, for all else traits are much better.

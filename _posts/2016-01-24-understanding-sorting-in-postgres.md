@@ -20,7 +20,7 @@ This blog post mainly focuses on postgres(a kick ass relational database), but i
 - [Using indexes for sorting](#Indexes)
 - [Optimization](#Optimization)
 
-<a name="SettingStage"><u>Setting the stage</u></a>
+<h3><b><a name = "SettingStage" class="inter-header">Setting the stage</a></b></h3>
 
 Below are the details of my setup.
 
@@ -36,7 +36,7 @@ Below are the details of my setup.
 
 <i class="fa fa-bell space-right"></i> Terminologies : If you are not familiar with any of the technical terms mentioned here, refer [Postgres Guide](http://postgresguide.com/){:target="_blank"}.
 
-<a name="DiskMerge"><u>Disk merge sort - When data does not fit in memory</u></a>
+<h3><b><a name = "DiskMerge" class="inter-header">Disk merge sort - When data does not fit in memory</a></b></h3>
 
 If we consider a query like below,
 
@@ -67,7 +67,7 @@ is what is used by postgres for sorting, joins etc.,
 
 So when we say that the data does not fit in memory, it means that work_mem is too low.
 
-<a name="QuickSort"><u>Quick sort - Completely in memory</u></a>
+<h3><b><a name = "QuickSort" class="inter-header">Quick sort - Completely in memory</a></b></h3>
 
 If we bump up worker memory(say 300MB) and change the query slightly as follows.
 
@@ -95,7 +95,7 @@ quick sort, you can lookup the source code to understand in much deeper detail.
 
 This will definitely be faster than external merge, since all of the data is brought into memory and then the sorting is done in memory itself.
 
-<a name="Heapsort"><u>Heapsort - Sorting with a limit</u></a>
+<h3><b><a name = "Heapsort" class="inter-header">Heapsort - Sorting with a limit</a></b></h3>
 
 Let's look at a real life use case query.
 
@@ -135,7 +135,7 @@ Normally, unless you have very wide rows and you are selecting more rows that ca
 There won't be much speed difference between a quicksort and a heap-sort, but what will be significant is the memory usage which can be seen clearly from both the query execution plans. 
 When allocating memory is costly i.e when you have lesser free memory to allocate immediately, often happens when your machine is not scaling well to the memory needs, then there can be huge differences in speed.
 
-<a name="Indexes"><u>Using indexes for sorting</u></a>
+<h3><b><a name = "Indexes" class="inter-header">Using indexes for sorting</a></b></h3>
 
 All of the algorithms above involve a great deal of overhead that is common in all databases i.e the disk seek. No matter what algorithm is used, it has to first fetch all of the rows and then 
 sort the data. Disk as we all know is probably the slowest and most time consuming component in a computing system.
@@ -206,7 +206,7 @@ performance_test=# explain analyze Select userid,name from users order by name d
  (5 rows)
 {% endhighlight %}
 
-<a name="Optimization"><u>Optimization</u></a>
+<h3><b><a name = "Optimization" class="inter-header">Optimization</a></b></h3>
 
 I have listed four methods in which postgres does sorting.
 
@@ -217,7 +217,7 @@ I have listed four methods in which postgres does sorting.
 
 It is important to understand that these algorithms by themselves are not slow. Postgres just uses the best algorithm for the job.
 
-<u>Optimizing Order by</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Optimizing Order by
 
 - First step is to use an index. Almost always this is the rule of thumb.
 - Check if your query has a limit clause. It makes no sense to order and select all of the rows in the table.
