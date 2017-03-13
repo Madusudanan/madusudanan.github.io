@@ -69,14 +69,10 @@ We have two variables `name` and `age` with getters and setters which can be acc
 
 {% highlight scala %}
 
-object RunExample extends App{
-
   val personObj = new Person
 
   println(personObj.getName)
   println(personObj.getAge)
-
-}
 
 {% endhighlight %}
 
@@ -152,14 +148,10 @@ They can be consumed as below.
 
 {% highlight scala %}
 
-object RunExample extends App{
-
   val personObj = new Person("John",-1)
 
   println(personObj.getName)
   println(personObj.getAge)
-
-}
 
 {% endhighlight %}
 
@@ -220,15 +212,10 @@ The above example with either val/var can be consumed as below.
 
 {% highlight scala %}
 
-object RunExample extends App{
-
   val example = new Person("Test",20)
 
   println(example.name)
   println(example.age)
-
-
-}
 
 {% endhighlight %}
 
@@ -289,17 +276,11 @@ We can then declare an instance and change the name directly.
 
 {% highlight scala %}
 
-
-object RunExample extends App{
-
   val p = new Person("Rob",43)
-
   p.name = "Jacob"
 
   //Prints the changed name
   println(p.name)
-
-}
 
 {% endhighlight %}
 
@@ -352,15 +333,12 @@ This can be consumed as below.
 
 {% highlight scala %}
 
-object RunExample extends App{
-
   val p = new Person
 
   p.age = 20
 
   println(p.age)
 
-}
 
 {% endhighlight %}
 
@@ -487,16 +465,11 @@ We can then consumer this class without declaring value to one or even all of th
 
 {% highlight scala %}
 
-object RunExample extends App{
-
   val example = new Person()
 
   println(example.getName())
   println(example.getAge())
   println(example.getPhone())
-
-
-}
 
 {% endhighlight %}
 

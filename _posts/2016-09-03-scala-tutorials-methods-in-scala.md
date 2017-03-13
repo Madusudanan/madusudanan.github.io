@@ -314,8 +314,6 @@ Scala uses Call by value strategy by default because in a general use case it is
 Below is a real world example.
 
 {% highlight scala %}
-object FunctionCallType extends App {
-
 
   println(callByValue(2 + 2))
   println(callByName(2 + 2))
@@ -331,7 +329,6 @@ object FunctionCallType extends App {
     value + 1
   }
   
-}
 {% endhighlight %}
 
 The `=>` is used to depict that the variable should be called by name.

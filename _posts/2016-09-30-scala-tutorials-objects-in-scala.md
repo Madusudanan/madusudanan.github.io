@@ -289,7 +289,7 @@ Since there is no static keyword in scala, lets dig a little bit further to unde
 We know that there are two ways to create a runnable application in scala. One would be using the main method inside of an object and other would by
 extending the `App` trait. Let's look at the decompiled versions of both.
 
-<u>Object extending App trait</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Object extending App trait
 
 Actual Code :
 
@@ -347,7 +347,7 @@ Decompiled :
 
 We can see that there is a `public static void main` method created.
 
-<u>Object with main method</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Object with main method
 
 Actual Code : 
 
@@ -385,7 +385,7 @@ does not really apply to classes.
 
 Let's see what happens if we try to create a scala application with class as runnable.
 
-<i class="fa fa-hand-o-right space-right" aria-hidden="true"></i> Class with main method
+<i class="fa fa-hashtag" aria-hidden="true"></i> Class with main method
 
 Actual code :
 
@@ -421,7 +421,7 @@ Decompiled :
 
 The generated main method is not static and hence it cannot be run.
 
-<u>Class extending the App trait</u>
+<i class="fa fa-hashtag" aria-hidden="true"></i> Class extending the App trait
 
 Actual Code : 
 

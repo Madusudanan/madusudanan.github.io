@@ -108,14 +108,10 @@ The `Unit` type makes no sense when applied to variables and hence the compiler 
 We can however assign `Unit` as a type to a variable.
 
 {% highlight scala %}
-
-object RunExample extends App  {
-  
+ 
   val id : Unit = Unit
 
   println(id)
-
-} 
 
 {% endhighlight %}
 
@@ -351,8 +347,6 @@ Next during instance declaration we can now extend the product trait with a diff
 
 {% highlight scala %}
 
-object Runnable extends App {
-
   //Extension with mixin
   val scBook = new ScienceBook() with Product {
     override val prodID: Int = 1000
@@ -361,8 +355,6 @@ object Runnable extends App {
   
   //Original class instance
   val scBookWithoutProduct = new ScienceBook()
-
-}
 
 {% endhighlight %}
 

@@ -238,8 +238,6 @@ and does not change the passed in value.
 
 {% highlight scala %}
 
-object Runnable extends App {
-
   val init = 10
 
   val x = math.sin(init)
@@ -247,9 +245,6 @@ object Runnable extends App {
   println(x)
   //init does not change
   println(init)
-
-
-}
 
 {% endhighlight %}
 
@@ -272,15 +267,11 @@ We can take code from the map reduce example as a good example of abstraction.
 
 {% highlight scala %}
 
-object Runnable extends App {
-
   val x = List(10,20,30,40)
 
   val y = x.map( i => i* 3)
 
   println(y)
-
-}
 
 {% endhighlight %}
 

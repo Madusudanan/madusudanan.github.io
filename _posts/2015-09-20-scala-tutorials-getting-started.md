@@ -125,8 +125,6 @@ Let's look some sample code below, to help us understand better.
 
 {% highlight scala %}
 
-class Test {
-  def main (args: Array[String]) {
     var myVar = 10
     //Works fine
     myVar = myVar + 10
@@ -135,8 +133,6 @@ class Test {
     //Will Result in compilation error
     //Reassignment to val
     myNum = myNum + 10
-  }
-}
 
 {% endhighlight %}
 
@@ -409,12 +405,8 @@ We could have taken the same java route using type casting at run time.
 
 {% highlight scala %}
 
-object Demo extends App{
-
   val x = new Object().asInstanceOf[Byte]
   
-}
-
 {% endhighlight %}  
 
 In the above case, you can observe that it does not throw an error at compile time and it will result in the same exception stack trace i.e `java.lang.ClassCastException` at run time.

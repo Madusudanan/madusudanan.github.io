@@ -365,16 +365,11 @@ In scala, since everything is an object and also the operators by themselves are
 
 {% highlight scala %}
 
-object Runnable extends App{
-
-
   val x = BigInt("92839283928392839239829382938")
 
   val y = BigInt("19020930293293209302932309032")
 
   println(x+y)
-
-}
 
 {% endhighlight %}  
 
@@ -396,9 +391,6 @@ We will explore some of the below.
 
 {% highlight scala %}
 
-object Runnable extends App{
-
-
   val IntegerType = 20
   val DoubleType = 20.0
   val LongType : Long = 20
@@ -408,9 +400,6 @@ object Runnable extends App{
   println(DoubleType.toInt)
   println(LongType.toShort)
   println(FloatType.toDouble)
-
-
-}
 
 {% endhighlight %}  
 

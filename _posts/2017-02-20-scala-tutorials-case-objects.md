@@ -64,15 +64,10 @@ We can verify that it is `Serializable` with the below code example.
 
 {% highlight scala %}
 
-object Runnable extends App  {
-
   //Will print false
   println(SerializationExample.isInstanceOf[Serializable])
   //Will print true
   println(CaseObjectSerializationExample.isInstanceOf[Serializable])
-
-
-}
 
 object SerializationExample {
 
@@ -89,15 +84,10 @@ If we want the regular `Object` to become serializable then it can extend the `S
 
 {% highlight scala %}
 
-object Runnable extends App  {
-
   //Will print true since it extends the Serializable trait
   println(SerializationExample.isInstanceOf[Serializable])
   //Will print true
   println(CaseObjectSerializationExample.isInstanceOf[Serializable])
-
-
-}
 
 object SerializationExample extends Serializable{
 

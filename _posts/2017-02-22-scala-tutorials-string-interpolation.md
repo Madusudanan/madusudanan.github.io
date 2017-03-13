@@ -54,8 +54,6 @@ Let's see how we do the same thing with string interpolation.
 
 {% highlight scala %}
 
-object RunExample extends App  {
-
   val name = "John"
   val weight = 154
   val unit = "Pounds"
@@ -65,9 +63,6 @@ object RunExample extends App  {
 
   //Interpolation
   println(s"$name weighs $weight $unit")
-
-
-}
 
 {% endhighlight %}
 
@@ -112,8 +107,6 @@ We can combine arithmetic operations with interpolation as follows.
 
 {% highlight scala %}
 
-object Runnable extends App  {
-
   val name = "John"
   val weight = 154
   val unit = "Pounds"
@@ -123,9 +116,6 @@ object Runnable extends App  {
 
 
   println(s"$name2 weighs ${weight2 - weight} $unit more than $name ")
-
-
-}
 
 {% endhighlight %}
 
@@ -150,13 +140,9 @@ The format interpolator is similar to the `printf` command in the C language.
 
 {% highlight scala %}
 
-object RunExample extends App  {
-
   val height = 1.9d
   val name = "James Sawyer"
   println(f"$name%s is $height%2.2f meters tall")
-
-}
 
 {% endhighlight %}
 
@@ -170,8 +156,6 @@ If our need is just printing to the console we can just use the `printf` method.
 
 {% highlight scala %}
 
-object RunExample extends App  {
-
   val height = 1.9d
   val name = "James Sawyer"
 
@@ -180,9 +164,6 @@ object RunExample extends App  {
 
   //C Style abstraction over java PrintStream
   printf("%s is %2.2f meters tall",name,height)
-
-
-}
 
 {% endhighlight %}
 
@@ -195,8 +176,6 @@ The raw interpolator is pretty similar to the standard one, except that literals
 
 {% highlight scala %}
 
-object RunExample extends App {
-
   val height = 1.9d
 
   val name = "James Sawyer"
@@ -207,8 +186,6 @@ object RunExample extends App {
   // \t is just printed as a string
   println(raw"$name is \t $height meters tall")
 
-
-}
 
 {% endhighlight %}
 

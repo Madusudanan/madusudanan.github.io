@@ -104,16 +104,10 @@ use of the plus method to add them together.
 
 {% highlight scala %}
 
-object Runnable extends App  {
-
-
   val a = ComplexNumber(2, 5)
   val b = ComplexNumber(1, -3)
 
   val c = a.+(b)
-
-
-}
 
 {% endhighlight %}
 
@@ -121,18 +115,12 @@ Using infix notation we can call the method `+` without using the dot.
 
 {% highlight scala %}
 
-object Runnable extends App  {
-
-
   val a = ComplexNumber(2, 5)
   val b = ComplexNumber(1, -3)
 
   val c = a.+(b)
   
   val d = a + b
-
-
-}
 
 {% endhighlight %}
 
@@ -142,25 +130,17 @@ If we don't have the infix notation option then we would have deal with the belo
 
 {% highlight scala %}
 
-object Runnable extends App  {
-  
   val dotNotation = ComplexNumber(10,7).+(ComplexNumber(12,44)).+(ComplexNumber(55,4))
   
-}
-
 {% endhighlight %}
 
 Life is much more simpler with infix notation.
 
 {% highlight scala %}
 
-object Runnable extends App  {
-
   val dotNotation = ComplexNumber(10,7).+(ComplexNumber(12,44)).+ (ComplexNumber(55,4))
 
   val infixNotation = ComplexNumber(10,7) + ComplexNumber(12,44) + ComplexNumber(55,4)
-
-}
 
 {% endhighlight %}
 
@@ -195,13 +175,9 @@ If we gave the method a dummy parameter of the `Unit` type as below.
 
 {% highlight scala %}
 
-object Runnable extends App  {
-
   val a = new A
   a x
   println("b")
-
-}
 
 class A {
 
@@ -219,13 +195,9 @@ So it is better to follow the regular dot notation and avoid infix for the above
 
 {% highlight scala %}
 
-object Runnable extends App  {
-
   val a = new A
   a.x
   println("b")
-
-}
 
 class A {
 
@@ -245,13 +217,9 @@ As always, an example speaks more than words.
 
 {% highlight scala %}
 
-object RunExample extends App  {
-
   val list = List(1,2,3,4)
 
   println(list mkString "|")
-
-}
 
 {% endhighlight %}
 
@@ -261,8 +229,6 @@ If there is more than one argument, then it needs to be wrapped up to into a par
 
 {% highlight scala %}
 
-object RunExample extends App  {
-
   val string = "Hi there"
   
   //Wrong - Will result in compilation error
@@ -270,8 +236,6 @@ object RunExample extends App  {
   
   //Correct
   string substring (1,3)
-
-}
 
 {% endhighlight %}
 

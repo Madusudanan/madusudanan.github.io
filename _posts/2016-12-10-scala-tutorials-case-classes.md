@@ -55,11 +55,7 @@ Case classes can be created without using the new keyword.
 
 {% highlight scala %}
 
-object RunExample extends App{
-
   val x = Book(100,"Stephen hawking's : A brief history of time",9788370017361L)
-
-}
 
 {% endhighlight %}
 
@@ -73,15 +69,11 @@ Variables can be accessed similar to their class counterparts.
 
 {% highlight scala %}
 
-object RunExample extends App{
-
   val book = Book(100,"Stephen hawking's : A brief history of time",9788370017361L)
 
   println(book.id)
   println(book.title)
   println(book.isbn)
-
-}
 
 {% endhighlight %}
 
@@ -104,15 +96,11 @@ We can then create an instance and access the variables as follows.
 
 {% highlight scala %}
 
-object RunExample extends App{
-
    val book = Book()
 
    println(book.id)
    println(book.title)
    println(book.isbn)
-
-}
 
 {% endhighlight %}
 
@@ -121,15 +109,11 @@ rest are the default values.
 
 {% highlight scala %}
 
-object RunExample extends App{
-
    val book = Book(100)
 
    println(book.id)
    println(book.title)
    println(book.isbn)
-
-}
 
 {% endhighlight %}
 
@@ -138,15 +122,11 @@ If we wan't to provide a custom book value, then we can do that as below.
 
 {% highlight scala %}
 
-object RunExample extends App{
-
    val book = Book(title = "Lord of the Rings")
 
    println(book.id)
    println(book.title)
    println(book.isbn)
-
-}
 
 {% endhighlight %}
 
@@ -175,16 +155,12 @@ Case classes generate a lot of boilerplate which includes equals comparison. We 
 
 {% highlight scala %}
 
-object RunExample extends App{
-
   val book1 = Book(100,"Fifty Shades of Grey",9788490322178l)
 
   val book2 = Book(100,"Fifty Shades of Grey",9788490322178l)
 
   //Prints true
   println(book1 == book2)
-
-}
 
 {% endhighlight %}
 
@@ -205,8 +181,6 @@ There are specialized methods to compare references, two in particular i.e `eq` 
 
 {% highlight scala %}
 
-object RunExample extends App{
-
   val book_1 = Book(title = "Something else")
 
   val book_2 = Book(title = "Something else")
@@ -221,15 +195,11 @@ object RunExample extends App{
   //Evaluates to true
   println(book_1 eq book_1_copy)
 
-}
-
 {% endhighlight %}
 
 `ne` is the exact opposite of `eq`.
 
 {% highlight scala %}
-
-object RunExample extends App{
 
   val book_1 = Book(title = "Something else")
 
@@ -240,8 +210,6 @@ object RunExample extends App{
 
   //Evaluates to true
   println(book_1 ne book_2)
-
-}
 
 {% endhighlight %}
 
@@ -255,15 +223,11 @@ completely useless. Case classes have a pretty nice toString method which gives 
 
 {% highlight scala %}
 
-object RunExample extends App{
-
   val book = Book(100,"Fifty Shades of Grey",9788490322178l)
 
   //Prints Book(100,Fifty Shades of Grey,9788490322178)
   println(book.toString)
   
-}
-
 {% endhighlight %}
 
 This is much better than the default toString present in regular classes and helpful in debugging. If you application requires something new, then you can always override and 
@@ -340,8 +304,6 @@ case class Book(id:Int,title:String,isbn:Long)
 
   case class Book(id:Int,title:String,isbn:Long)
 
-  object RunExample extends App {
-
   val book1 = Book(100,"The Lord of the Rings : The fellowship of the ring",9780261103573l)
 
   val book_fullcopy = book1.copy()
@@ -350,8 +312,6 @@ case class Book(id:Int,title:String,isbn:Long)
   println(book_fullcopy.id)
   println(book_fullcopy.title)
   println(book_fullcopy.isbn)
-
-  } 
 
   {% endhighlight %}
 
@@ -363,8 +323,6 @@ case class Book(id:Int,title:String,isbn:Long)
 
   case class Book(id:Int = 2000,title:String,isbn:Long)
 
-  object RunExample extends App {
-
   val book1 = Book(100,"The Lord of the Rings : The fellowship of the ring",9780261103573l)
 
   val book_partialcopy = book1.copy(title = "The Lord of the Rings : The two towers")
@@ -373,8 +331,6 @@ case class Book(id:Int,title:String,isbn:Long)
   println(book_partialcopy.id)
   println(book_partialcopy.title)
   println(book_partialcopy.isbn)
-
-  }
 
   {% endhighlight %}
 
