@@ -57,14 +57,14 @@ Most of you would have heard about/used the `Singleton` design pattern. But here
 
 public class DatabaseConnectionSingleton {
 
-    private DatabaseConnectionSingleton dbInstance;
+    private static DatabaseConnectionSingleton dbInstance = null;
     
     private DatabaseConnectionSingleton(){
         
     }
     
     
-    public DatabaseConnectionSingleton getInstance(){
+    public static DatabaseConnectionSingleton getInstance(){
         
         if(dbInstance == null){
             dbInstance = new DatabaseConnectionSingleton();
