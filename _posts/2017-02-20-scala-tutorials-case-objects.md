@@ -14,6 +14,10 @@ The only difference is that the boilerplate is done for an object instead of a c
 
 This is part 10 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
+<i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by 
+[ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, 
+you can check it out [here](https://www.itran.cc/2017/03/14/yin-du-peng-you-shou-ba-shou-jiao-ni-xue-scala-8-te-zhi/){:target="_blank"}
+
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
 - [Introduction](#Intro)

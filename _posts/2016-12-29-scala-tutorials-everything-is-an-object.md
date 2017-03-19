@@ -13,6 +13,9 @@ In this post we discuss on why the concept of an object in scala is more prevale
 
 This is part 7 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
+<i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by 
+[ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, 
+you can check it out [here](https://www.itran.cc/2017/03/09/yin-du-peng-you-shou-ba-shou-jiao-ni-xue-scala-7-wu-chu-bu-zai-de-dui-xiang/){:target="_blank"}
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
