@@ -98,7 +98,7 @@ In scala, the square brackets is used to indicate type.
 
 {% endhighlight %}
 
-This is equivalent to java's generics.
+This is equivalent to java's generics `<>` symbol.
 
 {% highlight java %}
 
@@ -125,7 +125,7 @@ for(i<-0 to array.length-1){
 
 
 Starting from `i = 0` we loop till array length -1. As in many languages, arrays are indexed from 0. In this style of writing, we need to be careful in both the 
-beginning and end index. Typically one would make mistakes by starting at index 1 and then ending at `array.length` which would cause `ArrayIndexOutOfBoundsException`.
+beginning and end index. Typically one would make mistakes by starting at index 0 and then ending at `array.length` which would cause `ArrayIndexOutOfBoundsException`.
 
 <h3><b><a name = "StartingIndex" class="inter-header">Controlling only the starting index</a></b></h3>
 
@@ -143,7 +143,8 @@ The `until` keyword makes sure that the loop iterates until the last element wit
 
 <h3><b><a name = "NoIndex" class="inter-header">No Index for expressions</a></b></h3>
 
-In java there are `Iterators` in which you can loop through arrays without worrying about indexes.
+In java there are `Iterators` in which you can loop through arrays without worrying about indexes and there are for loops in which we need not worry
+about the indexes.
 
 {% highlight java %}
  
@@ -166,7 +167,7 @@ for(i<- array) {
 {% endhighlight %}
 
 There are reasons about why one would use any of the above. In the no index version there is no control over where the element is
-in the array, in certain situations there is no need to worry about it.
+in the array i.e there is no track of the index. In certain situations there is no need to worry about it.
 
 <h3><b><a name = "LoopGuards" class="inter-header">For loop with guards</a></b></h3>
 
@@ -197,15 +198,16 @@ for(i<-0 to 30)
   
 {% endhighlight %}
 
+This is just syntactic sugar over normal if statements.
+
 <h3><b><a name = "Yield" class="inter-header">Yield construct</a></b></h3>
 
 It is to note that all for loops in scala generate a value unlike java.
 
 ![Scala loop value](/images/scala_loop_type.png)
 
-The variable `x` is of type `Unit` which is the equivalent of void in java, but as discussed before, this is actually a type.
-
-So far we have seen several variations of the for expression. Scala has a new keyword called `yield` which produces new value out of a for loop.
+The variable `x` is of type `Unit` which is the equivalent of void in java, but as discussed before, this is actually a type. 
+Scala has a new keyword called `yield` which produces new value out of a for loop.
 
 {% highlight scala %}
 
