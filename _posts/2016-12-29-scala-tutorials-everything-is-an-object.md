@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #7 - Objects Everywhere"
 permalink: blog/scala-tutorials-part-7-objects-everywhere/
 tags: [Scala]
-last_updated: 2017-03-05
+last_updated: 2017-03-26
 ---
 
 Objects Everywhere
@@ -23,6 +23,7 @@ you can check it out [here](https://www.itran.cc/2017/03/09/yin-du-peng-you-shou
 - [Data types as Objects](#DataTypes)
 - [Operations on types](#Operations)
 - [Creation of custom types](#Creation)
+- [Language constructs vs Library Abstractions](#LangVsAbs)
 - [Java's data type boxing/unboxing compared](#Java)
 - [Bigint example](#Bigint)
 - [Typecasting](#Typecasting)
@@ -32,23 +33,21 @@ you can check it out [here](https://www.itran.cc/2017/03/09/yin-du-peng-you-shou
 
 <h3><b><a name = "Introduction" class="inter-header">Introduction</a></b></h3>
 
-Scala is a multi-paradigm language, mainly a combination of object oriented and functional.
-
-To support this kind of a language, it is necessary to formulate an idea around which things are built. 
+Scala is a multi-paradigm language, mainly a combination of object oriented and functional. To support this kind of a language, it is necessary to formulate an idea around which things are built. 
 As we saw earlier, in scala there are no primitive types and everything is an object. This is not be confused with singleton objects which we saw in part 4, but object
 as in instance of a class. In the rest of this article an object means an instance of a class an in regular java speak.
 
 ![Objects everywhere](/images/objects-everywhere.jpg)
 
-We have seen before that these two concepts i.e object oriented and functional are [kind of orthogonal](http://stackoverflow.com/questions/3949618/are-fp-and-oo-orthogonal){:target="_blank"} to each other.
-
-I am not going to give a exhaustive list on what are all objects and what are not, but I will be explaining the idea and advantages behind it and why it is important.
+We have seen before that these two concepts i.e object oriented and functional are 
+[kind of orthogonal](http://stackoverflow.com/questions/3949618/are-fp-and-oo-orthogonal){:target="_blank"} to each other. I am not going to give a 
+exhaustive list on what are all objects and what are not, but I will be explaining the idea and advantages behind it and why it is important.
 
 <h3><b><a name = "DataTypes" class="inter-header">Data types as Objects</a></b></h3>
 
-There are no native data types in scala and all of the data types have a class of their own.
-
-Now how would you go by designing something as fundamental as a data type ? Turns out that all of the data types map to native data types in java whenever it seems appropriate. We will take a look at one example i.e Int since it is simpler to explain and the same idea extends to almost all of the types.
+There are no native data types in scala and all of the data types have a class of their own. Now how would you go by designing something as fundamental as a 
+data type ? Turns out that all of the data types map to native data types in java whenever it seems appropriate. 
+We will take a look at one example i.e Int since it is simpler to explain and the same idea extends to almost all of the types.
 
 You can try decompiling a class containing an `Int` and see it compiles to `public static int` i.e the java primitive type int.
 
@@ -158,9 +157,8 @@ abstract class CustomVariable {
 
 ![Abstract class error](/images/abstract_class_error.png)
 
-So how does it work and gets translated to native type ? It's all compiler magic. As usual, lets understand by de-compiling a few classes.
-
-Remember that scala type classes have special meaning since they follow a hierarchy and that is the reason why the Int.scala is abstract but still we are able to use it.
+So how does it work and gets translated to a native type ? It's all compiler magic. As usual, lets understand by de-compiling a few classes. Remember that scala type 
+classes have special meaning since they follow a hierarchy and that is the reason why the Int.scala is abstract but still we are able to use it.
 
 Let's consider the below class with a custom `+` function implemented.
 
@@ -243,10 +241,10 @@ public class CustomVariable {
 {% endhighlight %}  
 
 The `+` and `.+` gets compiled to same to the `iadd` operation. 
-This way of calling a class member without the dot operator is called [infix notation](http://docs.scala-lang.org/style/method-invocation.html#suffix-notation){:target="_blank"} 
-which we see later in a dedicated tutorial.
+This way of calling a class member without the dot operator is called 
+[infix notation](http://docs.scala-lang.org/style/method-invocation.html#suffix-notation){:target="_blank"} which we see later in a dedicated tutorial.
 
-Since the `+` magic is done while compilation, the `+` by itself is represented as a synthetic function.
+Since the magic is done while compilation, the `+` by itself is represented as a synthetic function.
 
 <h3><b><a name = "Creation" class="inter-header">Creation of custom types</a></b></h3>
 
@@ -263,6 +261,17 @@ even if you don't need the certificate you can audit the course/see the videos. 
 There might be some parts of the video that you might not fully understand, just ignore them for them, I will definitely cover them later.
 
 This should give you an intuition on why such a choice was made in scala.
+
+<h3><b><a name = "LangVsAbs" class="inter-header">Language constructs vs Library Abstractions</a></b></h3>
+
+In java the operations such as `+` are built within the language which makes them difficult for customization.
+
+![Java illegal plus](/images/java_no_plus.png)
+
+Scala was built with such things in mind. In fact the name scala is derived from a portmanteau of the words "Scalable language" implying that it grows with the 
+users demand. The term scalable does not necessarily mean it scales for performance, but rather a extensible/scalable as a language. 
+
+This will become more coherent with how the `BigInt` class behaves in scala when compared to java as explained in the following sections.
 
 <h3><b><a name = "Java" class="inter-header">Java's data type boxing/unboxing compared</a></b></h3>
 
