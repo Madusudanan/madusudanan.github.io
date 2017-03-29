@@ -133,7 +133,11 @@ def whichIsGreater (a : Int , b: Int)  {
 
 In functional programming terms a method which does not return any value i.e which returns `Unit` are called procedures. These are methods which have no side effects and 
 are independent of state.
- 
+
+Summarizing the above in a picture.
+
+![Scala methods](/images/scala_methods.png)
+
 <h3><a name="Unit" class="inter-header">The Unit type</a></h3>
 
 If we run the below example in the scala REPL, 

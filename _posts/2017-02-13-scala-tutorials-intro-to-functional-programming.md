@@ -8,7 +8,7 @@ tags: [Scala]
 Intro to Functional Programming in Scala
 ----------------------------------------
 
-The functional programming paradigm in scala is becoming pretty famous in the recent years due its elegance and performance characteristics.
+The functional programming paradigm is becoming pretty famous in the recent years due its elegance and performance characteristics.
 
 This is part 9 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
@@ -104,7 +104,7 @@ Today's programming style has a strong correlation with the above architecture.
 
 If you have studied/programmed in assembly before, then the above instructions would be familiar to you. In any case if assembly/CPU/registers sound like
 greek and latin to you then perhaps a refresher on [computer architecture](https://www.youtube.com/playlist?list=PL5PHm2jkkXmi5CxxI7b3JCL1TWybTDtKq){:target="_blank"}
-would be of great help. The course goes very deep into architectures, but nonetheless should give you a very good idea of what we are talking about.
+would be of great help. The course goes very deep into architectures, but should give you a very good idea of what we are talking about.
 
 Programs written in assembly or imperative languages are called as instruction sequences where they present step by step instructions for the computer to execute.
  
@@ -166,8 +166,8 @@ This text file contains contents similar to the example given above.
 
 Then the syntax begins to get weird, I have specifically chosen the scala part of the code instead of java since it would be better to explain the concepts.
 
-`flatMap`, `map` is part of the collection library in scala. I am not going to explain them in detail since they are extensive topics of their own, but rather focus
-on simpler terms of what they do.
+`flatMap`, `map` is part of the collections library in scala. I am not going to explain them in detail since they are extensive topics of their own, but rather focus
+on what they do.
  
 Lets understand with the below example,
 
@@ -221,7 +221,7 @@ A function is considered not pure if it does one or more of the following.
 There are more benefits. At first thought, one would think that if I can't do any of the above then how the heck can I write any code?
 
 In functional languages there are [monads](https://en.wikipedia.org/wiki/Monad_(functional_programming)){:target="_blank"} to handle I/O, but that
-is an advanced which we will cover later. But keep in mind that scala is multi-paradigm, the programmer can choose which style depending upon the problem at hand.
+is an advanced concept which we will cover later. But keep in mind that scala is multi-paradigm, the programmer can choose which style depending upon the problem at hand.
 
 The aim of FP is not to remove mutability but rather reduce them, so that it can have various performance benefits.
 
