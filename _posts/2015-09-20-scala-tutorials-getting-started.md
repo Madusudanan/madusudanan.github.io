@@ -26,6 +26,7 @@ Let's get started.
 - [The Scala REPL, a short presentation](#ScalaREPL)
 - [First Hello world !!](#ScalaHelloWorld)
 - [Variables](#Variables)
+- [Syntax of Arrays](#Syntax)
 - [Reference vs Value immutability](#ReferenceVsValue)
 - [Immutability under the hood](#AdvancedUnderstanding)
 - [Comparing and Contrasting `val` and `final`](#ValVsFinal)
@@ -85,8 +86,10 @@ in an upcoming tutorial.
 If there is a method then there can be arguments. In our case, it is a `Array[String]`. This is similar to java's main method, where an array of strings can
 be an argument to the main method. Can be used for startup configs or anything else, usage is completely optional of course.
 
-This is followed by a `println()` method call which prints statements on to the console. If you are using an IDE (you should be), you can trace the entire call
-by holding ctrl+click on the method. Python folks should find this syntax similar, and in fact to a programmer there is nothing to this except printing out a String to the console.
+This is followed by a `println()` method call which prints statements on to the console. 
+If you are using an IDE (you should be), you can trace the entire call by holding ctrl+click on the method. 
+Python folks should find this syntax similar, and in fact to a programmer there is nothing to this except printing out a String to the console.
+Semicolons are optional in scala unlike java and the compiler relies on line breaks to identify the next literal/code block.
 
 But let's dig a little deeper. For the Java folks, a general print on the console will be like `System.out.println`. So, how is this different?
 
@@ -116,6 +119,52 @@ Primitives by themselves are immutable i.e their type cannot be changed once dec
 
 This is confusing at first about why the concept of mutability comes for variables and not objects, this is explained below in data types section, there are no primitive
 types in scala, all are objects.
+
+<h3><b><a name = "Syntax" class="inter-header">Syntax of Arrays</a></b></h3>
+
+This is just a brief overview of how arrays are declared in scala which is slightly different when compared to java.
+
+An array of some type can be declared as below.
+
+{% highlight scala %}
+
+val array = Array(10,12,23,44)
+
+{% endhighlight %}
+
+This is different from java where we use flower brackets for fixed array values.
+
+{% highlight java %}
+
+int[] array = {10,12,33,55};
+
+{% endhighlight %}
+
+And for unknown values we use square brackets.
+
+{% highlight java %}
+
+int[] array = new int[4];
+
+{% endhighlight %}
+
+In scala, the square brackets is used to indicate type.
+
+{% highlight scala %}
+
+  val array : Array[Int] = Array(10,12,23,44)
+
+{% endhighlight %}
+
+This is equivalent to java's generics `<>` symbol.
+
+{% highlight java %}
+
+ArrayList<Integer> rows = new ArrayList<>();
+
+{% endhighlight %}
+
+We will see collections in more depth in upcoming tutorials.
 
 <h3><b><a name = "ReferenceVsValue" class="inter-header">Reference vs Value Immutability</a></b></h3>
 

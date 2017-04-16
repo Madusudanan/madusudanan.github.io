@@ -19,7 +19,6 @@ The `for` loop however, can be used as a drop in replacement for any while loop 
 <i class="fa fa-list-ul space-right"></i> Index
 
 - [Concept of looping](#Concept)
-- [Syntax of Arrays](#Syntax)
 - [Controlling both indexes](#BothIndexes)
 - [Controlling only the starting index](#StartingIndex)
 - [No Index for expressions](#NoIndex)
@@ -61,52 +60,6 @@ while(x<10)
 {% endhighlight %}
 
 The concept is the same immaterial of the language i.e doing something repetitively.
-
-<h3><b><a name = "Syntax" class="inter-header">Syntax of Arrays</a></b></h3>
-
-This is just a brief overview of how arrays are declared in scala which is slightly different when compared to java.
-
-An array of some type can be declared as below.
-
-{% highlight scala %}
-
-val array = Array(10,12,23,44)
-
-{% endhighlight %}
-
-This is different from java where we use flower brackets for fixed array values.
-
-{% highlight java %}
-
-int[] array = {10,12,33,55};
-
-{% endhighlight %}
-
-And for unknown values we use square brackets.
-
-{% highlight java %}
-
-int[] array = new int[4];
-
-{% endhighlight %}
-
-In scala, the square brackets is used to indicate type.
-
-{% highlight scala %}
-
-  val array : Array[Int] = Array(10,12,23,44)
-
-{% endhighlight %}
-
-This is equivalent to java's generics `<>` symbol.
-
-{% highlight java %}
-
-ArrayList<Integer> rows = new ArrayList<>();
-
-{% endhighlight %}
-
-We will see collections in more depth in upcoming tutorials.
 
 <h3><b><a name = "BothIndexes" class="inter-header">Controlling both indexes</a></b></h3>
 
