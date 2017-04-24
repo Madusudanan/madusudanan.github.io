@@ -18,7 +18,7 @@ This is part 15 of the scala tutorial series. Check [here](/tags/#Scala) for the
 
 <h3><b><a name = "Intro" class="inter-header">The apply function</a></b></h3>
 
-`Apply` is just a mathematical name for applying a function to a set of values.
+`Apply` is just a mathematical name for applying a function to a value/set of values.
 
 Let's consider that `f(x)` is a function with the following definition.
 
@@ -26,14 +26,15 @@ Let's consider that `f(x)` is a function with the following definition.
 f(x) = x+1
 {% endhighlight %}
 
-In a programming language speak "Call function/method f(x) with value x" whereas in a mathematical notation, this is 
-usually referred as applying `f(x)` to value x.
+In a programming language speak calling this function can be defined as 
+<cite>Call function/method f(x) with value x</cite>. Whereas in a mathematical notation, 
+this is usually referred as <cite> applying `f(x)` to value x </cite>.
 
 The [wiki page](https://en.wikipedia.org/wiki/Apply){:target="_blank"} explains this concept in detail.
 
 <h3><b><a name = "ApplyInScala" class="inter-header">Using apply in scala</a></b></h3>
 
-This concept of apply can be used is present in scala to create instances of classes in a unique way. 
+This concept of apply is present in scala to create instances of classes in a unique way. 
 Let's take the below container class which just represents a bunch of Strings in an array.
 
 {% highlight scala %}
