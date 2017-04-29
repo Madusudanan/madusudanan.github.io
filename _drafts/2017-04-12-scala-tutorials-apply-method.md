@@ -16,7 +16,7 @@ This is part 15 of the scala tutorial series. Check [here](/tags/#Scala) for the
 - [The apply function](#Intro)
 - [Using apply in scala](#ApplyInScala)
 - [Apply in case classes](#CaseClassApply)
-- [Case classes - Automatic companion object](#CCAutoObj)
+- [Creating objects without new keyword](#WithoutNew)
 
 <h3><b><a name = "Intro" class="inter-header">The apply function</a></b></h3>
 
@@ -114,8 +114,24 @@ public static ComplexNumber apply(double, double);
 
 {% endhighlight %}
 
+The `apply` method is static because for case classes there is an automatic companion object that is generated with a lot of boilerplate methods which does not make sense as instance and hence they are created in the companion object.
 
-Two things to note 1) apply is static. Case classes have auto generated companion objects
-2) There is a constructor for ComplexNumber class
+<h3><b><a name = "WithoutNew" class="inter-header">Creating objects without new keyword</a></b></h3>
 
-If the constructor is not static, then how does the class gets created?
+To recollect what we have learnt till now, we can create instances without the `new` keyword two ways.
+
+- Case classes
+- Object with apply method
+
+Case classes are a simple way to create them. You have a companion object auto generated which creates a static apply method. On compilation, all the calls such as `ComplexNumber(2,1)` gets compiled to `ComplextNumer.apply(2,1)`. We can create custom classes that emulate only the apply behaviour of case classes by creating an apply method in the companion object .In the end it is just syntactic sugar, but this is all done behind the scenes by the compiler without actually resorting to a constructor.
+
+Apply is heavily used as part of the language library such as in the `BigInt` class and other places. 
+
+
+
+
+
+
+
+
+
