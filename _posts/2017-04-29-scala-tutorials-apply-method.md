@@ -37,7 +37,7 @@ The [wiki page](https://en.wikipedia.org/wiki/Apply){:target="_blank"} explains 
 <h3><b><a name = "ApplyInScala" class="inter-header">Using apply in scala</a></b></h3>
 
 This concept of apply is present in scala to create instances of classes in a unique way. 
-Let's take the below container class which just represents a bunch of Strings in an array.
+Let's take the below container class which represents a bunch of Strings in an array.
 
 {% highlight scala %}
 
@@ -71,6 +71,8 @@ yield the same result.
 If we put the `apply` method inside of a companion object then we do not need to instantiate since it would become a singleton, which then
 simplifies our code to a great extent. We can use `println(Container(2))` and then it would print the same result as above.
 
+The compiler takes of translating the calls to the apply method. 
+
 <h3><b><a name = "CaseClassApply" class="inter-header">Apply in case classes</a></b></h3>
 
 From the [infix notation chapter](/blog/scala-tutorials-part-12-infix-notation/#InfixNotation) we take the complex number example again.
@@ -86,7 +88,7 @@ case class ComplexNumber(real: Double, imaginary: Double) {
   
 {% endhighlight %}
 
-We can create instances of this simply as,
+We can create instances simply as,
 
 {% highlight scala %}
 
@@ -123,9 +125,13 @@ To recollect what we have learnt till now, we can create instances without the `
 - Case classes
 - Object with apply method
 
-Case classes are a simple way to create them. You have a companion object auto generated which creates a static apply method. On compilation, all the calls such as `ComplexNumber(2,1)` gets compiled to `ComplextNumer.apply(2,1)`. We can create custom classes that emulate only the apply behaviour of case classes by creating an apply method in the companion object .In the end it is just syntactic sugar, but this is all done behind the scenes by the compiler without actually resorting to a constructor.
+Case classes are a simple way to create them. You have a companion object auto generated which creates a static apply method. 
+On compilation, all the calls such as `ComplexNumber(2,1)` gets compiled to `ComplexNumber.apply(2,1)`. We can create custom classes that 
+emulate only the apply behaviour of case classes by creating an apply method in the companion object .In the end it is just syntactic sugar, 
+but this is all done behind the scenes by the compiler without actually resorting to a constructor.
 
-Apply is heavily used as part of the language library such as in the `BigInt` class and other places. 
+Apply is heavily used as part of the language library such as in the `BigInt` class and other places. This method is very important
+because it enables an object whether it is singleton or not to behave like a mathematical function. 
 
 
 
