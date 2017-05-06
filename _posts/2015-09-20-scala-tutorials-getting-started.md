@@ -369,7 +369,8 @@ In scala you cannot simply create a variable and leave it un-initialized.
 
 ![Variable initialization](/images/variables_initialize.png)
 
-This is a design choice that the scala language developers took. The obvious reason is not to leave variables un-initialized and also to avoid null pointer exceptions.
+This is a [design choice](http://programmers.stackexchange.com/questions/223862/how-important-is-to-initialize-a-variable){:target="_blank"} 
+that the scala language developers took. The obvious reason is not to leave variables un-initialized and also to avoid null pointer exceptions.
 
 The only place where we don't assign values to variables is inside abstract classes. We will see more of it when learn about classes in scala.
 

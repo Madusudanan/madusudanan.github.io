@@ -166,8 +166,8 @@ This text file contains contents similar to the example given above.
 
 Then the syntax begins to get weird, I have specifically chosen the scala part of the code instead of java since it would be better to explain the concepts.
 
-`flatMap`, `map` is part of the collections library in scala. I am not going to explain them in detail since they are extensive topics of their own, but rather focus
-on what they do.
+`flatMap`, `map` is part of the collections library in scala. I am not going to explain them in detail since they are extensive 
+topics of their own, but rather focus on what they do.
  
 Lets understand with the below example,
 
