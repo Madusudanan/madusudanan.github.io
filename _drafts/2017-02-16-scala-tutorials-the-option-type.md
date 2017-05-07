@@ -6,14 +6,15 @@ tags: [Scala]
 ---
 
 The Option Type
---------------------------
+---------------
 
-Java programmers would be familiar with the `NullPointerException` which basically pops up when you access when an object which does not exist or not yet created.
+Java programmers would be familiar with the `NullPointerException` which basically pops up when you access when an object 
+which does not exist or not yet created.
 
-This issue is not because of the Java library or the runtime, its because of programmers write crappy code. But when a language allows you to write crappy code then that
-is not good.
+This issue is not because of the Java library or the runtime, its because of programmers write crappy code. But when a language allows 
+you to write crappy code then that is not good.
 
-Scala addresses this issue with the Option/Some/None pattern. Let's jump right in.
+Scala addresses this issue with the [Option type](http://www.scala-lang.org/api/current/scala/Option.html){:target="_blank"}. Let's jump right in.
 
 This is part 16 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
@@ -21,6 +22,7 @@ This is part 16 of the scala tutorial series. Check [here](/tags/#Scala) for the
 
 - [First line of defense in variables](#FirstLineDefense)
 - [Introduction to the Option type](#Option)
+- [Creating our own Option type](#CustomOption)
 
 <h3><b><a name = "FirstLineDefense" class="inter-header">First line of defense in variables</a></b></h3>
 
@@ -52,8 +54,7 @@ The `null` in the scala language exists only for inter-operation with the java l
 
 <h3><b><a name = "Option" class="inter-header">Introduction to the Option type</a></b></h3>
 
-The [Option](http://www.scala-lang.org/api/current/scala/Option.html){:target="_blank"} is not a type per se, 
-it is syntactic sugar to a class that is underneath it.
+`Option` is not a type per se, it is syntactic sugar to a class that is underneath it.
 
 In fact it is an abstract class which has two children `Some` and `None`. These three are not present in the 
 [scala type system hierarchy](/blog/scala-tutorials-part-2-type-inference-in-scala/#ScalaTypes) at all. Let's take a look at how they work
@@ -101,3 +102,15 @@ catch (IndexOutOfBoundsException e) {
 This is handled in a completely different way in scala.
 
 ![Option in scala](/images/option_example.png)
+
+`List` is not exactly equal to a java `ArrayList`, but for demonstration purposes this is ok. What we are trying to do is to find the first value
+that is greater than 100 and also the first value greater than 1000. Since we have a value that is greater than 100, the list returns the value
+by wrapping it into a `Some` type. In the case where there is no value greater than 1000 then return `None`.
+
+Unlike `Some` which indicates the presence of a value of some type, `None` indicates non-existent values. `None` should not be confused with
+the `Unit` type which is used to represent the absence of a type.
+
+This facility is of course provided by the `List` collection in scala, but we can build our own if we want to.
+
+<h3><b><a name = "CustomOption" class="inter-header">Creating our own Option type</a></b></h3>
+
