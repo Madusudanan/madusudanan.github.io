@@ -8,11 +8,10 @@ tags: [Scala]
 The Option Type
 ---------------
 
-Java programmers would be familiar with the `NullPointerException` which basically pops up when you access when an object 
-which does not exist or not yet created.
+Java programmers would be familiar with the `NullPointerException` which basically pops up when you access when an object instance
+which has not yet been created yet.
 
-This issue is not because of the Java library or the runtime, its because of programmers write crappy code. But when a language allows 
-you to write crappy code then that is not good.
+This issue is not because of the Java library or the runtime, its because of programmers writing crappy code. A language can offer some level of defense against human stupidity and that is what differentiates languages.
 
 Scala addresses this issue with the [Option type](http://www.scala-lang.org/api/current/scala/Option.html){:target="_blank"}. Let's jump right in.
 
@@ -113,4 +112,48 @@ the `Unit` type which is used to represent the absence of a type.
 This facility is of course provided by the `List` collection in scala, but we can build our own if we want to.
 
 <h3><b><a name = "CustomOption" class="inter-header">Creating our own Option type</a></b></h3>
+
+Let's consider a case class `User`
+
+{% highlight scala %}
+
+case class User(id:Int,email:String)
+
+{% endhighlight %}
+
+Now there is a situation where we disallow email IDs belonging to gmail and yahoo subdomains.
+
+{% highlight scala %}
+
+def getFilteredEmailID(user:User) : Option[String] = {
+
+    val disallowedDomains = "gmail.com,yahoo.com"
+
+    if(!disallowedDomains.contains(user.email.split("@")(1))) Some(user.email) else None
+
+}
+
+{% endhighlight %}
+
+The method splits the string with the `@` character and gets the second index from the split array which gives the domain of the email address. This is now checked with the disallowed domains list and if there is a match then we return `None` else we return a `Some`. Below code which consumes this method should make it clear.
+
+
+{% highlight scala %}
+
+val emailID = getFilteredEmailID(User(100,"fox@gmail.com"))
+
+  emailID match {
+    case Some(x) => println(x)
+    case None => println("Domain not allowed")
+  }
+
+{% endhighlight %}
+
+We feed the `User` object to the `getFilteredEmailID` method which returns either `Option[String]`. This can be either `Some` or `None` depending on the computation. This is why `Option` is an abstract class. `Some` is a case class and `None` is a case object underneath.
+What we are doing above is called pattern matching. We will see in detail about what pattern matching is in later tutorials. For now, it can be seen as a simple version of switch statements. The real advantage is because everything is compile time and there is no possibility of a runtime
+`NullPointerException`.
+
+There are other ways in which an `Option` can be consumed, we will take a look at them as and when we encounter in our journey.
+
+
 
