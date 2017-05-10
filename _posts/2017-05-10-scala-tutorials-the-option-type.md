@@ -8,10 +8,12 @@ tags: [Scala]
 The Option Type
 ---------------
 
-Java programmers would be familiar with the `NullPointerException` which pops up when you access when an object instance
+Java programmers would be familiar with the `NullPointerException` which pops up when you access an object instance
 which has not yet been created yet.
 
-This issue is not because of the Java library or the runtime, its because of programmers writing crappy code. A language can offer some level of defense against human stupidity and that is what differentiates languages. Take a look at [Null References : The Billion Dollar Mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare){:target="_blank"}
+This issue is not because of the Java library or the runtime, but it's because of programmers writing crappy code. 
+A language can offer some level of defense against human stupidity and that is what differentiates languages. 
+Take a look at [Null References : The Billion Dollar Mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare){:target="_blank"}
 
 Scala addresses this issue with the [Option type](http://www.scala-lang.org/api/current/scala/Option.html){:target="_blank"}. Let's jump right in.
 
@@ -28,24 +30,19 @@ This is part 16 of the scala tutorial series. Check [here](/tags/#Scala) for the
 
 Recall from the first chapter that variables [can't be just declared and left un-initialized](/blog/scala-tutorials-part-1-getting-started/#Initialize).
 
-But that does prevent what java programmers have been doing all the time, i.e just leave it as `null`
+But that does not prevent what java programmers have been doing all the time, i.e just leave them as `null`
 
 {% highlight scala %}
-
-object Runnable extends App {
-
 
   val x  = null
 
   println(x.toString)
 
-
-}
-
 {% endhighlight %}
 
-This would result in the dreaded `NullPointerException`. We are still exposed to this issue which in medium/large code bases becomes very difficult to track and that is
-assuming that the codebase is somewhat well designed. Assigning `null` to objects is often misused in imperative environments. The `null` in the scala language exists only for inter-operation with the java language environment. There is a better way to do this.
+This would result in the dreaded `NullPointerException`. We are still exposed to this issue which in medium/large code bases becomes very difficult 
+to track . Assigning `null` to objects is often misused in imperative environments. 
+The `null` in the scala language exists only for inter-operation with the java language environment. There is a better way to do this.
 
 <h3><b><a name = "Option" class="inter-header">Introduction to the Option type</a></b></h3>
 
@@ -55,7 +52,7 @@ In fact it is an abstract class which has two children `Some` and `None`. These 
 [scala type system hierarchy](/blog/scala-tutorials-part-2-type-inference-in-scala/#ScalaTypes) at all. Let's take a look at how they work
 with a real world example.
 
-Let's try to access a non existing index in an `ArrayList`.
+Let's try add data to an null `ArrayList`.
 
 {% highlight java %}
 
@@ -71,7 +68,8 @@ This would obviously lead to an exception.
 		at JavaRunner.main(JavaRunner.java:9)
 
 If you are developing a customer facing application with some sort of a UI, throwing this error back to it would be absurd. What we would generally
-do is to catch this exception and then return some sort of a meaningful error message such as the "list not initialized" or something depending on the application.
+do is to catch this exception and then return some sort of a meaningful error message such as the "list not initialized" or something depending 
+on the application.
 
 {% highlight java %}
 
@@ -99,12 +97,15 @@ that is greater than 100 and also the first value greater than 1000. Since we ha
 by wrapping it into a `Some` type. In the case where there is no value greater than 1000 then return `None`.
 
 Unlike `Some` which indicates the presence of a value of some type, `None` indicates non-existent values. `None` should not be confused with
-the `Unit` type which is used to represent the absence of a type.
+the `Unit` type which is used to represent the absence of a type itself.
 
 This facility is of course provided by the `List` collection in scala, but we can build our own if we want to.
 
-At this point there will be a question in programmers mind like "How do I declare a variable and not initialize it?" and the simple answer it to that is "you don't". 
-You change your programming style not to include un-initialized variables in the code and not initialize them `null` as well. We will be dealing with the latter part of it i.e `null` handling, the former part which is "Declaring a variable and not initializing it" style would be acquired as we start coding in scala more. And of course you can always look at open source codebases to get an idea.
+At this point, a typical java programmer would have a question in mind like "How do I declare a variable and not initialize it?" 
+and the simple answer it to that is "You don't". You change your programming style not to include un-initialized variables in the code 
+and not initialize them to `null` as well. We will be dealing with the latter part of it i.e `null` handling, the former part which is 
+"Declaring a variable and initializing the variable along with the declaration" style as already seen in 
+[part 1](/blog/scala-tutorials-part-1-getting-started/#Initialize) was a design choice taken by the scala language developers themselves.
 
 <h3><b><a name = "CustomOption" class="inter-header">Creating our own Option type</a></b></h3>
 
@@ -130,7 +131,9 @@ def getFilteredEmailID(user:User) : Option[String] = {
 
 {% endhighlight %}
 
-The method splits the string with the `@` character and gets the second index from the split array which gives the domain of the email address. This is now checked with the disallowed domains list and if there is a match then we return `None` else we return a `Some`. Below code which consumes this method should make it clear.
+The method splits the string using the `@` character and gets the second index from the split array which gives the domain of the email address. 
+This is now checked with the banned domains list and if there is a match then we return `None` else we return a `Some`. 
+Below code example which consumes this method should make it clear.
 
 
 {% highlight scala %}
@@ -144,10 +147,15 @@ val emailID = getFilteredEmailID(User(100,"fox@gmail.com"))
 
 {% endhighlight %}
 
-We feed the `User` object to the `getFilteredEmailID` method which returns either `Option[String]`. This can be either `Some` or `None` depending on the computation. This is why `Option` is an abstract class. `Some` is a case class and `None` is a case object underneath.
+We feed the `User` object to the `getFilteredEmailID` method which returns an `Option[String]`. 
+It can be either `Some` or `None` depending on the computation. This is why `Option` is an abstract class since the result is either `Some` 
+or `None` but never an `Option` itself at the top level. 
+`Some` is a [case class](/blog/scala-tutorials-part-6-case-classes/) and 
+`None` is a [case object](/blog/scala-tutorials-part-10-case-objects-in-scala/) underneath.
 
-What we are doing above is called pattern matching. We will see in detail about what pattern matching is in later tutorials. For now, it can be seen as a simplified version of switch statements. The real advantage lies in everything being compile time and there is no possibility of a runtime
-`NullPointerException`.
+What we are doing above is called pattern matching. We will see in detail about what pattern matching is in later tutorials. 
+For now, it can be visualized as a simplified version of switch statements. The real advantage lies in everything being compile time and there is 
+no possibility of a runtime `NullPointerException`.
 
 A more simpler way to consume `Option` is to use the built in `getOrElse` method.
 
@@ -159,15 +167,22 @@ println(emailID.getOrElse("Banned domain"))
 
 {% endhighlight %}
 
-If `None` is returned then "Banned domain" is printed else the given email ID is printed. This can be used for simpler situations whereas pattern matching can be used in complex situations.
+If `None` is returned then "Banned domain" is printed else the given email ID is printed. This can be used in simpler situations whereas 
+pattern matching can be used in complex situations.
 
 There are other ways in which an `Option` can be consumed, we will take a look at them at appropriate places in our journey through scala.
 
 <h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
 
-We saw the usage of `Option` type in a very brief manner. There are several advantages of using the Option/Some/None pattern over java's `null`. The main reason is you cannot say in a concrete manner when a `NullPointerException` will come since it is at runtime. Although you can carefully profile your code. In reality large codebases make this task tedious and not feasible. When using Scala's `Option`, you can precisely reason that it can be either `Some` or `None` and we can deal with it rather than raising an exception and then catching it.
+![Scala option type](/images/scala-option.png)
+
+We saw the usage of the `Option` type in a very brief manner. There are several advantages of using the Option/Some/None pattern over java's `null`. 
+The main reason is you cannot say in a concrete manner when a `NullPointerException` will come since it is at runtime. 
+Although you can carefully profile your code. In reality large code bases make this task tedious and not feasible. When using Scala's `Option`, 
+you can precisely reason that it can be either `Some` or `None` and we can deal with it rather than raising an exception and then catching it.
 	
-In upcoming tutorials we will see how the unapply method works which is the opposite of apply method and then extractors finally leading to pattern matching.
+For a spoiler on the upcoming tutorials, we will see how the unapply method works which is the opposite of apply method and then extractors 
+finally leading to pattern matching.
 
 Stay tuned <i class="fa fa-smile-o fa-lg"></i>
 
