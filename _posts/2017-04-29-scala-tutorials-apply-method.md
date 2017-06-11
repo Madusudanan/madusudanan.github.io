@@ -8,7 +8,6 @@ tags: [Scala]
 The Apply Method
 ----------------
 
-
 This is part 15 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index

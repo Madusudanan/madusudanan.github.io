@@ -368,7 +368,8 @@ When declaring methods, we can also specify the default value of the parameters 
   
 {% endhighlight %}
 
-The value of default gets assigned to the string `url` in the case of value not provided. 
+This can be consumed as `println(isAllowedURl())` which prints `No URL provided` or as `println(isAllowedURl("google.com"))` 
+printing `Access allowed`.
 
 <h3><a name="Stubbing" class="inter-header">Stubbing out methods</a></h3>
 
