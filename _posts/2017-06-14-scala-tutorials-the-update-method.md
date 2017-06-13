@@ -20,12 +20,16 @@ This is part 17 of the scala tutorial series. Check [here](/tags/#Scala) for the
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
-Update method is a companion to the `apply` method in the sense that you apply a function to a value and you get a value outside. `update` on the
-other hand is used to update an existing value to an object. It's usage in core language libraries is pretty widespread as the apply method itself.
+`update` method is a companion to the `apply` method which is used to update an existing value in an object. It's usage in core language 
+libraries is pretty widespread as the apply method itself.
+
+![Apply and Update](/images/functions.png)
+
+Apply and method are normal functions to the user, but the compiler treats them in a special way. 
 
 <h3><b><a name = "ArrayExample" class="inter-header">Example in scala arrays</a></b></h3>
 
-Arrays unlike java are part of collection in scala. Let's consider the below example to understand how `apply` and `update` method works.
+Arrays unlike java are part of collections in scala. Let's consider the below example to understand how `apply` and `update` method works.
 
 {% highlight scala %}
  
@@ -70,7 +74,7 @@ private var list = Map(1 -> "Victor",2 -> "Selene" , 3 -> "Lucian")
 
 {% endhighlight %}
 
-We will see in detail what the `Map` data structure is in later tutorials. For now, it can be assumed it is the equivalent of java hashmap.
+We will see in detail what the `Map` data structure is in later tutorials. For now, it can be assumed it is the equivalent of a java hash map.
 
 Next we will define an apply method which will return the element with that key.
 
@@ -80,7 +84,7 @@ def apply(id : Int) = list(id)
 
 {% endhighlight %}
 
-Now we are ready to define our update method which updates a value for the given key.
+Now we are ready to define our update method which updates/adds a value for the given key.
 
 {% highlight scala %}
 
@@ -108,14 +112,14 @@ This adds/updates the existing key-value pair inside of the map named `list`. Be
 
   a(4) = "Marcus"
 
-  //Prints Marcus
+  //Prints Marcus - New element
   println(a(4))
 
 {% endhighlight %}
 
 <h3><b><a name = "MultipleUpdates" class="inter-header">Multiple update methods</a></b></h3>
 
-We will create an additional `update` method for deeper understanding. This is slighly more complicated and hence we will add a 
+We will create an additional `update` method for deeper understanding. This is slightly more complicated and hence we will add a 
 helper method in our class to print out the list.
 
 {% highlight scala %}
@@ -152,16 +156,18 @@ The logic is pretty simple. It searches for a name which matches with the given 
 
 {% endhighlight %}
 
-This gives the power to have nice clean abstractions instead of custom methods. In fact, if this approach is followed across the code base then it can lead to a much cleaner abstraction instead of having methods for each of these operations.
+This gives the power to have nice clean abstractions instead of custom methods. In fact, if this approach is followed across the code base 
+then it can lead to a much cleaner abstraction instead of having methods for each of these operations.
 
 Since this is a powerful tool, we have to keep in mind that with power comes responsibility.
 
 <h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
 
-Among the scala community methods such as `apply` and `update` are often referred to as magic methods. In the sense that their true power
+Among the scala community, methods such as `apply` and `update` are often referred to as magic methods, in the sense that their true power
 is not visible outside.
 
-All these lead to functional programming, but lets not go there yet. A bottom up approach of learning the smaller things and then trying to understand the bigger picture works really well.
+All these lead to functional programming, but let's not go there yet. A bottom up approach of learning the smaller things and then 
+trying to understand the bigger picture works really well.
 
 
 
