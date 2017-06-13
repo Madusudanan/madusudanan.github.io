@@ -15,6 +15,8 @@ This is part 17 of the scala tutorial series. Check [here](/tags/#Scala) for the
 - [Introduction](#Intro)
 - [Example in scala arrays](#ArrayExample)
 - [Custom example](#CustomExample)
+- [Multiple update methods](#MultipleUpdates)
+- [Conclusion](#Conclusion)
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
@@ -82,9 +84,85 @@ Now we are ready to define our update method which updates a value for the given
 
 {% highlight scala %}
 
-def update(id:Int,name:String) = list = list + (id -> name)
+def update(id:Int,name:String) = {
+
+    list = list + (id -> name)
+
+}
 
 {% endhighlight %}
+
+This adds/updates the existing key-value pair inside of the map named `list`. Below is an example of how to consume this.
+
+{% highlight scala %}
+
+  val a = new UserList
+
+  //Prints Victor
+  println(a(1))
+
+  a(1) = "Michael"
+
+  //Prints Michael
+  println(a(1))
+
+  a(4) = "Marcus"
+
+  //Prints Marcus
+  println(a(4))
+
+{% endhighlight %}
+
+<h3><b><a name = "MultipleUpdates" class="inter-header">Multiple update methods</a></b></h3>
+
+We will create an additional `update` method for deeper understanding. This is slighly more complicated and hence we will add a 
+helper method in our class to print out the list.
+
+{% highlight scala %}
+
+def printContent = println(list)
+
+{% endhighlight %}
+
+Next comes our update method,
+
+{% highlight scala %}
+
+def update(name:String,replacement:String) = {
+    for ((k,v) <- list) {
+      if(v == name){
+        list = list + (k -> replacement)
+      }
+    }
+  }
+
+{% endhighlight %}
+
+The logic is pretty simple. It searches for a name which matches with the given one, then it replaces with the replacement string.
+
+{% highlight scala %}
+
+  val a = new UserList
+
+  //Can be used in the place where we don't know the index
+  a("Lucian") = "Kraven"
+
+  //This prints out Map(1 -> Victor, 2 -> Selene, 3 -> Kraven)
+  a.printContent
+
+{% endhighlight %}
+
+This gives the power to have nice clean abstractions instead of custom methods. In fact, if this approach is followed across the code base then it can lead to a much cleaner abstraction instead of having methods for each of these operations.
+
+Since this is a powerful tool, we have to keep in mind that with power comes responsibility.
+
+<h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
+
+Among the scala community methods such as `apply` and `update` are often referred to as magic methods. In the sense that their true power
+is not visible outside.
+
+All these lead to functional programming, but lets not go there yet. A bottom up approach of learning the smaller things and then trying to understand the bigger picture works really well.
+
 
 
 
