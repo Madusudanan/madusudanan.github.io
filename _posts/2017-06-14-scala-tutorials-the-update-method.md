@@ -25,7 +25,7 @@ libraries is pretty widespread as the apply method itself.
 
 ![Apply and Update](/images/functions.png)
 
-Apply and method are normal functions to the user, but the compiler treats them in a special way. 
+Apply and Update methods are normal functions to the user, but the compiler treats them in a special way. 
 
 <h3><b><a name = "ArrayExample" class="inter-header">Example in scala arrays</a></b></h3>
 
