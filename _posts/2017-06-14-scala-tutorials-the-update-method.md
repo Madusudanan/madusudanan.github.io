@@ -20,7 +20,7 @@ This is part 17 of the scala tutorial series. Check [here](/tags/#Scala) for the
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
-`update` method is a companion to the `apply` method which is used to update an existing value in an object. It's usage in core language 
+`update` method is a companion to the `apply` method which is used to update a value of an existing type in an object. It's usage in core language 
 libraries is pretty widespread as the apply method itself.
 
 ![Apply and Update](/images/functions.png)
@@ -36,7 +36,7 @@ Arrays unlike java are part of collections in scala. Let's consider the below ex
   //Created using the apply method
   val a = Array(12,4,5)
 
-  //Accessing the second index
+  //A different apply method which returns the element at the given index
   println(a(2))
 
   //Updating the second index
@@ -119,7 +119,7 @@ This adds/updates the existing key-value pair inside of the map named `list`. Be
 
 <h3><b><a name = "MultipleUpdates" class="inter-header">Multiple update methods</a></b></h3>
 
-We will create an additional `update` method for deeper understanding. This is slightly more complicated and hence we will add a 
+Let's create an additional `update` method for deeper understanding. This is slightly more complicated to visualize so we will add a 
 helper method in our class to print out the list.
 
 {% highlight scala %}
@@ -156,10 +156,7 @@ The logic is pretty simple. It searches for a name which matches with the given 
 
 {% endhighlight %}
 
-This gives the power to have nice clean abstractions instead of custom methods. In fact, if this approach is followed across the code base 
-then it can lead to a much cleaner abstraction instead of having methods for each of these operations.
-
-Since this is a powerful tool, we have to keep in mind that with power comes responsibility.
+If this approach is followed across the code base then it can lead to a much cleaner abstraction instead of having methods for each of these operations. Since this is a powerful tool, we have to keep in mind that with power comes responsibility.
 
 <h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
 
