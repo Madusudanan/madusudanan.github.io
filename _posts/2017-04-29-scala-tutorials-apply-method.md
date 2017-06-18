@@ -119,7 +119,7 @@ The `apply` method is static because for case classes there is an automatic comp
 
 <h3><b><a name = "WithoutNew" class="inter-header">Creating objects without new keyword</a></b></h3>
 
-To recollect what we have learnt till now, we can create instances without the `new` keyword two ways.
+To recollect what we have learnt till now, we can create instances without the `new` keyword in two ways.
 
 - Case classes
 - Object with apply method
