@@ -19,6 +19,8 @@ This is part 18 of the scala tutorial series. Check [here](/tags/#Scala) for the
 - [What are extractors?](#Intro)
 - [Setting the stage](#Staging)
 - [Implementing the unapply method logic](#Unapply)
+- [Usage of extractors in pattern matching](#PatternMatch)
+- [Multiple extractors](#MultipleExtractors)
 - [Unapply in case classes](#CaseClass)
 
 <h3><b><a name = "Intro" class="inter-header">What are extractors?</a></b></h3>
@@ -32,12 +34,11 @@ This will seem to be confusing in the first place but it will get cleared once w
 
 Let's take a trait that indicates a car (typical textbook example).
 
-
 {% highlight scala %}
 
 trait Car {
 
-    val price : String
+    val price : Int
 
 }
 
@@ -49,9 +50,9 @@ Let's take two other sub classes which implement this trait.
 
 {% highlight scala %}
 
-class SportsCar(val price:String) extends Car
+class SportsCar(val price:Int) extends Car
 
-class Sedan(val price:String) extends Car
+class Sedan(val price:Int) extends Car
 
 {% endhighlight %}
 
@@ -65,20 +66,26 @@ As we saw in the apply method article, we can create the `unapply` in a companio
 
  object SportsCar {
 
-    def unapply(car: SportsCar): Option[String] = Some(car.price)
+    def unapply(car: SportsCar): Option[Int] = Some(car.price)
 
   }
 
   object Sedan {
 
-    def unapply(car: Sedan): Option[String] = Some(car.price)
+    def unapply(car: Sedan): Option[Int] = Some(car.price)
 
   }
 
 {% endhighlight %}
 
 Their logic is pretty simple, they take a fully formed object such as `SportsCar` or `Sedan` and then take a parameter out of it
-such as `price` in this case and then return it. Let's look at a simple example of where this comes into play.
+such as `price` in this case and then return it. 
+
+Similar to the `apply` method, the `unapply` method is not called directly and used in pattern matching.
+
+<h3><b><a name = "PatternMatch" class="inter-header">Usage of extractors in pattern matching</a></b></h3>
+
+Let's look at a simple example of where this comes into play.
 
 {% highlight scala %}
 
@@ -110,7 +117,10 @@ such as `price` in this case and then return it. Let's look at a simple example 
 {% endhighlight %}
 
 
+We will see the internals of pattern matching in upcoming tutorials, but the example is sort of self-explanatory. First it checks whether
+the class is `SportsCar` or `Sedan`. Next we take the parameter that is given by the `unapply` method which is price and then perform
+some operations on it. We can imagine the parameter inside the `case` statement as a local variable as in a method which is obtained from the 
+extractor/unapply. 
 
-
-
+<h3><b><a name = "MultipleExtractors" class="inter-header">Multiple extractors</a></b></h3>
 
