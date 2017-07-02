@@ -8,7 +8,7 @@ tags: [Scala]
 Extractors
 ----------
 
-So far we have seen two of scala's so called magic methods i.e the [apply](/blog/scala-tutorials-part-15-the-apply-method/) 
+So far we have seen two of scala's magic methods i.e the [apply](/blog/scala-tutorials-part-15-the-apply-method/) 
 and [update](/blog/scala-tutorials-part-17-the-update-method/) methods. In this article we will look at another one that is central
 to pattern matching i.e un-apply (also called extractors) and this sort of completes the cycle with apply, update and un-apply.
 
@@ -20,8 +20,8 @@ This is part 18 of the scala tutorial series. Check [here](/tags/#Scala) for the
 - [Setting the stage](#Staging)
 - [Implementing the unapply method logic](#Unapply)
 - [Usage of extractors in pattern matching](#PatternMatch)
-- [Multiple extractors](#MultipleExtractors)
-- [Unapply in case classes](#CaseClass)
+- [Extractors with multiple parameters](#MultipleParams)
+- [Conclusion](#Conclusion)
 
 <h3><b><a name = "Intro" class="inter-header">What are extractors?</a></b></h3>
 
@@ -122,5 +122,82 @@ the class is `SportsCar` or `Sedan`. Next we take the parameter that is given by
 some operations on it. We can imagine the parameter inside the `case` statement as a local variable as in a method which is obtained from the 
 extractor/unapply. 
 
-<h3><b><a name = "MultipleExtractors" class="inter-header">Multiple extractors</a></b></h3>
+<h3><b><a name = "MultipleParams" class="inter-header">Extractors with multiple parameters</a></b></h3>
+
+An extractor with a single parameter looks simple, lets add another parameter to our trait and classes.
+
+{% highlight scala %}
+
+  trait Car {
+
+    val price : Int
+    val name : String
+
+  }
+  
+  class SportsCar(val price:Int,val name:String) extends Car
+  
+  class Sedan(val price:Int,val name:String) extends Car
+
+{% endhighlight %}
+
+Next we will modify our extractors to include the `name` parameter as well.
+
+{% highlight scala %}
+
+  object SportsCar {
+
+    def unapply(car: SportsCar): Option[(Int,String)] = Some(car.price,car.name)
+
+  }
+  
+  object Sedan {
+  
+      def unapply(car: Sedan): Option[(Int,String)] = Some(car.price,car.name)
+  
+  }
+
+{% endhighlight %}
+
+This data structure is called a `Tuple` which we will see in detail in later tutorials. We should then refactor our `printMessage` method
+to handle a tuple instead of a single integer.
+
+{% highlight scala %}
+
+def printMessage(car: Car) = {
+
+    car match {
+
+      case SportsCar(price,name) => {
+        if (price > 10000) {
+          println(s"Not going to buy $name")
+        }
+        else {
+          println(s"Looks like a good deal for $name")
+        }
+      }
+
+      case Sedan(price,name) => {
+        if (price > 3000) {
+          println(s"Too pricey. $name needs to reduce its price")
+        }
+        else {
+          println(s"Looks like a good deal for $name")
+        }
+      }
+
+    }
+  }
+  
+{% endhighlight %}
+
+
+<h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
+
+We are yet to see how unapply works in case classes, but i'll cover that in detail while learning about pattern matching.
+
+Unapply is nothing but syntactic sugar upon which you can do pattern matching. The data that gets returned from unapply is what you
+pattern match upon. There are many other places where we can use extractors. We will cover them as and when we encounter these situations.
+
+
 
