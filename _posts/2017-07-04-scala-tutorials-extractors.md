@@ -28,7 +28,7 @@ This is part 18 of the scala tutorial series. Check [here](/tags/#Scala) for the
 An extractor is the opposite of a constructor. Constructors are used to creates new objects while an extractor extracts parameters from
 a created object. `Un-apply` is the way in which you create an extractor. 
 
-This will seem to be confusing in the first place but it will get cleared once we look at examples.
+Let's jump right into an example.
 
 <h3><b><a name = "Staging" class="inter-header">Setting the stage</a></b></h3>
 
@@ -60,7 +60,8 @@ Next we have to create our `unapply` methods.
 
 <h3><b><a name = "Unapply" class="inter-header">Implementing the unapply method logic</a></b></h3>
 
-As we saw in the apply method article, we can create the `unapply` in a companion object so that we can access it as a static method and not a instance one. Let's go ahead and create companion objects for our custom car classes along with the `unapply` methods.
+Similar to the `apply` method, we can create the `unapply` in a companion object so that we can access it as a static method and not a instance one. 
+Let's go ahead and create companion objects for our custom car classes along with the `unapply` methods.
 
 {% highlight scala %}
 
@@ -78,8 +79,8 @@ As we saw in the apply method article, we can create the `unapply` in a companio
 
 {% endhighlight %}
 
-Their logic is pretty simple, they take a fully formed object such as `SportsCar` or `Sedan` and then take a parameter out of it
-such as `price` in this case and then return it. 
+The logic is pretty simple, they take a fully formed object such as `SportsCar` or `Sedan` and then extract a parameter out of it.
+In this case `price` is the variable and we extract and return it. 
 
 Similar to the `apply` method, the `unapply` method is not called directly and used in pattern matching.
 
@@ -124,7 +125,7 @@ extractor/unapply.
 
 <h3><b><a name = "MultipleParams" class="inter-header">Extractors with multiple parameters</a></b></h3>
 
-An extractor with a single parameter looks simple, lets add another parameter to our trait and classes.
+An extractor with a single parameter looks simple, let's add another parameter to our trait and classes.
 
 {% highlight scala %}
 
@@ -194,9 +195,9 @@ def printMessage(car: Car) = {
 
 <h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
 
-We are yet to see how unapply works in case classes, but i'll cover that in detail while learning about pattern matching.
+We are yet to see how this works in case classes, but i'll cover that in detail while learning about pattern matching.
 
-Unapply is nothing but syntactic sugar upon which you can do pattern matching. The data that gets returned from unapply is what you
+Unapply is nothing but syntactic sugar upon which you can do pattern matching. The data that gets returned from the unapply method is what you
 pattern match upon. There are many other places where we can use extractors. We will cover them as and when we encounter these situations.
 
 
