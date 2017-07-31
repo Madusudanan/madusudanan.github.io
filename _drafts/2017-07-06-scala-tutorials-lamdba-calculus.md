@@ -14,7 +14,6 @@ Check [here](/tags/#Scala) for the full series.
 - [History](#History)
 - [The notion of turing completeness](#TuringCompleteness)
 - [Church-Turing thesis](#ChurchTuring)
-- [Core ideas behind functional programming](#CoreIdeas)
 - [Functions as Values](#FunctionsAsValues)
 - [Methods vs Functions](#MethodsVsFunctions)
 
@@ -35,8 +34,8 @@ to lambda calculus and is also a formal system to express computation. Turns out
 the one who invented the turing machine was Alonzo Church's PhD Student. [Alonzo church](https://en.wikipedia.org/wiki/Alonzo_Church) 
 was the one who formulated lambda calculus. 
 
-Till today, these two systems are equal in terms of power in expressing computability and computational power. There are very good courses which
-teach the theoretical foundations of computer science and one such course is 
+Till today, these two systems are equal in terms of power in expressing computability and computational power (see church turing thesis below).
+There are very good courses which teach the theoretical foundations of computer science and one such course is
 [introduction to theoretical computer science](https://udacity.com/course/intro-to-theoretical-computer-science--cs313/){:target="_blank"}.
 
 <h3><b><a name = "TuringCompleteness" class="inter-header">The notion of turing completeness</a></b></h3>
@@ -71,7 +70,16 @@ Some of them were,
 
 Lambda calculus as a system is turing complete even though it pre-dates turing machine and that is where the Church-Turing thesis comes in.
 
+<h3><b><a name = "ChurchTuring" class="inter-header">Church-Turing thesis</a></b></h3>
 
+Some years after they invented, several mathematical theories came out which proves that lambda calculus and turing machines are essentially equivalent
+in terms of power/expressiveness. These were collectively known as [church-turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis){:target="_blank"}.
+For the record, we should know that lambda calculus pre-dates turing machines.
+
+This theoretical base is important since most of the modern imperative languages we see today are based on turing machines. Even the von-neumann
+model which we saw earlier is based on turing machines. But, most functional languages such as haskell, f# and scala are based on lambda calculus.
+Functional languages do not natively fit within von-neumann architectures and that was
+[addressed by john backus](/blog/scala-tutorials-part-9-intro-to-functional-programming/#WrongVonNeumann).
 
 
 
