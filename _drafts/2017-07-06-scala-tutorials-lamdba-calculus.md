@@ -14,6 +14,7 @@ Check [here](/tags/#Scala) for the full series.
 - [History](#History)
 - [The notion of turing completeness](#TuringCompleteness)
 - [Church-Turing thesis](#ChurchTuring)
+- [Revisiting call by name](#CallByName)
 - [Functions as Values](#FunctionsAsValues)
 - [Methods vs Functions](#MethodsVsFunctions)
 
@@ -81,8 +82,19 @@ model which we saw earlier is based on turing machines. But, most functional lan
 Functional languages do not natively fit within von-neumann architectures and that was
 [addressed by john backus](/blog/scala-tutorials-part-9-intro-to-functional-programming/#WrongVonNeumann).
 
+In the next sections we will explore how we can the principles behind lambda calculus and the different constructs which make use of it.
 
+<h3><b><a name = "CallByName" class="inter-header">Revisiting call by name</a></b></h3>
 
+The `=>` symbol has many different meanings in scala all related to its mathematical meaning as implication. We saw in 
+[part 3](/blog/scala-tutorials-part-3-methods/#CallByNamevsValue) that this means calling by name as opposed to call by value. Next we saw 
+how this operator was used in [pattern matching](/blog/scala-tutorials-part-16-the-option-type/) where it was used to separate the pattern and the
+optional guard from the resultant expression.
+
+We will explore more on its usage as and when we come across situations. The important takeaway is that we should not have a fixed meaning/understanding
+of the `=>` operator as they change depending upon the places where it is being used.
+
+<h3><b><a name = "FunctionsAsValues" class="inter-header">Functions as Values</a></b></h3>
 
 
 
