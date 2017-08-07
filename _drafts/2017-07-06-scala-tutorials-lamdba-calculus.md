@@ -15,8 +15,9 @@ Check [here](/tags/#Scala) for the full series.
 - [The notion of turing completeness](#TuringCompleteness)
 - [Church-Turing thesis](#ChurchTuring)
 - [Revisiting call by name](#CallByName)
+- [Functions](#Functions)
+- [Functions as first class citizens](#FirstClass)
 - [Functions as Values](#FunctionsAsValues)
-- [Methods vs Functions](#MethodsVsFunctions)
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
@@ -94,8 +95,59 @@ optional guard from the resultant expression.
 We will explore more on its usage as and when we come across situations. The important takeaway is that we should not have a fixed meaning/understanding
 of the `=>` operator as they change depending upon the places where it is being used.
 
-<h3><b><a name = "FunctionsAsValues" class="inter-header">Functions as Values</a></b></h3>
+<h3><b><a name = "Functions" class="inter-header">Functions</a></b></h3>
 
+Functions are the building block of functional programming (duh !!) and the definition of functions is sort of hazy and methods are also similar to functions in scala. According to lambda calculus, any program can be represented as a combimation of functions. We already saw pure functions in [part 9](/blog/scala-tutorials-part-9-intro-to-functional-programming/#PureFunctions).
+
+Let's take a simple example and then see their imperative and their functional counterpart.
+
+<i class="fa fa-hashtag" aria-hidden="true"></i> Iterative factorial
+
+{% highlight scala %}
+
+  def factorial_iter(n:Int) : Int = {
+
+     var fact = 1
+
+     for(i<-1 until n+1) {
+       fact = fact * i
+     }
+
+     fact
+   }
+
+{% endhighlight %}
+
+As we can see that the above implementation is not pure since there is mutation. Let's take a look at a recursive version
+
+<i class="fa fa-hashtag" aria-hidden="true"></i> Recursive factorial
+
+{% highlight scala %}
+
+def factorial_recursive(n:Int) : Int = {
+
+  if(n==0) 1 else n * factorial_recursive(n-1)
+
+}
+
+{% endhighlight %}
+
+The recursive version is more functional as it avoids mutation (mutation done on the method call stack is different). One would typically convert the above recursive call to a tail-recursive one, but that is a topic for a separate post. The point is that we can write code which emulates the principles behind lambda calculus through various programming level constructs. Some languages give very good support for this e.g Haskell, Scala and some give partial support e.g Javascript. This difference of how much a language is functional is important while writing code since we must make maximum use of them.
+
+As explained earlier in [part 7](/blog/scala-tutorials-part-7-objects-everywhere/#Operations), even fundamental operations inside scala are functions/methods (we will get to the difference later). For example the addition operator i.e `+` is actually a method inside the type classes. This is a classic example of the duality in which scala code can be represented i.e both functional and object oriented.
+
+<h3><b><a name = "FirstClass" class="inter-header">Functions as first class citizens</a></b></h3>
+
+In functional languages there are a set of ideas that are considered the core/foundations of it. A well accepted definition of this is present in the [sicp book](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-12.html#call_footnote_Temp_121){:target="_blank"}
+
+- They may be named by variables.
+- They may be passed as arguments to procedures.
+- They may be returned as the results of procedures.
+- They may be included in data structures.
+
+
+
+<h3><b><a name = "FunctionsAsValues" class="inter-header">Functions as Values</a></b></h3>
 
 
 
