@@ -92,12 +92,14 @@ The `=>` symbol has many different meanings in scala all related to its mathemat
 how this operator was used in [pattern matching](/blog/scala-tutorials-part-16-the-option-type/) where it was used to separate the pattern and the
 optional guard from the resultant expression.
 
-We will explore more on its usage as and when we come across situations. The important takeaway is that we should not have a fixed meaning/understanding
-of the `=>` operator as they change depending upon the places where it is being used.
+We will explore more on its usage as and when we come across situations. The important takeaway is that we should not have a fixed 
+meaning/understanding of the `=>` operator as they change depending upon the places where it is being used.
 
 <h3><b><a name = "Functions" class="inter-header">Functions</a></b></h3>
 
-Functions are the building block of functional programming (duh !!) and the definition of functions is sort of hazy and methods are also similar to functions in scala. According to lambda calculus, any program can be represented as a combimation of functions. We already saw pure functions in [part 9](/blog/scala-tutorials-part-9-intro-to-functional-programming/#PureFunctions).
+Functions are the building block of functional programming (duh !!) and the definition of functions is sort of hazy and 
+methods are also similar to functions in scala. According to lambda calculus, any program can be represented as a combination of functions. 
+We already saw pure functions in [part 9](/blog/scala-tutorials-part-9-intro-to-functional-programming/#PureFunctions).
 
 Let's take a simple example and then see their imperative and their functional counterpart.
 
@@ -132,22 +134,41 @@ def factorial_recursive(n:Int) : Int = {
 
 {% endhighlight %}
 
-The recursive version is more functional as it avoids mutation (mutation done on the method call stack is different). One would typically convert the above recursive call to a tail-recursive one, but that is a topic for a separate post. The point is that we can write code which emulates the principles behind lambda calculus through various programming level constructs. Some languages give very good support for this e.g Haskell, Scala and some give partial support e.g Javascript. This difference of how much a language is functional is important while writing code since we must make maximum use of them.
+The recursive version is more functional as it avoids mutation (mutation done on the method call stack is different). 
+One would typically convert the above recursive call to a tail-recursive one, but that is a topic for a separate post. 
+The point is that we can write code which emulates the principles behind lambda calculus through various programming level constructs. 
+Some languages give very good support for this e.g Haskell, Scala and some give partial support e.g Javascript. 
+This difference of how much a language is functional is important while writing code since we must make maximum use of them.
 
-As explained earlier in [part 7](/blog/scala-tutorials-part-7-objects-everywhere/#Operations), even fundamental operations inside scala are functions/methods (we will get to the difference later). For example the addition operator i.e `+` is actually a method inside the type classes. This is a classic example of the duality in which scala code can be represented i.e both functional and object oriented.
+As explained earlier in [part 7](/blog/scala-tutorials-part-7-objects-everywhere/#Operations), 
+even fundamental operations inside scala are functions/methods (we will get to the difference later). 
+For example the addition operator i.e `+` is actually a method inside the type classes. This is a classic example of the duality in which scala 
+code can be represented i.e both functional and object oriented.
 
 <h3><b><a name = "FirstClass" class="inter-header">Functions as first class citizens</a></b></h3>
 
-In functional languages there are a set of ideas that are considered the core/foundations of it. A well accepted definition of this is present in the [sicp book](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-12.html#call_footnote_Temp_121){:target="_blank"}
+In functional languages there are a set of ideas that are considered the core/foundations of it. A well accepted definition of this is 
+present in the [sicp book](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-12.html#call_footnote_Temp_121){:target="_blank"}
 
 - They may be named by variables.
 - They may be passed as arguments to procedures.
 - They may be returned as the results of procedures.
 - They may be included in data structures.
 
-
+These properties make functions special in scala and that differentiates functions from methods.
 
 <h3><b><a name = "FunctionsAsValues" class="inter-header">Functions as Values</a></b></h3>
+
+Functions can be expressed as values in scala. An example would be like below.
+
+{% highlight scala %}
+
+  val square = (n:Int) => n * n
+
+{% endhighlight %}
+
+Can be called as a regular function like `square(10)` and it would print `100`. If you call this without a parameter i.e just `square` then it would
+prints out `<function1>`.  
 
 
 
