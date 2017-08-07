@@ -222,7 +222,7 @@ public class Person {
     }
     
     public static boolean isNameSet(Person p){
-        if(p.name() == "noname"){
+        if(p.getPersonName() == "noname"){
             return false;
         }
         else{
