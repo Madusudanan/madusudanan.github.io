@@ -5,8 +5,7 @@ permalink: blog/scala-tutorials-part-19-lambda-calculus/
 tags: [Scala]
 ---
 
-In this part we are going to see where the core ideas of functional programming came from. This is part 19 of the scala tutorial series. 
-Check [here](/tags/#Scala) for the full series.
+This is part 19 of the scala tutorial series, check [here](/tags/#Scala) for the full series.
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
@@ -23,7 +22,7 @@ Check [here](/tags/#Scala) for the full series.
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
-We saw a little sneak peek into the world of functional programming in [part 9](/blog/scala-tutorials-part-9-intro-to-functional-programming/). In this
+There was a little sneak peek into the world of functional programming in [part 9](/blog/scala-tutorials-part-9-intro-to-functional-programming/). In this
 article we are going to dig deep into what functional programming is really all about, how it was created and its applications.
 
 [Lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus){:target="_blank"} is a formal system in mathematical logic
@@ -32,23 +31,23 @@ how it applies to functional programming.
 
 <h3><b><a name = "History" class="inter-header">History</a></b></h3>
 
-If you have a CS background or been programming for some time, you might have heard about the 
+If you have a CS background or been programming for some time, you might have heard about 
 [turing machine](https://en.wikipedia.org/wiki/Turing_machine){:target="_blank"}, which is kind of more famous in the computing world in comparison
 to lambda calculus and is also a formal system to express computation. Turns out that [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) 
 the one who invented the turing machine was Alonzo Church's PhD Student. [Alonzo church](https://en.wikipedia.org/wiki/Alonzo_Church) 
 was the one who formulated lambda calculus. 
 
 Till today, these two systems are equal in terms of power in expressing computability and computational power (see church turing thesis below).
-There are very good courses which teach the theoretical foundations of computer science and one such course is
+There are very good courses which teach these theoretical foundations of computer science and one such course is
 [introduction to theoretical computer science](https://udacity.com/course/intro-to-theoretical-computer-science--cs313/){:target="_blank"}.
 
 <h3><b><a name = "TuringCompleteness" class="inter-header">The notion of turing completeness</a></b></h3>
 
 [Turing completeness](https://en.wikipedia.org/wiki/Turing_completeness){:target="_blank"} tells us whether a programming language
-will be to simulate functionality of a turing machine. We can only simulate the functionality of the turing machine and cannot practically 
-define it since it is a theoretical model.
+will be able to simulate functionality of a turing machine. We can only simulate the functionality of the turing machine and cannot practically 
+develop it since it is a theoretical model.
  
-Examples of turing complete languages are some common languages we use such as
+Common programming languages such as
 
 - Scala
 - Java
@@ -56,7 +55,7 @@ Examples of turing complete languages are some common languages we use such as
 - Haskell
 - C & C++
 
-Domain specific languages such as 
+are examples of turing complete languages. 	Domain specific languages such as 
 
 - JSON
 - YAML
@@ -76,16 +75,15 @@ Lambda calculus as a system is turing complete even though it pre-dates turing m
 
 <h3><b><a name = "ChurchTuring" class="inter-header">Church-Turing thesis</a></b></h3>
 
-Some years after they invented, several mathematical theories came out which proves that lambda calculus and turing machines are essentially equivalent
+Some years after they were formulated, several mathematical theories came out which proves that lambda calculus and turing machines are essentially equivalent
 in terms of power/expressiveness. These were collectively known as [church-turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis){:target="_blank"}.
-For the record, we should know that lambda calculus pre-dates turing machines.
 
-This theoretical base is important since most of the modern imperative languages we see today are based on turing machines. Even the von-neumann
-model which we saw earlier is based on turing machines. But, most functional languages such as haskell, f# and scala are based on lambda calculus.
+This theoretical base is important since most of the modern imperative languages used today are based on turing machines. Even the von-neumann
+model which we saw earlier is based on turing machines. Whereas, most functional languages such as haskell, f# and scala are based on lambda calculus.
 Functional languages do not natively fit within von-neumann architectures and that was
 [addressed by john backus](/blog/scala-tutorials-part-9-intro-to-functional-programming/#WrongVonNeumann).
 
-In the next sections we will explore how we can the principles behind lambda calculus and the different constructs which make use of it.
+In the next sections we will explore how we can write code which respects the principles behind lambda calculus using the different constructs which scala offers.
 
 <h3><b><a name = "CallByName" class="inter-header">Revisiting call by name</a></b></h3>
 
@@ -103,7 +101,7 @@ Functions are the building block of functional programming (duh !!) and the defi
 methods are also similar to functions in scala. According to lambda calculus, any program can be represented as a combination of functions. 
 We already saw pure functions in [part 9](/blog/scala-tutorials-part-9-intro-to-functional-programming/#PureFunctions).
 
-Let's take a simple example and then see their imperative and their functional counterpart.
+Let's consider a simple example and compare their imperative and functional counterparts.
 
 <i class="fa fa-hashtag" aria-hidden="true"></i> Iterative factorial
 
@@ -157,7 +155,7 @@ present in the [sicp book](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H
 - They may be returned as the results of procedures.
 - They may be included in data structures.
 
-These properties make functions special in scala and that differentiates functions from methods. We will deal with each and every one of the above in the following sections.
+These properties make functions special in scala and that differentiates them from methods. We will deal with each and every one of the above in the following sections.
 
 <h3><b><a name = "FunctionsAsValues" class="inter-header">Functions as values</a></b></h3>
 
@@ -176,7 +174,7 @@ prints out `<function1>`. This extends a root trait called `FunctionN` which we 
 
 Functions share the same level of flexibility as strings for example. We can make use of something called function literals to create anonymous functions i.e functions which have no name.
 
-Let's take a list of a range of numbers.
+Let's create a list from a range of numbers.
 
 {% highlight scala %}
 
@@ -184,7 +182,7 @@ val x = List.range(1,10)
 
 {% endhighlight %}
 
-We can then pass a filter to this list in the form of an anonymous function.
+We can then pass a filter to this list in the form of a function.
 
 {% highlight scala %}
 
@@ -194,26 +192,26 @@ x.filter((i:Int) => i%2==0)
 
 Which prints `List(2, 4, 6, 8)`. The part `(i:Int) => i%2==0` is an anonymous function which filters only even numbers as you would expect.
 
-This is also an example where the `filter` function can take in functions as a parameter. These are called higher order functions which we will explore in a dedicated article.
+This is also an example where the `filter` function can take in functions as a parameter. These are called higher order functions which we will explore in a later dedicated article.
 
 <h3><b><a name = "WrapUp" class="inter-header">Wrapping up</a></b></h3>
 
-The ability to apply functions is also an important feature of functional languages. We already saw how scala does this in [part 15](/blog/scala-tutorials-part-15-the-apply-method/). 
+The ability to apply functions is also an important feature of functional languages. We already saw how this can be done in [part 15](/blog/scala-tutorials-part-15-the-apply-method/). 
 
 To summarize, we have seen
 
-- Lambda calculus and its associated thesis work pre-dates turing machines
+- A high level overview of lambda calculus
 - We saw how turing machines and lambda calculus relate to each other
 - What makes a language functional and the notion of functions as first class citizens
 - Basic overview of functional constructs in scala
 
-I have left out several concepts from this article for the sake of brevity and also the left out ones take an entire post of their own. Topics left out are 
+I have left out several concepts from this article for the sake of brevity and also the left out ones take an entire post of their own. Topics which were left out are,
 
 - Higher order functions
 - How functions work behind the scenes, i.e understanding the generated byte code
 - Lambda expressions and more advanced concepts
 
-Understanding lambda calculus is a long and complex journey, in this article I tried to give an intuition behind it and how it has influenced programming. You can play devil's advocate on comparing OOP and FP starting with simple code examples. 
+Understanding lambda calculus is a long and complex journey, in this article I tried to give an intuition behind it and how it has influenced programming. We can start comparing OOP and FP starting with simple code examples and then slowly approach to solve bigger problems. 
 
 
 
