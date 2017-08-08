@@ -23,7 +23,7 @@ This is part 19 of the scala tutorial series, check [here](/tags/#Scala) for the
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
 There was a little sneak peek into the world of functional programming in [part 9](/blog/scala-tutorials-part-9-intro-to-functional-programming/). In this
-article we are going to dig deep into what functional programming is really all about, how it was created and its applications.
+article we are going to dig deep into what functional programming is really all about, how it came into use and its significance.
 
 [Lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus){:target="_blank"} is a formal system in mathematical logic
 to express computations in the form of functions. In this article, we will take a high level view of what lambda calculus is and more importantly
