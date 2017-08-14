@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #5 - Classes"
 permalink: blog/scala-tutorials-part-5-classes/
 tags: [Scala]
-last_updated: 2016-11-22
+last_updated: 2017-08-14
 ---
 
 Classes
@@ -106,9 +106,11 @@ A similar representation can be drawn for scala.
      <th align="left">Subclass</th>
      <th align="left">Project</th>
      <tr><td>Default/No modifier</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td></tr>
-     <tr><td>Protected</td><td>Y</td><td>Y</td><td>Y</td><td>N</td><td>N</td></tr>
-     <tr><td>Private</td><td>Y</td><td>Y</td><td>N</td><td>N</td><td>N</td></tr>
+     <tr><td>Protected</td><td>Y</td><td>Y</td><td>N *</td><td>Y</td><td>N</td></tr>
+     <tr><td>Private</td><td>Y</td><td>Y</td><td>N *</td><td>N</td><td>N</td></tr>
 </table>
+
+`*` Top level `protected` and `private` members can be accessed from inside a package
 
 It is more or less similar to java's access modifiers, except that there are only three levels. There is no equivalent of java's default access, and the default in scala
 is equal to java's public.
