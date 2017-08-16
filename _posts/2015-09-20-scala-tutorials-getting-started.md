@@ -9,13 +9,13 @@ last_updated: 2017-02-25
 Getting Started with Scala
 --------------------------
 
-This is the first part of a tutorial series that ill be publishing on scala. Check [here](/tags/#Scala) for the full series.
+This is the first part of a tutorial series that ill be publishing on Scala. Check [here](/tags/#Scala) for the full series.
 
-If you are from Java there are lot of things that can be difficult to get your head around, and the most easiest way to learn this is to unlearn and learn.
+If you are from Java there are lot of things that can be difficult to get your head around, and the most easiest way is to unlearn and re-learn them.
 
 <i class="fa fa-film fa-lg space-right"></i> : <a href="https://www.youtube.com/watch?v=APx2yFA0-B4" target="_blank">Be like water my friend !!</a>
 
-<i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by [ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, you can check it out
+<i class="fa fa-language fa-lg space-right"></i> : This article has been translated to Chinese by [ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, you can check it out
 [here](http://www.itran.cc/2017/02/23/yin-du-peng-you-shou-ba-shou-jiao-ni-xue-scala-1-scalaru-men/){:target="_blank"}.
 
 Let's get started.
@@ -40,9 +40,9 @@ Let's get started.
 
 <h3><b><a name = "Intro" class="inter-header">Introduction to scala and environment setup</a></b></h3>
 
-If you are completely new to scala then I encourage you to read [this blog post](/blog/why-scala-will-be-the-next-big-thing).
+In case you are completely new to Scala then I encourage you to read [this blog post](/blog/why-scala-will-be-the-next-big-thing).
 
-There are many tutorials on the internet which talk about setting up scala, so I am not going to walk through those again.
+There are many tutorials on the internet which talk about setting up Scala, so I am not going to walk through those again.
 
 The setup that I would recommend is as follows.
 
@@ -53,15 +53,15 @@ If you are done setting those up, then lets begin.
 
 <h3><b><a name = "ScalaREPL" class="inter-header">The Scala REPL, a short presentation</a></b></h3>
 
-Below is a link to a short presentation about scala REPL.
+Below is a link to a short presentation about Scala REPL.
 
 <i class="fa fa-pencil-square-o fa-lg space-right"></i> <a href="http://madusudanan.com/revealjs-presentations/scala-repl-intro" target="_blank">Scala REPL Intro</a>
 
-The REPL will act as your swiss army knife in learning scala.
+The REPL will act as your Swiss army knife in learning Scala.
 
 <h3><b><a name = "ScalaHelloWorld" class="inter-header">First Hello World !!</a></b></h3>
 
-If you are coming from a Java background then scala is a little different in how it is represented. Let's directly jump into some code.
+Let's directly jump into some code.
 
 {% highlight scala %}
 object Test {
@@ -71,14 +71,14 @@ object Test {
 }
 {% endhighlight %}
 
-I would recommend to put this code into your Intellij IDE and then do right click run. If all goes well, you should see Hello World in your console.
+I would recommend to put this code into your Intellij IDE and then run it. If all goes well, you should see Hello World in your console.
 
 Congratulations !! You have authored your first Hello world.
 
 Now let's take this apart piece by piece.
 
 The first thing to notice, is that the whole code is inside an Object block. Java programmers might find these confusing. Hold on to this question for now, the next section
-deals with this in a more detailed way. Unlike Java, class names need not match with file names, it is not a big thing but we do have that freedom here <i class="fa fa-smile-o fa-lg"></i>.
+deals with this in a more detailed way. Unlike Java, class names need not match with file names, it is not a big thing,  but we do have that freedom here <i class="fa fa-smile-o fa-lg"></i>.
 
 Next thing is the strange syntax of `def main()`. To begin with `def` is a keyword to declare methods. We will be dealing with methods in greater detail
 in an upcoming tutorial.
