@@ -14,9 +14,6 @@ This is part 2 of the scala tutorial series. Check [here](/tags/#Scala) for the 
 If you recall from the first part, we briefly dealt with type inference with a few examples.
 Now we are going to deal it with a little more depth, below is what this article will cover.
 
-<i class="fa fa-sticky-note-o space-right"></i> Note: This is a pretty dry topic,mostly theory based, but also important. 
-I have tried to cover the essential ones in the most minimalistic way possible. Many materials have been given for leisure study.
-
 <i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by 
 [ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, 
 you can check it out [here](http://www.itran.cc/2017/02/23/yin-du-peng-you-shou-ba-shou-jiao-ni-xue-scala-2-scalali-de-lei-xing-jie-kou-lei-xing/){:target="_blank"}.

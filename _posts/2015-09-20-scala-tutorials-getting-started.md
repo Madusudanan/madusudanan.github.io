@@ -3,13 +3,13 @@ layout: post
 title: "Scala Tutorials Part #1 - Getting Started with Scala"
 permalink: blog/scala-tutorials-part-1-getting-started/
 tags: [Scala]
-last_updated: 2017-02-25
+last_updated: 2017-08-17
 ---
 
 Getting Started with Scala
 --------------------------
 
-This is the first part of a tutorial series that ill be publishing on Scala. Check [here](/tags/#Scala) for the full series.
+This is the first part of a tutorial series that ill be writing on Scala. Check [here](/tags/#Scala) for the full series.
 
 If you are from Java there are lot of things that can be difficult to get your head around, and the most easiest way is to unlearn and re-learn them.
 
@@ -23,10 +23,8 @@ Let's get started.
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
 - [Introduction to scala and environment setup](#Intro)
-- [The Scala REPL, a short presentation](#ScalaREPL)
 - [First Hello world !!](#ScalaHelloWorld)
 - [Variables](#Variables)
-- [Syntax of Arrays](#Syntax)
 - [Reference vs Value immutability](#ReferenceVsValue)
 - [Immutability under the hood](#AdvancedUnderstanding)
 - [Comparing and Contrasting `val` and `final`](#ValVsFinal)
@@ -36,28 +34,21 @@ Let's get started.
 - [Type annotations](#TypeAnnotations)
 - [Type ascriptions](#TypeAscriptions)
 - [Lazy val](#LazyVal)
+- [Homework](#Homework)
 
 
 <h3><b><a name = "Intro" class="inter-header">Introduction to scala and environment setup</a></b></h3>
 
-In case you are completely new to Scala then I encourage you to read [this blog post](/blog/why-scala-will-be-the-next-big-thing).
+Start with [this blog post](/blog/why-scala-will-be-the-next-big-thing) if you are new to Scala.
 
-There are many tutorials on the internet which talk about setting up Scala, so I am not going to walk through those again.
+There are many tutorials available on the internet which talk about setting up Scala, so I am not going to walk through those again.
 
-The setup that I would recommend is as follows.
+The developer setup that I would recommend is as follows.
 
 - Operating System : Mac/Linux preferred
 - Intellij IDEA community edition with Scala plugin installed
 
-If you are done setting those up, then lets begin.
-
-<h3><b><a name = "ScalaREPL" class="inter-header">The Scala REPL, a short presentation</a></b></h3>
-
-Below is a link to a short presentation about Scala REPL.
-
-<i class="fa fa-pencil-square-o fa-lg space-right"></i> <a href="http://madusudanan.com/revealjs-presentations/scala-repl-intro" target="_blank">Scala REPL Intro</a>
-
-The REPL will act as your Swiss army knife in learning Scala.
+If you are done setting those up, then let's begin.
 
 <h3><b><a name = "ScalaHelloWorld" class="inter-header">First Hello World !!</a></b></h3>
 
@@ -71,104 +62,46 @@ object Test {
 }
 {% endhighlight %}
 
-I would recommend to put this code into your Intellij IDE and then run it. If all goes well, you should see Hello World in your console.
+Ypu can copy this code into your Intellij IDE and then run it. If all goes well, you should see Hello World in your console.
 
 Congratulations !! You have authored your first Hello world.
 
-Now let's take this apart piece by piece.
-
-The first thing to notice, is that the whole code is inside an Object block. Java programmers might find these confusing. Hold on to this question for now, the next section
-deals with this in a more detailed way. Unlike Java, class names need not match with file names, it is not a big thing,  but we do have that freedom here <i class="fa fa-smile-o fa-lg"></i>.
+Now let's try to understand the code. The first thing to notice, is that the whole code is inside an Object block. Java programmers might find these confusing. Hold on to this question for now, the next section
+deals with this in a more detailed way. Unlike Java, class names need not match with file names, not a big deal but, we do have that freedom here.
 
 Next thing is the strange syntax of `def main()`. To begin with `def` is a keyword to declare methods. We will be dealing with methods in greater detail
 in an upcoming tutorial.
 
-If there is a method then there can be arguments. In our case, it is a `Array[String]`. This is similar to java's main method, where an array of strings can
-be an argument to the main method. Can be used for startup configs or anything else, usage is completely optional of course.
+There can be arguments for a method. In our case, it is an `Array[String]`. This is similar to Java's main method, where a string array is an argument to the main method. Can be used for startup config or any runtime variables.
 
 This is followed by a `println()` method call which prints statements on to the console. 
-If you are using an IDE (you should be), you can trace the entire call by holding ctrl+click on the method. 
-Python folks should find this syntax similar, and in fact to a programmer there is nothing to this except printing out a String to the console.
+If you are using an IDE, then you can trace the entire call by holding ctrl+click on the method (Shortcuts differ with operating systems. On the mac this is cmd+click). 
+Python folks should find this syntax similar, it simply prints out the given string to the console.
 Semicolons are optional in scala unlike java and the compiler relies on line breaks to identify the next literal/code block.
 
-But let's dig a little deeper. For the Java folks, a general print on the console will be like `System.out.println`. So, how is this different?
-
-The answer is it is not so different, `println()` is a method in class called Predef.scala, which then calls goes to Console.scala's println method which then calls `out.println`
-on PrintStream.class or PrintStream.java if you have the source code attached, otherwise the decompiler from Intellij shows the decompiled code. The print from 
-both scala and java end up in the same method call. As said before, scala is built on top of the JVM and can inter-operate with Java code seamlessly as we just saw, there would be a specific reason if the implementation was different, otherwise
-it would be just re-inventing the wheel.
-
-In fact there are many more examples which utilizes java libraries in our journey in learning about scala.
+On digging a little deeper `println()` is a method present in a class called Predef.scala, which calls Console.scala's println method which then goes all the way to calls `out.println`
+on `PrintStream.java`. If you have the source code attached it shows the source code directly, otherwise the decompiler from Intellij shows the decompiled code. The print from 
+both Scala and Java end up in the same method call. As mentioned before, Scala is built on top of the JVM and can inter-operate with Java code seamlessly, unless there is a specific reason for a different implementation then it would be just re-inventing the wheel and hence they all rely on the existing JDK library functionality.
 
 A simple hello world has opened up many topics to learn, three in particular 
 
 - Methods(Covered in later tutorials)
 - Objects and Classes(Covered in later tutorials)
-- Type inference - The reason why scala is a statically typed dynamic language- Explained below
+- Type inference — The reason why Scala is a statically typed dynamic language- Explained below
 
 <h3><b><a name = "Variables" class="inter-header">Variables</a></b></h3>
 
-I should have explained data types before we jump into variables, but there are some fundamental differences that I want to speak about so that the we can understand them
-more deeply.
+I should have explained data types before we jump into variables, but there are some fundamental differences that we have to understand.
 
-`var`and `val` are two keywords which are used to declare variables in scala.
+`var`and `val` are two keywords which are used to declare variables.
 
-`var` is used to declare variables that are mutable and `val` to declare immutable. But what kind of variables are these?
-For primitive data types, where does the concept of mutability come from? I encourage you to read this [stackoverflow post](http://stackoverflow.com/questions/18037082/are-java-primitives-immutable){:target="_blank"}.
+`var` is used to declare variables that are mutable and `val` to declare immutable ones. But what kind of variables are these?
+For primitive data types, where does the concept of immutability come from? I encourage you to read this [stackoverflow post](http://stackoverflow.com/questions/18037082/are-java-primitives-immutable){:target="_blank"}.
 Primitives by themselves are immutable i.e their type cannot be changed once declared, but their values are mutable i.e they can be changed.
-
-This is confusing at first about why the concept of mutability comes for variables and not objects, this is explained below in data types section, there are no primitive
-types in scala, all are objects.
-
-<h3><b><a name = "Syntax" class="inter-header">Syntax of Arrays</a></b></h3>
-
-This is just a brief overview of how arrays are declared in scala which is slightly different when compared to java.
-
-An array of some type can be declared as below.
-
-{% highlight scala %}
-
-val array = Array(10,12,23,44)
-
-{% endhighlight %}
-
-This is different from java where we use flower brackets for fixed array values.
-
-{% highlight java %}
-
-int[] array = {10,12,33,55};
-
-{% endhighlight %}
-
-And for unknown values we use square brackets.
-
-{% highlight java %}
-
-int[] array = new int[4];
-
-{% endhighlight %}
-
-In scala, the square brackets is used to indicate type.
-
-{% highlight scala %}
-
-  val array : Array[Int] = Array(10,12,23,44)
-
-{% endhighlight %}
-
-This is equivalent to java's generics `<>` symbol.
-
-{% highlight java %}
-
-ArrayList<Integer> rows = new ArrayList<>();
-
-{% endhighlight %}
-
-We will see collections in more depth in upcoming tutorials.
 
 <h3><b><a name = "ReferenceVsValue" class="inter-header">Reference vs Value Immutability</a></b></h3>
 
-If `val` is immutable, then it cannot be changed ? Is this similar to the Java final keyword or is it something related to String immutability ?
+If `val` is immutable, then it cannot be changed? Is this similar to the Java final keyword or is it something related to String immutability?
 
 Let's look some sample code below, to help us understand better.
 
@@ -502,9 +435,16 @@ I'll be updating links to this article as soon as I publish pending topics that 
 
 Scala is not easy, but it is not hard either if we take one step at a time and learn things. My goal is not to teach everything, but simply point in a direction that is much less shrouded that it was before.
 
-Keep learning watch out for more posts <i class="fa fa-smile-o fa-lg"></i>
+<h3><b><a name = "Homework" class="inter-header">Homework</a></b></h3>
 
+From what we have seen in this post, we can go ahead and learn the below topics.
 
+[Tutorials point arrays](https://www.tutorialspoint.com/scala/scala_arrays.htm){:target="_blank"} gives a good overview of the syntax.
 
+[Scala lang official documentation of arrays](http://docs.scala-lang.org/overviews/collections/arrays.html){:target="_blank"} is a must read.
 
+Arrays are the most simplistic collection type in the scala language and understanding them gives us a good head start.
 
+[The Scala REPL](http://docs.scala-lang.org/overviews/repl/overview.html){:target="_blank"} is a very handy tool that we can make use of for experimenting short code snippets. Make sure you checkout the [Ammonite REPL](http://ammonite.io/){:target="_blank"} which is not part of the standard Scala toolkit but much more advanced and user friendly.
+
+Keep learning and watch out for more posts <i class="fa fa-smile-o fa-lg"></i>
