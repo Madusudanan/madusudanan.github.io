@@ -87,7 +87,7 @@ Same can be done in case classes as well.
 {% highlight scala %}
 
 case class Book(
-private val id:Int = -1,private val title:String = "No name",private val isbn:Long = -1
+val id:Int = -1,val title:String = "No name",val isbn:Long = -1
 )
 
 {% endhighlight %}
