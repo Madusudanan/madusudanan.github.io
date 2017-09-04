@@ -15,7 +15,7 @@ This is part 21 of the scala tutorial series. Check [here](/tags/#Scala) for the
 - [Introduction](#Intro)
 - [Referential transparency in action](#InAction)
 - [Referential transparency in the real world](#RealWorld)
-- [Advantages](#Advantages)
+- [Conclusion](#Conclusion)
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
@@ -75,7 +75,7 @@ def mod_rt(x:Int) = {
 
 In the above code block, we cannot say for sure that `mod_rt(x)` is always a value which is predictable since the variable being modified i.e `g` can be changed elsewhere in the code and it changes the behavior of the entire flow. This makes it difficult to reason about the code and breaks the referential transparency principle. 
 
-From wikipedia,
+From Wikipedia,
 
 - The function always evaluates to the same result value given the same argument value(s). It cannot depend on any hidden state or value, and it cannot depend on any I/O.
 - Evaluation of the result does not cause any semantically observable side effect or output, such as mutation of mutable objects or output to I/O devices.
@@ -89,16 +89,22 @@ In the real world certain methods/functions are naturally not suited.
 - Methods which depend on time i.e something like `getDayOfWeek`,  'getHour', `System.currentTimeMillis` etc.,
 - Random number generation
 - Functionality which does Input/Output based on a user
-- Code that writes/reads to databases/datastores
+- Code that writes/reads to databases/data stores
 
 Strictly following referential transparency means we cannot have
 
 - Impure functions
 - I/O from file/user
-- Interaction with exteral mutable datastores
+- Interaction with external mutable data stores
 
 It must not be taken in a literal sense. As pointed above many needed functionality does not follow the rules. As a programmer/software developer we must strive to write code that follows referential transparency. Referential transparency sort of acts as a toolkit to test the purity of functions.
 
+<h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
+
+A quick wrap up of what we saw in this article.
+
+- We saw how referential transparency helps programmers reason about code.
+- How immutable variables lead to good code and also follow  
 
 
 
