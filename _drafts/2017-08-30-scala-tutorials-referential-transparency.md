@@ -14,7 +14,7 @@ This is part 21 of the scala tutorial series. Check [here](/tags/#Scala) for the
 
 - [Introduction](#Intro)
 - [Referential transparency in action](#InAction)
-- [Substitution principle](#Substitution)
+- [Referential transparency in the real world](#RealWorld)
 - [Advantages](#Advantages)
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
@@ -24,6 +24,84 @@ into functional programming. Its main goal is to enable the programmer to reason
 where did this bug come from, what change broke this functionality etc.,
 
 This concept is related to [pure functions](/blog/scala-tutorials-part-9-intro-to-functional-programming/#PureFunctions). In fact, referential 
-transparency can be achieved only when the function is pure and does not have any side effect.
+transparency can be achieved only when the function is pure and does not have any side effect. This is not a feature of the Scala language, but this article is just to explain how it can be achieved.
+
+<h3><b><a name = "InAction" class="inter-header">Referential transparency in action</a></b></h3>
+
+Let's take the square function again.
+
+{% highlight scala %}
+
+def square(x:Int) = x * x
+
+{% endhighlight %}
+
+If we call this method using 5 and 6 as parameters.
+
+{% highlight scala %}
+
+  //Prints 25
+  println(square(5))
+
+  //Prints 36
+  println(square(6))
+
+{% endhighlight %}
+
+We can replace all instances of `square(5)` with 25 and `square(6)` with 36 and the code will still work fine.
+
+Let's take something that isn't.
+
+{% highlight scala %}
+
+  var g = 20
+
+  println(mod_rt(10))
+
+{% endhighlight %}
+
+A function which modifies an external variable.
+
+{% highlight scala %}
+
+def mod_rt(x:Int) = {
+  //Modifies an external variable
+  g = g+10
+  g + x * x	
+} 
+
+{% endhighlight %}
+
+
+In the above code block, we cannot say for sure that `mod_rt(x)` is always a value which is predictable since the variable being modified i.e `g` can be changed elsewhere in the code and it changes the behavior of the entire flow. This makes it difficult to reason about the code and breaks the referential transparency principle. 
+
+From wikipedia,
+
+- The function always evaluates to the same result value given the same argument value(s). It cannot depend on any hidden state or value, and it cannot depend on any I/O.
+- Evaluation of the result does not cause any semantically observable side effect or output, such as mutation of mutable objects or output to I/O devices.
+
+We can see that immutable functions/methods by itself leads to referential transparency.
+
+<h3><b><a name = "RealWorld" class="inter-header">Referential transparency in the real world</a></b></h3>
+
+In the real world certain methods/functions are naturally not suited.
+
+- Methods which depend on time i.e something like `getDayOfWeek`,  'getHour', `System.currentTimeMillis` etc.,
+- Random number generation
+- Functionality which does Input/Output based on a user
+- Code that writes/reads to databases/datastores
+
+Strictly following referential transparency means we cannot have
+
+- Impure functions
+- I/O from file/user
+- Interaction with exteral mutable datastores
+
+It must not be taken in a literal sense. As pointed above many needed functionality does not follow the rules. As a programmer/software developer we must strive to write code that follows referential transparency. Referential transparency sort of acts as a toolkit to test the purity of functions.
+
+
+
+
+
 
  
