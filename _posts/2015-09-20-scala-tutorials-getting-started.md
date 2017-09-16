@@ -417,23 +417,16 @@ println(lines)
 
 {% endhighlight %}
 
-I encourage you to try this yourself. First by commenting out `println(line)`, you could see that it did not result in an error even though the file was not there. 
+I encourage you to try this yourself. First by commenting out `println(lines)`, you could see that it did not result in an error even though the file 
+was not there. 
 
-But this is a working example and you can put in a real file on the top level of the project that you are in/ put in a specific path yourself and then the program would
-just prints out the file content.
+This is a working example where you can put in a real file on the top level of the project that you are in/ put in a specific path yourself and 
+then the program would just print out the file content.
 
 This is controlled at compile time, since a variable access can be know at compile time. 
 
-Very useful in situations such as a file upload window in a browser. The user may or may not upload the file, so it is best to defer/lazily evaluate until the event happens.
-
-This brings an end to this post, we have started with the important parts. I encourage you to re read the post to understand it completely if you haven't 
-and also refer relevant documentation on the internet.
-
-Translating simple code snippets from other languages also helps.
-
-I'll be updating links to this article as soon as I publish pending topics that I have mentioned here. You can also subscribe if you want to keep updated.
-
-Scala is not easy, but it is not hard either if we take one step at a time and learn things. My goal is not to teach everything, but simply point in a direction that is much less shrouded that it was before.
+Very useful in situations such as a file upload window in a browser. The user may or may not upload the file, so it is best to defer/lazily 
+evaluate until the event happens.
 
 <h3><b><a name = "Homework" class="inter-header">Homework</a></b></h3>
 
@@ -445,6 +438,18 @@ From what we have seen in this post, we can go ahead and learn the below topics.
 
 Arrays are the most simplistic collection type in the scala language and understanding them gives us a good head start.
 
-[The Scala REPL](http://docs.scala-lang.org/overviews/repl/overview.html){:target="_blank"} is a very handy tool that we can make use of for experimenting short code snippets. Make sure you checkout the [Ammonite REPL](http://ammonite.io/){:target="_blank"} which is not part of the standard Scala toolkit but much more advanced and user friendly.
+[The Scala REPL](http://docs.scala-lang.org/overviews/repl/overview.html){:target="_blank"} is a very handy tool that we can make use of for 
+experimenting short code snippets. Make sure you checkout the [Ammonite REPL](http://ammonite.io/){:target="_blank"} which is not part of the 
+standard Scala toolkit but much more advanced and user friendly.
+
+This brings an end to this post, we have started with the important parts. I encourage you to re read the post to understand it completely if you haven't 
+and also refer relevant documentation on the internet.
+
+Translating simple code snippets from other languages also helps.
+
+I'll be updating links to this article as soon as I publish pending topics that I have mentioned here. You can also subscribe if you want to keep updated.
+
+Scala is not easy, but it is not hard either if we take one step at a time and learn things. My goal is not to teach everything, 
+but simply point in a direction that is much less shrouded that it was before.
 
 Keep learning and watch out for more posts <i class="fa fa-smile-o fa-lg"></i>
