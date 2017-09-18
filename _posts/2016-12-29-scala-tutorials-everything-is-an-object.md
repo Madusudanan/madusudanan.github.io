@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #7 - Objects Everywhere"
 permalink: blog/scala-tutorials-part-7-objects-everywhere/
 tags: [Scala]
-last_updated: 2017-03-26
+last_updated: 2017-09-18
 ---
 
 Objects Everywhere
@@ -28,6 +28,7 @@ you can check it out [here](https://www.itran.cc/2017/03/09/yin-du-peng-you-shou
 - [Bigint example](#Bigint)
 - [Typecasting](#Typecasting)
 - [Value comparison](#Value)
+- [Code blocks as values](#CodeBlocks)
 - [Implementations in other languages and some notes](#Compared)
 
 
@@ -458,7 +459,7 @@ There are several more, but the point was to bring an intuition rather than an e
 In java you would have been taught not to use the `==` operator for comparing object types since they would compare references.
 
 Scala has a different perspective to this. As we saw in [case classes](/blog/scala-tutorials-part-6-case-classes/#Equals) comparison can be done with `==`. This is
-because everything is a [value in scala](https://en.wikipedia.org/wiki/Uniform_access_principle){:target="_blank"}.
+because everything is a value in scala.
 
 With that said, since everything is also an object we can define our own method for the `==` comparison.
 
@@ -486,9 +487,37 @@ Just like the `+` method above, the `==` is a synthetic function in the scala li
 
 Above code compiles to native java like comparison i.e for string it would be the `equals` method which does a character by character comparison underneath.
 
+<h3><b><a name = "CodeBlocks" class="inter-header">Code blocks as values</a></b></h3>
+
+In scala, we can have the values returned from a code block and assign it to a variable directly.
+
+{% highlight scala %}
+
+val age = 20
+
+val x  = {
+    if(age > 18) "adult" else "under age"
+}
+
+{% endhighlight %}  
+
+This gets inferred to the `String` type. If there are no values computed as a result of that code block then it gets inferred to the `Unit` type.
+
+{% highlight scala %}
+
+  val age = 20
+
+  val x  = {
+    if(age > 18) println("Adult") else println("Under age")
+  }
+
+{% endhighlight %}  
+
+This is possible because of the type system and it is not possible in java. Behind the scenes(jvm) it gets converted to a method. We can understand most of the concepts above even further if we learn about [uniform access principle](http://wiki.c2.com/?UniformAccessPrinciple){:target="_blank"} which is explained in [part 14](/blog/scala-tutorials-part-14-uniform-access-principle/).
+
 <h3><b><a name = "Compared" class="inter-header">Implementations in other languages and some notes</a></b></h3>
 
-Turns out that scala is not the first language to implement this "objects everywhere" concept.
+Turns out that scala is not the first language to implement "objects everywhere" concept.
 
 [In Ruby](http://stackoverflow.com/questions/10158791/java-and-ruby-everything-is-an-object-in-oo){:target="_blank"} there are no primitive types and they operate almost similar to scala except for that fact that scala is object oriented in a very pure form, which means that everything is an object.
 
