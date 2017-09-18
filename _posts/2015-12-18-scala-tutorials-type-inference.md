@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #2 - Type Inference & types in Scala"
 permalink: blog/scala-tutorials-part-2-type-inference-in-scala/
 tags: [Scala]
-last_updated: 2017-01-04
+last_updated: 2017-09-18
 ---
 
 Type inference
@@ -26,6 +26,7 @@ you can check it out [here](http://www.itran.cc/2017/02/23/yin-du-peng-you-shou-
 - [Hindley-Milner(HM) type inference](#Hindley)
 - [Local vs Global type inference - Why scala choose local type inference](#LocalvsGlobal)
 - [A brief overview of scala's type system and sub-typing](#ScalaTypes)
+- [Value types and Reference types](#ValueVsReference)
 - [When to use type inference?](#Usage)
 - [References](#References)
 
@@ -181,7 +182,30 @@ We are constructing a heterogeneous list where sub-typing converts the lower typ
 A simple example would converting a Int to a Double which is the first example. If it cannot be fit, it goes to the top level i.e the `Any` type. 
 All of this conversion can be translated to the type system hierarchy above.
 
-This makes Objected oriented programming much easier to handle. For more information you can visit the [Scala docs](http://docs.scala-lang.org/tutorials/tour/unified-types.html){:target="_blank"} of type systems.
+This makes Objected oriented programming much easier to handle. For more information you can visit the [Scala docs](http://docs.scala-lang.org/tutorials/tour/unified-types.html){:target="_blank"} for type systems.
+
+<h3><b><a name = "ValueVsReference" class="inter-header">Value types and Reference types</a></b></h3>
+
+The left sub-tree in the above tree contains all the value types i.e everything that comes under
+`AnyVal` and types that come under `AnyRef` are all reference types. They are similar to their java counterparts and compiles to the same thing as far as the JVM is concerned (more on that in later tutorials).
+
+Value types are similar to native types in java. They are created as follows.
+
+{% highlight scala %}
+
+val x : Int = 3
+
+{% endhighlight %}  
+
+While reference types need to have the `new` keyword.
+
+{% highlight scala %}
+
+val arr = new ArrayBuffer[Int]()
+
+{% endhighlight %}  
+
+Of course there are some exceptions to this. `String` is a special one. Collection classes such as `Array` and `List` have their own `apply` method so that they can be created without the new keyword (`apply` is explained in [part 15](/blog/scala-tutorials-part-15-the-apply-method/)). Technically, they are objects in the jvm as opposed to native types, so they require the `new` keyword for their creation.
 
 <h3><b><a name = "Usage" class="inter-header">When to use type inference?</a></b></h3>
 
