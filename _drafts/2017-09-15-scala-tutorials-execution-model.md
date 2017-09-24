@@ -17,6 +17,8 @@ what strategy scala uses to evaluate expressions and functions which also was fo
 
 - [Introduction](#Intro)
 - [Expression evaluation](#ExpressionEvaluation)
+- [Function evaluation](#FunctionEvaluation)
+- [Conclusion](#Conclusion)
 
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
@@ -63,8 +65,53 @@ val y = 30
 
 ->  `34`
 
-Notice how the value y is evaluated only at the end. This is sort of a lazy evaluation.
+<h3><b><a name = "FunctionEvaluation" class="inter-header">Function evaluation</a></b></h3>
 
+We already saw how evaluation takes place in functions in [part 3](/blog/scala-tutorials-part-3-methods/#CallByNamevsValue) so I will not
+be going over it again, but there is one quirky detail that I will be explaining below. (Example adapted from Functional Programming Principles in 
+Scala - Coursera)
 
+Let's consider a method that calls itself recursively.
 
+{% highlight scala %}
 
+ def loop:Int = loop 
+
+{% endhighlight %}
+
+Another method which just returns one of the arguments passed in.
+
+{% highlight scala %}
+
+def test(x: Int, y: Int) = x
+
+{% endhighlight %}
+
+Under normal evaluation calling the `loop` method will lead to infinite loop. But what will happen if we call the `test` method?
+
+Since scala uses call-by-value as default, it would lead to infinite loop even though the second argument does not play 
+any role in it. `test(1,loop)` will keep on running. We can fix this by making the `test` method's second parameter as call by name.
+
+{% highlight scala %}
+
+def test(x: Int, y : => Int) = x
+
+{% endhighlight %}
+
+We [already saw](/blog/scala-tutorials-part-19-lambda-calculus/#FirstClass) how functions can be passed in as parameters. This is nothing
+but a function which expects another function i.e `y` as a parameter. These are called 
+[Higher Order Functions](https://en.wikipedia.org/wiki/Higher-order_function) which we will see later.
+
+Now when we call `test(1,loop)`, it evaluates to 1.
+
+<h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
+
+This evaluation strategy is buried deep under the depths of the scala compiler. There is a not more to it thant what is mentioned in this article.
+But let's summarize.
+
+- Scala's evaluation strategy is modeled from lambda calculus
+- Expressions are evaluated from left to right and follow operator precedence
+- Functions are evaluated using Call by Value, but can also be changed to use Call by Name depending on where it is necessary
+
+This knowledge is immensely useful if you are designing libraries in scala. In a general day to day programming, it is good to know
+but really necessary to worry about it too much.
