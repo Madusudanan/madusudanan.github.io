@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Scala Tutorials Part #22 - Substitution model of evaluation"
-permalink: blog/why-scala-tutorials-part-22-substitution-model-in-scala/
+permalink: blog/scala-tutorials-part-22-substitution-model-in-scala/
 tags: [Scala]
 ---
 
