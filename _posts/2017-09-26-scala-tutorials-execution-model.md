@@ -11,8 +11,8 @@ Substitution model of evaluation
 This is part 22 of the Scala tutorial series. Check [here](/tags/#Scala) for the full series.
 
 In [part 19](/blog/scala-tutorials-part-19-lambda-calculus/) we saw how lambda calculus was the motivation behind functional programming and many 
-concepts were adapted from it. In this part we are going to see what strategy Scala uses to evaluate expressions and functions which also was 
-formulated in lambda calculus.
+concepts were adapted from it. In this part we are going to see what strategy Scala uses to evaluate expressions and functions which also came  
+from lambda calculus.
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
@@ -30,17 +30,20 @@ Program expressions are evaluated in the same way we would evaluate a mathematic
 - Evaluation starts from left to right.
 - Apply the operators to the operands based on precedence.
 
+This is slightly different from regular languages such as Java where only a general language
+rule is applied and it is not a functional language.
+
 <h3><b><a name = "ExpressionEvaluation" class="inter-header">Expression evaluation</a></b></h3>
 
 Let's take a very simple expression.
 
-` (2*10) + (9*4) `
+` (2*10)+(9*4) `
 
 If you trace the execution flow, it will probably be something like below.
 
--> `20 + (9*4)`
+-> `20+(9*4)`
 
--> `20 + 36`
+-> `20+36`
 
 -> `56`
 
@@ -53,7 +56,7 @@ val x = 20
 
 val y = 30
 
-(10*8)/x+y
+(10*8) / x+y
 
 {% endhighlight %}
 
@@ -69,7 +72,7 @@ val y = 30
 
 <h3><b><a name = "FunctionEvaluation" class="inter-header">Function evaluation</a></b></h3>
 
-We already saw how evaluation takes place in functions in [part 3](/blog/scala-tutorials-part-3-methods/#CallByNamevsValue), so I will not
+In [part 3](/blog/scala-tutorials-part-3-methods/#CallByNamevsValue), we saw how function evaluation takes place, so I will not
 be going over it again. But there is one quirky detail that I will be explaining below. (Example adapted from Functional Programming Principles in 
 Scala — Coursera)
 
@@ -104,11 +107,11 @@ We [already saw](/blog/scala-tutorials-part-19-lambda-calculus/#FirstClass) how 
 but a function which expects another function i.e `y` as a parameter. These are called 
 [Higher Order Functions](https://en.wikipedia.org/wiki/Higher-order_function) which we will see later.
 
-Now when we call `test(1,loop)`, it evaluates to 1.
+Now when we call `test(1,loop)`, it evaluates to 1 since it resorts to lazy evaluation behind the scenes and does not evaluate the `loop` function.
 
 <h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
 
-This evaluation strategy is buried deep under the depths of the Scala compiler. There is a not more to it than what is mentioned in this article.
+This evaluation strategy is buried deep under the depths of the Scala compiler. There is a lot more to it than what is mentioned in this article.
 But let's summarize.
 
 - Scala's evaluation strategy is modeled from lambda calculus
@@ -116,4 +119,4 @@ But let's summarize.
 - Functions are evaluated using Call by Value, but can also be changed to use Call by Name depending on where it is necessary
 
 This knowledge is immensely useful if you are designing libraries in Scala. In a general day to day programming, it is good to know
-but really necessary to worry about it too much.
+but not really necessary to worry about it too much.
