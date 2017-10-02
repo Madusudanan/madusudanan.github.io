@@ -22,8 +22,8 @@ This is part 19 of the scala tutorial series, check [here](/tags/#Scala) for the
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
-There was a little sneak peek into the world of functional programming in [part 9](/blog/scala-tutorials-part-9-intro-to-functional-programming/). In this
-article we are going to dig deep into what functional programming is really all about, how it came into use and its significance.
+There was a little sneak peek into the world of functional programming in [part 9](/blog/scala-tutorials-part-9-intro-to-functional-programming/). In 
+this article we are going to dig deep into what functional programming is really all about, how it came into use and its significance.
 
 [Lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus){:target="_blank"} is a formal system in mathematical logic
 to express computations in the form of functions. In this article, we will take a high level view of what lambda calculus is and more importantly
@@ -75,15 +75,17 @@ Lambda calculus as a system is turing complete even though it pre-dates turing m
 
 <h3><b><a name = "ChurchTuring" class="inter-header">Church-Turing thesis</a></b></h3>
 
-Some years after they were formulated, several mathematical theories came out which proves that lambda calculus and turing machines are essentially equivalent
-in terms of power/expressiveness. These were collectively known as [church-turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis){:target="_blank"}.
+Some years after they were formulated, several mathematical theories came out which proves that lambda calculus and turing machines are essentially 
+equivalent in terms of power/expressiveness. These were collectively known as 
+[church-turing thesis](https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis){:target="_blank"}.
 
 This theoretical base is important since most of the modern imperative languages used today are based on turing machines. Even the von-neumann
 model which we saw earlier is based on turing machines. Whereas, most functional languages such as haskell, f# and scala are based on lambda calculus.
 Functional languages do not natively fit within von-neumann architectures and that was
 [addressed by john backus](/blog/scala-tutorials-part-9-intro-to-functional-programming/#WrongVonNeumann).
 
-In the next sections we will explore how we can write code which respects the principles behind lambda calculus using the different constructs which scala offers.
+In the next sections we will explore how we can write code which respects the principles behind lambda calculus using the different constructs which 
+scala offers.
 
 <h3><b><a name = "CallByName" class="inter-header">Revisiting call by name</a></b></h3>
 
@@ -155,7 +157,8 @@ present in the [sicp book](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H
 - They may be returned as the results of procedures.
 - They may be included in data structures.
 
-These properties make functions special in scala and that differentiates them from methods. We will deal with each and every one of the above in the following sections.
+These properties make functions special in scala and that differentiates them from methods. We will deal with each and every one of the above in the 
+following sections.
 
 <h3><b><a name = "FunctionsAsValues" class="inter-header">Functions as values</a></b></h3>
 
@@ -172,7 +175,8 @@ prints out `<function1>`. This extends a root trait called `FunctionN` which we 
 
 <h3><b><a name = "AnonymousFunctions" class="inter-header">Anonymous functions</a></b></h3>
 
-Functions share the same level of flexibility as strings for example. We can make use of something called function literals to create anonymous functions i.e functions which have no name.
+Functions share the same level of flexibility as strings for example. We can make use of something called function literals to create anonymous 
+functions i.e functions which have no name.
 
 Let's create a list from a range of numbers.
 
@@ -192,11 +196,15 @@ x.filter((i:Int) => i%2==0)
 
 Which prints `List(2, 4, 6, 8)`. The part `(i:Int) => i%2==0` is an anonymous function which filters only even numbers as you would expect.
 
-This is also an example where the `filter` function can take in functions as a parameter. These are called higher order functions which we will explore in a later dedicated article.
+This is also an example where the `filter` function can take in functions as a parameter. These are called higher order functions which we will 
+explore in a later dedicated article.
+
+Anonymous functions are also called as lambda expressions, although in other functional languages they can mean more.
 
 <h3><b><a name = "WrapUp" class="inter-header">Wrapping up</a></b></h3>
 
-The ability to apply functions is also an important feature of functional languages. We already saw how this can be done in [part 15](/blog/scala-tutorials-part-15-the-apply-method/). 
+The ability to apply functions is also an important feature of functional languages. We already saw how this can be done in 
+[part 15](/blog/scala-tutorials-part-15-the-apply-method/). 
 
 To summarize, we have seen
 
@@ -205,13 +213,15 @@ To summarize, we have seen
 - What makes a language functional and the notion of functions as first class citizens
 - Basic overview of functional constructs in scala
 
-I have left out several concepts from this article for the sake of brevity and also the left out ones take an entire post of their own. Topics which were left out are,
+I have left out several concepts from this article for the sake of brevity and also the left out ones take an entire post of their own. Topics which 
+were left out are,
 
 - Higher order functions
 - How functions work behind the scenes, i.e understanding the generated byte code
 - Lambda expressions and more advanced concepts
 
-Understanding lambda calculus is a long and complex journey, in this article I tried to give an intuition behind it and how it has influenced programming. We can start comparing OOP and FP starting with simple code examples and then slowly approach to solve bigger problems. 
+Understanding lambda calculus is a long and complex journey, in this article I tried to give an intuition behind it and how it has influenced 
+programming. We can start comparing OOP and FP starting with simple code examples and then slowly approach to solve bigger problems. 
 
 
 
