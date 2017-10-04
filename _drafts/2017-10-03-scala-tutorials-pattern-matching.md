@@ -17,10 +17,11 @@ This is part 23 of the scala tutorial series. Check [here](/tags/#Scala) for the
 - [Pattern matching strings](#Strings)
 - [Capturing values](#CaptureValues)
 - [Matching with Options](#Options)
-- [Heterogenous pattern matching](#HeterogenousMatch)
+- [Heterogeneous pattern matching](#HeterogenousMatch)
 - [Decomposing types using pattern matching](#DecomposingTypes)
 - [Case class matching](#CaseClass)
 - [Pattern matching decompiled](#PTDecompiled)
+- [Conclusion](#Conclusion)
 
 <h3><b><a name = "PTValues" class="inter-header">Pattern matching value types</a></b></h3>
 
@@ -41,7 +42,8 @@ Let's do some matching on an `Int`.
 
 {% endhighlight %}  
 
-Code is pretty self explanatory, it checks for matching values 0/1 and prints appropriate messages. The `_` is used to match any other value, kind of like the `default` in java switch statements. 
+Code is pretty self explanatory, it checks for matching values 0/1 and prints appropriate messages. The `_` is used to match any other value, 
+kind of like the `default` in java switch statements. 
 
 That was straightforward, let's try with a double.
 
@@ -62,7 +64,8 @@ That was straightforward, let's try with a double.
 It is more or less similar to the `Int` example. In a real world situation we would have the need to use
 conditional expressions to match one or more cases. 
 
-The right side i.e the expression after the `=>` returns a value, in the above example it returns a `Unit` since it just prints out and does not do any other computation.
+The right side i.e the expression after the `=>` returns a value, in the above example it returns a `Unit` since it just prints out and does not do 
+any other computation.
 
 If the execution does not match any of the cases, then it simply throws an exception at runtime.
 
@@ -146,12 +149,15 @@ The variables `highScore`, `averageScore` and `lowScore` are actually doubles an
 
 {% endhighlight %}  
 
-This is way different and more expressible than java switch case statements as they can take only constant values in its case's. It is important to note that there is no need of a break statement since it automatically matches only of the cases present and falls back to the `_` case if there is no match. Conditionals are also called guard statements similar to the guard in for comprehensions.
+This is way different and more expressible than java switch case statements as they can take only constant values in its case's. It is important to 
+note that there is no need of a break statement since it automatically matches only of the cases present and falls back to the `_` case if there is no 
+match. Conditionals are also called guard statements similar to the guard in for comprehensions.
 
 
 <h3><b><a name = "Strings" class="inter-header">Pattern matching strings</a></b></h3>
 
-So far we have been seeing value types. Let's take a look at string pattern matching which is very useful(Intentionally keeping the examples simple in order to grasp the concepts).
+So far we have been seeing value types. Let's take a look at string pattern matching which is very useful(Intentionally keeping the examples simple 
+in order to grasp the concepts).
 
 {% highlight scala %}
 
@@ -212,7 +218,8 @@ val dayOfTheWeek = "sunday"
 
 {% endhighlight %}  
 
-The `|` is a shorthand for or condition. Strings are not much different, kind of similar to value types but pattern matching can be extensively used for strings and it makes the codebase looks really neat.
+The `|` is a shorthand for or condition. Strings are not much different, kind of similar to value types but pattern matching can be extensively 
+used for strings and it makes the codebase looks really neat.
 
 <h3><b><a name = "CaptureValues" class="inter-header">Capturing values</a></b></h3>
 
@@ -263,9 +270,10 @@ val scoreFeedback : Option[String] = score match {
 
 The results can then be pattern matched again as we saw in [part 16](/blog/scala-tutorials-part-16-the-option-type/).
 
-<h3><b><a name = "HeterogenousMatch" class="inter-header">Heterogenous pattern matching</a></b></h3>
+<h3><b><a name = "HeterogenousMatch" class="inter-header">Heterogeneous pattern matching</a></b></h3>
 
-Pattern matching is not restricted to a particular type. Because of scala's robust type system, we can literally match anything that fits the type hierarchy in a proper way.
+Pattern matching is not restricted to a particular type. Because of scala's robust type system, we can literally match anything that fits the type 
+hierarchy in a proper way.
 
 {% highlight scala %}
 
@@ -299,11 +307,13 @@ One of the most unique capability of pattern matching is to decompose an unknown
 
 {% endhighlight %}  
 
-The type ascription `Any` is necessary in order for the compiler to treat it as a higher type and avoid the variable type to be inferred to `String`. In real world, the type you are going to match might come from an API endpoint/from a file etc., 
+The type ascription `Any` is necessary in order for the compiler to treat it as a higher type and avoid the variable type to be inferred to `String`. 
+In real world, the type you are going to match might come from an API endpoint/from a file etc., 
 
 <h3><b><a name = "CaseClass" class="inter-header">Case class matching</a></b></h3>
 
-Case classes got their name because they can be used in pattern matching i.e the case keyword. They are naturally suited to it because of the unapply method which gets automatically generated.
+Case classes got their name because they can be used in pattern matching i.e the case keyword. They are naturally suited to it because of the 
+unapply method which gets automatically generated.
 
 Let's create a textbook example of cars.
 
@@ -336,7 +346,20 @@ We can then do a match on this variable.
 
 {% endhighlight %} 
 
-We do a pattern match on the case class type with a parameter name. The parameter is important since the case class cannot be created without it.
+We do a pattern match on the case class type with a parameter name. The parameter `name` is important since the case class cannot be created without it.
 
+<h3><b><a name = "PTDecompiled" class="inter-header">Pattern matching decompiled</a></b></h3>
 
+We are not going to exhaustively see how pattern matching works behind the scenes for all examples. Let's take the first example.
+ 
+{% highlight scala %}
 
+ val status  = 0
+
+ status match {
+   case 0 => println("The status is false")
+   case 1 => println("The status is true")
+   case _ => println("Unknown status")
+ }
+
+{% endhighlight %} 
