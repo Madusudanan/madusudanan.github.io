@@ -21,14 +21,14 @@ This is part 23 of the Scala tutorial series. Check [here](/tags/#Scala) for the
 - [Decomposing types using pattern matching](#DecomposingTypes)
 - [Case class matching](#CaseClass)
 - [Pattern matching decompiled](#PTDecompiled)
-- [Conclusion](#Conclusion)
+- [Finale](#Finale)
 
 <h3><b><a name = "PTValues" class="inter-header">Pattern matching value types</a></b></h3>
 
-We saw how [extractors](/blog/scala-tutorials-part-18-extractors/) can facilitate pattern matching by writing an `unapply` method. In this article, 
-we are going to see how they actually work and also the internals.
+We saw how [extractors](/blog/scala-tutorials-part-18-extractors/) can aid pattern matching by writing an `unapply` method. In this article, 
+we are going to see how they actually work and also look at the internals.
 
-Let's do some matching on an `Int`.
+Let's say we have an Integer variable and want to do a match on it.
 
 {% highlight scala %}
 
@@ -61,13 +61,12 @@ That was straightforward, let's try with a double.
 
 {% endhighlight %}  
 
-It is more or less similar to the `Int` example. In a real world situation we would have the need to use
+It is more or less similar to the `Int` example. In a real world situation we will have the need to use
 conditional expressions to match one or more cases. 
 
-The right side i.e the expression after the `=>` returns a value, in the above example it returns a `Unit` since it just prints out and does not do 
-any other computation.
+The left side of the expression is used to capture the variable and also the condition matching it while the right side i.e the expression after the `=>` returns a value. In the above example it returns a `Unit` since it just prints out and does not do any other computation.
 
-If the execution does not match any of the cases, then it simply throws an exception at run time.
+If the execution does not match any of the cases, then it simply throws an exception.
 
 {% highlight scala %}
 
@@ -149,9 +148,8 @@ The variables `highScore`, `averageScore` and `lowScore` are actually doubles an
 
 {% endhighlight %}  
 
-This is way different and more expressible than java switch case statements as they can take only constant values in its case's. It is important to 
-note that there is no need of a break statement since it automatically matches only of the cases present and falls back to the `_` case if there is no 
-match. Conditionals are also called guard statements similar to the guard in for comprehensions.
+Since java switch case statements can take only constant values in its case's, this is more elegant to work with. It is important to note that there is no need of a break statement since it automatically matches only of the cases present and falls back to the `_` case if there is no 
+match and throws an exception if there is no fallback as we saw above. Conditionals are also called guard statements similar to the guard in for comprehensions.
 
 
 <h3><b><a name = "Strings" class="inter-header">Pattern matching strings</a></b></h3>
@@ -218,8 +216,7 @@ val dayOfTheWeek = "sunday"
 
 {% endhighlight %}  
 
-The `|` is a shorthand for or condition. Strings are not much different, kind of similar to value types but pattern matching can be extensively 
-used for strings and it makes the code base looks really neat.
+The `|` is a shorthand for or condition. 
 
 <h3><b><a name = "CaptureValues" class="inter-header">Capturing values</a></b></h3>
 
@@ -283,14 +280,14 @@ hierarchy properly.
     case 1 | "January" => println("First month of the year")
     case 2 | "February" => println("Second month of the year")
     case _ : Int => println("Invalid month integer")
-    case _ : String => println("Invalid month type")
+    case _ : String => println("Invalid month string")
   }
 
 {% endhighlight %}  
 
 <h3><b><a name = "DecomposingTypes" class="inter-header">Decomposing types using pattern matching</a></b></h3>
 
-A unique capability of pattern matching is to decompose an unknown type or higher type into a recognized type.
+Another unique capability of pattern matching is to decompose an unknown type or higher type into a recognized type.
 
 {% highlight scala %}
 
@@ -307,7 +304,7 @@ A unique capability of pattern matching is to decompose an unknown type or highe
 
 {% endhighlight %}  
 
-The type ascription `Any` is necessary in order for the compiler to treat it as a higher type and avoid the variable type to be inferred to `String`. 
+The type ascription `Any` is necessary in order for the compiler to treat it as a higher type and avoid the variable type being automatically inferred to `String`. 
 In real world, the type you are going to match might come from an API endpoint/from a file etc., 
 
 <h3><b><a name = "CaseClass" class="inter-header">Case class matching</a></b></h3>
@@ -346,19 +343,20 @@ We can then do a match on this variable.
 
 {% endhighlight %} 
 
-We do a pattern match on the case class type with a parameter name. The parameter `name` is important since the case class cannot be created without it.
+We do a pattern match on the case class type with a parameter name. The parameter `name` is important since the case class cannot be created without it. You can revisit the [decompiled version](/blog/scala-tutorials-part-6-case-classes/#Decompiled) of the case class and see the `unapply` method. It would make much more sense now and how it is useful in pattern matching. Case objects can also be matched using a 
+similar approach.
 
 <h3><b><a name = "PTDecompiled" class="inter-header">Pattern matching decompiled</a></b></h3>
 
-We are not going to exhaustively see how pattern matching works behind the scenes for all examples. Let's take three different examples to understand how they behave. Since they decompiled code is pretty big, I have collected both in a gist. 
+We are not going to exhaustively see how pattern matching works behind the scenes for all examples. Let's take three different examples to understand how they behave. Since the decompiled code is pretty big, I have collected both in a gist. 
 
 - [Decompiled with a simple pattern match](https://gist.github.com/Madusudanan/0510dfc3e18750443d34c4fed839a681){:target="_blank"}
 - [With conditionals](https://gist.github.com/Madusudanan/13a7f69ba2b68d44cde20bd0a224603a){:target="_blank"}
 - [Example with type decomposition](https://gist.github.com/Madusudanan/6bdd22a6c33c384cccba7ba5d08be138){:target="_blank"}
 
-[Fernflower decompiler](https://github.com/JetBrains/intellij-community/tree/master/plugins/java-decompiler/engine){:target="_blank"} does a pretty good job of decompiling the code. It is interesting to see that in the first example it is being compiled to java switch statements, the second one with a bunch of if-else since switch case does not support condition based matching. The third one is done via a couple of `instanceOf` comparisons. We can see that pattern matching gives us a very nice abstraction and lets the compiler deal with the all the hardwork. The decompilation can change as the JVM evolves and a lot of features are added natively.
+[Fernflower decompiler](https://github.com/JetBrains/intellij-community/tree/master/plugins/java-decompiler/engine){:target="_blank"} does a pretty good job of decompiling the code. It is interesting to see that in the first example it is being compiled to java switch statements, the second one with a bunch of if-else since switch case does not support condition based matching. The third one is done via a couple of `instanceOf` comparisons. We can see that pattern matching gives us a very nice abstraction and lets the compiler deal with the all the hardwork. The decompiled code can change as the JVM evolves and a lot of features are added natively.
  
-<h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
+<h3><b><a name = "Finale" class="inter-header">Finale</a></b></h3>
 
 Let's summarize what we have seen till now.
 
@@ -368,7 +366,7 @@ Let's summarize what we have seen till now.
 
 There are more complex use cases of pattern matching in data structures such as `Seq`, `List`, `Vector` etc., I will cover those when we get to collections.
 
-We are also protected from quite a few run time issues partly due to the type system of Scala and how pattern matching itself works. Next time whenever you see a switch case/complex if-else structure, think of re-writing it with pattern matching.
+We are also protected from quite a few run time issues partly due to the type system of Scala and also how pattern matching by itself is designed. Next time whenever you see a switch case/complex if-else structure, think of re-writing it with pattern matching.
 
 
 
