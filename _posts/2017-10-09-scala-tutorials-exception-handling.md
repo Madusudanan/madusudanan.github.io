@@ -30,7 +30,7 @@ And then it branches into checked exceptions which needs to be handled by the ca
 `OperationNotSupportedException` etc., and unchecked exceptions such as `OutOfMemoryException`, `NullPointerException` etc., It is a common 
 confusion that checked exceptions are compile time and unchecked exceptions happen at run time. The truth is that there is no such thing as compile time
 exception and everything happens at run time. The difference between both is how they are handled. Checked exceptions are forced by the compiler
-to be handled while unchecked exceptions aren't.
+to be handled during compile time/build time while unchecked exceptions aren't.
 
 ![Checked exception](/images/file_checked_exception.png)  
 
@@ -59,13 +59,11 @@ of the above java code block compiles just fine.
 {% endhighlight %}
 
 It will throw an error if there is no such file is present only at the run time. Checked exceptions have always been a topic of controversy.
-[Here](https://testing.googleblog.com/2009/09/checked-exceptions-i-love-you-but-you.html){:target="_blank"} is a good article on why 
-checked exceptions are bad. Regardless of whether it is universally agreed on whether it is good or bad, scala developers decided to drop
-this controversial feature.
+[Here](https://testing.googleblog.com/2009/09/checked-exceptions-i-love-you-but-you.html){:target="_blank"} is a good article on why checked exceptions are bad. This feature is at least controversial if not bad and hence the language developers decided to drop this.
 
 <h3><b><a name = "TryCatch" class="inter-header">Handling exceptions with try-catch</a></b></h3>
 
-Like java, scala has try catch to handle exceptions. Let's take a look at the same file read example.
+Like java, Scala has try/catch to handle exceptions. Let's take a look at the same file read example.
 
 
 {% highlight scala %}
@@ -100,14 +98,14 @@ readFile("somefile.txt")
 {% endhighlight %}
 
 `try` is similar to Java which contains code that could cause an Exception. The `catch` block however is different and it uses pattern matching.
-The `_` operator here is used as a wildcard operator which matches other than the ones above it. Everything else should be similar including the 
+The `_` operator here is used as a wildcard operator which matches other than the ones above it. Everything else should be similar to its Java counterpart including the 
 `finally` block.    
 
 <h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
 
 What we have explored in this article is just a beginning. Scala being a multi-paradigm language has many ways to deal with scenarios that could
-cause errors. We already some of those in part 1 where we cannot leave a variable [un-initialized](/blog/scala-tutorials-part-1-getting-started/#Initialize)
-which prevents null pointer to a certain degree and also the [Option/Some/None pattern](/blog/scala-tutorials-part-16-the-option-type/) to deal with 
-situations which lead to undecidability.
+cause errors. We already saw some of those in part 1 where we cannot leave a variable [uninitialized](/blog/scala-tutorials-part-1-getting-started/#Initialize)
+preventing null pointer to a certain degree and also the [Option/Some/None pattern](/blog/scala-tutorials-part-16-the-option-type/) to deal with 
+undecidable situations.
 
 General best practices such as giving descriptive error messages, not to catch `Error`, not to ignore exceptions etc., still apply. 
