@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #1 - Getting Started with Scala"
 permalink: blog/scala-tutorials-part-1-getting-started/
 tags: [Scala]
-last_updated: 2017-08-17
+last_updated: 2017-10-18
 ---
 
 Getting Started with Scala
@@ -152,10 +152,6 @@ changes because of the pass by value mechanism and not because that primitives a
 
 The important point to understand is reference vs value immutability does not matter much in scala since scala does not have primitive types at all and only has objects.
 
-So whenever we are talking about immutability in scala, we are talking about reference immutability.
-
-Immutable variables have certain performance benefits and leans closer to notion of writing code without side effects.
-
 <h3><b><a name = "AdvancedUnderstanding" class="inter-header">Immutability under the hood</a></b></h3>
 
 Let's take our understanding of immutability even further by examining the byte code emitted by decompiling generated scala class files.
@@ -296,6 +292,29 @@ entirely different topic of Scala's unified type system, which is nothing but th
 
 This is dealt with in [part 2](/blog/scala-tutorials-part-2-type-inference-in-scala) of this series with greater depth.
 
+So whenever we are talking about immutability in scala, we are talking about reference immutability. Immutable variables have certain performance 
+benefits and leans closer to notion of writing code without side effects.
+
+Even though the value of a `var` can be changed, its type cannot be changed.
+
+{% highlight scala %}
+
+  var x = 20
+  
+  //Allowed
+  x= 40
+  
+  var a = 10
+
+  //Not allowed
+  a = "Test"
+  
+{% endhighlight %}
+ 
+This is akin to the behaviour in Java where you cannot assign a string to an integer. This proves that type inference is indeed at compile time.
+
+![Var type error](/images/var_type_error.png)
+
 <h3><b><a name = "Initialize" class="inter-header">Variable initialization</a></b></h3>
 
 In scala you cannot simply create a variable and leave it un-initialized. 
@@ -427,6 +446,12 @@ This is controlled at compile time, since a variable access can be know at compi
 
 Very useful in situations such as a file upload window in a browser. The user may or may not upload the file, so it is best to defer/lazily 
 evaluate until the event happens.
+
+![Lazy var error](/images/lazy_var_error.png)
+
+The Lazy keyword only applies to `val` and not `var`. This is because `var` is not considered as a value definition since it can change its values
+at runtime. It is difficult to know when it will exactly change and hence the whole concept of lazy evaluation does not make sense when it comes to
+changing variables.
 
 <h3><b><a name = "Homework" class="inter-header">Homework</a></b></h3>
 

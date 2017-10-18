@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #5 - Classes"
 permalink: blog/scala-tutorials-part-5-classes/
 tags: [Scala]
-last_updated: 2017-08-14
+last_updated: 2017-10-18
 ---
 
 Classes
@@ -28,6 +28,7 @@ you can check it out [here](http://www.itran.cc/2017/03/05/yin-du-peng-you-shou-
 - [Scala style Getters and Setters](#ScalaStyleGetter)
 - [Auxiliary constructors](#AuxiliaryConstructors)
 - [Default constructor values](#DefaultConstructorValues)
+- [Named arguments](#NamedArguments)
 - [Abstract classes](#AbsClasses)
 - [The Override keyword](#Override)
 - [When to use abstract classes](#WhenToUseAbs)
@@ -478,6 +479,27 @@ We can then consumer this class without declaring value to one or even all of th
 Listed example will work correctly and would print the default values Unnamed,-1,No number.
 
 This is a pretty handy way of declaring pre-defined class values.
+
+<h3><b><a name = "NamedArguments" class="inter-header">Named arguments</a></b></h3>
+
+We can create classes with only specific variables as user defined and leaving the rest to the class defaults. 
+
+{% highlight scala %}
+
+class Person(val name:String = "Unnamed",val age:Int = -1,val phone:String = "No number")
+
+{% endhighlight %}
+
+If we want to give only the `name` and leave the rest of the variables as defaults then,
+
+{% highlight scala %}
+
+  val personDemo = new Person(name = "John Ruckus")
+  println(personDemo.name) //Prints John Ruckus
+  println(personDemo.age) //Prints -1
+  println(personDemo.phone) //Prints No number
+
+{% endhighlight %}
 
 <h3><b><a name = "AbsClasses" class="inter-header">Abstract classes</a></b></h3>
 

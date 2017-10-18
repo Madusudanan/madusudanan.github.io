@@ -3,6 +3,7 @@ layout: post
 title: "Scala Tutorials Part #16 - The Option type "
 permalink: blog/scala-tutorials-part-16-the-option-type/
 tags: [Scala]
+last_updated: 2017-10-18
 ---
 
 The Option Type
@@ -180,6 +181,9 @@ We saw the usage of the `Option` type in a very brief manner. There are several 
 The main reason is you cannot say in a concrete manner when a `NullPointerException` will come since it is at runtime. 
 Although you can carefully profile your code. In reality large code bases make this task tedious and not feasible. When using Scala's `Option`, 
 you can precisely reason that it can be either `Some` or `None` and we can deal with it rather than raising an exception and then catching it.
+
+The `Option` type and its supporting classes `Some` and `None` can also be used to deal with situations other than null pointers. It is otherwise
+known as a monadic container which we will see more about in later tutorials.
 	
 For a spoiler on the upcoming tutorials, we will see how the unapply method works which is the opposite of apply method and then extractors 
 finally leading to pattern matching.
