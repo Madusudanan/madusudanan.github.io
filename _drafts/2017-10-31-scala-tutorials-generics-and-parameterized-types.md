@@ -14,6 +14,10 @@ This is part 26 of the scala tutorial series. Check [here](/tags/#Scala) for the
 
 - [Introduction](#Intro)
 - [Getting started with an example](#Example)
+- [Using custom class types](#CustomClasses)
+- [Multiple type parameters](#MultiParameter)
+- [Decomposing types with Generic methods](#DecomposingTypes)
+- [Conclusion](#Conclusion)
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
@@ -128,7 +132,7 @@ class Stack[A] {
   
 {% endhighlight %}
  
-Consuming this class is pretty simple.
+Using this data structure is pretty simple.
 
 {% highlight scala %}
 
@@ -146,6 +150,149 @@ Consuming this class is pretty simple.
     
 Of course this isn't a proper implementation, but you get the idea.
 
+<h3><b><a name = "CustomClasses" class="inter-header">Using custom class types</a></b></h3>
+
+Since the type `A` can be used to encode almost any type, lets try some of our custom classes.
+
+{% highlight scala %}
+
+//Root trait
+trait Car
+//Types extending from the Car trait
+class Toyota extends Car {
+override def toString = "Toyota"
+}
+
+class Hyundai extends Car {
+override def toString = "Hyundai"
+}
+
+{% endhighlight %}
 
 
- 
+We can then use these classes in our custom built stack data structure.
+
+{% highlight scala %}
+
+
+  val t = new Toyota
+  val h = new Hyundai
+  
+  val stack = new Stack[Car]
+  
+  stack.push(t)
+  stack.push(h)
+
+{% endhighlight %}
+
+<h3><b><a name = "MultiParameter" class="inter-header">Multiple type parameters</a></b></h3>
+
+The Java language has an interface called [`Pair`](https://docs.oracle.com/javase/tutorial/java/generics/types.html){:target="_blank"} which goes as follows,
+
+{% highlight java %}
+
+public interface Pair<K, V> {
+public K getKey();
+public V getValue();
+}
+
+{% endhighlight %}
+
+It has two generic parameters. We can code this in scala as follows.
+
+{% highlight scala %}
+
+trait Pair[A,B] {
+  def getKey : A
+  def getValue : B
+}
+
+{% endhighlight %}
+
+The `[]` is equivalent to `<>` in terms of syntactic sugar.
+
+<h3><b><a name = "DecomposingTypes" class="inter-header">Decomposing types with Generic methods</a></b></h3>
+
+In [part 23](/blog/scala-tutorials-part-23-pattern-matching-in-scala/) we saw an example in which we decomposed a higher type `Any` into its sub types. 
+
+{% highlight scala %}
+
+val typeTest : Any = "String"
+
+  typeTest match {
+    case i : Int => println("Integer type")
+    case d : Double => println("Double type")
+    case f : Float => println("Float type")
+    case s : String => println("String type")
+    case _ : BigDecimal => println("Big decimal type")
+    case _ => println("Unknown type")
+  }
+
+{% endhighlight %}
+
+We explictly gave the type ascription to the variable `typeTest`. This gets translated to type casting and it is not necessarily a good way to do this.
+
+A better and a type safe way to accomplish this is by generic types. Let's create an empty method which operates on generic types.
+
+{% highlight scala %}
+
+def identifyType[A](value:A)  = {
+}
+
+{% endhighlight %}
+
+The `[A]` after the method name is necessary to indicate that the method operates on generic types. Next we will do the same pattern matching inside the method.
+
+{% highlight scala %}
+
+  def identifyType[A](value:A)  = {
+
+    value match {
+      case i : Int => println("Integer type")
+      case d : Double => println("Double type")
+      case f : Float => println("Float type")
+      case s : String => println("String type")
+      case _ : BigDecimal => println("Big decimal type")
+      case _ => println("Unknown type")
+    }
+
+  }
+
+{% endhighlight %}
+
+Now we can call this without explicit type annotation, it is taken care by the compiler.
+
+{% highlight scala %}
+
+  //String
+  identifyType("Testing")
+  //Integer
+  identifyType(10)
+  //Double
+  identifyType(20.0)
+
+  case class Box(name:String)
+  val box  = Box("test")
+  //Custom type - No explicit annotation
+  identifyType(box)
+
+{% endhighlight %}
+
+Prints out the following.
+
+{% highlight scala %}
+
+String type
+Integer type
+Double type
+Unknown type
+
+{% endhighlight %}
+
+<h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
+
+Generics are a powerful way of abstraction and writing type safe code which is more compile time reliant rather than run time. We have merely scratched the surface of what is possible with them in Scala. I have deliberately left out advanced topics such as type variance, structural typing(duck typing) to later tutorials.
+
+The `Stack` data structure above is partially derived from the scala lang's official documentation guide on [generics](https://docs.scala-lang.org/tour/generic-classes.html){:target="_blank"}. 
+
+
