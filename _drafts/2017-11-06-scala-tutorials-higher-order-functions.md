@@ -15,10 +15,11 @@ This is part 27 of the Scala tutorial series. Check [here](/tags/#Scala) for the
 - [Introduction](#Intro)
 - [Example with collections](#Example)
 - [Creating a custom higher order function](#CustomHigherOrder)
+- [Closing notes](#Conclusion)
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
-In [part 19](/blog/scala-tutorials-part-19-lambda-calculus/), we saw how functions are treated as first class citizens in Scala. In this article we are going to take a look at higher order functions. Higher order functions are one functions which take in other functions as a parameter and then work on top of it.
+In [part 19](/blog/scala-tutorials-part-19-lambda-calculus/), we saw how functions are treated as first class citizens in Scala. In this article we are going to take a look at higher order functions. [Higher order functions](https://en.wikipedia.org/wiki/Higher-order_function){:target="_blank"} are one functions which take in other functions as a parameter and then work on top of it.
 
 <h3><b><a name = "Example" class="inter-header">Example with collections</a></b></h3>
 
@@ -56,8 +57,56 @@ val doubledList = list.map(x => x * x)
 
 <h3><b><a name = "CustomHigherOrder" class="inter-header">Creating a custom higher order function</a></b></h3>
 
+Higher order functions can be of the following types.
 
+- Function that takes another function as a parameter
+- Function that returns another function
+- Function which does both the above
 
+Let's create a function that applies a pattern to a given string.
+
+{% highlight scala %}
+
+ //Function that decorates the given string with the given logic
+ def HTMLStringDecorator(text:String,f:String => String): String = {
+   f(text)
+ }
+
+{% endhighlight %}
+
+This is an example of a function that takes another function as a parameter. `f` is a variable which is of type function and one which takes in a String and gives out another `String`. Next, we will create a function which given a string appends a `<title>` tag to it and which can be passed into the `HTMLStringDecorator` function.
+
+{% highlight scala %}
+
+ //Function that appends the title tag
+ def titleTag(data:String): String => String = {
+   _ : String => s"<title>$data</title>"
+ }
+
+{% endhighlight %}
+
+Unlike `HTMLStringDecorator` this returns a function itself. 
+
+We can then call the decorator with the title tag appender function.
+
+{% highlight scala %}
+
+val message = "hello"
+
+ println(
+   HTMLStringDecorator(
+     message,
+     titleTag(message)
+   )
+ )
+
+{% endhighlight %}
+
+This might seem simple, but using such patterns we can build powerful DSL based syntax and languages. Higher order functions are just one piece of the puzzle, we still have partially applied functions, closures, currying etc., which can help build systems that make complex patterns much simpler to work with.
+
+<h3><b><a name = "Conclusion" class="inter-header">Closing notes</a></b></h3>
+
+We saw a very basic overview of higher order functions. At this point this knowledge should be enough to move forward. But we must remember that with such power comes responsibility and not everything must be dealt with a DSL/Higher order functions. Design and best practices is a completely different area which we will explore in later tutorials
 
 
 
