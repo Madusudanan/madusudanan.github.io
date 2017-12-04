@@ -36,6 +36,8 @@ list.add("2");
 Any type within the Java language type system can be encoded within the `<>`. These are called generics and the class is just defined once using 
 the generics container and can be re-used.
 
+Generics originally came from the world of Functional Programming.
+
 <h3><b><a name = "Example" class="inter-header">Getting started with an example</a></b></h3>
 
 We are going to design a Stack data structure from scratch. This is just an example and you would typically use something within collections when

@@ -187,7 +187,8 @@ This makes Objected oriented programming much easier to handle. For more informa
 <h3><b><a name = "ValueVsReference" class="inter-header">Value types and Reference types</a></b></h3>
 
 The left sub-tree in the above tree contains all the value types i.e everything that comes under
-`AnyVal` and types that come under `AnyRef` are all reference types. They are similar to their java counterparts and compiles to the same thing as far as the JVM is concerned (more on that in later tutorials).
+`AnyVal` and types that come under `AnyRef` are all reference types. They are similar to their java counterparts and compiles to the same thing as far 
+as the JVM is concerned (more on that in later tutorials).
 
 Value types are similar to native types in java. They are created as follows.
 
@@ -205,7 +206,9 @@ val arr = new ArrayBuffer[Int]()
 
 {% endhighlight %}  
 
-Of course there are some exceptions to this. `String` is a special one. Collection classes such as `Array` and `List` have their own `apply` method so that they can be created without the new keyword (`apply` is explained in [part 15](/blog/scala-tutorials-part-15-the-apply-method/)). Technically, they are objects in the jvm as opposed to native types, so they require the `new` keyword for their creation.
+Of course there are some exceptions to this. `String` is a special one. Collection classes such as `Array` and `List` have their own `apply` method 
+so that they can be created without the new keyword (`apply` is explained in [part 15](/blog/scala-tutorials-part-15-the-apply-method/)). Technically, 
+they are objects in the jvm as opposed to native types, so they require the `new` keyword for their creation.
 
 <h3><b><a name = "Usage" class="inter-header">When to use type inference?</a></b></h3>
 
