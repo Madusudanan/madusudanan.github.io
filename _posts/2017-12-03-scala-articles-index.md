@@ -1,37 +1,13 @@
 ---
 layout: post
-title: "On Learning Scala"
-permalink: blog/on-learning-scala/
+title: "Scala Articles Index"
+permalink: blog/scala-articles-index/
 tags: [Scala]
 ---
 
 
 Learning Scala
 --------------
-
-I have written several blog articles on [Scala](/tags/#Scala), my longest streak so far on any topic. You might have several questions on what got me interested and why I wrote this and how is this different from the other awesome books out there on Scala.
-
-I'll try to answer many questions in this article and also this blog post will serve as a index to the Scala articles.
-
-
-<i class="fa fa-list-ul fa-lg space-right"></i> Index
-
-- [Why the interest on Scala](#Interest)
-- [Are these tutorials good to learn Scala?](#Tutorials)
-- [Index](#Index)
-
-<h3><b><a name = "Interest" class="inter-header">Why the interest on Scala</a></b></h3>
-
-Scala is a wonderful language. It is very well designed from the ground up keeping on thing in mind i.e Object Oriented Programming + Functional Programming and language that Scales. The interest in Functional Programming has picked up pace in the recent years, Java 8 has lambdas, and future versions will have type inference. More importantly, dealing with lower level constructs such as Threads, Executor Service etc., has not scaled. This fundamental problem is dealt with the Actor model of concurrency. But more importantly, Scala gives the right tools to solve such Higher Level Abstractions in an excellent way. Even if you don't use Scala for your work, learning it can make you a better programmer. The emphasis is on the concepts, type inference, case classes, pattern matching etc., has found its way to many languages such as Kotlin and also poised to make entry into Java. Scala has significantly evolved since its inception, and will continue to evolve. 
-
-
-<h3><b><a name = "Tutorials" class="inter-header">Are these tutorials good to learn Scala?</a></b></h3>
-
-Ever since I began writing these tutorials, I shared them around in many social sites such as Twitter, Reddit, Hacker News etc., I got consistent feedback(other than your english sucks and other such useless rants) on whether this is a good source to learn Scala. My answer is it depends. There are of course other far better sources on learning Scala from the others themselves and people who are highly experienced in it, but they lack an important thing called perspective. Most of the books either directly jump in without sufficient theoritical introduction or take it very lightly on the surface. So, these tutorials are more like documenting my journey of learning Scala. My tutorials directly target Java developers who are the majority and also takes a very different and less ceremonial approach on learning. With that said, I am not a native english speaker so there might be grammatical issues and also issues regarding code. Please do point out any if you come across them.
-
-P.S : I have written on how should a beginner approach on learning Scala -[A Beginners guide to learn Scala](https://dev.to/bmadusudanan/a-beginners-guide-to-learn-scala)
-
-<h3><b><a name = "Index" class="inter-header">Index</a></b></h3>
 
 This will act as a reference to all of my Scala blog articles.
 
@@ -248,15 +224,3 @@ This will act as a reference to all of my Scala blog articles.
   - [Example with collections](/blog/scala-tutorials-part-27-higher-order-functions/#Example)
   - [Creating a custom higher order function](/blog/scala-tutorials-part-27-higher-order-functions/#CustomHigherOrder)
   - [Closing notes](/blog/scala-tutorials-part-27-higher-order-functions/#Conclusion)
-
-
-
-
-
-
-
-
-
-
-
-
