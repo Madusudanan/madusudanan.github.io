@@ -9,7 +9,7 @@ last_updated: 2017-01-10
 Objects in Scala
 ----------------
 
-This is part 4 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 4 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 We are going to deal with `objects` in this article.
 

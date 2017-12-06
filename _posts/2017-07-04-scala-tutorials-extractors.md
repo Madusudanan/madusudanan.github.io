@@ -12,7 +12,7 @@ So far we have seen two of scala's magic methods i.e the [apply](/blog/scala-tut
 and [update](/blog/scala-tutorials-part-17-the-update-method/) methods. In this article we will look at another one that is central
 to pattern matching i.e un-apply (also called extractors) and this sort of completes the cycle with apply, update and un-apply.
 
-This is part 18 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 18 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 

@@ -8,7 +8,7 @@ tags: [Scala]
 Substitution model of evaluation
 --------------------------------
 
-This is part 22 of the Scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 22 of the Scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 In [part 19](/blog/scala-tutorials-part-19-lambda-calculus/) we saw how lambda calculus was the motivation behind functional programming and many 
 concepts were adapted from it. In this part we are going to see what strategy Scala uses to evaluate expressions and functions which also came  

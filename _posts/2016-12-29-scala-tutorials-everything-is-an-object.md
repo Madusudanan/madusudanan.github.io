@@ -11,7 +11,7 @@ Objects Everywhere
 
 In this post we discuss on why the concept of an object in scala is more prevalent and what are its advantages. Examples are mostly with data types since they are fundamental to the language.
 
-This is part 7 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 7 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 <i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by 
 [ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, 

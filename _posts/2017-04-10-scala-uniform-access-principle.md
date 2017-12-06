@@ -8,7 +8,7 @@ tags : Scala
 Uniform Access Principle
 -----------------------
 
-This is part 14 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 14 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 

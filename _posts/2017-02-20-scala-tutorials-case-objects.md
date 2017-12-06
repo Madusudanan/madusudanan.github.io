@@ -12,7 +12,7 @@ We have seen [objects](/blog/scala-tutorials-part-4-objects/) and [case classes]
 Case objects are a mix of both i.e it is a singleton similar to an object and with lot of boilerplate as in a case class. 
 The only difference is that the boilerplate is done for an object instead of a class.
 
-This is part 10 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 10 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 <i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by 
 [ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, 

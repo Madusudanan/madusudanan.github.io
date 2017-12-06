@@ -9,7 +9,7 @@ tags: [Scala]
 Traits
 ------
 
-This is part 8 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 8 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 <i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by 
 [ChanZong Huang](http://www.linkedin.com/in/chanzong-huang-716ba261){:target="_blank"}, 

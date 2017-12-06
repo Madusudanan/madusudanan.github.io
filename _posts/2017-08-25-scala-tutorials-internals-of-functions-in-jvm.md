@@ -11,7 +11,7 @@ Internals of functions
 In the [last part](/blog/scala-tutorials-part-19-lambda-calculus/) we saw how functional programming came into existence with inspiration 
 from lambda calculus. In this article we will look at how functions are implemented in the JVM, since it does not natively support functional programming. This knowledge might not be really necessary in the life of a day to day developer but will come in handy when dealing with obscure bugs.
 
-This is part 20 of the Scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 20 of the Scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 <i class="fa fa-list-ul space-right"></i> Index
 

@@ -8,7 +8,7 @@ tags: [Scala]
 Higher Order Functions
 ----------------------
 
-This is part 27 of the Scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 27 of the Scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 

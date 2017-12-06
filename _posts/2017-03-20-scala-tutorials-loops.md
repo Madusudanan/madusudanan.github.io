@@ -11,7 +11,7 @@ Loops
 Loops are fundamental building blocks of imperative programming languages. Since scala also supports imperative style, lets take a look at 
 different variations of loops and how they work.
 
-This is part 13 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 13 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 While loops in scala are very similar to their other language counterparts, so I am not going to explain it. 
 The `for` loop however, can be used as a drop in replacement for any while loop construct.

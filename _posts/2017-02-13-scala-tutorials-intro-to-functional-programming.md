@@ -10,7 +10,7 @@ Intro to Functional Programming in Scala
 
 The functional programming paradigm is becoming pretty famous in the recent years due its elegance and performance characteristics.
 
-This is part 9 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 9 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 In the previous 8 parts of this series, I would not have touched the functional programming side of scala at all and that is because if you are new to this paradigm
 (which the majority of the world is) then the language, environment can be a little overwhelming to learn along with the completely new and difficult paradigm 

@@ -13,7 +13,7 @@ in [part 7](/blog/scala-tutorials-part-7-objects-everywhere/#Operations) in a ve
  
 In this article we are going to see what it is in detail and where it actually helps.
 
-This is part 12 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 12 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index

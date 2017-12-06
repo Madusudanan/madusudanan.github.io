@@ -11,7 +11,7 @@ Recursion
 [Recursion](https://en.wikipedia.org/wiki/Recursion_(computer_science)){:target="_blank"} is a fundamental concept in many programming languages and it
 is important to understand how it works in Scala and its significance in the language.
 
-This is part 25 of the Scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 25 of the Scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 <i class="fa fa-list-ul space-right"></i> Index
 

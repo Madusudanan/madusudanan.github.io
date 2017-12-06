@@ -9,7 +9,7 @@ last_updated: 2017-10-18
 Getting Started with Scala
 --------------------------
 
-This is the first part of a tutorial series that ill be writing on Scala. Check [here](/tags/#Scala) for the full series.
+This is the first part of a tutorial series that ill be writing on Scala. Check [here](/blog/scala-articles-index/) for the full series.
 
 If you are from Java there are lot of things that can be difficult to get your head around, and the most easiest way is to unlearn and re-learn them.
 

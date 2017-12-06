@@ -11,7 +11,7 @@ String Interpolation
 In this part we are going to see a pretty nifty feature of scala called 
 [String interpolation](https://en.wikipedia.org/wiki/String_interpolation){:target="_blank"}.
 
-This is part 11 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 11 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index

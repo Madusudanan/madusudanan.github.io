@@ -9,7 +9,7 @@ last_updated: 2017-09-18
 Type inference
 --------------
 
-This is part 2 of the Scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 2 of the Scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 If you recall from the first part, we briefly dealt with type inference with a few examples.
 Now we are going to deal it with a little more depth, below is what this article will cover.

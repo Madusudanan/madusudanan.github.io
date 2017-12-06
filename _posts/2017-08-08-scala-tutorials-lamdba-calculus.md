@@ -5,7 +5,7 @@ permalink: blog/scala-tutorials-part-19-lambda-calculus/
 tags: [Scala]
 ---
 
-This is part 19 of the scala tutorial series, check [here](/tags/#Scala) for the full series.
+This is part 19 of the scala tutorial series, check [here](/blog/scala-articles-index/) for the full series.
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 

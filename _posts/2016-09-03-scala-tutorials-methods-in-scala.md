@@ -12,7 +12,7 @@ Methods in scala
 It has been a long time since I wrote the last article on scala which was back in December 2015. 
 Hopefully I should be writing more  <i class="fa fa-smile-o fa-lg"></i> 
 
-This is part 3 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 3 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 This entire post is about dealing with methods in scala. 
 Most of them are about style, but very important to know as we get into the world of functional programming.

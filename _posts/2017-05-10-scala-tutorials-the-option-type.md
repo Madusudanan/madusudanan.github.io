@@ -18,7 +18,7 @@ Take a look at [Null References : The Billion Dollar Mistake](https://www.infoq.
 
 Scala addresses this issue with the [Option type](http://www.scala-lang.org/api/current/scala/Option.html){:target="_blank"}. Let's jump right in.
 
-This is part 16 of the scala tutorial series. Check [here](/tags/#Scala) for the full series.
+This is part 16 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
