@@ -17,3 +17,6 @@ This is part 28 of the scala tutorial series. Check [here](/blog/scala-articles-
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
 Implicit by meaning means pre-defined or understood. The `implicit` keyword is extensively used in Scala and its important to understand what it is. 
+
+If you search around the internet, you might find many people complaining that this is complex and should not be used. But if learnt properly, it can reduce the amount of boilerplate code.
+
