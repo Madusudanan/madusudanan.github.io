@@ -15,6 +15,7 @@ This is part 28 of the scala tutorial series. Check [here](/blog/scala-articles-
 - [Introduction](#Intro)
 - [Implicit Method Parameters](#ImplicitParams)
 - [Implicit Functions](#ImplicitFunctions)
+- [Taking a look at the decompiled code](#Decompiled)
 - [Conclusion](#Conclusion)
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
@@ -134,10 +135,24 @@ implicit def doubleToInt(d: Double) = d.toInt
 
 Now the above code works fine and it evaluates to 42. Very handy in situations where it needs this to be done by default
 
+<h3><b><a name = "Decompiled" class="inter-header">Taking a look at the decompiled code</a></b></h3>
+
+The decompiled code for this is pretty simple.
+
+{% highlight java %}
+
+public final void delayedEndpoint$com$testing$Runnable$1() {
+        this.value = 10;
+        this.anotherValue = 2;
+        .MODULE$.println(BoxesRunTime.boxToInteger(this.multiply(this.anotherValue())));
+    }
+
+{% endhighlight %}
+
+It directly replaces the references to the variables at compile time. If it seems confusing, the first thing is to look in the [docs](https://docs.scala-lang.org/tour/implicit-parameters.html) and take a look at the decompiled code.
+
 <h3><b><a name = "Conclusion" class="inter-header">Conclusion</a></b></h3>
 
+Scala is not the first language to have this. C# has implicits which work very similar to Scala in terms of functionality and having a slightly different syntax. Scala libraries such as Akka make use implicits heavily. Many advanced patterns are possible with `implicits` which I'll cover in later tutorials.
+
 This design pattern tends to be over used and should be used with caution. With power comes responsibility.
-
-Many advanced patterns are possible with `implicits` which I'll cover in later tutorials.
-
-
