@@ -3,6 +3,7 @@ layout: post
 title: "Scala Articles Index"
 permalink: blog/scala-articles-index/
 tags: [Scala]
+last_updated: 2017-12-16
 ---
 
 
@@ -224,3 +225,9 @@ This will act as a reference to all of my Scala blog articles.
   - [Example with collections](/blog/scala-tutorials-part-27-higher-order-functions/#Example)
   - [Creating a custom higher order function](/blog/scala-tutorials-part-27-higher-order-functions/#CustomHigherOrder)
   - [Closing notes](/blog/scala-tutorials-part-27-higher-order-functions/#Conclusion)
+- [Part 28 - Getting started with Implicits](/blog/scala-tutorials-part-28-getting-started-with-implicits/)
+  - [Introduction](/blog/scala-tutorials-part-28-getting-started-with-implicits/#Intro)
+  - [Implicit Method Parameters](/blog/scala-tutorials-part-28-getting-started-with-implicits/#ImplicitParams)
+  - [Implicit Functions](/blog/scala-tutorials-part-28-getting-started-with-implicits/#ImplicitFunctions)
+  - [Taking a look at the decompiled code](/blog/scala-tutorials-part-28-getting-started-with-implicits/#Decompiled)
+  - [Conclusion](/blog/scala-tutorials-part-28-getting-started-with-implicits/#Conclusion)

@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "Scala Tutorials Part #28 - Getting started with Implicits in Scala"
-permalink: blog/scala-tutorials-part-28-getting-started-with-implicits-in-scala/
+title: "Scala Tutorials Part #28 - Getting started with Implicits"
+permalink: blog/scala-tutorials-part-28-getting-started-with-implicits/
 tags: [Scala]
 ---
 
 Implicits
 ---------
 
-This is part 28 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
+This is part 28 of the Scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 <i class="fa fa-list-ul space-right"></i> Index
 
@@ -20,9 +20,7 @@ This is part 28 of the scala tutorial series. Check [here](/blog/scala-articles-
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
-Implicit by meaning means pre-defined or understood. The `implicit` keyword is extensively used in Scala and its important to understand what it is. 
-
-If used correctly, implicits can greatly reduce the amount of boilerplate code.
+Implicit in the dictionary means predefined or understood. The `implicit` keyword is extensively used in Scala and its important to understand its usage. If used correctly, they can greatly reduce the amount of boilerplate code.
 
 <h3><b><a name = "ImplicitParams" class="inter-header">Implicit Method Parameters</a></b></h3>
 
@@ -42,7 +40,7 @@ val value = 10
 
 {% endhighlight %}
 
-We will be able to call the `multiply` method now without any parameters since they are `implicit`. But, it will lead to an error as we have not declared any implicit variables that is suitable for that method.
+We will be able to call the `multiply` method without any parameters since one of them is `implicit` and the other is global. But, it will lead to an error as we have not declared any implicit variables that is suitable for that method.
 
 {% highlight scala %}
 
@@ -52,7 +50,7 @@ println(multiply)
 
 ![Implicit error](/images/implicit_error.png)
 
-If we define an `implicit` variable then it should work fine.
+Defining an `implicit` variable fixes the error.
 
 {% highlight scala %}
 
@@ -70,7 +68,7 @@ println(multiply)
 
 Will print 20.
 
-An interesting thing to note here is that the implicit param can be of any name and the method would still work.
+An interesting thing to note here is that the implicit parameter can be of any name and the method would still work.
 
 {% highlight scala %}
 
@@ -89,11 +87,11 @@ object RunExample extends App{
 
 {% endhighlight %}
 
-As you can see, only the variable type is more important rather than the name. At this point, an important question that would come up is what will happen if there are two implicit variables of the same type.
+As you can see, only the variable type is more important rather than the name. At this point, an important question that would come up is what will happen if there are two implicit variables of the same type. Let's test it out.
 
 ![Two implicit variables error](/images/two-implicit-error.png)
 
-The compiler is much more strict here. It could resort to taking the first defined implicit value but it could lead to bad/ambigous code, so it promptly complains here.
+The compiler is much more strict here. It could resort to taking the first defined implicit value but it leads to bad/ambiguous code, so it promptly complains here.
 
 Once we declare the first parameter as implicit, anything that follows it is also implicit. The below example makes it more clear.
 
@@ -105,7 +103,7 @@ def multiply(implicit param1: Int,param2 : Int) = param1 * param2
 
 If we call just `multiply` it prints 4 as it takes the value of `anotherValue` twice. Usually there will be only one implicit parameter for a method. We cannot call `param2` directly here since it is implicit. 
 
-It also not possible to make the second parameter `implicit`. Such a syntax would lead to a compiler erorr.
+It also not possible to make the second parameter `implicit`. Such a syntax would lead to a compiler error.
 
 ![Implicit second param error](/images/implicit-second-param-error.png)
 
@@ -125,7 +123,7 @@ This will obviously throw an error.
 
 ![Variable type error](/images/variable-type-error.png)
 
-Let’s declare an implicit method that converts `Double` to `Int`.
+Let’s declare an implicit function that converts `Double` to `Int`.
 
 {% highlight scala %}
 
@@ -133,7 +131,20 @@ implicit def doubleToInt(d: Double) = d.toInt
 
 {% endhighlight %}
 
-Now the above code works fine and it evaluates to 42. Very handy in situations where it needs this to be done by default
+Now the the above code works as expected i.e it auto converts the `Double` to `Int`.
+
+{% highlight scala %}
+
+implicit def doubleToInt(d: Double) = d.toInt
+
+val x : Int = 20.23
+
+//Prints 20
+println(x)
+
+{% endhighlight %}
+
+Very handy in situations where it needs this to be done by default
 
 <h3><b><a name = "Decompiled" class="inter-header">Taking a look at the decompiled code</a></b></h3>
 
