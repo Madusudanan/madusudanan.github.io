@@ -8,7 +8,7 @@ tags: [Scala]
 Design By Contract
 ------------------
 
-This is part 28 of the Scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
+This is part 29 of the Scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
@@ -20,21 +20,21 @@ This is part 28 of the Scala tutorial series. Check [here](/blog/scala-articles-
 
 <h3><b><a name = "Intro" class="inter-header">Introduction</a></b></h3>
 
-[Design by contract](https://en.wikipedia.org/wiki/Design_by_contract){:target="_blank"} is a programming approach where there are pre-conditions and post-conditions to a code block and if these conditions are not satisfied an exception is thrown to the caller. This was originally designed by [Betrand Mayer](https://en.wikipedia.org/wiki/Bertrand_Meyer){:target="_blank"} who was the creator of the [Eiffel programming language](https://en.wikipedia.org/wiki/Eiffel_(programming_language)){:target="_blank"}.
+[Design by contract](https://en.wikipedia.org/wiki/Design_by_contract){:target="_blank"} is a programming approach where there are preconditions and post-conditions to a code block and if these conditions are not satisfied an exception is thrown to the caller. This was originally designed by [Betrand Mayer](https://en.wikipedia.org/wiki/Bertrand_Meyer){:target="_blank"} who was the creator of the [Eiffel programming language](https://en.wikipedia.org/wiki/Eiffel_(programming_language)){:target="_blank"}.
 
 Some languages do not have first class support, some have support through external libraries. Scala has some support through the language itself and that is what this post is all about.
 
 <h3><b><a name = "Overview" class="inter-header">High Level Overview</a></b></h3>
 
-Scala has four methods `assert`,`assume`, `require` and `ensuring` which are present in the `Predef.scala` package and they are available by default and no library import is required.
+Scala has four methods `assert`, `assume`, `require` and `ensuring` which are present in the `Predef.scala` package and they are available by default and no library import is required.
 
-Before understanding these, it is necessary to understand what is a static checker. A static checker is basically a compiler tool i.e to check if the code is well designed, variable naming conventions etc., 
+Before understanding these, it is necessary to understand what is a static checker. A static checker is basically a compiler tool i.e to check if the code is well-designed, variable naming conventions etc., 
 
-Of these `assert`,`assume` and `require` are pre-conditions and `ensuring` is a post-condition. Pre-conditions are meant to be guards before entering a code block while a post condition happens happen after execution i.e like a do while construct. Code examples below will make them clear.
+Of these `assert`, `assume` and `require` are preconditions and `ensuring` is a post-condition. Preconditions are meant to be guards before entering a code block while a post condition happens happen after execution i.e like a `do while` construct. Code examples below will make them clear.
 
 <h3><b><a name = "AssertAssume" class="inter-header">Assert and Assume</a></b></h3>
 
-The `assert` keyword would be familiar if you would have done unit testing before. It takes in a boolean condition as a parameter and checks if it is true else throws an exception.
+The `assert` keyword would be familiar if you have done unit testing before. It takes in a boolean condition as a parameter and checks if it is true else throws an exception.
 
 {% highlight scala %}
 
@@ -77,7 +77,7 @@ Exception in thread "main" java.lang.AssertionError: assumption failed
 
 {% endhighlight %}
 
-In fact it throws the same exception `java.lang.AssertionError` only with the name changed such as assertion failed or assumption failed depending on what we use. Even the source code is almost identical.
+In fact, it throws the same exception `java.lang.AssertionError` only with the name changed such as assertion failed or assumption failed depending on what we use. Even the source code is almost identical.
 
 {% highlight scala %}
 
@@ -157,7 +157,7 @@ We have briefly seen what these methods can do. These can be combined to form co
 
 There are advanced patterns possible. Notice that all of these functions in `Predef.scala` have another signature where functions can be passed in i.e they are higher order functions. 
 
-When you browse open source codebases and other Scala soure code repository, you would find these pre-conditions are not extensively used. This is because they throw an exception during runtime. There are better design patterns possible where we can encode such conditions during compile time. We have already seen the [Option type](/blog/scala-tutorials-part-16-the-option-type/) which is one way of encoding invariants. There are other ways such as `Either`, `Try` etc., We will take a look at those in later tutorials.
+When you browse open source codebases and other Scala soure code repository, you would find these preconditions are not extensively used. This is because they throw an exception during run time. There are better design patterns possible where we can encode such conditions during compile time. We have already seen the [Option type](/blog/scala-tutorials-part-16-the-option-type/) which is one way of encoding invariant. There are other ways such as `Either`, `Try` etc., We will take a look at those in later tutorials.
 
 
 

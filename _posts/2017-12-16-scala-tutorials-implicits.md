@@ -13,7 +13,7 @@ This is part 28 of the Scala tutorial series. Check [here](/blog/scala-articles-
 <i class="fa fa-list-ul space-right"></i> Index
 
 - [Introduction](#Intro)
-- [Implicit Method Parameters](#ImplicitParams)
+- [Implicit Variables & Method Parameters](#ImplicitParams)
 - [Implicit Functions](#ImplicitFunctions)
 - [Taking a look at the decompiled code](#Decompiled)
 - [Conclusion](#Conclusion)
@@ -22,7 +22,7 @@ This is part 28 of the Scala tutorial series. Check [here](/blog/scala-articles-
 
 Implicit in the dictionary means predefined or understood. The `implicit` keyword is extensively used in Scala and its important to understand its usage. If used correctly, they can greatly reduce the amount of boilerplate code.
 
-<h3><b><a name = "ImplicitParams" class="inter-header">Implicit Method Parameters</a></b></h3>
+<h3><b><a name = "ImplicitParams" class="inter-header">Implicit Variables & Method Parameters</a></b></h3>
 
 Let's declare a method that takes in an `implicit` parameter.
 
