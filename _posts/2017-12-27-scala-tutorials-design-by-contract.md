@@ -22,13 +22,16 @@ This is part 29 of the Scala tutorial series. Check [here](/blog/scala-articles-
 
 [Design by contract](https://en.wikipedia.org/wiki/Design_by_contract){:target="_blank"} is a programming approach where there are preconditions and post-conditions to a code block and if these conditions are not satisfied an exception is thrown to the caller. This was originally designed by [Betrand Mayer](https://en.wikipedia.org/wiki/Bertrand_Meyer){:target="_blank"} who was the creator of the [Eiffel programming language](https://en.wikipedia.org/wiki/Eiffel_(programming_language)){:target="_blank"}.
 
+<br>
+<img src="/images/dbc.svg" width="400" height="400" />
+
+<cite> Picture courtesy -  [Wikipedia](https://en.wikipedia.org/wiki/Design_by_contract#/media/File:Design_by_contract.svg){:target="_blank"} </cite>
+
 Some languages do not have first class support, some have support through external libraries. Scala has some support through the language itself and that is what this post is all about.
 
 <h3><b><a name = "Overview" class="inter-header">High Level Overview</a></b></h3>
 
 Scala has four methods `assert`, `assume`, `require` and `ensuring` which are present in the `Predef.scala` package and they are available by default and no library import is required.
-
-Before understanding these, it is necessary to understand what is a static checker. A static checker is basically a compiler tool i.e to check if the code is well-designed, variable naming conventions etc., 
 
 Of these `assert`, `assume` and `require` are preconditions and `ensuring` is a post-condition. Preconditions are meant to be guards before entering a code block while a post condition happens happen after execution i.e like a `do while` construct. Code examples below will make them clear.
 
@@ -99,7 +102,7 @@ def assert(assertion: Boolean) {
 
 So why the almost identical ones? The answer lies in how they should be used.
 
-`assert` is kind of like attempting to prove something. It can be regarded as a predicate in a mathematical sense i.e which needs to be checked by the static checker. `assume` on the other hand is like an axiom in the sense that the code can rely upon the static checker to throw an error if its not true. So they are in some sense just syntactic sugar.
+`assert` is kind of like attempting to prove something. It can be regarded as a predicate in a mathematical sense i.e which needs to be checked by the static checker. `assume` on the other hand is like an axiom where the code can rely upon the static checker to throw an error if its not true. So they are in some sense just syntactic sugar.
 
 <h3><b><a name = "RequireEnsuring" class="inter-header">Require and Ensuring</a></b></h3>
 
@@ -117,7 +120,7 @@ def squareEvenNumbersWithLimit(num:Int,limit:Int) : Int = {
 
 {% endhighlight %}
 
-This can fail in two ways i.e the passed number is not an even number and also when the squared result is greater than the result.
+This can fail in two ways i.e the passed number is not an even number and also when the squared result is greater than the limit that is passed in.
 
 Calling it with the below parameters,
 
@@ -157,7 +160,7 @@ We have briefly seen what these methods can do. These can be combined to form co
 
 There are advanced patterns possible. Notice that all of these functions in `Predef.scala` have another signature where functions can be passed in i.e they are higher order functions. 
 
-When you browse open source codebases and other Scala soure code repository, you would find these preconditions are not extensively used. This is because they throw an exception during run time. There are better design patterns possible where we can encode such conditions during compile time. We have already seen the [Option type](/blog/scala-tutorials-part-16-the-option-type/) which is one way of encoding invariant. There are other ways such as `Either`, `Try` etc., We will take a look at those in later tutorials.
+In the Scala world these patterns are not extensively used. This is because they throw an exception during run time. There are better design patterns where we can encode such conditions during compile time. We have already seen the [Option type](/blog/scala-tutorials-part-16-the-option-type/) which is one way of encoding state within a container which is compile time. There are other ways such as `Either`, `Try` etc., We will take a look at those in later tutorials. With that said, there are situations where you might want to use design by contract, such as dealing with situations where `null` is quite possible(interfacing with java code) and then throwing an exception. 
 
 
 
