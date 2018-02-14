@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #1 - Getting Started with Scala"
 permalink: blog/scala-tutorials-part-1-getting-started/
 tags: [Scala]
-last_updated: 2017-10-18
+last_updated: 2018-02-13
 ---
 
 Getting Started with Scala
@@ -62,26 +62,27 @@ object Test {
 }
 {% endhighlight %}
 
-Ypu can copy this code into your Intellij IDE and then run it. If all goes well, you should see Hello World in your console.
+You can copy this code into your Intellij IDE and then run it. If all goes well, you should see Hello World in your console.
 
-Congratulations !! You have authored your first Hello world.
+![First hello world](/images/first-hello-world.jpg)
 
-Now let's try to understand the code. The first thing to notice, is that the whole code is inside an Object block. Java programmers might find these confusing. Hold on to this question for now, the next section
-deals with this in a more detailed way. Unlike Java, class names need not match with file names, not a big deal but, we do have that freedom here.
+Let's break it down. The first thing to notice, is that the whole code is inside an `object` block. Java programmers might find these confusing. This is explained in [part 4](/blog/scala-tutorials-part-4-objects/). Unlike Java, class names need not match with file names, not a big deal but, we do have that freedom here.
 
-Next thing is the strange syntax of `def main()`. To begin with `def` is a keyword to declare methods. We will be dealing with methods in greater detail
-in an upcoming tutorial.
-
-There can be arguments for a method. In our case, it is an `Array[String]`. This is similar to Java's main method, where a string array is an argument to the main method. Can be used for startup config or any runtime variables.
+Next thing is the strange syntax of `def main()`. To begin with `def` is a keyword to declare methods. Methods are explained in [part 3](/blog/scala-tutorials-part-3-methods/). There can be arguments for a method and in our case, it is an `Array[String]`. This is similar to Java's main method, where a string array is an argument to the main method. Can be used for startup config or any runtime variables.
 
 This is followed by a `println()` method call which prints statements on to the console. 
-If you are using an IDE, then you can trace the entire call by holding ctrl+click on the method (Shortcuts differ with operating systems. On the mac this is cmd+click). 
+If you are using an IDE, then you can trace the entire call by holding ctrl+click on the method (Shortcuts differ with operating systems. On a Mac this is cmd+click). 
 Python folks should find this syntax similar, it simply prints out the given string to the console.
-Semicolons are optional in scala unlike java and the compiler relies on line breaks to identify the next literal/code block.
+Semicolons are optional in Scala unlike Java and the compiler relies on line breaks to identify the next literal/code block.
 
-On digging a little deeper `println()` is a method present in a class called Predef.scala, which calls Console.scala's println method which then goes all the way to calls `out.println`
-on `PrintStream.java`. If you have the source code attached it shows the source code directly, otherwise the decompiler from Intellij shows the decompiled code. The print from 
+The `println()` method's stack trace goes as below.
+
+![Scala println stack](/images/scala-println-stack.png)
+
+If you have the source code attached it shows the source code directly, otherwise the decompiler from Intellij shows the decompiled code. The print from 
 both Scala and Java end up in the same method call. As mentioned before, Scala is built on top of the JVM and can inter-operate with Java code seamlessly, unless there is a specific reason for a different implementation then it would be just re-inventing the wheel and hence they all rely on the existing JDK library functionality.
+
+`Predef.scala` is similar to the java.lang package. They are available to all Scala files by default without any import. We will take a look at `Predef` in detail with a later tutorial.
 
 A simple hello world has opened up many topics to learn, three in particular 
 
@@ -150,13 +151,13 @@ This takes us back to the stackoverflow discussion above, but the reason why the
 sense to pass by reference since they are not objects at all. So if a variable is changed, its reference(can be said as place in memory) 
 changes because of the pass by value mechanism and not because that primitives are immutable.
 
-The important point to understand is reference vs value immutability does not matter much in scala since scala does not have primitive types at all and only has objects.
+The important point to understand is reference vs value immutability does not matter much in Scala since it does not have primitive types at all and only has objects.
 
 <h3><b><a name = "AdvancedUnderstanding" class="inter-header">Immutability under the hood</a></b></h3>
 
-Let's take our understanding of immutability even further by examining the byte code emitted by decompiling generated scala class files.
+Let's take our understanding of immutability even further by examining the byte code emitted by decompiling generated Scala class files.
 
-We declare a class named `Parent` and a val inside it.
+Let's declare a class named `Parent` and a val inside it.
 
 {% highlight scala %}
 
@@ -194,105 +195,7 @@ It is clear that `val` is just a compile time restriction and has nothing to do 
 
 We can take this approach of reading the decompiled byte code to understand things more deeply, but in most of the cases it is not required.
 
-<h3><b><a name = "ValVsFinal" class="inter-header">Comparing and Contrasting val and final</a></b></h3>
-
-Scala on the other hand also has the `final` keyword which works pretty similar.
-
-A better way to visualize the difference between a val and a final is via an example.
-
-Let's take a simple parent class.
-
-{% highlight scala %}
-class Parent {
-  
-  val age = 10
-  
-}
-{% endhighlight %}
-
-
-Unlike java, scala can also override variables.
-
-{% highlight scala %}
-class Child extends Parent{
-
-  override val age = 30
-  
-  def printVal ={
-    println(age)
-  }
-
-}
-{% endhighlight %}
-
-Now if we declare the variable `age` as final in the Parent class, then it would not be possible for the Child class to override it and it would throw an error as below.
-
-![Final override error](/images/final_override_error.png)
-
-This is a real world example of where one would use `final`.
-
-Notice that we are not breaking immutability here by overriding a val in child class. The child class creates an instance of its own just like a string in java string pool.
-
-<h3><b><a name = "DataTypes" class="inter-header">Data types in Scala</a></b></h3>
-
-Scala has the same data types as in Java, with the same memory and precision.
-
-All data types are Objects and methods can be called in them just as you would on an object.
-
-{% highlight scala %}
-val t = 69
-//Prints 'E' the ASCII value of E is 69
-println(t.toChar)
-
-val s = "Hello World"  
-//Just like String char at, prints l
-//Trace leads to the same String class charAt method
-println(s.charAt(2))
-{% endhighlight %}
-
-By the time now, another question would have come up? Where are the types in the scala code?
-
-Unlike java where we declare variables with data types and then give a variable name, scala has something called type inference(see the topics below), but don't jump there
-yet, there is a reason why I separated it out from the variables section.
-
-<h3><b><a name = "TypeInference" class="inter-header">Type Inference</a></b></h3>
-
-If you are not familiar with the term, it is nothing but the deduction of types at compile time. Hold on, isn’t that what dynamic typing means? 
-Well no, notice that I said deduction of types, this is drastically different from what dynamically typed languages do, 
-and another thing is it is done at compile time and not run time.
-
-Many languages have this built in, but the implementation varies from one language to another. 
-This might be confusing at the beginning, but it will be clearer with code examples.
-
-Let's jump into the Scala REPL for some experimentation.
-
-![Scala type inference](/images/type-inference-scala.png)
-
-From the image above, it is evident that there is no magic, the variables are inferred automatically to the best types they deem fit and at compile time.
-
-Here is some more code to understand further.
-
-{% highlight scala %}
-
-val x = 20
-
-//print to the console
-//legit, gets inferred as an integer
-println(x+10)
-
-//Something stupid as below will throw compile time error
-val z = 40
-println(z * "justastring")
-{% endhighlight %}
-
-Go ahead and play with these variables, you are protected from compile time type safety, so do not hesitate to mess around.
-
-If you are curious on what classes do the variables extend, you can dig deeper and find a class called `AnyVal`. This is part of an
-entirely different topic of Scala's unified type system, which is nothing but the class hierarchy.
-
-This is dealt with in [part 2](/blog/scala-tutorials-part-2-type-inference-in-scala) of this series with greater depth.
-
-So whenever we are talking about immutability in scala, we are talking about reference immutability. Immutable variables have certain performance 
+So whenever we are talking about immutability in Scala, we are talking about reference immutability. Immutable variables have certain performance 
 benefits and leans closer to notion of writing code without side effects.
 
 Even though the value of a `var` can be changed, its type cannot be changed.
@@ -315,9 +218,101 @@ This is akin to the behaviour in Java where you cannot assign a string to an int
 
 ![Var type error](/images/var_type_error.png)
 
+<h3><b><a name = "ValVsFinal" class="inter-header">Comparing and Contrasting val and final</a></b></h3>
+
+Scala on the other hand also has the `final` keyword which works pretty similar.
+
+A better way to visualize the difference between a val and a final is via an example.
+
+Let's take a simple parent class.
+
+{% highlight scala %}
+class Parent {
+  
+  val age = 10
+  
+}
+{% endhighlight %}
+
+
+Unlike java, Scala can also override variables.
+
+{% highlight scala %}
+class Child extends Parent{
+
+  override val age = 30
+  
+  def printVal ={
+    println(age)
+  }
+
+}
+{% endhighlight %}
+
+Now if we declare the variable `age` as final in the Parent class, then it would not be possible for the Child class to override it and it would throw an error as below.
+
+![Final override error](/images/final_override_error.png)
+
+This is a real world example of where one would use `final`.
+
+Notice that we are not breaking immutability here by overriding a val in child class. The child class creates an instance of its own instead of modifying the variable of the parent class.
+
+<h3><b><a name = "DataTypes" class="inter-header">Data types in Scala</a></b></h3>
+
+Scala has the same data types as in Java, with the same memory and precision.
+
+All data types are Objects and methods can be called in them just as you would on an object.
+
+{% highlight scala %}
+val t = 69
+//Prints 'E' the ASCII value of E is 69
+println(t.toChar)
+
+val s = "Hello World"  
+//Just like String char at, prints l
+//Trace leads to the same String class charAt method
+println(s.charAt(2))
+{% endhighlight %}
+
+By the time now, another question would have come up? Where are the types in our code?
+
+Unlike java where we declare variables with data types and then give a variable name, Scala has something called type inference.
+
+<h3><b><a name = "TypeInference" class="inter-header">Type Inference</a></b></h3>
+
+Type inference is nothing but the deduction of types at compile time. Hold on, isn’t that what dynamic typing means? Well no, notice that I said deduction of types, this is drastically different from what dynamically typed languages do. The main difference being that the types are deduced at compile time rather than run time.
+
+Many languages have this built in, but the implementation varies from one language to another. Let's jump into the Scala REPL for some experimentation.
+
+![Scala type inference](/images/type-inference-scala.png)
+
+From the image above, it is evident that there is no magic. The variables are inferred automatically to the best types they deem fit at compile time.
+
+Here is some more code to understand further.
+
+{% highlight scala %}
+
+val x = 20
+
+//print to the console
+//legit, gets inferred as an integer
+println(x+10)
+
+//Something stupid as below will throw compile time error
+val z = 40
+println(z / "justastring")
+{% endhighlight %}
+
+Go ahead and play with these variables, you are protected from compile time type safety, so do not hesitate to mess around.
+
+If you are curious on what classes do the variables extend, you can dig deeper and find a class called `AnyVal`. This is part of an
+entirely different topic of Scala's unified type system, which is nothing but the class hierarchy.
+
+This is dealt with in [part 2](/blog/scala-tutorials-part-2-type-inference-in-scala) of this series with greater depth.
+
 <h3><b><a name = "Initialize" class="inter-header">Variable initialization</a></b></h3>
 
-In scala you cannot simply create a variable and leave it un-initialized. 
+In Scala you cannot simply create a variable and leave it un-initialized. 
 
 ![Variable initialization](/images/variables_initialize.png)
 
@@ -333,8 +328,6 @@ Scala has the facility where we can mention the type explicitly.
 `val y : Integer = 20`
 
 These kind of type annotations are important in public facing APIs/methods. 
-
-Note : Methods are explained in [part 3](/blog/scala-tutorials-part-3-methods/)
 
 {% highlight scala %}
 
@@ -397,7 +390,7 @@ The above code would result in a run time exception/error as below.
         at java.lang.reflect.Method.invoke(Method.java:497)
         at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)
 
-In scala, when we use type ascription the code would not even compile.
+In Scala, when we use type ascription the code would not even compile.
 
 ![Scala type ascription error](/images/scala_type_ascription_error.png)
 
