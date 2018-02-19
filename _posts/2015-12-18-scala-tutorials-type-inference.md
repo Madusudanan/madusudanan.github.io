@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #2 - Type Inference & types in Scala"
 permalink: blog/scala-tutorials-part-2-type-inference-in-scala/
 tags: [Scala]
-last_updated: 2017-09-18
+last_updated: 2018-02-19
 ---
 
 Type inference
@@ -139,7 +139,7 @@ recursive function. The same(similar) code can be used in haskell without any er
 let factorial 0 = 1; factorial n = n * factorial (n - 1)
 {% endhighlight %}
 
-The above code when executed inside the Haskell GHCI shell (kind of like Scala REPL) compiles with no errors.
+The above code when executed inside the Haskell GHCI shell (kind of like Scala REPL), it compiles with no errors.
 
 ![Haskell Global type inference](/images/haskell-factorial.png)
 
@@ -179,7 +179,7 @@ Let's look at the below example to understand sub-typing.
 ![Scala sub-typing](/images/scala-sub-typing.png)
 
 We are constructing a heterogeneous list where sub-typing converts the lower type into a higher type wherever necessary. 
-A simple example would converting a Int to a Double which is the first example. If it cannot be fit, it goes to the top level i.e the `Any` type. 
+A simple example would converting an `Int` to a `Double` which is the second example. If it cannot be fit, it goes to the top level i.e the `Any` type. 
 All of this conversion can be translated to the type system hierarchy above.
 
 This makes Objected oriented programming much easier to handle. For more information you can visit the [Scala docs](http://docs.scala-lang.org/tutorials/tour/unified-types.html){:target="_blank"} for type systems.
@@ -187,7 +187,7 @@ This makes Objected oriented programming much easier to handle. For more informa
 <h3><b><a name = "ValueVsReference" class="inter-header">Value types and Reference types</a></b></h3>
 
 The left sub-tree in the above tree contains all the value types i.e everything that comes under
-`AnyVal` and types that come under `AnyRef` are all reference types. They are similar to their java counterparts and compiles to the same thing as far 
+`AnyVal` and the right contains the types that come under `AnyRef` which are all reference types. They are similar to their java counterparts and compiles to the same thing as far 
 as the JVM is concerned (more on that in later tutorials).
 
 Value types are similar to native types in java. They are created as follows.
@@ -222,7 +222,7 @@ Situations could be inside of a function or a loop where the information about t
 
 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> When not to use them? 
 
-Simple, when type information is important i.e it should not leave the programmer who reads to code guessing about types.
+When type information is important i.e it should not leave the programmer who reads to code guessing about types.
 
 It is hard to give a code example since it really depends on application under consideration. 
 The only fool-proof way to deal with this is to conduct code reviews with peer programmers and see if they can understand them.
@@ -238,7 +238,7 @@ It is a matter of code readability rather than anything else. With freedom comes
 Congratulations !! If you have understood/reached this far, then you should be proud of yourself. Rather than saying this is a pretty difficult topic, 
 I would say it is a very non-intuitive one to get your head around.
 
-<i class="fa fa-hourglass-start space-right"></i> Stay tuned !! This is just the beginning.
+<i class="fa fa-hourglass-start space-right"></i> Stay tuned !!
 
 <h3><b><a name = "References" class="inter-header">References</a></b></h3>
 

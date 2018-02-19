@@ -6,15 +6,15 @@ tags : Scala
 last_updated: 2017-01-10
 ---
 
-Methods in scala
+Methods in Scala
 ----------------
 
-It has been a long time since I wrote the last article on scala which was back in December 2015. 
+It has been a long time since I wrote the last article on Scala which was back in December 2015. 
 Hopefully I should be writing more  <i class="fa fa-smile-o fa-lg"></i> 
 
-This is part 3 of the scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
+This is part 3 of the Scala tutorial series. Check [here](/blog/scala-articles-index/) for the full series.
 
-This entire post is about dealing with methods in scala. 
+This entire post is about dealing with methods in Scala. 
 Most of them are about style, but very important to know as we get into the world of functional programming.
 
 <i class="fa fa-language fa-lg space-right"></i> : This article has been translated to chinese by 
@@ -41,7 +41,7 @@ The same ideas evolved to what methods are today. A simple way to organize progr
 
 Sub-routines, Procedures , Functions, Methods may or may not mean the same thing and it is really hard to give a generalized difference since has different meanings depending upon the programming language under consideration.
 
-In scala, we care only about Functions and Methods.
+In Scala, we care only about Functions and Methods.
 
 <h3><b><a name = "Syntax" class="inter-header">Syntax of methods</a></b></h3>
 
@@ -113,7 +113,7 @@ def greetPerson(msg :String) = "Hello " + msg + "!!!"
 
 This returns "Hello" concatenated with whatever string that you passed in.
 
-In all of the examples, wherever type information is required, scala uses [type inference](/blog/scala-tutorials-part-2-type-inference-in-scala/).
+In all of the examples, wherever type information is required, Scala uses [type inference](/blog/scala-tutorials-part-2-type-inference-in-scala/).
 
 One thing to note is that if we omit the `=` symbol, the compiler treats it as a `Unit` type method even if we return something from that method.
 
@@ -131,8 +131,7 @@ def whichIsGreater (a : Int , b: Int)  {
 
 ![Method with no equals](/images/no_return.png)
 
-In functional programming terms a method which does not return any value i.e which returns `Unit` are called procedures. These are methods which have no side effects and 
-are independent of state.
+In functional programming terms a method which does not return any value i.e which returns `Unit` are called procedures.
 
 Summarizing the above in a picture.
 
@@ -140,7 +139,7 @@ Summarizing the above in a picture.
 
 <h3><a name="Unit" class="inter-header">The Unit type</a></h3>
 
-If we run the below example in the scala REPL, 
+If we run the below example in the Scala REPL, 
 
 {% highlight scala %}
 def printHelloMsg = println("Hello there !!!!")
@@ -185,7 +184,7 @@ By default method parameters that are passed into methods are immutable and cann
 
 ![Immutable method parameters](/images/immutable_method_param.png)
 
-Remember that scala embraces immutability more than java. The equivalent java method would be something like
+Remember that Scala embraces immutability more than Java. The equivalent Java method would be something like
 
 {% highlight java %}
 public void calculateInterest(final int interestAmount){
@@ -195,11 +194,11 @@ public void calculateInterest(final int interestAmount){
 
 Re-writing it to not change the method parameters is pretty straighforward, but the reason why it is designed such a way is again because of functional programming and getting rid of mutable state and favoring [immutable objects](http://www.yegor256.com/2014/06/09/objects-should-be-immutable.html){:target="_blank"}.
 
-We will learn more about immutability once we start to explore the functional programming side of scala.
+We will learn more about immutability once we start to explore the functional programming side of Scala.
 
 <h3><a name="Return" class="inter-header">Note on the return keyword</a></h3>
 
-The scala compiler is built in a way to take the last statement and return it in the absence of a return statement. 
+The Scala compiler is built in a way to take the last statement and return it in the absence of a return statement. 
 
 But, in situations where the last statement is not intended to be the output of the method, then the results could be different from what we might expect.
 
@@ -214,7 +213,7 @@ def whichIsGreater (a : Int , b: Int)  = {
 }
 {% endhighlight %}
 
-We can call this method with whatever integer parameters, it would return `Some String`. Remember that scala has limited type inference and in this particular situation this is the best it can come up with.
+We can call this method with whatever integer parameters, it would return `Some String`. Remember that Scala has limited type inference and in this particular situation this is the best it can come up with.
 
 If you are using an IDE, you can see a warning on hovering over these variables.
 
@@ -248,10 +247,10 @@ Notice that the method return type is `AnyVal`, since the `else` part is `Unit` 
 We can infer the following points from our analysis.
 
 - Sub-typing is used to promote types up the order.
-- If you use the `return` keyword, you must mention type compulsorily.
+- If you use the `return` keyword, the return type is mandatory.
 - The last statement will be used for the return type, if you give a wrong type, then the compiler will not be able to identify it.
 - All type errors are in compile time, hence full type safety is ensured.
-- Types of method parameters should always be mentioned. Since scala uses local type inference, it will not be able to deduce them at compile time. 
+- Types of method parameters should always be mentioned. Since Scala uses local type inference, it will not be able to deduce them at compile time. 
 
 > When doing pure functional programming you would not use the return keyword at all.
  
@@ -274,12 +273,12 @@ def whichIsGreater (a : Int , b: Int)  = {
 
 The type qualifies to the `Any` type, which is at the top level. If you are a Java programmer then you would quickly use `instanceof` to guess the type.
 
-Using `instanceof` is an anti-pattern and considered bad programming practice. In scala you would use the [Either](http://www.scala-lang.org/api/rc2/scala/Either.html){:target="_blank"} type. But that is a topic
+Using `instanceof` is an anti-pattern and considered bad programming practice. In scala you would use the [Either](http://scala-lang.org/api/current/scala/util/Either.html){:target="_blank"} type. But that is a topic
 of another blog post.
 
 <h3><a name="CallByNamevsValue" class="inter-header">Call by name vs Call by value</a></h3>
 
-When you are calling methods, it is imperative to understand how the compiler treats it. In scala, there are two ways a method can treat its parameters.
+When you are calling methods, it is imperative to understand how the compiler treats it. In Scala, there are two ways a method can treat its parameters.
 
 - Call by value
 - Call by name
@@ -405,9 +404,7 @@ When calling these methods we can see a more clearer stack trace exception.
         at Runnable$.main(Runnable.scala:4)
         at Runnable.main(Runnable.scala)
 
-
-
-Most of what I have explained here is about understanding the object oriented side of scala. 
+Most of what I have explained here is about understanding the object oriented side of Scala. 
 In my experience it is better to understand this side first and then step into functional programming.
 
 Stay tuned for the my next article on Objects and Classes.
