@@ -25,7 +25,7 @@ github:
   repo:           https://github.com/Madusudanan/madusudanan.github.io
 
 #gems
-gems: [jekyll-gist,jekyll-paginate,jekyll-feed,jekyll-sitemap]
+plugins: [jekyll-gist,jekyll-paginate,jekyll-feed,jekyll-sitemap]
 paginate: 5
 paginate_path: "page:num"
 

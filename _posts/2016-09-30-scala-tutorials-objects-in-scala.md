@@ -291,7 +291,7 @@ extending the `App` trait. Let's look at the decompiled versions of both.
 
 <i class="fa fa-hashtag" aria-hidden="true"></i> Object extending App trait
 
-Actual Code :
+<i class="fa fa-code" aria-hidden="true"></i> Actual Code :
 
 {% highlight scala %}
 
@@ -302,7 +302,7 @@ object RunExample extends App{
 }
 {% endhighlight %}
 
-Decompiled : 
+<i class="fa fa-code" aria-hidden="true"></i> Decompiled : 
 
     public final class RunExample {
       public static void main(java.lang.String[]);

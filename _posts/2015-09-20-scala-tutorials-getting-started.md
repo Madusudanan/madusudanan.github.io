@@ -43,7 +43,7 @@ Start with [this blog post](/blog/why-scala-will-be-the-next-big-thing) if you a
 
 There are many tutorials available on the internet which talk about setting up Scala, so I am not going to walk through those again.
 
-The developer setup that I would recommend is as follows.
+<i class="fa fa-desktop fa-lg space-left space-right"></i> -  Recommended developer setup.
 
 - Operating System : Mac/Linux preferred
 - Intellij IDEA community edition with Scala plugin installed
@@ -52,7 +52,7 @@ If you are done setting those up, then let's begin.
 
 <h3><b><a name = "ScalaHelloWorld" class="inter-header">First Hello World !!</a></b></h3>
 
-Let's directly jump into some code.
+Let's directly jump into some <i class="fa fa-code fa-lg space-left space-right"></i>.
 
 {% highlight scala %}
 object Test {
