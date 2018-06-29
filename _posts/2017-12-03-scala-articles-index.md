@@ -237,3 +237,8 @@ This will act as a reference to all of my Scala blog articles.
    - [Assert and Assume](/blog/scala-tutorials-part-29-design-by-contract/#AssertAssume)
    - [Require and Ensuring](/blog/scala-tutorials-part-29-design-by-contract/#RequireEnsuring)
    - [Conclusion](/blog/scala-tutorials-part-29-design-by-contract/#Conclusion)
+- [Part 30 - Closures](/blog/scala-tutorials-part-30-closures/)
+  - [Introduction](/blog/scala-tutorials-part-30-closures/#Intro)
+  - [Encapsulating state and behaviour](/blog/scala-tutorials-part-30-closures/#StateBehaviour)
+  - [Free variables](/blog/scala-tutorials-part-30-closures/#FreeVariables)
+  - [Reasoning about referential transparency](/blog/scala-tutorials-part-30-closures/#ReferentialTransparency)

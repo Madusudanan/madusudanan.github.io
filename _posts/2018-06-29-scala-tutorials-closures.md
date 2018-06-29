@@ -118,3 +118,5 @@ We saw how functions can be termed pure if they are referentially transparent in
 
 So in order for any closure to be pure, the free variable should be either a val/immutable object. It is good practice to keep the free variable immutable so that the resultant closure is referentially transparent.
 
+In real world Scala usage, you would find that Closures as a language feature is not that extensively used. This is because Scala is a hybrid OO+FP language and developers usually use a combination of Case classes/Case objects along with pure functions. Since Case class are immutable, they still give a good way to deal state while still maintaining things such as referential transparency and not using shared mutable state. Closures are extensively used in pure functional languages such as Haskell, primarily because they are the best way to model state.
+
