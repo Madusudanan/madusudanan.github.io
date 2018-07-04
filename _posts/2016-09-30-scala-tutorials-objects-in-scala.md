@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #4 - Objects"
 permalink: blog/scala-tutorials-part-4-objects/
 tags : Scala
-last_updated: 2017-01-10
+last_updated: 2018-07-04
 ---
 
 Objects in Scala
@@ -97,6 +97,49 @@ This is a compilation error, you can try this in your IDE and it would indicate 
 ![Object instance error in IDE](/images/object_instance_ide_error.png)
 
 But it is more than just a singleton. It encompasses several concepts from java into a single nice abstraction. 
+
+Let's understand in a little more depth.
+
+Consider the below code.
+
+{% highlight scala %}
+
+object Singleton{
+}
+
+object test extends App{
+
+  val a = Singleton
+
+  val b = Singleton
+
+  val c = Singleton
+
+  println(a eq b)
+
+  println(b eq c)
+
+  println(c eq a)
+  
+}
+
+{% endhighlight %}
+
+The `eq` method is a synthetic method which actually does reference equality comparison, the Java equivalent would be using the `==` sign. This prints out true in three separate lines, which means that a,b and c all use the same reference.
+
+We can also test it in another way by printing the hashcode.
+
+{% highlight scala %}
+
+ println(a.hashCode())
+
+ println(b.hashCode())
+
+ println(c.hashCode())
+
+{% endhighlight %}
+
+Which prints out the same hashcode in all three lines.
 
 <h3><b><a name = "Static" class="inter-header">Static and OOP</a></b></h3>
 
