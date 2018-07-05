@@ -3,6 +3,7 @@ layout: post
 title: "Scala Tutorials Part #11 - String Interpolation"
 permalink: blog/scala-tutorials-part-11-string-interpolation/
 tags: [Scala]
+last_updated: 2018-07-05
 ---
 
 String Interpolation
@@ -22,6 +23,7 @@ This is part 11 of the scala tutorial series. Check [here](/blog/scala-articles-
 - [Combining operations with standard interpolation](#OpCombine)
 - [Format interpolator](#Format)
 - [Raw interpolator](#Raw)
+- [Type annotation in interpolators](#TypeAnnotation)
 - [Interpolation in other languages](#OtherLang)
 
 <h3><b><a name = "Intro" class="inter-header">String concatenation in java</a></b></h3>
@@ -170,6 +172,10 @@ If our need is just printing to the console we can just use the `printf` method.
 But in many cases we would want to use the formatted value as a string elsewhere. 
 A good example is printing out values in logs. Without string interpolation we would have to rely on the logging library or use string concatenation.
 
+Note that the `f` interpolator is type safe i.e something like below will throw an error.
+
+![f interpolator error](/images/f_interpolator_error.png)
+
 <h3><b><a name = "Raw" class="inter-header">Raw interpolator</a></b></h3>
 
 The raw interpolator is pretty similar to the standard one, except that literals are not escaped within the string.
@@ -206,6 +212,14 @@ If there are only a handful of literals to be ignored then we can hard code them
  
 We can also write our own [interpolator](http://docs.scala-lang.org/overviews/core/string-interpolation.html#advanced-usage){:target="_blank"}, but
 that is kind of advanced and not needed in most of the cases.
+
+<h3><b><a name = "TypeAnnotation" class="inter-header">Type annotation in interpolators</a></b></h3>
+
+We can annotate the types for the variables we put inside the interpolator and it will throw an error during compile time.
+
+![Type annotation in interpolation](/images/type_annotation_interpolator.png)
+
+In the above example, the second element in the list or any element in that matter is of `Any` type and not of the `String` type. 
 
 <h3><b><a name = "OtherLang" class="inter-header">Interpolation in other languages</a></b></h3>
 
