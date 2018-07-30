@@ -513,10 +513,10 @@ Below is a simple example of an abstract class.
 
 abstract class Parent(name:String = "Noname") {
 
-  //Method with definition/return type
+  //Method with no definition/return type
   def getAge
 
-  //Method with no definition with String return type
+  //Method with no definition and String return type
   def getID : String
 
   //Explicit way of saying that no implementation is present
@@ -533,7 +533,7 @@ abstract class Parent(name:String = "Noname") {
 
 {% endhighlight %}
 
-The comments give a good idea of what the methods do. The `abstract` keyword is not necessary, when the method body is not defined it is taken to be as a abstract method.
+The comments give a good idea of what the methods do. The `abstract` keyword is not necessary, when the method body is not defined it is taken to be as an abstract method.
 
 If we extend this to another class, we need to implement the three methods `getAge`,`getID` and `getEmail`.
 
