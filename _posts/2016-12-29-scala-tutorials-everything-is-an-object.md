@@ -3,7 +3,7 @@ layout: post
 title: "Scala Tutorials Part #7 - Objects Everywhere"
 permalink: blog/scala-tutorials-part-7-objects-everywhere/
 tags: [Scala]
-last_updated: 2017-09-18
+last_updated: 2018-08-27
 ---
 
 Objects Everywhere
@@ -20,6 +20,7 @@ you can check it out [here](https://www.itran.cc/2017/03/09/yin-du-peng-you-shou
 <i class="fa fa-list-ul fa-lg space-right"></i> Index
 
 - [Introduction](#Introduction)
+- [Everything is an expression](#Expression)
 - [Data types as Objects](#DataTypes)
 - [Operations on types](#Operations)
 - [Creation of custom types](#Creation)
@@ -28,7 +29,6 @@ you can check it out [here](https://www.itran.cc/2017/03/09/yin-du-peng-you-shou
 - [Bigint example](#Bigint)
 - [Typecasting](#Typecasting)
 - [Value comparison](#Value)
-- [Code blocks as values](#CodeBlocks)
 - [Implementations in other languages and some notes](#Compared)
 
 
@@ -43,6 +43,61 @@ as in instance of a class. In the rest of this article an object means an instan
 We have seen before that these two concepts i.e object oriented and functional are 
 [kind of orthogonal](http://stackoverflow.com/questions/3949618/are-fp-and-oo-orthogonal){:target="_blank"} to each other. I am not going to give a 
 exhaustive list on what are all objects and what are not, but I will be explaining the idea and advantages behind it and why it is important.
+
+<h3><b><a name = "Expression" class="inter-header">Everything is an expression</a></b></h3>
+
+In Java, there is a difference between an expression and a statement. 
+
+{% highlight java %}
+
+int value = 10;
+        
+boolean result;
+        
+if(value > 20) {
+  result = true;
+}
+else {
+  result = false;
+}
+
+{% endhighlight %}  
+
+The if statements are actual statements i.e they do something while expressions on the other hand evaluate to a value.
+
+In Scala, almost everything(there are some exceptions) evaluates to an expression.
+
+{% highlight scala %}
+
+  val number = 20
+
+  val s = {
+    if(number > 10){
+      println("Number is greater")
+    }
+
+    else {
+      println("Number is lesser")
+    }
+    "testing"
+  }
+
+  println(s)
+
+{% endhighlight %}  
+
+If you run the above code it prints out the following,
+
+{% highlight java %}
+
+Number is greater
+testing
+
+{% endhighlight %}  
+
+This means two things, first the code inside the variable declaration for `s` actually ran and printed some values and second the value "testing" is actually assigned to the variable `s`. Similar to the return on Scala methods, the last line of the code block is taken as the value.
+
+In future articles, you will see that even loops and match statements(pattern matching) evaluate in the same way as code blocks do.Now we have established that everything is an expression in Scala, it also means that it evaluates to something i.e an Object.
 
 <h3><b><a name = "DataTypes" class="inter-header">Data types as Objects</a></b></h3>
 
@@ -301,7 +356,6 @@ public class Test {
 
 It gets compiled to,
 
-
 {% highlight java %}
 
 public class Test {
@@ -486,34 +540,6 @@ Just like the `+` method above, the `==` is a synthetic function in the scala li
 {% endhighlight %}  
 
 Above code compiles to native java like comparison i.e for string it would be the `equals` method which does a character by character comparison underneath.
-
-<h3><b><a name = "CodeBlocks" class="inter-header">Code blocks as values</a></b></h3>
-
-In scala, we can have the values returned from a code block and assign it to a variable directly.
-
-{% highlight scala %}
-
-val age = 20
-
-val x  = {
-    if(age > 18) "adult" else "under age"
-}
-
-{% endhighlight %}  
-
-This gets inferred to the `String` type. If there are no values computed as a result of that code block then it gets inferred to the `Unit` type.
-
-{% highlight scala %}
-
-  val age = 20
-
-  val x  = {
-    if(age > 18) println("Adult") else println("Under age")
-  }
-
-{% endhighlight %}  
-
-This is possible because of the type system and it is not possible in java. Behind the scenes(jvm) it gets converted to a method. We can understand most of the concepts above even further if we learn about [uniform access principle](http://wiki.c2.com/?UniformAccessPrinciple){:target="_blank"} which is explained in [part 14](/blog/scala-tutorials-part-14-uniform-access-principle/).
 
 <h3><b><a name = "Compared" class="inter-header">Implementations in other languages and some notes</a></b></h3>
 
