@@ -3,6 +3,7 @@ layout: post
 title: "Scala Tutorials Part #13 - Loops"
 permalink: blog/scala-tutorials-part-13-loops-in-scala/
 tags: [Scala]
+last_updated: 2018-08-26
 ---
 
 Loops
@@ -19,11 +20,13 @@ The `for` loop however, can be used as a drop in replacement for any while loop 
 <i class="fa fa-list-ul space-right"></i> Index
 
 - [Concept of looping](#Concept)
+- [Introduction to the Syntax](#SyntaxIntro)
 - [Controlling both indexes](#BothIndexes)
 - [Controlling only the starting index](#StartingIndex)
 - [No Index for expressions](#NoIndex)
 - [For loop with guards](#LoopGuards)
 - [Yield construct](#Yield)
+- [Multiple Generators](#MultipleGen)
 
 
 <h3><b><a name = "Concept" class="inter-header">Concept of looping</a></b></h3>
@@ -61,6 +64,32 @@ while(x<10)
 
 The concept is the same immaterial of the language i.e doing something repetitively.
 
+<h3><b><a name = "SyntaxIntro" class="inter-header">Introduction to the Syntax</a></b></h3>
+
+Loops in Scala do not have a three part structure like Java. A typical for loop in Java would like below,
+
+{% highlight java %}
+
+for(int i=0;i<10;i++){
+//Some code
+}
+
+{% endhighlight %}
+
+A typical Scala for loop on the other hand does not have the increment part and also the variable declaration is slightly different.
+
+{% highlight scala %}
+
+for(i <- 1 to 10){
+    println(i)
+}
+
+{% endhighlight %}
+
+Scala does not really have anything that is similar to Java for loops. If you take a closer look, the `to` is actually a method on the `RictInt` class which gives back a `Range` collection from 1 to 10. But notice that we are using these directly from the `Int` class. This is because the class `RichInt` is not a normal class but something called a booster class. We will take a look at booster classes in later tutorials. For now, it is sufficient to understand that the `for` is not something native to Scala, but it is just syntactic sugar over iterating a `Range`.
+
+The `i <- 1 to 10` part is called a loop generator. In below sections we will see how we can combine multiple generators to create a nested for loop.
+
 <h3><b><a name = "BothIndexes" class="inter-header">Controlling both indexes</a></b></h3>
 
 In any for loop, there are two indexes involved i.e the beginning index and the ending one. We can use different constructs 
@@ -75,7 +104,6 @@ for(i<-0 to array.length-1){
   }
   
 {% endhighlight %}
-
 
 Starting from `i = 0` we loop till array length -1. As in many languages, arrays are indexed from 0. In this style of writing, we need to be careful in both the 
 beginning and end index. Typically one would make mistakes by starting at index 0 and then ending at `array.length` which would cause `ArrayIndexOutOfBoundsException`.
@@ -92,7 +120,7 @@ for(i<-0 until array.length) {
   
 {% endhighlight %}
 
-The `until` keyword makes sure that the loop iterates until the last element without us having to deal with the end index.
+The `until` keyword makes sure that the loop iterates until the last element without us having to deal with the end index. Similar to `to`, `until` is also a method in the `RichInt` class.
 
 <h3><b><a name = "NoIndex" class="inter-header">No Index for expressions</a></b></h3>
 
@@ -155,7 +183,7 @@ This is just syntactic sugar over normal if statements.
 
 <h3><b><a name = "Yield" class="inter-header">Yield construct</a></b></h3>
 
-It is to note that all for loops in scala generate a value unlike java.
+For loops unlike Java generates a value in Scala. We saw this already in [part 7](/blog/scala-tutorials-part-7-objects-everywhere/) where is every expression is a value and every value is an object in Scala.
 
 ![Scala loop value](/images/scala_loop_type.png)
 
@@ -174,4 +202,28 @@ Unlike regular for loops which is of type `Unit` this actually yields as the nam
 We can even print out the array `b` which will turn out to be numbers `2,4,6,8,10`.
 As we get deeper into functional programming, we will find out that this way of looping leads to really good and maintainable code.
 
+<h3><b><a name = "MultipleGen" class="inter-header">Multiple Generators</a></b></h3>
+
+We can easily create nested for loops with generator syntax.
+
+{% highlight scala %}
+
+for(i <- 1 to 5;j <- 1 to 5){
+    println(s"i: $i j:$j")
+}
+
+{% endhighlight %}
+
+This prints out
+
+{% highlight java %}
+
+i: 1 j:1
+i: 1 j:2
+...
+i: 5 j:5
+
+{% endhighlight %}
+
+There are more advanced constructs possible with loops, but this should be enough to get started. As we explore more into Scala, we would find that loops can be replaced with more powerful constructs which are thread safe and safer/elegant to work with.
 
