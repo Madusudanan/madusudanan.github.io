@@ -6,7 +6,7 @@ title: About
 > Everyday life is like programming, I guess. If you love something you can put beauty into it
 > - Donald Knuth
 
-Hey there! This is the personal website of Madusudanan.B.N. I am a software engineer based out of Chennai (India).
+Hey there! This is the personal website of Madusudanan.B.N. I am a software engineer based out of India.
 
 Here you will find blogs, code snippets, rants and lots of other stuff. Feel free to read through them and share your valuable feedback.
 
@@ -52,6 +52,6 @@ The views represented here are my own and does not necessarily represent that of
 
 <a name="License"><u>License</u></a>
 -------
-The code hosted as part of this site is licensed under the MIT License if not mentioned otherwise.
+The code hosted as part of this site is licensed under the Apache License if not mentioned otherwise.
 
 The site content and blogs posts are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)
